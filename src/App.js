@@ -36,7 +36,7 @@ function App(props) {
   return (
     <>
       <BrowserRouter>
-        <NavBar user={props.state.user} logout={props.deleteSission} />
+        <NavBar user={store.user} />
         <Route exact path='/'>
           <Home />
         </Route>
@@ -44,21 +44,21 @@ function App(props) {
     </>
   );
 }
-const mapStateToProps = (state) => {
-  return { state: state };
-};
+// const mapStateToProps = (state) => {
+//   return { state: state };
+// };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addSession: (session) => {
-      return dispatch({ type: 'LOGIN', session });
-    },
-    deleteSission: () => {
-      return dispatch({ type: 'LOGOUT' });
-    },
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     addSession: (session) => {
+//       return dispatch({ type: 'LOGIN', session });
+//     },
+//     deleteSission: () => {
+//       return dispatch({ type: 'LOGOUT' });
+//     },
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
 
-// export default App;
+export default App;

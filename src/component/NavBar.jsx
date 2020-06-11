@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom';
 import { NavDropdown } from 'react-bootstrap';
 import ModalLogin from './ModalLogin';
 import ModalSingUp from './ModalSingUp';
+import { useDispatch, useSelector } from 'react-redux';
+import actionType from '../redux/actions';
 
 export default function NavBar(props) {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   return (
     <nav className='navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark'>
       <div className='collapse navbar-collapse' id='navbarSupportedContent'>
@@ -18,24 +22,28 @@ export default function NavBar(props) {
       </div>
       <div className='d-flex justify-content-end'>
         <ul className='navbar-nav mr-auto'>
-          {props.user ? (
-            <NavDropdown title={props.user.name} id='basic-nav-dropdown'>
+          {user ? (
+            <NavDropdown title={user.name} id='basic-nav-dropdown'>
               <NavDropdown.Item href='/user'>Profile</NavDropdown.Item>
 
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={props.logout}>
+              <NavDropdown.Item
+                onClick={() => {
+                  dispatch({ type: actionType.logout });
+                }}
+              >
                 Log Out
               </NavDropdown.Item>
             </NavDropdown>
           ) : (
             <>
               <li className='nav-item '>
-                <Link className='nav-link'>
+                <Link className='nav-link' to='#'>
                   <ModalLogin />
                 </Link>
               </li>
               <li className='nav-item '>
-                <Link className='nav-link'>
+                <Link className='nav-link' to='#'>
                   <ModalSingUp />
                 </Link>
               </li>
