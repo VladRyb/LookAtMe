@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { NavDropdown } from 'react-bootstrap';
+import ModalLogin from './ModalLogin';
+import ModalSingUp from './ModalSingUp';
 
 export default function NavBar(props) {
   return (
@@ -28,15 +30,13 @@ export default function NavBar(props) {
           ) : (
             <>
               <li className='nav-item '>
-                <Link className='nav-link' to='/singup'>
-                  {' '}
-                  Sing Up{' '}
+                <Link className='nav-link'>
+                  <ModalLogin />
                 </Link>
               </li>
-              <li className='nav-item'>
-                <Link className='nav-link' to='/login'>
-                  {' '}
-                  Login{' '}
+              <li className='nav-item '>
+                <Link className='nav-link'>
+                  <ModalSingUp />
                 </Link>
               </li>
             </>

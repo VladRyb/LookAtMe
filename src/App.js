@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector, useDispatch } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Login from './component/Login';
 import Home from './component/Home';
 import NavBar from './component/NavBar';
-import SingUp from './component/SingUp';
+import actionType from './redux/actions';
+
 import './App.css';
 
 function App(props) {
+  const store = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     async function user() {
       const response = await fetch('/', {
@@ -18,8 +21,7 @@ function App(props) {
       });
       const result = await response.json();
       if (result.session) {
-        props.addSession(result.session);
-
+        dispatch({ type: actionType.login, session: result.session });
         const user = result.session.name;
         localStorage.setItem('session', true);
         localStorage.setItem('user', user);
@@ -37,12 +39,6 @@ function App(props) {
         <NavBar user={props.state.user} logout={props.deleteSission} />
         <Route exact path='/'>
           <Home />
-        </Route>
-        <Route path='/login'>
-          <Login state={props} />
-        </Route>
-        <Route path='/singup'>
-          <SingUp state={props} />
         </Route>
       </BrowserRouter>
     </>

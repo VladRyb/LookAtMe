@@ -1,5 +1,11 @@
-const defaultState = { statusSession: false, user: null };
+import actionType from './actions';
 
+const defaultState = {
+  statusSession: false,
+  user: null,
+  isLoading: null,
+  todos: [],
+};
 async function logOut() {
   await fetch('/logout', {
     method: 'POST',
@@ -8,14 +14,27 @@ async function logOut() {
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
-    case 'LOGIN':
+    case actionType.start:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case actionType.todo:
+      const todo = { todo: action.todo };
+      return {
+        ...state,
+        todos: todo.todo,
+        isLoading: false,
+      };
+
+    case actionType.login:
       const user = { name: action.session.name };
       return {
         ...state,
         statusSession: true,
         user: user,
       };
-    case 'LOGOUT':
+    case actionType.logout:
       logOut();
       localStorage.setItem('session', false);
       localStorage.setItem('user', '');
