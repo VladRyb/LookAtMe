@@ -4,7 +4,9 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const router = Router();
 const bcrypt = require('bcrypt');
 const User = require('./models/user');
+const UserGoogle = require('./models/userGoogle');
 const saltRounds = 10;
+const path = require('path');
 
 //
 //
@@ -38,7 +40,7 @@ passport.use(
         done(null, user);
       } else {
         const newUser = new UserGoogle({
-          username: profile.displayName,
+          name: profile.displayName,
           googleId: profile.id,
         });
         await newUser.save();
@@ -47,10 +49,11 @@ passport.use(
     }
   )
 );
+
 router.get(
   '/auth/google',
   passport.authenticate('google', {
-    scope: ['profile'],
+    scope: ['profile', 'email'],
   })
 );
 
@@ -58,8 +61,9 @@ router.get(
   '/auth/google/callback',
   passport.authenticate('google'),
   (req, res) => {
-    console.log(req.session.passport.user[0]);
     req.session.user = req.session.passport.user[0];
+    // res.redirect('/');
+    res.end();
   }
 );
 //
@@ -109,6 +113,10 @@ router.post('/logout', async (req, res, next) => {
   } else {
     res.json({ status: 200 });
   }
+});
+
+router.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '/index.html'));
 });
 
 module.exports = router;
