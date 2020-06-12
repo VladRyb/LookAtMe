@@ -15,9 +15,9 @@ function OldLooks() {
             return <div className='tag'>{element2}</div>;
           })}
         </div>
-        <div className='links'>
-        <Link to='/car'>Изменить</Link>
-        <span> Удалить</span>
+        <div className='d-flex flex-row-reverse bd-highlight align-content-end'>
+        <Link to='/car' className='p-2 bd-highlight'>Изменить</Link>
+        <span className='p-2 bd-highlight'> Удалить</span>
         </div>
       </div>
       )
