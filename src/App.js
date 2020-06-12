@@ -9,6 +9,7 @@ import MyLooks from './component/MyLooks/MyLooks';
 import MyCarousel from './component/DressCarousel/DressCarousel';
 import MyCarousel2 from './component/DressCarousel/DressCarousel2';
 import Dresser from './component/Dresser/Dresser';
+import FooterPage from './component/FooterPage'
 
 import './App.css';
 
@@ -53,6 +54,7 @@ function App(props) {
           <Dresser />
           {/* <MyCarousel /> */}
         </Route>
+        <FooterPage />
       </BrowserRouter>
     </>
   );
