@@ -5,6 +5,7 @@ import Home from './component/Home';
 import NavBar from './component/NavBar';
 import actionType from './redux/actions';
 import MyLooks from './component/MyLooks/MyLooks';
+import ModalImg from './component/ModaImg/ModalImg';
 
 import MyCarousel from './component/DressCarousel/DressCarousel';
 import MyCarousel2 from './component/DressCarousel/DressCarousel2';
@@ -52,6 +53,9 @@ function App(props) {
         <Route exact path='/car'>
           <Dresser />
           {/* <MyCarousel /> */}
+        </Route>
+        <Route exact path='/modal'>
+          <ModalImg />
         </Route>
       </BrowserRouter>
     </>
