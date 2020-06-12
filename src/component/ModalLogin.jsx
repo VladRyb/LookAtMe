@@ -105,16 +105,16 @@ export default function ModalLogin(props) {
           >
             Submit
           </Button>
-          {/* <Button
+          <Button
             className='btn btn-outline-primary'
             variant='outline-primary'
             onClick={() => {
-              window.open('http://localhost:4000/auth/google');
+              window.location = 'http://localhost:4000/auth/google';
               loginGoogle();
             }}
           >
             Google
-          </Button> */}
+          </Button>
         </Modal.Footer>
       </Modal>
     </div>

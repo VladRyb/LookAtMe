@@ -62,8 +62,8 @@ router.get(
   passport.authenticate('google'),
   (req, res) => {
     req.session.user = req.session.passport.user[0];
-    // res.redirect('/');
-    res.end();
+    res.redirect('http://localhost:3000/');
+    // res.end();
   }
 );
 //
