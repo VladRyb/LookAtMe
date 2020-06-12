@@ -55,9 +55,7 @@ function App(props) {
           <Dresser />
           {/* <MyCarousel /> */}
         </Route>
-        <Route exact path='/modal'>
-          <ModalImg />
-        </Route>
+
         <FooterPage />
       </BrowserRouter>
     </>
