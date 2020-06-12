@@ -19,7 +19,7 @@ export default function NavBar(props) {
             </Link>
           </li>
           <li className='nav-item active'>
-            <Link className='nav-link' to='/'>
+            <Link className='nav-link' to='/car'>
               Начать пользоваться <span className='sr-only'>(current)</span>
             </Link>
           </li>
