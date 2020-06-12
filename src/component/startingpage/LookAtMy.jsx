@@ -1,6 +1,6 @@
-import React from "react";
-import "./styles.css";
-import ReactRotatingText from "react-rotating-text";
+import React from 'react';
+import './styles.css';
+import ReactRotatingText from 'react-rotating-text';
 
 export default function LookAtMy() {
   return (
@@ -10,15 +10,15 @@ export default function LookAtMy() {
           Посмотри на мои
           <ReactRotatingText
             items={[
-              " сандалики",
-              " штанишечки",
-              " рубашечки",
-              " панамки",
-              " шортики",
+              ' сандалики',
+              ' штанишечки',
+              ' рубашечки',
+              ' панамки',
+              ' шортики',
             ]}
           />
         </p>
-        <br/>
+        <br />
         <p>...Я знаю тебе нравится</p>
       </div>
     </>
