@@ -11,7 +11,7 @@ export default function Home(props) {
       <LookAtMy />
       <AboutComponent />
       <Video />
-      <UserLooksStart />
+      {/* <UserLooksStart /> */}
     </>
   );
 }
