@@ -5,6 +5,7 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const cookieParser = require('cookie-parser');
 const authRouter = require('./auth');
+const path = require('path');
 
 const app = express();
 
@@ -15,6 +16,8 @@ mongoose.connect('mongodb://localhost:27017/finalProject', {
 });
 
 app.use(morgan('dev'));
+
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

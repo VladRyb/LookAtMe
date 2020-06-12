@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const googleSchema = new mongoose.Schema({
-  username: String,
+  name: String,
   email: String,
   phone: String,
   googleId: String,

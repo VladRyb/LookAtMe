@@ -6,7 +6,12 @@ import NavBar from './component/NavBar';
 import actionType from './redux/actions';
 import MyLooks from './component/MyLooks/MyLooks'
 
-import './App.css';
+
+import MyCarousel from "./component/DressCarousel/DressCarousel";
+import MyCarousel2 from "./component/DressCarousel/DressCarousel2";
+import Dresser from './component/Dresser/Dresser'
+
+import "./App.css";
 
 function App(props) {
   // console.log(state)
@@ -15,21 +20,21 @@ function App(props) {
 
   useEffect(() => {
     async function user() {
-      const response = await fetch('/', {
-        method: 'POST',
+      const response = await fetch("/", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json;charset=utf-8',
+          "Content-Type": "application/json;charset=utf-8",
         },
       });
       const result = await response.json();
       if (result.session) {
         dispatch({ type: actionType.login, session: result.session });
         const user = result.session.name;
-        localStorage.setItem('session', true);
-        localStorage.setItem('user', user);
+        localStorage.setItem("session", true);
+        localStorage.setItem("user", user);
       } else {
-        localStorage.setItem('session', false);
-        localStorage.setItem('user', '');
+        localStorage.setItem("session", false);
+        localStorage.setItem("user", "");
       }
     }
     user();
@@ -39,11 +44,18 @@ function App(props) {
     <>
       <BrowserRouter>
         <NavBar user={store.user} />
-        <Route exact path='/'>
+        <Route exact path="/">
           <Home />
         </Route>
+
         <Route exact path='/mylooks'>
           <MyLooks />
+ </Route>
+
+        <Route exact path="/car">
+          <Dresser />
+          {/* <MyCarousel /> */}
+
         </Route>
       </BrowserRouter>
     </>

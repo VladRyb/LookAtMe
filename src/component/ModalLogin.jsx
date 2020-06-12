@@ -16,6 +16,12 @@ export default function ModalLogin(props) {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  async function loginGoogle(event) {
+    const response = await fetch('/auth/google/callback', {
+      mode: 'no-cors',
+    });
+  }
+
   async function loginSubmit(event) {
     event.preventDefault();
 
@@ -98,6 +104,16 @@ export default function ModalLogin(props) {
             onClick={loginSubmit}
           >
             Submit
+          </Button>
+          <Button
+            className='btn btn-outline-primary'
+            variant='outline-primary'
+            onClick={() => {
+              window.location = 'http://localhost:4000/auth/google';
+              loginGoogle();
+            }}
+          >
+            Google
           </Button>
         </Modal.Footer>
       </Modal>
