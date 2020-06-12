@@ -46,11 +46,9 @@ function App(props) {
         <Route exact path='/'>
           <Home />
         </Route>
-
         <Route exact path='/mylooks'>
           <MyLooks />
         </Route>
-
         <Route exact path='/car'>
           <Dresser />
           {/* <MyCarousel /> */}

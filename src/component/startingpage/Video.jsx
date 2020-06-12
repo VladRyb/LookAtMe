@@ -4,12 +4,6 @@ import "./styles.css";
 import { Card } from "react-bootstrap";
 
 export default function Video() {
-  const session = localStorage.getItem("session");
-  const history = useHistory();
-  if (session === "false") {
-    history.push("/login");
-  }
-
   return (
     <>
       <div className="video">

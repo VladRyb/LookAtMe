@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles.css";
-// var ReactRotatingText = require('react-rotating-text');
 import ReactRotatingText from "react-rotating-text";
 
 export default function LookAtMy() {
