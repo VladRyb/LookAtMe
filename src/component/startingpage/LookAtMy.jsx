@@ -1,22 +1,27 @@
 import React from "react";
 import "./styles.css";
+// var ReactRotatingText = require('react-rotating-text');
+import ReactRotatingText from "react-rotating-text";
 
 export default function LookAtMy() {
   return (
     <>
-        <section class="wrapper">
-          <h2 class="sentence">
-            Посмотри на мои
-            <div class="slidingVertical">
-              <span>сандалики.</span>
-              <span>штанишечки.</span>
-              <span>рубашечки.</span>
-              <span>панамки.</span>
-              <span>шортики.</span>
-            </div>
-            <p>Я знаю тебе нравится</p>
-          </h2>
-        </section>
+      <div className='lookatmy'>
+        <p>
+          Посмотри на мои
+          <ReactRotatingText
+            items={[
+              " сандалики",
+              " штанишечки",
+              " рубашечки",
+              " панамки",
+              " шортики",
+            ]}
+          />
+        </p>
+        <br/>
+        <p>...Я знаю тебе нравится</p>
+      </div>
     </>
   );
 }
