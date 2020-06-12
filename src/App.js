@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { connect, useSelector, useDispatch } from "react-redux";
-import { BrowserRouter, Route } from "react-router-dom";
-import Home from "./component/Home";
-import NavBar from "./component/NavBar";
-import actionType from "./redux/actions";
+import React, { useEffect, useState } from 'react';
+import { connect, useSelector, useDispatch } from 'react-redux';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Home from './component/Home';
+import NavBar from './component/NavBar';
+import actionType from './redux/actions';
+import MyLooks from './component/MyLooks/MyLooks'
+
 
 import MyCarousel from "./component/DressCarousel/DressCarousel";
 import MyCarousel2 from "./component/DressCarousel/DressCarousel2";
@@ -12,6 +14,7 @@ import Dresser from './component/Dresser/Dresser'
 import "./App.css";
 
 function App(props) {
+  // console.log(state)
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -45,9 +48,14 @@ function App(props) {
           <Home />
         </Route>
 
+        <Route exact path='/mylooks'>
+          <MyLooks />
+ </Route>
+
         <Route exact path="/car">
           <Dresser />
           {/* <MyCarousel /> */}
+
         </Route>
       </BrowserRouter>
     </>
