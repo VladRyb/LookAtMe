@@ -24,6 +24,7 @@
     "react-dom": "^16.13.1",
     "react-items-carousel": "^2.8.0",
     "react-redux": "^7.2.0",
+    "react-rotating-text": "^1.4.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-spring": "^8.0.27",

@@ -1,7 +1,11 @@
 * {
   box-sizing: border-box;
 }
-
+.lookatmy {
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+}
 .video {
   display: flex;
   justify-content: center;

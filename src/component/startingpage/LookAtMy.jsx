@@ -1,22 +1,26 @@
-import React from 'react';
-import './styles.css';
+import React from "react";
+import "./styles.css";
+import ReactRotatingText from "react-rotating-text";
 
 export default function LookAtMy() {
   return (
     <>
-      <section>
-        <h2>
+      <div className='lookatmy'>
+        <p>
           Посмотри на мои
-          <div>
-            <span>сандалики.</span>
-            <span>штанишечки.</span>
-            <span>рубашечки.</span>
-            <span>панамки.</span>
-            <span>шортики.</span>
-          </div>
-          <p>Я знаю тебе нравится</p>
-        </h2>
-      </section>
+          <ReactRotatingText
+            items={[
+              " сандалики",
+              " штанишечки",
+              " рубашечки",
+              " панамки",
+              " шортики",
+            ]}
+          />
+        </p>
+        <br/>
+        <p>...Я знаю тебе нравится</p>
+      </div>
     </>
   );
 }
