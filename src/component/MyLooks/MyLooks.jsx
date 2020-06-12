@@ -3,9 +3,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './myLooks.css';
-import NewLook from './NewLook/NewLook'
-import OldLooks from './OldLooks/OldLooks'
-
+import NewLook from './NewLook/NewLook';
+import OldLooks from './OldLooks/OldLooks';
 
 function MyLooks(props) {
   const state = useSelector((state) => state);
@@ -14,11 +13,15 @@ function MyLooks(props) {
       <div className='mylookswrapper'>
         <NewLook />
         <OldLooks />
-    </div>);
+      </div>
+    );
   } else {
-    return (<div><OldLooks /></div>)
+    return (
+      <div>
+        <OldLooks />
+      </div>
+    );
+  }
 }
-
-
 
 export default MyLooks;
