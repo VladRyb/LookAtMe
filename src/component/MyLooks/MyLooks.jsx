@@ -8,7 +8,7 @@ import OldLooks from './OldLooks/OldLooks'
 
 
 function MyLooks(props) {
-  const state = useSelector((state) => state)
+  const state = useSelector((state) => state);
   if (state.newLook) {
     return (
       <div className='mylookswrapper'>
@@ -18,6 +18,7 @@ function MyLooks(props) {
   } else {
     return (<div><OldLooks /></div>)
 }
-}
+
+
 
 export default MyLooks;

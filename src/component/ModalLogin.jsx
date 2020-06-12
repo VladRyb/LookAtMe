@@ -16,12 +16,6 @@ export default function ModalLogin(props) {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  async function loginGoogle(event) {
-    const response = await fetch('/auth/google/callback', {
-      mode: 'no-cors',
-    });
-  }
-
   async function loginSubmit(event) {
     event.preventDefault();
 
@@ -97,23 +91,23 @@ export default function ModalLogin(props) {
             <div>{messe} </div>
           </div>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className='d-flex justify-content-between'>
+          <Button
+            id='googleButton'
+            variant='primary'
+            onClick={() => {
+              window.location = 'http://localhost:4000/auth/google';
+            }}
+          >
+            <img className='googleIcon' src='../google.png' alt='' />
+            Sing in with Google
+          </Button>
           <Button
             className='btn btn-outline-primary'
             variant='outline-primary'
             onClick={loginSubmit}
           >
             Submit
-          </Button>
-          <Button
-            className='btn btn-outline-primary'
-            variant='outline-primary'
-            onClick={() => {
-              window.location = 'http://localhost:4000/auth/google';
-              loginGoogle();
-            }}
-          >
-            Google
           </Button>
         </Modal.Footer>
       </Modal>

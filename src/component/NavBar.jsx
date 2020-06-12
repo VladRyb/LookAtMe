@@ -18,6 +18,11 @@ export default function NavBar(props) {
               Home <span className='sr-only'>(current)</span>
             </Link>
           </li>
+          <li className='nav-item active'>
+            <Link className='nav-link' to='/'>
+              Начать пользоваться <span className='sr-only'>(current)</span>
+            </Link>
+          </li>
         </ul>
       </div>
       <div className='d-flex justify-content-end'>
