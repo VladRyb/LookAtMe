@@ -10,7 +10,7 @@ export default function Dresser() {
   const { headImages, bodyImages, pansImages, lapkiImages } = state;
 
   return (
-    <>
+    <div style={{paddingBottom: 70}}>
       <div>
         <ModalImg />
         <DressCarousel headImages={headImages} title={'Головушка'} />
@@ -27,6 +27,6 @@ export default function Dresser() {
         <ModalImg />
         <DressCarousel headImages={lapkiImages} title={'Лапки'} />
       </div>
-    </>
+    </div>
   );
 }
