@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, Dropdown, DropdownButton } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 
 export default function ModalLogin(props) {
   const [show, setShow] = useState(false);
@@ -10,7 +10,7 @@ export default function ModalLogin(props) {
   return (
     <div>
       <span variant='primary' onClick={handleShow}>
-        Login
+        Добавить Фото
       </span>
       <Modal
         show={show}
