@@ -68,7 +68,9 @@ const defaultState = {
       tags: ['Зимний'],
     },
   ],
+
   headImages: [
+
     'https://hatsandcaps.ru/components/com_jshopping/files/img_products/full_04-007-10(0).jpg',
     'https://hatsandcaps.ru/components/com_jshopping/files/img_products/full_04-007-10(0).jpg',
     'https://hatsandcaps.ru/components/com_jshopping/files/img_products/full_04-007-10(0).jpg',
