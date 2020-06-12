@@ -1,26 +1,31 @@
-import React from "react";
+import React from 'react';
 import DressCarousel from '../DressCarousel/DressCarousel2';
-import {useSelector} from "react-redux"
+import { useSelector } from 'react-redux';
+import ModalImg from '../ModaImg/ModalImg';
 
-import './Dresser.css'
+import './Dresser.css';
 
 export default function Dresser() {
-  const state = useSelector((state) => state)
-  const {headImages,bodyImages,pansImages,lapkiImages} = state;
+  const state = useSelector((state) => state);
+  const { headImages, bodyImages, pansImages, lapkiImages } = state;
 
   return (
     <>
       <div>
-        <DressCarousel headImages={headImages} title={'Головушка'}/>
+        <ModalImg />
+        <DressCarousel headImages={headImages} title={'Головушка'} />
       </div>
       <div>
-        <DressCarousel headImages={bodyImages} title={'Пузико'}/>
+        <ModalImg />
+        <DressCarousel headImages={bodyImages} title={'Пузико'} />
       </div>
       <div>
-        <DressCarousel headImages={pansImages} title={'Бедрышки'}/>
+        <ModalImg />
+        <DressCarousel headImages={pansImages} title={'Бедрышки'} />
       </div>
       <div>
-        <DressCarousel headImages={lapkiImages} title={'Лапки'}/>
+        <ModalImg />
+        <DressCarousel headImages={lapkiImages} title={'Лапки'} />
       </div>
     </>
   );
