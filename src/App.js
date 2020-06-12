@@ -4,10 +4,12 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './component/Home';
 import NavBar from './component/NavBar';
 import actionType from './redux/actions';
+import MyLooks from './component/MyLooks/MyLooks'
 
 import './App.css';
 
 function App(props) {
+  // console.log(state)
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -39,6 +41,9 @@ function App(props) {
         <NavBar user={store.user} />
         <Route exact path='/'>
           <Home />
+        </Route>
+        <Route exact path='/mylooks'>
+          <MyLooks />
         </Route>
       </BrowserRouter>
     </>
