@@ -5,28 +5,22 @@ import { MDBIcon, MDBCol, MDBContainer, MDBRow, MDBFooter } from 'mdbreact';
 
 const FooterPage = () => {
   return (
-    <MDBFooter
-      color='info-color-dark'
-      className='font-small pt-4 mt-4 test fixed-bottom'
-    >
-      <MDBContainer fluid className='text-center text-md-left'>
-        <MDBRow>
-          <MDBCol md='6'>
-            <p style={{ paddingLeft: 5 }}>
-              Наш проект на{' '}
+    <nav className='navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark fixed-bottom'>
+      <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+        <ul className='navbar-nav mr-auto'>
+          <li className='nav-item active'>
               <a
                 style={{ color: 'white' }}
                 href='https://github.com/VladRyb/LookAtMe'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                GitHub
+              Наш проект на GitHub
               </a>
-            </p>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-    </MDBFooter>
+          </li>
+        </ul>
+      </div>
+    </nav>
   );
 };
 
