@@ -1,47 +1,160 @@
-import React, { useState, useEffect } from 'react'
-import { useTransition, a } from 'react-spring'
-import shuffle from 'lodash/shuffle'
-import useMeasure from './useMeasure'
-import useMedia from './useMedia'
-import data from './data'
-import './styles.css'
+import React, { useState } from "react";
 
+import { Carousel } from "react-bootstrap";
 
+export default function UserLooksStart() {
+  const [index, setIndex] = useState(0);
 
-const UserLooksStart = () => {
-  const columns = useMedia(['(min-width: 10px)', '(min-width: 10px)', '(min-width: 10px)'], [5, 4, 3], 2)
-  // Hook2: Measure the width of the container element
-  const [bind, { width }] = useMeasure()
-  // Hook3: Hold items
-  const [items, set] = useState(data)
-  // Hook4: shuffle data every 2 seconds
-  useEffect(() => void setInterval(() => set(shuffle), 2000), [])
-  // Form a grid of stacked items using width & columns we got from hooks 1 & 2
-  let heights = new Array(columns).fill(0) // Each column gets a height starting with zero
-  let gridItems = items.map((child, i) => {
-    const column = heights.indexOf(Math.min(...heights)) // Basic masonry-grid placing, puts tile into the smallest column using Math.min
-    const xy = [(width / columns) * column, (heights[column] += child.height / 2) - child.height / 2] // X = container width / number of columns * column index, Y = it's just the height of the current column
-    return { ...child, xy, width: width / columns, height: child.height / 2 }
-  })
-  // Hook5: Turn the static grid values into animated transitions, any addition, removal or change will be animated
-  const transitions = useTransition(gridItems, item => item.css, {
-    from: ({ xy, width, height }) => ({ xy, width, height, opacity: 0 }),
-    enter: ({ xy, width, height }) => ({ xy, width, height, opacity: 1 }),
-    update: ({ xy, width, height }) => ({ xy, width, height }),
-    leave: { height: 0, opacity: 0 },
-    config: { mass: 5, tension: 500, friction: 100 },
-    trail: 25
-  })
-  // Render the grid
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
+
   return (
-    <div {...bind} class="list" style={{ height: Math.max(...heights) }}>
-      {transitions.map(({ item, props: { xy, ...rest }, key }) => (
-        <a.div key={key} style={{ transform: xy.interpolate((x, y) => `translate3d(${x}px,${y}px,0)`), ...rest }}>
-          <div style={{ backgroundImage: item.css }} />
-        </a.div>
-      ))}
-    </div>
-  )
-}
+    <>
+      <div className="slider">
+        <Carousel
+          activeIndex={index}
+          onSelect={handleSelect}
+          style={{
+            width: "300px",
+            height: "300px",
+            display: "flex",
+            margin: "30px",
+          }}
+        >
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src="https://mtdata.ru/u27/photoE4ED/20330504634-0/original.jpg"
+              alt="First slide"
+            />
+            <Carousel.Caption>
+              <h3>First slide label</h3>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src="http://v.img.com.ua/b/1100x999999/2/c7/97147008e20ffe3c0e1bd33be20b1c72.jpg"
+              alt="Second slide"
+            />
+            <Carousel.Caption>
+              <h3>Second slide label</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src="https://avatars.mds.yandex.net/get-pdb/1040926/8ac3f8fa-cbf8-4591-bd1c-cd8556fe5c3d/s1200?webp=false"
+              alt="Third slide"
+            />
 
-export default UserLooksStart;
+            <Carousel.Caption>
+              <h3>Third slide label</h3>
+              <p>
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+              </p>
+            </Carousel.Caption>
+          </Carousel.Item>
+        </Carousel>
+        <Carousel
+          activeIndex={index}
+          onSelect={handleSelect}
+          style={{
+            width: "300px",
+            height: "300px",
+            display: "flex",
+            margin: "30px",
+          }}
+        >
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src="https://hochyvseznat.ru/wp-content/uploads/2018/11/9b38197a8c322ac6ed5251acc8e66939.jpg"
+              alt="First slide"
+            />
+            <Carousel.Caption>
+              <h3>First slide label</h3>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src="https://mtdata.ru/u4/photoE9AF/20966049267-0/original.jpg"
+              alt="Second slide"
+            />
+
+            <Carousel.Caption>
+              <h3>Second slide label</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src="https://mtdata.ru/u1/photo7D1E/20227929951-0/original.jpg"
+              alt="Third slide"
+            />
+
+            <Carousel.Caption>
+              <h3>Third slide label</h3>
+              <p>
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+              </p>
+            </Carousel.Caption>
+          </Carousel.Item>
+        </Carousel>
+        <Carousel
+          activeIndex={index}
+          onSelect={handleSelect}
+          style={{
+            width: "300px",
+            height: "300px",
+            display: "flex",
+            margin: "30px",
+          }}
+        >
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src="https://hochyvseznat.ru/wp-content/uploads/2018/11/9b38197a8c322ac6ed5251acc8e66939.jpg"
+              alt="First slide"
+            />
+            <Carousel.Caption>
+              <h3>First slide label</h3>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src="https://avatars.mds.yandex.net/get-pdb/1066918/72db2296-91ca-48f3-bb84-66944e88f151/s1200?webp=false"
+              alt="Second slide"
+            />
+
+            <Carousel.Caption>
+              <h3>Second slide label</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src="https://hochyvseznat.ru/wp-content/uploads/2018/11/9b38197a8c322ac6ed5251acc8e66939.jpg"
+              alt="Third slide"
+            />
+            <Carousel.Caption>
+              <h3>Third slide label</h3>
+              <p>
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+              </p>
+            </Carousel.Caption>
+          </Carousel.Item>
+        </Carousel>
+      </div>
+    </>
+  );
+}
