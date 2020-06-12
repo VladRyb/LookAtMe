@@ -1,6 +1,6 @@
 .mylookswrapper {
   margin: auto;
-  width: 50%;
+  width: 40%;
   padding: 10px;
 }
 
@@ -15,6 +15,16 @@ h2 {
   flex-flow: row wrap;
   align-content: flex-end;
   float: left;
+}
+
+.photo-container {
+  float: left;
+  width: 220px;
+}
+
+.photo-container img {
+  width: 200px;
+  height: 200px;
 }
 
 .wrapper {
@@ -49,4 +59,9 @@ h2 {
   flex-wrap: wrap;
   flex-flow: row wrap;
   align-content: flex-end;
+}
+
+.links {
+  justify-content: end;
+
 }
