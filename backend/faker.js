@@ -1,4 +1,4 @@
-import faker from 'faker';
+const faker = require('faker');
 const golovushka = [
   {
     id: faker.random.uuid(),
@@ -402,4 +402,4 @@ const user = {
   ],
 }
 
-export default user;
+module.exports = user

@@ -1,5 +1,6 @@
 import React from 'react';
 import DressCarousel from '../DressCarousel/DressCarousel2';
+import UploadForm from '../uploadForm/UploadForm'
 import { useSelector } from 'react-redux';
 import ModalLook from '../ModaImg/ModalLook';
 
@@ -10,7 +11,9 @@ export default function Dresser() {
   const { head, body, legs, feet } = user;
 
   return (
-    <div className='dresser'>
+    <div className="dresser">
+      <UploadForm />
+
       <div>
         <DressCarousel dressArray={head} title={'Головушка'} property='head' />
       </div>
