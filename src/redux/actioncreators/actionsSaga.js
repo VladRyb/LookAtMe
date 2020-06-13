@@ -14,3 +14,7 @@ export function loadingStart() {
 export function loadingTodo(arr) {
   return { type: actionType.todo, todo: arr };
 }
+
+export function dressForNewLook(property, value) {
+  return { type: actionType.dressForNewLook, property, value};
+}
