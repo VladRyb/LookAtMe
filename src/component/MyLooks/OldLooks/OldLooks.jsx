@@ -18,7 +18,7 @@ function OldLooks() {
           })}
         </div>
         <div className='d-flex flex-row-reverse bd-highlight align-content-end'>
-        <Link to='/car' className='p-2 bd-highlight'>Изменить</Link>
+        <Link to={`/edit/${element.id}`} className='p-2 bd-highlight'>Изменить</Link>
         <span className='p-2 bd-highlight'> Удалить</span>
         </div>
       </div>

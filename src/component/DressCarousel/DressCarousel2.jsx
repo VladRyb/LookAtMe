@@ -23,7 +23,7 @@ export default ({ dressArray, title, property }) => {
         onClick={() => {
           setchooseItem(true);
           setimageUrl(el.imageUrl);
-          dispatch(dressForNewLook(property,el.id))
+          dispatch(dressForNewLook(property,el.id));
         }}
       />
     );
@@ -34,6 +34,7 @@ export default ({ dressArray, title, property }) => {
     onClick={() => {
       setchooseItem(false);
       setimageUrl("");
+      dispatch(dressForNewLook(property,null));
     }}/>
   ) : (
     <div style={{ padding: `0 ${chevronWidth}px` }} className="dressCarousel">
