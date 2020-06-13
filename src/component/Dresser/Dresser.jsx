@@ -10,21 +10,21 @@ export default function Dresser() {
   const { head, body, legs, feet } = user;
 
   return (
-    <div style={{paddingBottom: 70}}>
+    <div className="dresser">
       <div>
-        <ModalImg />
+
         <DressCarousel dressArray={head} title={'Головушка'} property='head' />
       </div>
       <div>
-        <ModalImg />
+
         <DressCarousel dressArray={body} title={'Пузико'} />
       </div>
       <div>
-        <ModalImg />
+
         <DressCarousel dressArray={legs} title={'Бедрышки'} />
       </div>
       <div>
-        <ModalImg />
+
         <DressCarousel dressArray={feet} title={'Лапки'} />
       </div>
     </div>
