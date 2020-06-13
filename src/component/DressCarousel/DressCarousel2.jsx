@@ -1,22 +1,29 @@
 import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
 import ItemsCarousel from "react-items-carousel";
 import { DropdownButton, Dropdown } from "react-bootstrap";
+import { dressForNewLook } from '../../redux/actioncreators/actionsSaga'
+import ModalImg from '../ModaImg/ModalImg';
 
-export default ({ headImages, title }) => {
+export default ({ dressArray, title, property }) => {
+  const dispatch = useDispatch();
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const chevronWidth = 40;
   const [chooseItem, setchooseItem] = useState(false);
   const [imageUrl, setimageUrl] = useState("");
 
-  const head = headImages.map((el) => {
+
+  const dress = dressArray.map((el) => {
     return (
       <img
-        src={el}
+      key={el.id}
+        src={el.imageUrl}
         alt="img"
         className="smallImg"
         onClick={() => {
           setchooseItem(true);
-          setimageUrl(el);
+          setimageUrl(el.imageUrl);
+          dispatch(dressForNewLook(property,el.id));
         }}
       />
     );
@@ -27,6 +34,7 @@ export default ({ headImages, title }) => {
     onClick={() => {
       setchooseItem(false);
       setimageUrl("");
+      dispatch(dressForNewLook(property,null));
     }}/>
   ) : (
     <div style={{ padding: `0 ${chevronWidth}px` }} className="dressCarousel">

@@ -1,47 +1,43 @@
-import React, { useState, useEffect } from 'react'
-import { useTransition, a } from 'react-spring'
-import shuffle from 'lodash/shuffle'
-import useMeasure from './useMeasure'
-import useMedia from './useMedia'
-import data from './data'
-import './styles.css'
+import CarouselSlider from "react-carousel-slider";
+import React from "react";
 
+export default function UserLooksStart() {
+  let data = [
+    {
+      des: "Имя модника",
+      imgSrc:
+        "https://hochyvseznat.ru/wp-content/uploads/2018/11/9b38197a8c322ac6ed5251acc8e66939.jpg",
+    },
+    {
+      des: "Имя модника",
+      imgSrc:
+        "http://v.img.com.ua/b/1100x999999/3/21/cdc6001c3a239cc963e15fe088201213.jpg",
+    },
+    {
+      des: "Имя модника",
+      imgSrc:
+        "https://i.pinimg.com/736x/7f/aa/53/7faa53b4b8c90a15e9936c2ae9e9fdc7--older-couples-stylish-couple.jpg",
+    },
+    {
+      des: "Имя модника",
+      imgSrc: "https://pbs.twimg.com/media/EPKuQyJX4AEb52y.jpg",
+    },
+    {
+      des: "Имя модника",
+      imgSrc:
+        "https://i.pinimg.com/736x/da/d2/e2/dad2e21b9fb1cabb63d9b4dc436d36b2.jpg",
+    },
+    {
+      des: "Имя модника",
+      imgSrc:
+        "https://i.pinimg.com/474x/7a/7c/65/7a7c658d2e47fbb5b2428918bc0a1a4c--older-women-haircuts.jpg",
+    },
+    {
+      des: "Имя модника",
+      imgSrc:
+        "https://avatars.mds.yandex.net/get-pdb/1521750/518347d5-6f4d-4f2a-a379-5489f7104fc7/s1200?webp=false",
+    },
+  ];
 
-
-const UserLooksStart = () => {
-  const columns = useMedia(['(min-width: 10px)', '(min-width: 10px)', '(min-width: 10px)'], [5, 4, 3], 2)
-  // Hook2: Measure the width of the container element
-  const [bind, { width }] = useMeasure()
-  // Hook3: Hold items
-  const [items, set] = useState(data)
-  // Hook4: shuffle data every 2 seconds
-  useEffect(() => void setInterval(() => set(shuffle), 2000), [])
-  // Form a grid of stacked items using width & columns we got from hooks 1 & 2
-  let heights = new Array(columns).fill(0) // Each column gets a height starting with zero
-  let gridItems = items.map((child, i) => {
-    const column = heights.indexOf(Math.min(...heights)) // Basic masonry-grid placing, puts tile into the smallest column using Math.min
-    const xy = [(width / columns) * column, (heights[column] += child.height / 2) - child.height / 2] // X = container width / number of columns * column index, Y = it's just the height of the current column
-    return { ...child, xy, width: width / columns, height: child.height / 2 }
-  })
-  // Hook5: Turn the static grid values into animated transitions, any addition, removal or change will be animated
-  const transitions = useTransition(gridItems, item => item.css, {
-    from: ({ xy, width, height }) => ({ xy, width, height, opacity: 0 }),
-    enter: ({ xy, width, height }) => ({ xy, width, height, opacity: 1 }),
-    update: ({ xy, width, height }) => ({ xy, width, height }),
-    leave: { height: 0, opacity: 0 },
-    config: { mass: 5, tension: 500, friction: 100 },
-    trail: 25
-  })
-  // Render the grid
-  return (
-    <div {...bind} class="list" style={{ height: Math.max(...heights) }}>
-      {transitions.map(({ item, props: { xy, ...rest }, key }) => (
-        <a.div key={key} style={{ transform: xy.interpolate((x, y) => `translate3d(${x}px,${y}px,0)`), ...rest }}>
-          <div style={{ backgroundImage: item.css }} />
-        </a.div>
-      ))}
-    </div>
-  )
+  return <CarouselSlider slideItems={data} />;
 }
-
-export default UserLooksStart;

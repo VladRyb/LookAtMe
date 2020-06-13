@@ -11,13 +11,13 @@ function MyLooks(props) {
   if (state.newLook) {
     return (
       <div className='mylookswrapper'>
-        <NewLook />
+        {/* <NewLook /> */}
         <OldLooks />
       </div>
     );
   } else {
     return (
-      <div>
+      <div className='mylookswrapper'>
         <OldLooks />
       </div>
     );

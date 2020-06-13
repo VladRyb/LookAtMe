@@ -6,6 +6,7 @@ const FileStore = require('session-file-store')(session);
 const cookieParser = require('cookie-parser');
 const authRouter = require('./auth');
 const path = require('path');
+const userRouter = require('./auth');
 
 const app = express();
 
@@ -48,6 +49,8 @@ app.post('/', async (req, res) => {
 });
 
 app.use('/', authRouter);
+app.use('/user', userRouter);
+
 
 app.listen(4000, () => {
   console.log('Starting Port 4000');

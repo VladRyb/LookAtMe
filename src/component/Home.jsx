@@ -1,5 +1,4 @@
-import React, { Fragment } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
 
 import UserLooksStart from './startingpage/UserLooksStart';
 import AboutComponent from './startingpage/AboutComponent';
@@ -12,7 +11,7 @@ export default function Home(props) {
       <LookAtMy />
       <AboutComponent />
       <Video />
-      {/* <UserLooksStart /> */}
+      <UserLooksStart />
     </>
   );
 }

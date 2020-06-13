@@ -23,6 +23,11 @@ export default function NavBar(props) {
               Начать пользоваться <span className='sr-only'>(current)</span>
             </Link>
           </li>
+          <li className=''>
+            <Link className='nav-link' to='/mylooks'>
+              Гардероб <span className='sr-only'>(current)</span>
+            </Link>
+          </li>
         </ul>
       </div>
       <div className='d-flex justify-content-end'>

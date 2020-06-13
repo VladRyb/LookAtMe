@@ -4,10 +4,6 @@
   padding: 10px;
 }
 
-h2 {
-  color: black;
-}
-
 .multi-photo-container {
   display: flex;
   flex-direction: row;
@@ -15,6 +11,11 @@ h2 {
   flex-flow: row wrap;
   align-content: flex-end;
   float: left;
+}
+
+.multi-photo-container img {
+  width: 100px;
+  height: 100px;
 }
 
 .photo-container {
@@ -63,5 +64,9 @@ h2 {
 
 .links {
   justify-content: end;
+}
 
+.test {
+  background-color: #343a40;
+  color: white;
 }
