@@ -10,9 +10,9 @@ export default function ModalLogin(props) {
   return (
     <div>
       <span variant='primary' onClick={handleShow}>
-      <div className="addDiv">
-      <i className="fa fa-plus" />
-         </div>
+        <div className='addDiv'>
+          <i className='fa fa-plus' />
+        </div>
       </span>
       <Modal
         show={show}
