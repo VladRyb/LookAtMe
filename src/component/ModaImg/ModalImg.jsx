@@ -19,7 +19,7 @@ export default function ModalLogin(props) {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Login</Modal.Title>
+          <Modal.Title>+</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div id='container' class='flexChild rowParent'>
@@ -30,7 +30,7 @@ export default function ModalLogin(props) {
             <div id='rowChild77673' class='flexChild'>
               <div className='selectDiv d-flex justify-content-between'>
                 <span>Сезон: </span>
-                <select className='select'>
+                <select className='select btn btn-secondary btn-sm dropdown-toggle'>
                   <option>Не выбрано</option>
                   <option>Зима</option>
                   <option>Лето</option>
@@ -40,7 +40,7 @@ export default function ModalLogin(props) {
               </div>
               <div className='selectDiv d-flex justify-content-between'>
                 <span>Тип: </span>
-                <select className='select'>
+                <select className='select select btn btn-secondary btn-sm dropdown-toggle'>
                   <option>Не выбрано</option>
                   <option>Рубашка</option>
                   <option>Шорты</option>
@@ -50,7 +50,7 @@ export default function ModalLogin(props) {
               </div>
               <div className='selectDiv d-flex justify-content-between'>
                 <span>Состояние: </span>
-                <select className='select'>
+                <select className='select select btn btn-secondary btn-sm dropdown-toggle'>
                   <option>Не выбрано</option>
                   <option>Требует ремонта</option>
                 </select>
