@@ -6,26 +6,26 @@ import ModalImg from '../ModaImg/ModalImg';
 import './Dresser.css';
 
 export default function Dresser() {
-  const state = useSelector((state) => state);
-  const { headImages, bodyImages, pansImages, lapkiImages } = state;
+  const user = useSelector((state) => state.userTest);
+  const { head, body, legs, feet } = user;
 
   return (
     <div style={{paddingBottom: 70}}>
       <div>
         <ModalImg />
-        <DressCarousel headImages={headImages} title={'Головушка'} />
+        <DressCarousel dressArray={head} title={'Головушка'} property='head' />
       </div>
       <div>
         <ModalImg />
-        <DressCarousel headImages={bodyImages} title={'Пузико'} />
+        <DressCarousel dressArray={body} title={'Пузико'} />
       </div>
       <div>
         <ModalImg />
-        <DressCarousel headImages={pansImages} title={'Бедрышки'} />
+        <DressCarousel dressArray={legs} title={'Бедрышки'} />
       </div>
       <div>
         <ModalImg />
-        <DressCarousel headImages={lapkiImages} title={'Лапки'} />
+        <DressCarousel dressArray={feet} title={'Лапки'} />
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import './styles.css';
 export default function AboutComponent() {
   return (
     <>
-      <h2>О нас</h2>
+      <h2 className='olesyaHeader'>О нас</h2>
       <div className='aboutContainer'>
         <p>
           Текст о том, что умеет наше приложение
