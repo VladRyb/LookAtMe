@@ -18,7 +18,11 @@ const userSchema = new Schema({
     type: String,
     required: [true, 'enter password'],
   },
-  answers: Array,
+  userclothesHeads: [],
+  userclothesLegs: [],
+  userclothesBodys: [],
+  userclothesFeets: [],
+  looks: [],
 });
 
 const User = model('User', userSchema);

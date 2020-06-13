@@ -55,7 +55,6 @@ function App(props) {
           <Dresser />
           {/* <MyCarousel /> */}
         </Route>
-
         <FooterPage />
       </BrowserRouter>
     </>

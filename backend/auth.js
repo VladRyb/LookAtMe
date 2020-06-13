@@ -30,8 +30,8 @@ passport.use(
   new GoogleStrategy(
     {
       clientID:
-        '925304151582-hpg767mfppsgbhjgjfvtrmogmdnvl9c1.apps.googleusercontent.com',
-      clientSecret: 'xe82m36Q-14-TGmWSc-b66JU',
+        '925304151582-hr3t06at6qgn84so5icq7mgtl4hst62c.apps.googleusercontent.com',
+      clientSecret: 'i-ljhs027BgjBAr6V4TZH4qi',
       callbackURL: '/auth/google/callback',
     },
     async (accessToken, refreshToken, profile, done) => {
@@ -44,7 +44,7 @@ passport.use(
           googleId: profile.id,
         });
         await newUser.save();
-        await done(null, newUser);
+        done(null, newUser);
       }
     }
   )

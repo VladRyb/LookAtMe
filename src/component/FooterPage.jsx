@@ -9,18 +9,21 @@ const FooterPage = () => {
       <div className='collapse navbar-collapse' id='navbarSupportedContent'>
         <ul className='navbar-nav mr-auto'>
           <li className='nav-item active'>
-              <a
-                style={{ color: 'white' }}
-                href='https://github.com/VladRyb/LookAtMe'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
+            <a
+              style={{ color: 'white' }}
+              href='https://github.com/VladRyb/LookAtMe'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               Наш проект на GitHub
-              </a>
+            </a>
           </li>
         </ul>
       </div>
     </nav>
+    // <nav class='navbar navbar-light bg-light'>
+    //   <span class='navbar-text'>Navbar text with an inline element</span>
+    // </nav>
   );
 };
 
