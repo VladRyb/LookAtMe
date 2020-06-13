@@ -11,6 +11,7 @@ import MyCarousel from './component/DressCarousel/DressCarousel';
 import MyCarousel2 from './component/DressCarousel/DressCarousel2';
 import Dresser from './component/Dresser/Dresser';
 import FooterPage from './component/FooterPage';
+import Edit from './component/Edit/Edit';
 
 import './App.css';
 
@@ -54,6 +55,9 @@ function App(props) {
         <Route exact path='/car'>
           <Dresser />
           {/* <MyCarousel /> */}
+        </Route>
+        <Route exact path='/edit/:id'>
+          <Edit />
         </Route>
         <FooterPage />
       </BrowserRouter>

@@ -15,13 +15,13 @@ export default function Dresser() {
         <DressCarousel dressArray={head} title={'Головушка'} property='head' />
       </div>
       <div>
-        <DressCarousel dressArray={body} title={'Пузико'} />
+        <DressCarousel dressArray={body} title={'Пузико'} property='body' />
       </div>
       <div>
-        <DressCarousel dressArray={legs} title={'Бедрышки'} />
+        <DressCarousel dressArray={legs} title={'Бедрышки'} property='legs' />
       </div>
       <div>
-        <DressCarousel dressArray={feet} title={'Лапки'} />
+        <DressCarousel dressArray={feet} title={'Лапки'} property='feet' />
       </div>
       <div>
         <ModalLook />

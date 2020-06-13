@@ -55,6 +55,9 @@ const reducer = (state = defaultState, action) => {
           ...state.dressForNewLook,
           [action.property]: action.value,
         }  };
+    case actionType.getUserTest:
+          return { ...state, user: action.user  };
+
     default:
       return state;
   }

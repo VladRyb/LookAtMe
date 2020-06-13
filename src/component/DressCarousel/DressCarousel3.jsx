@@ -5,12 +5,12 @@ import { DropdownButton, Dropdown } from "react-bootstrap";
 import { dressForNewLook } from '../../redux/actioncreators/actionsSaga'
 import ModalImg from '../ModaImg/ModalImg';
 
-export default ({ dressArray, title, property }) => {
+export default ({ dressArray, title, property, editedLook }) => {
   const dispatch = useDispatch();
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const chevronWidth = 40;
-  const [chooseItem, setchooseItem] = useState(false);
-  const [imageUrl, setimageUrl] = useState("");
+  const [chooseItem, setchooseItem] = useState(true);
+  const [imageUrl, setimageUrl] = useState(`${editedLook.imageUrl}`);
 
 
   const dress = dressArray.map((el) => {
