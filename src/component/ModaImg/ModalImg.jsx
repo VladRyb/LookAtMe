@@ -10,7 +10,9 @@ export default function ModalLogin(props) {
   return (
     <div>
       <span variant='primary' onClick={handleShow}>
-        Добавить Фото
+      <div className="addDiv">
+      <i className="fa fa-plus" />
+         </div>
       </span>
       <Modal
         show={show}
