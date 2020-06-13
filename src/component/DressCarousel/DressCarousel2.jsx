@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import ItemsCarousel from "react-items-carousel";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import { dressForNewLook } from '../../redux/actioncreators/actionsSaga'
+import ModalImg from '../ModaImg/ModalImg';
 
 export default ({ dressArray, title, property }) => {
   const dispatch = useDispatch();
@@ -10,6 +11,7 @@ export default ({ dressArray, title, property }) => {
   const chevronWidth = 40;
   const [chooseItem, setchooseItem] = useState(false);
   const [imageUrl, setimageUrl] = useState("");
+
 
   const dress = dressArray.map((el) => {
     return (
@@ -38,13 +40,15 @@ export default ({ dressArray, title, property }) => {
       <ItemsCarousel
         requestToChangeActive={setActiveItemIndex}
         activeItemIndex={activeItemIndex}
-        numberOfCards={2}
+        numberOfCards={3}
         gutter={1}
         leftChevron={<button>{"<"}</button>}
         rightChevron={<button>{">"}</button>}
         outsideChevron
         chevronWidth={chevronWidth}
       >
+
+          <ModalImg />
         {dress}
       </ItemsCarousel>
     </div>
