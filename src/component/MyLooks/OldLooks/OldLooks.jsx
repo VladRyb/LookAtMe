@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 function OldLooks() {
   const state = useSelector((state) => state.userTest.looks)
-  console.log(state)
   return (
     state.map((element) => {
       console.log(element.head.imageUrl)

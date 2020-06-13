@@ -395,7 +395,7 @@ const user = {
           imageUrl: 'https://a.lmcdn.ru/product/I/X/IX001XW00K0N_10688179_1_v1.jpeg',
         },
       photo: null,
-      name: 'Хоть к вове в кремль на др',
+      name: 'Хоть к вове в кремль на др не',
       tags: ['Зимний'],
     },
     
