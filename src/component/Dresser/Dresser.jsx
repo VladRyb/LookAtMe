@@ -1,6 +1,7 @@
 import React from "react";
 import DressCarousel from '../DressCarousel/DressCarousel2';
 import {useSelector} from "react-redux"
+import UploadForm from '../uploadForm/UploadForm'
 
 import './Dresser.css'
 
@@ -9,7 +10,8 @@ export default function Dresser() {
   const {headImages,bodyImages,pansImages,lapkiImages} = state;
 
   return (
-    <>
+    <div className="dresser">
+      <UploadForm />
       <div>
         <DressCarousel headImages={headImages} title={'Головушка'}/>
       </div>
@@ -22,6 +24,6 @@ export default function Dresser() {
       <div>
         <DressCarousel headImages={lapkiImages} title={'Лапки'}/>
       </div>
-    </>
+    </div>
   );
 }

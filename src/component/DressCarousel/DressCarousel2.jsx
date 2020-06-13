@@ -33,14 +33,17 @@ export default ({ headImages, title }) => {
       <ItemsCarousel
         requestToChangeActive={setActiveItemIndex}
         activeItemIndex={activeItemIndex}
-        numberOfCards={2}
+        numberOfCards={3}
         gutter={1}
         leftChevron={<button>{"<"}</button>}
         rightChevron={<button>{">"}</button>}
         outsideChevron
         chevronWidth={chevronWidth}
       >
+        <div className="addDiv">
+        <i className="fa fa-plus" /> </div>
         {head}
+
       </ItemsCarousel>
     </div>
   );

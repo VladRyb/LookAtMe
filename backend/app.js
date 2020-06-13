@@ -37,6 +37,11 @@ app.use(
   })
 );
 
+app.options('/uploadImage', async (req, res) => {
+  console.log('>>>>>>>>>>>>>>>',req);
+  res.json({info:{file:{status:'done'}}});
+});
+
 app.post('/', async (req, res) => {
   const session = req.session.user;
   res.json({ session: session });

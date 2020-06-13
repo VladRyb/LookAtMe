@@ -10,3 +10,15 @@
   width: 300px;
   height: 300px;
 }
+.addDiv{
+  width: 150px;
+  height: 150px;
+  border: solid black 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addDiv:hover{
+  background-color: rgba(0, 255, 255, 0.11);
+}
