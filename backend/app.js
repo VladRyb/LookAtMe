@@ -6,7 +6,7 @@ const FileStore = require('session-file-store')(session);
 const cookieParser = require('cookie-parser');
 const authRouter = require('./auth');
 const path = require('path');
-const userRouter = require('./auth');
+const userRouter = require('./user');
 
 const app = express();
 
@@ -37,6 +37,8 @@ app.use(
     },
   })
 );
+
+
 
 app.options('/uploadImage', async (req, res) => {
   console.log('>>>>>>>>>>>>>>>',req);

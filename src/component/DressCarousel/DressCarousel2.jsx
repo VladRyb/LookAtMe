@@ -48,9 +48,8 @@ export default ({ dressArray, title, property }) => {
         outsideChevron
         chevronWidth={chevronWidth}
       >
-        <div className="addDiv">
-        <i className="fa fa-plus" /> </div>
-        {head}
+        <ModalImg />
+        {dress}
 
       </ItemsCarousel>
     </div>

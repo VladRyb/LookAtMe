@@ -62,6 +62,7 @@
     ]
   },
   "devDependencies": {
-    "faker": "^4.1.0"
+    "faker": "^4.1.0",
+    "nodemod": "^2.6.1"
   }
 }
