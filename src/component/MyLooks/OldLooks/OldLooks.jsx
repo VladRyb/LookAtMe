@@ -24,9 +24,9 @@ function OldLooks() {
             return <div className='tag'>{element2}</div>;
           })}
         </div>
-        <div className='d-flex flex-row-reverse bd-highlight align-content-end'>
-        <Link to={`/edit/${element.id}`} className='p-2 bd-highlight'>Изменить</Link>
-        <span className='p-2 bd-highlight' onClick={() => {deleteLook(element.id)}}> Удалить</span>
+        <div className='d-flex flex-row-reverse bd-highlight align-content-end links'>
+        <Link to={`/edit/${element.id}`} className='p-2 bd-highlight editLink'><i className='fa fa-pencil-square-o'></i></Link>
+        <span className='p-2 bd-highlight deleteLink' onClick={() => {deleteLook(element.id)}}><i className='fa fa-trash-o'></i></span>
         </div>
       </div>
       )
