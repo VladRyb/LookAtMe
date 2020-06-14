@@ -1,5 +1,5 @@
-import actionType from './actions';
-import user from '../faker'
+import actionType from "./actions";
+import user from "../faker";
 
 const defaultState = {
   statusSession: false,
@@ -18,8 +18,8 @@ const defaultState = {
 };
 
 async function logOut() {
-  await fetch('/logout', {
-    method: 'POST',
+  await fetch("/logout", {
+    method: "POST",
   });
 }
 
@@ -47,16 +47,19 @@ const reducer = (state = defaultState, action) => {
       };
     case actionType.logout:
       logOut();
-      localStorage.setItem('session', false);
-      localStorage.setItem('user', '');
+      localStorage.setItem("session", false);
+      localStorage.setItem("user", "");
       return { ...state, statusSession: false, user: null };
     case actionType.dressForNewLook:
-        return { ...state,dressForNewLook:{
+      return {
+        ...state,
+        dressForNewLook: {
           ...state.dressForNewLook,
           [action.property]: action.value,
-        }  };
+        },
+      };
     case actionType.getUserTest:
-          return { ...state, user: action.user  };
+      return { ...state, user: action.user };
 
     default:
       return state;
