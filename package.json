@@ -4,6 +4,7 @@
   "proxy": "http://localhost:4000/",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^4.2.1",
     "@brainhubeu/react-carousel": "^1.18.6",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
