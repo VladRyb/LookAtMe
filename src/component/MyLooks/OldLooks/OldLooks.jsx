@@ -3,14 +3,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
 import { deleteLookSaga} from '../../../redux/actioncreators/actionsSaga'
 
-function deleteLook(id) {
-  const deleted = document.getElementById(id);
-  deleted.setAttribute('style', 'display:none')
-  deleteLookSaga(id);
-}
+
 
 function OldLooks() {
+  const dispatch = useDispatch();
   const state = useSelector((state) => state.userTest.looks)
+  console.log(state)
+    function deleteLook(id) {
+      dispatch(deleteLookSaga(id));
+    }
   return (
     state.map((element) => {
       console.log(element.head.imageUrl)
@@ -23,9 +24,9 @@ function OldLooks() {
             return <div className='tag'>{element2}</div>;
           })}
         </div>
-        <div className='d-flex flex-row-reverse bd-highlight align-content-end'>
-        <Link to={`/edit/${element.id}`} className='p-2 bd-highlight'>Изменить</Link>
-        <span className='p-2 bd-highlight' onClick={() => {deleteLook(element.id)}}> Удалить</span>
+        <div className='d-flex flex-row-reverse bd-highlight align-content-end links'>
+        <Link to={`/edit/${element.id}`} className='p-2 bd-highlight editLink'><i className='fa fa-pencil-square-o'></i></Link>
+        <span className='p-2 bd-highlight deleteLink' onClick={() => {deleteLook(element.id)}}><i className='fa fa-trash-o'></i></span>
         </div>
       </div>
       )

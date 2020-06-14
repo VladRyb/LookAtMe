@@ -33,13 +33,32 @@
   margin-left: 5px;
 }
 
+.editLink {
+  margin-top: 2px;
+  color: black;
+  font-size: 25px;
+}
+
+.deleteLink {
+  font-size: 25px;
+}
+
+.editLink:hover {
+  color: green
+}
+
+.deleteLink:hover {
+  color: red;
+}
+
 .look {
-  border: solid black 5px;
+  border: solid gray 3px;
   margin-bottom: 40px;
   border-radius: 10px;
   width: 600px;
   height: 220px;
   padding-top: 5px;
+  position: relative;
 }
 
 .tag {
@@ -63,7 +82,9 @@
 }
 
 .links {
-  justify-content: end;
+  position: absolute;
+  bottom: -8px;
+  right: 5px
 }
 
 .test {

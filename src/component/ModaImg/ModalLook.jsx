@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
+import StorageUploaderModal from '../FirebaseAuth/StorageUploaderModal';
 
 export default function ModalLogin(props) {
   const [show, setShow] = useState(false);
@@ -36,7 +37,7 @@ export default function ModalLogin(props) {
         <Modal.Body>
           <div id='container' class='flexChild rowParent'>
             <div id='rowChild94955' class='flexChild'>
-              image
+              <StorageUploaderModal />
             </div>
 
             <div id='rowChild77673' class='flexChild'>

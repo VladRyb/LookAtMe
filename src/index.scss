@@ -9,6 +9,76 @@
   box-shadow: 0 20px 100px 10px rgba(0, 0, 0, 0.521);
 }
 
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v52/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2)
+    format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+.example-1 .form-group {
+  padding: 1em;
+  margin: 1em;
+}
+.example-1 input[type='file'] {
+  outline: 0;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+}
+.example-1 .label {
+  width: 140px;
+  height: 140px;
+  // border: 2px dashed grey;
+  border-radius: 5px;
+  display: block;
+  transition: border 300ms ease;
+  cursor: pointer;
+  text-align: center;
+}
+.example-1 .label i {
+  margin-top: auto;
+  margin-bottom: auto;
+  display: block;
+  font-size: 42px;
+  padding-bottom: 16px;
+}
+.example-1 .label i,
+.example-1 .label .title {
+  color: grey;
+  transition: 200ms color;
+}
+.example-1 .label:hover {
+  // border: 2px solid #000;
+}
+.example-1 .label:hover i,
+.example-1 .label:hover .title {
+  color: #000;
+}
+
+.uploadImg {
+  display: block;
+  width: 140px;
+  height: 140px;
+}
+
 .tags {
   margin-right: 2px;
 }
