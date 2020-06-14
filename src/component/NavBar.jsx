@@ -23,7 +23,7 @@ export default function NavBar(props) {
               Начать пользоваться <span className='sr-only'>(current)</span>
             </Link>
           </li>
-          <li className=''>
+          <li className='nav-item active'>
             <Link className='nav-link' to='/mylooks'>
               Гардероб <span className='sr-only'>(current)</span>
             </Link>
