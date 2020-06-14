@@ -1,13 +1,28 @@
 import React, { useState } from 'react';
-import { storage } from '../FirebaseAuth/firebase/index';
+import { Upload } from 'antd';
+import ImgCrop from 'antd-img-crop';
+import 'antd/dist/antd.css';
+import { storage } from './firebase/index';
 import firebase from 'firebase';
 
-function StorageUploader() {
+export default function StorageUploader() {
   const [image, setImage] = useState(null);
   const [url, setUrl] = useState('');
 
+  const [fileList, setFileList] = useState([]);
+
+  const onChange = ({ fileList: newFileList }) => {
+    setFileList(newFileList);
+  };
+  const handleChange = (e) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
   const handleUpload = () => {
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    const uploadTask = storage
+      .ref(`images/${fileList[0].name}`)
+      .put(fileList[0].originFileObj);
     uploadTask.on(
       'state_changed',
       (snapshot) => {},
@@ -17,7 +32,7 @@ function StorageUploader() {
       () => {
         storage
           .ref('images')
-          .child(image.name)
+          .child(fileList[0].name)
           .getDownloadURL()
           .then((url) => {
             setUrl(url);
@@ -30,56 +45,36 @@ function StorageUploader() {
     );
   };
 
-  const handleChange = (e) => {
-    if (e.target.files[0]) {
-      setImage(e.target.files[0]);
+  const onPreview = async (file) => {
+    let src = file.url;
+    if (!src) {
+      src = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file.originFileObj);
+        reader.onload = () => resolve(reader.result);
+      });
     }
+    const image = new Image();
+    image.src = src;
+    const imgWindow = window.open(src);
+    imgWindow.document.write(image.outerHTML);
   };
+
   return (
     <>
-      <div className='example-1'>
-        <div className='form-group'>
-          {!url ? (
-            <>
-              {!image ? (
-                <label className='label'>
-                  <i className='material-icons'>attach_file</i>
-                  <input type='file' onChange={handleChange} />
-                </label>
-              ) : (
-                <>
-                  <label className='label'>
-                    <div>&#10004;</div>
-                  </label>
-                  <button className='btn btn-dark' onClick={handleUpload}>
-                    Upload
-                  </button>
-                </>
-              )}
-            </>
-          ) : (
-            <label className='label'>
-              <img className='uploadImg' src={url} alt='' />
-            </label>
-          )}
-        </div>
-      </div>
-
-      {/* <div>
-        <input type='file' className='btn btn-dark' onChange={handleChange} />
-        <button className='btn btn-dark' onClick={handleUpload}>
-          Upload
-        </button>
-        <br />
-        <img
-          id='myimg'
-          src={url || 'http://via.placeholder.com/100'}
-          alt='firebaseImg'
-          style={{ width: '100px', height: '100px' }}
-        />
-      </div> */}
+      <ImgCrop rotate>
+        <Upload
+          action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
+          listType='picture-card'
+          fileList={fileList}
+          onChange={onChange}
+          onPreview={onPreview}
+          type='file'
+        >
+          {fileList.length < 5 && '+ Upload'}
+        </Upload>
+      </ImgCrop>
+      <button onClick={handleUpload}>Upload</button>
     </>
   );
 }
-
-export default StorageUploader;

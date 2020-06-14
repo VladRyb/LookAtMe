@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
-
 class Registration extends Component {
   state = { isSignedIn: false };
   uiConfig = {
@@ -20,19 +19,18 @@ class Registration extends Component {
 
   componentDidMount = () => {
     firebase.auth().onAuthStateChanged((user) => {
-      this.setState({ isSignedIn: !!user });
-      // let currentUser = firebase.auth().currentUser;
-      firebase.firestore().collection("users").add({
-        email: user.email,
-        displayName: user.displayName,
-        uid: user.uid,
+      if(!user) {
+        console.log('no user loged')
+        return
+      } else{
+        this.setState({ isSignedIn: !!user });
+        firebase.firestore().collection("users").add({
+          email: user.email,
+          displayName: user.displayName,
+          uid: user.uid,
+        });
+      }
       });
-    });
-    
-
-    // var firebaseRootRef = firebase.database().ref();
-    // var personale_Ref = firebaseRootRef.child('DatabaseTirocinio/Personale');
-
   };
 
   render() {
