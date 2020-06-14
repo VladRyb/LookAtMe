@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import ItemsCarousel from "react-items-carousel";
 import { DropdownButton, Dropdown } from "react-bootstrap";
-import { dressForNewLook } from '../../redux/actioncreators/actionsSaga'
-import ModalImg from '../ModaImg/ModalImg';
+import { dressForNewLook } from "../../redux/actioncreators/actionsSaga";
+import ModalImg from "../ModaImg/ModalImg";
 
 export default ({ dressArray, title, property }) => {
   const dispatch = useDispatch();
@@ -11,31 +11,47 @@ export default ({ dressArray, title, property }) => {
   const chevronWidth = 40;
   const [chooseItem, setchooseItem] = useState(false);
   const [imageUrl, setimageUrl] = useState("");
-
+  const newLookFromState = useSelector((state) => state.dressForNewLook);
 
   const dress = dressArray.map((el) => {
     return (
       <img
-      key={el.id}
+        key={el.id}
         src={el.imageUrl}
         alt="img"
         className="smallImg"
         onClick={() => {
           setchooseItem(true);
           setimageUrl(el.imageUrl);
-          dispatch(dressForNewLook(property,el.id));
+          dispatch(
+            dressForNewLook(property, { id: el.id, imageUrl: el.imageUrl })
+          );
         }}
       />
     );
   });
-  const element = chooseItem ? (
-    <img src={imageUrl} alt="img" 
-    className="bigImg"
-    onClick={() => {
-      setchooseItem(false);
-      setimageUrl("");
-      dispatch(dressForNewLook(property,null));
-    }}/>
+  const element = newLookFromState[property] ? (
+    <img
+      src={newLookFromState[property].imageUrl}
+      alt="img"
+      className="bigImg"
+      onClick={() => {
+        setchooseItem(false);
+        setimageUrl("");
+        dispatch(dressForNewLook(property, null));
+      }}
+    />
+  ) : chooseItem ? (
+    <img
+      src={imageUrl}
+      alt="img"
+      className="bigImg"
+      onClick={() => {
+        setchooseItem(false);
+        setimageUrl("");
+        dispatch(dressForNewLook(property, null));
+      }}
+    />
   ) : (
     <div style={{ padding: `0 ${chevronWidth}px` }} className="dressCarousel">
       <ItemsCarousel
@@ -50,7 +66,6 @@ export default ({ dressArray, title, property }) => {
       >
         <ModalImg />
         {dress}
-
       </ItemsCarousel>
     </div>
   );
