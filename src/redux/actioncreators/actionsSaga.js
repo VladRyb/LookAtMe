@@ -19,6 +19,10 @@ export function dressForNewLook(property, value) {
   return { type: actionType.dressForNewLook, property, value};
 }
 
+export function deleteLookSaga(id) {
+  return { type: actionType.deleteLookSaga, id};
+}
+
 export function getUserTest(user) {
   return { type: actionType.dressForNewLook, user};
 }

@@ -13,6 +13,8 @@ import Dresser from './component/Dresser/Dresser';
 import FooterPage from './component/FooterPage';
 import Edit from './component/Edit/Edit';
 
+import CropForm from './component/CropForm'
+
 import './App.css';
 
 function App(props) {
@@ -58,6 +60,9 @@ function App(props) {
         </Route>
         <Route exact path='/edit/:id'>
           <Edit />
+        </Route>
+        <Route exact path='/test'>
+          <CropForm />
         </Route>
         <FooterPage />
       </BrowserRouter>

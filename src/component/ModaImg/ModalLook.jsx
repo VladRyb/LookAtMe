@@ -50,10 +50,7 @@ export default function ModalLogin(props) {
                   name='name'
                 />
               </div>
-              {tags.map((item) => {
-                return <span>#{item} </span>;
-              })}
-              <div className='selectDiv'>
+              <div className='selectDivBottom'>
                 <input
                   value={tag}
                   onChange={(event) => setTag(event.target.value)}
@@ -65,6 +62,13 @@ export default function ModalLogin(props) {
                   required
                 />{' '}
               </div>
+              {tags.map((item) => {
+                return (
+                  <span className='tags badge badge-pill badge-dark'>
+                    {item}{' '}
+                  </span>
+                );
+              })}
             </div>
           </div>
         </Modal.Body>
