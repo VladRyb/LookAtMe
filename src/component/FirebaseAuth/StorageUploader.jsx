@@ -69,7 +69,7 @@ export default function StorageUploader() {
         onPreview={onPreview}
         type="file"
       >
-        {fileList.length < 5 && "+ Upload"}
+        {fileList.length < 9 && "+ Upload"}
       </Upload>
 
     </ImgCrop>
