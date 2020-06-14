@@ -17,20 +17,41 @@ class Registration extends Component {
     },
   };
 
+  usersDB = async (user) => {
+    let data = await firebase
+      .firestore()
+      .collection("users")
+      .get()
+      .then((snapshot) => {
+        return snapshot.docs.map((img) => img.data());
+      });
+    let result = data.find(
+      (item) => item.uid === firebase.auth().currentUser.uid
+    );
+    if (!result) {
+      firebase.firestore().collection("users").add({
+        email: user.email,
+        displayName: user.displayName,
+        uid: user.uid,
+        headDress: [],
+        bodyDress: [],
+        legsDress: [],
+        lapkiDress: [],
+        looks: [],
+      });
+    }
+    console.log(result);
+  };
+
   componentDidMount = () => {
     firebase.auth().onAuthStateChanged((user) => {
-      if(!user) {
-        console.log('no user loged')
-        return
-      } else{
-        this.setState({ isSignedIn: !!user });
-        firebase.firestore().collection("users").add({
-          email: user.email,
-          displayName: user.displayName,
-          uid: user.uid,
-        });
+      this.setState({ isSignedIn: !!user });
+      if (!user) {
+        console.log("failed");
+      } else {
+        this.usersDB(user);
       }
-      });
+    });
   };
 
   render() {
