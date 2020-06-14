@@ -11,7 +11,8 @@ export default function Dresser() {
   const { head, body, legs, feet } = user;
 
   return (
-    <div className='dresser'>
+    <div className="dresser">
+
       {/* <UploadForm /> */}
 
       <div>
