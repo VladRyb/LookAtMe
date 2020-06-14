@@ -36,10 +36,21 @@ function* getUserFromServerTest() {
   }
 };
 
+function* deleteLook(id) {
+  try {
+    // const result = yield call(deleteFetch)
+    // yield put(deleteLookSaga(id))
+    
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 // Функция-наблюдатель.
 function* sagas() {
   yield takeEvery(actionType.saga, loadTodo);
   yield takeEvery(actionType.getUserTestSaga, getUserFromServerTest);
+  yield takeEvery(actionType.deleteLookSaga, deleteLook)
 
 }
 

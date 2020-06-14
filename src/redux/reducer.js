@@ -1,5 +1,6 @@
 import actionType from "./actions";
 import user from "../faker";
+import actions from "./actions";
 
 const defaultState = {
   statusSession: false,
@@ -60,6 +61,12 @@ const reducer = (state = defaultState, action) => {
       };
     case actionType.getUserTest:
       return { ...state, user: action.user };
+
+    case actionType.deleteLookSaga:
+      const newLooks = state.userTest.looks.filter((element) => element.id !== action.id)
+      console.log(newLooks)
+      console.log(state.userTest.looks)
+        return { ...state, userTest: {...state.userTest, looks: [...newLooks]}}
 
     default:
       return state;

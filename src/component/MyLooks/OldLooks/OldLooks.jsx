@@ -3,14 +3,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
 import { deleteLookSaga} from '../../../redux/actioncreators/actionsSaga'
 
-function deleteLook(id) {
-  const deleted = document.getElementById(id);
-  deleted.setAttribute('style', 'display:none')
-  deleteLookSaga(id);
-}
+
 
 function OldLooks() {
+  const dispatch = useDispatch();
   const state = useSelector((state) => state.userTest.looks)
+  console.log(state)
+    function deleteLook(id) {
+      dispatch(deleteLookSaga(id));
+    }
   return (
     state.map((element) => {
       console.log(element.head.imageUrl)
