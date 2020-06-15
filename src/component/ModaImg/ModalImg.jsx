@@ -5,10 +5,12 @@ import { storage } from '../FirebaseAuth/firebase/index';
 import firebase from 'firebase';
 
 export default function ModalLogin(props) {
+  console.log(props.type);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
 
   const [url, setUrl] = useState('');
 
@@ -109,7 +111,8 @@ export default function ModalLogin(props) {
                   <option>Весна</option>
                 </select>
               </div>
-              <div className="selectDiv d-flex justify-content-between">
+
+              {/* <div className='selectDiv d-flex justify-content-between'>
                 <span>Тип: </span>
                 <select className="select select btn btn-secondary btn-sm dropdown-toggle">
                   <option>Не выбрано</option>
@@ -117,6 +120,14 @@ export default function ModalLogin(props) {
                   <option>Шорты</option>
                   <option>Куртка</option>
                   <option>Кросовки</option>
+                </select>
+              </div> */}
+              <div className='selectDiv d-flex justify-content-between'>
+                <span>Тип: </span>
+                <select className='select select btn btn-secondary btn-sm dropdown-toggle'>
+                  {props.type.map((item) => {
+                    return <option>{item}</option>;
+                  })}
                 </select>
               </div>
               <div className="selectDiv d-flex justify-content-between">
