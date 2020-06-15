@@ -3,20 +3,49 @@ import { Button, Modal } from 'react-bootstrap';
 import StorageUploaderModal from '../FirebaseAuth/StorageUploaderModal';
 import { storage } from '../FirebaseAuth/firebase/index';
 import firebase from 'firebase';
+import useSelection from 'antd/lib/table/hooks/useSelection';
+import { useSelector, useDispatch } from 'react-redux';
+import actionType from '../../redux/actions';
 
 export default function ModalImg(props) {
   const [show, setShow] = useState(false);
 
+  const store = useSelector((state) => state);
+  const dispatch = useDispatch();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [url, setUrl] = useState('');
+  // console.log(props);
+
+  const [stateUrl, setStateUrl] = useState({
+    img: {
+      ImgUrl: null,
+      ImgId: new Date() + Math.random() * 10,
+    },
+    season: '',
+    type: '',
+    stoyanie: true,
+  });
+  const [typeState, setTypeState] = useState('');
+  const [seasonState, setSeasonState] = useState('');
+  const [stoyanieState, setStoyanieState] = useState('');
+
+  // const [allUrls, setAllUrls] = useState({
+  //   headUrl: [],
+  //   bodyUrl: [],
+  //   legsUrl: [],
+  //   lapkiUrl: [],
+  // });
+  // const imgUrl = allUrls[props.title];
+  // console.log("imgUrl???????", imgUrl);
 
   const [fileList, setFileList] = useState([]);
 
-  const onChange = ({ fileList: newFileList }) => {
+  const onChangeProps = ({ fileList: newFileList }) => {
     setFileList(newFileList);
   };
+  // console.log("stateUrl>>>>>>>>>>", stateUrl);
+  // console.log("setAllUrls>>>>>>>>>>", allUrls);
 
   const handleUpload = () => {
     if (fileList.length > 0) {
@@ -35,20 +64,33 @@ export default function ModalImg(props) {
             .child(fileList[0].name)
             .getDownloadURL()
             .then((url) => {
-              setUrl(url);
+              dispatch({
+                type: actionType[props.title],
+                [props.title]: {
+                  img: {
+                    ImgUrl: url,
+                    ImgId: Date.now() + Math.random() * 10,
+                  },
+                  season: seasonState,
+                  type: typeState,
+                  stoyanie: stoyanieState || true,
+                },
+              });
               firebase
                 .firestore()
-                .collection('images')
+                .collection(props.title)
                 .add({
-                  headDress: [
-                    {
-                      url: url,
-                      creator:
-                        firebase.auth().currentUser.uid +
-                        '/' +
-                        firebase.auth().currentUser.displayName,
-                    },
-                  ],
+                  img: {
+                    ImgUrl: url,
+                    ImgId: Date.now() + Math.random() * 10,
+                  },
+                  season: seasonState,
+                  type: typeState,
+                  stoyanie: stoyanieState || true,
+                  creator:
+                    firebase.auth().currentUser.uid +
+                    '/' +
+                    firebase.auth().currentUser.displayName,
                 });
             });
         }
@@ -94,45 +136,43 @@ export default function ModalImg(props) {
                 fileList={fileList}
                 onPreview={onPreview}
                 handleUpload={handleUpload}
-                onChange={onChange}
+                onChange={onChangeProps}
               />
             </div>
 
             <div id='rowChild77673' class='flexChild'>
               <div className='selectDiv d-flex justify-content-between'>
                 <span>Сезон: </span>
-                <select className='select btn btn-secondary btn-sm dropdown-toggle'>
+                <select
+                  className='select btn btn-secondary btn-sm dropdown-toggle'
+                  onChange={(event) => setSeasonState(event.target.value)}
+                >
                   <option>Не выбрано</option>
-                  <option>Зима</option>
-                  <option>Лето</option>
-                  <option>Осень</option>
-                  <option>Весна</option>
+                  <option value='winter'>Зима</option>
+                  <option value='summer'>Лето</option>
+                  <option value='autumn'>Осень</option>
+                  <option value='spring'>Весна</option>
                 </select>
               </div>
-
-              {/* <div className='selectDiv d-flex justify-content-between'>
-                <span>Тип: </span>
-                <select className="select select btn btn-secondary btn-sm dropdown-toggle">
-                  <option>Не выбрано</option>
-                  <option>Рубашка</option>
-                  <option>Шорты</option>
-                  <option>Куртка</option>
-                  <option>Кросовки</option>
-                </select>
-              </div> */}
               <div className='selectDiv d-flex justify-content-between'>
                 <span>Тип: </span>
-                <select className='select select btn btn-secondary btn-sm dropdown-toggle'>
+                <select
+                  className='select select btn btn-secondary btn-sm dropdown-toggle'
+                  onChange={(event) => setTypeState(event.target.value)}
+                >
                   {props.type.map((item) => {
-                    return <option>{item}</option>;
+                    return <option value={item}>{item}</option>;
                   })}
                 </select>
               </div>
               <div className='selectDiv d-flex justify-content-between'>
                 <span>Состояние: </span>
-                <select className='select select btn btn-secondary btn-sm dropdown-toggle'>
+                <select
+                  className='select select btn btn-secondary btn-sm dropdown-toggle'
+                  onChange={(event) => setStoyanieState(event.target.value)}
+                >
                   <option>Не выбрано</option>
-                  <option>Требует ремонта</option>
+                  <option value='false'>Требует ремонта</option>
                 </select>
               </div>
             </div>
@@ -142,7 +182,11 @@ export default function ModalImg(props) {
           <Button
             className='btn btn-outline-primary'
             variant='outline-primary'
-            onClick={handleUpload}
+            onClick={() => {
+              handleUpload();
+              handleClose();
+            }}
+            type='submit'
           >
             Submit
           </Button>

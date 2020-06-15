@@ -23,27 +23,27 @@ function App(props) {
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    async function user() {
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-        },
-      });
-      const result = await response.json();
-      if (result.session) {
-        dispatch({ type: actionType.login, session: result.session });
-        const user = result.session.name;
-        localStorage.setItem('session', true);
-        localStorage.setItem('user', user);
-      } else {
-        localStorage.setItem('session', false);
-        localStorage.setItem('user', '');
-      }
-    }
-    user();
-  }, []);
+  // useEffect(() => {
+  //   async function user() {
+  //     const response = await fetch('/', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json;charset=utf-8',
+  //       },
+  //     });
+  //     const result = await response.json();
+  //     if (result.session) {
+  //       dispatch({ type: actionType.login, session: result.session });
+  //       const user = result.session.name;
+  //       localStorage.setItem('session', true);
+  //       localStorage.setItem('user', user);
+  //     } else {
+  //       localStorage.setItem('session', false);
+  //       localStorage.setItem('user', '');
+  //     }
+  //   }
+  //   user();
+  // }, []);
 
   return (
     <>

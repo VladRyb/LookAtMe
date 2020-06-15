@@ -41,11 +41,6 @@ export default function NavBar(props) {
         email: user.email,
         displayName: user.displayName,
         uid: user.uid,
-        headDress: [],
-        bodyDress: [],
-        legsDress: [],
-        lapkiDress: [],
-        looks: [],
       });
       dispatch({ type: actionType.login, user });
 
