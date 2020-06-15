@@ -48,11 +48,13 @@ export default function NavBar(props) {
 
       localStorage.setItem("session", true);
       localStorage.setItem("user", user.displayName);
+      localStorage.setItem("uid", user.uid);
     } else {
       dispatch({ type: actionType.login, user });
 
       localStorage.setItem("session", true);
       localStorage.setItem("user", user.displayName);
+      localStorage.setItem("uid", user.uid);
     }
   };
 
