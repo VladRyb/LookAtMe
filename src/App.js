@@ -22,10 +22,13 @@ import './App.css';
 function App(props) {
   // console.log(state)
   const store = useSelector((state) => state);
-  const users = useSelector((state) => state.user);
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
   const arr = []
+
+  const userUid = localStorage.getItem('uid')
+  const userName = localStorage.getItem('user')
+
   const findU = async () => {
     arr.push(
       await firebase
@@ -33,32 +36,45 @@ function App(props) {
         .collection("bodyUrl")
         .get()
         .then((snapshot) => {
-          return snapshot.docs.map((img) => img.data());
+          const databody = snapshot.docs.map((img) => img.data());
+          return databody.filter((item) => {
+            return item.creator == userUid + '/' + userName
+          })
         }),
-        await firebase
+      await firebase
         .firestore()
         .collection("headUrl")
         .get()
         .then((snapshot) => {
-          return snapshot.docs.map((img) => img.data());
+          const databody = snapshot.docs.map((img) => img.data());
+          return databody.filter((item) => {
+            return item.creator == userUid + '/' + userName
+          })
         }),
-        await firebase
+      await firebase
         .firestore()
         .collection("legsUrl")
         .get()
         .then((snapshot) => {
-          return snapshot.docs.map((img) => img.data());
+          const databody = snapshot.docs.map((img) => img.data());
+          return databody.filter((item) => {
+            return item.creator == userUid + '/' + userName
+          })
         }),
-        await firebase
+      await firebase
         .firestore()
         .collection("lapkiUrl")
         .get()
         .then((snapshot) => {
-          return snapshot.docs.map((img) => img.data());
+          const databody = snapshot.docs.map((img) => img.data());
+          return databody.filter((item) => {
+            return item.creator == userUid + '/' + userName
+          })
         }),
     )
   }
   findU()
+  dispatch(actionType.arrImg)
   console.log(arr)
 
   // useEffect(async() => {

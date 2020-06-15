@@ -50,6 +50,7 @@ const reducer = (state = defaultState, action) => {
       const user = {
         name: action.user.displayName,
         photo: action.user.photoURL,
+        uid: action.user.uid
       };
       return {
         ...state,
@@ -60,6 +61,7 @@ const reducer = (state = defaultState, action) => {
       logOut();
       localStorage.setItem('session', false);
       localStorage.setItem('user', '');
+      localStorage.setItem('uid', '');
       return { ...state, statusSession: false, user: null };
     case actionType.dressForNewLook:
       return {
