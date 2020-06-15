@@ -13,6 +13,7 @@ import MyCarousel2 from './component/DressCarousel/DressCarousel2';
 import Dresser from './component/Dresser/Dresser';
 import FooterPage from './component/FooterPage';
 import Edit from './component/Edit/Edit';
+import firebase from "firebase";
 
 import CropForm from './component/CropForm';
 
@@ -21,28 +22,58 @@ import './App.css';
 function App(props) {
   // console.log(state)
   const store = useSelector((state) => state);
+  const users = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   async function user() {
-  //     const response = await fetch('/', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json;charset=utf-8',
-  //       },
-  //     });
-  //     const result = await response.json();
-  //     if (result.session) {
-  //       dispatch({ type: actionType.login, session: result.session });
-  //       const user = result.session.name;
-  //       localStorage.setItem('session', true);
-  //       localStorage.setItem('user', user);
-  //     } else {
-  //       localStorage.setItem('session', false);
-  //       localStorage.setItem('user', '');
-  //     }
-  //   }
-  //   user();
+  const arr = []
+  const findU = async () => {
+    arr.push(
+      await firebase
+        .firestore()
+        .collection("bodyUrl")
+        .get()
+        .then((snapshot) => {
+          return snapshot.docs.map((img) => img.data());
+        }),
+        await firebase
+        .firestore()
+        .collection("headUrl")
+        .get()
+        .then((snapshot) => {
+          return snapshot.docs.map((img) => img.data());
+        }),
+        await firebase
+        .firestore()
+        .collection("legsUrl")
+        .get()
+        .then((snapshot) => {
+          return snapshot.docs.map((img) => img.data());
+        }),
+        await firebase
+        .firestore()
+        .collection("lapkiUrl")
+        .get()
+        .then((snapshot) => {
+          return snapshot.docs.map((img) => img.data());
+        }),
+    )
+  }
+  findU()
+  console.log(arr)
+
+  // useEffect(async() => {
+  //   const user = await firebase.auth().currentUser.update({
+  //     'clothes':['aaa', 'bbbbb']
+  //   })
+  //   //   .firestore()
+  //   //   .collection("users")
+  //   //   .get()
+  //   //   .then((snapshot) => {
+  //   //     return snapshot.docs.map((img) => img.data());
+  //   //   });
+  //   // let result = data.find(
+  //   //   (item) => item.uid === firebase.auth().currentUser.uid
+  //   // );
   // }, []);
 
   return (
