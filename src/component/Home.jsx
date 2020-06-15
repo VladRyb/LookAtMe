@@ -9,13 +9,13 @@ import StorageUploader from './FirebaseAuth/StorageUploader';
 
 export default function Home(props) {
   return (
-    <>
+    <div id='globalDiv'>
       {/* <Registration /> */}
       {/* <StorageUploader /> */}
       <LookAtMy />
       <AboutComponent />
       <Video />
       <UserLooksStart />
-    </>
+    </div>
   );
 }

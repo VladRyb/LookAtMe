@@ -11,43 +11,45 @@ export default function Dresser() {
   const { head, body, legs, feet } = user;
 
   return (
-    <div className='dresser'>
-      {/* <UploadForm /> */}
+    <div id='globalDiv'>
+      <div className='dresser'>
+        {/* <UploadForm /> */}
 
-      <div>
-        <DressCarousel
-          dressArray={head}
-          title={'Головушка'}
-          type={['Panamka', 'Slyapa', 'Bandana']}
-          property='head'
-        />
-      </div>
-      <div>
-        <DressCarousel
-          dressArray={body}
-          title={'Пузико'}
-          type={['Panamka', 'Slyapa', 'Bandana']}
-          property='body'
-        />
-      </div>
-      <div>
-        <DressCarousel
-          dressArray={legs}
-          title={'Бедрышки'}
-          type={['Panamka', 'Slyapa', 'Bandana']}
-          property='legs'
-        />
-      </div>
-      <div>
-        <DressCarousel
-          dressArray={feet}
-          title={'Лапки'}
-          type={['Panamka', 'Slyapa', 'Bandana']}
-          property='feet'
-        />
-      </div>
-      <div>
-        <ModalLook />
+        <div>
+          <DressCarousel
+            dressArray={head}
+            title={'Головушка'}
+            type={['Panamka', 'Slyapa', 'Bandana']}
+            property='head'
+          />
+        </div>
+        <div>
+          <DressCarousel
+            dressArray={body}
+            title={'Пузико'}
+            type={['Panamka', 'Slyapa', 'Bandana']}
+            property='body'
+          />
+        </div>
+        <div>
+          <DressCarousel
+            dressArray={legs}
+            title={'Бедрышки'}
+            type={['Panamka', 'Slyapa', 'Bandana']}
+            property='legs'
+          />
+        </div>
+        <div>
+          <DressCarousel
+            dressArray={feet}
+            title={'Лапки'}
+            type={['Panamka', 'Slyapa', 'Bandana']}
+            property='feet'
+          />
+        </div>
+        <div>
+          <ModalLook />
+        </div>
       </div>
     </div>
   );

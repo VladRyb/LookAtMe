@@ -10,15 +10,19 @@ function MyLooks(props) {
   const state = useSelector((state) => state);
   if (state.newLook) {
     return (
-      <div className='mylookswrapper'>
-        {/* <NewLook /> */}
-        <OldLooks />
+      <div id='globalDiv'>
+        <div className='mylookswrapper'>
+          {/* <NewLook /> */}
+          <OldLooks />
+        </div>
       </div>
     );
   } else {
     return (
-      <div className='mylookswrapper'>
-        <OldLooks />
+      <div id='globalDiv'>
+        <div className='mylookswrapper'>
+          <OldLooks />
+        </div>
       </div>
     );
   }

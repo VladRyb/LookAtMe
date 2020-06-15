@@ -4,8 +4,7 @@ import StorageUploaderModal from '../FirebaseAuth/StorageUploaderModal';
 import { storage } from '../FirebaseAuth/firebase/index';
 import firebase from 'firebase';
 
-export default function ModalLogin(props) {
-  console.log(props.type);
+export default function ModalImg(props) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);

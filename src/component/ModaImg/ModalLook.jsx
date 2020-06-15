@@ -132,7 +132,10 @@ export default function ModalLogin(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            onClick={handleUpload}
+            onClick={() => {
+              handleUpload();
+              handleClose();
+            }}
             className='btn btn-outline-primary'
             variant='outline-primary'
           >
