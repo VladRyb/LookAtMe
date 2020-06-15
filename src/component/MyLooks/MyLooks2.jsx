@@ -1,19 +1,16 @@
-/* eslint-disable react/jsx-no-duplicate-props */
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './myLooks.css';
-import NewLook from './NewLook/NewLook';
-import OldLooks from './OldLooks/OldLooks';
+import OldLooks2 from './OldLooks/OldLooks2';
 
-function MyLooks(props) {
+function MyLooks2(props) {
   const state = useSelector((state) => state);
   if (state.newLook) {
     return (
       <div id='globalDiv'>
         <div className='mylookswrapper'>
           {/* <NewLook /> */}
-          <OldLooks />
+          <OldLooks2 />
         </div>
       </div>
     );
@@ -21,11 +18,11 @@ function MyLooks(props) {
     return (
       <div id='globalDiv'>
         <div className='mylookswrapper'>
-          <OldLooks />
+          <OldLooks2 />
         </div>
       </div>
     );
   }
 }
 
-export default MyLooks;
+export default MyLooks2;

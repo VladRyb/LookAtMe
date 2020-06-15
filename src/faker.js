@@ -396,7 +396,7 @@ const user = {
           },
           imageUrl: 'https://a.lmcdn.ru/product/I/X/IX001XW00K0N_10688179_1_v1.jpeg',
         },
-      photo: null,
+      photo: 'https://132q6j40a81047nmwg1az6v8-wpengine.netdna-ssl.com/wp-content/uploads/2013/09/rendell-1-400x400.jpg',
       name: 'Хоть к вове в кремль на др',
       tags: ['Зимний'],
       id: faker.random.uuid(),

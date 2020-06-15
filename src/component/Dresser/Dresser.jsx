@@ -3,7 +3,6 @@ import DressCarousel from '../DressCarousel/DressCarousel2';
 // import UploadForm from '../uploadForm/UploadForm'
 import { useSelector } from 'react-redux';
 import ModalLook from '../ModaImg/ModalLook';
-
 import './Dresser.css';
 
 export default function Dresser() {
@@ -11,8 +10,9 @@ export default function Dresser() {
   const { head, body, legs, feet } = user;
 
   return (
-    <div className='dresser'>
-      {/* <UploadForm /> */}
+    <div id='globalDiv'>
+      <div className='dresser'>
+        {/* <UploadForm /> */}
 
       <div>
         <DressCarousel
@@ -48,6 +48,7 @@ export default function Dresser() {
       </div>
       <div>
         <ModalLook />
+
       </div>
     </div>
   );

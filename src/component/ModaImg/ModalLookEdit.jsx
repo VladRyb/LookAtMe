@@ -5,10 +5,10 @@ import { storage } from '../FirebaseAuth/firebase/index';
 import firebase from 'firebase';
 
 export default function ModalLogin(props) {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const [tag, setTag] = useState('');
-  const [tags, setTags] = useState(Array);
-  const [value, setValue] = useState('');
+  const [tags, setTags] = useState(props.editedLook.tags);
+  const [value, setValue] = useState(props.editedLook.name);
 
   function addTags(event) {
     if (event.key === 'Enter') {
