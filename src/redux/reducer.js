@@ -1,5 +1,5 @@
 import actionType from './actions';
-import user from '../faker';
+// import user from '../faker';
 import actions from './actions';
 
 import firebase from 'firebase';
@@ -8,7 +8,7 @@ const defaultState = {
   statusSession: false,
   user: null,
   isLoading: null,
-  userTest: user,
+  userTest: null,
   dressForNewLook: {
     head: null,
     body: null,
