@@ -6,44 +6,44 @@ import actionType from '../redux/actions';
 import Registration from './FirebaseAuth/Registration';
 
 export default function ModalLogin(props) {
-  const [messe, setMess] = useState();
-  const [email, setEmail] = useState('');
-  const [pass, setPass] = useState('');
+  // const [messe, setMess] = useState();
+  // const [email, setEmail] = useState('');
+  // const [pass, setPass] = useState('');
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const history = useHistory();
-  const dispatch = useDispatch();
+  // const history = useHistory();
+  // const dispatch = useDispatch();
 
-  async function loginSubmit(event) {
-    event.preventDefault();
+  // async function loginSubmit(event) {
+  //   event.preventDefault();
 
-    const response = await fetch('/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({
-        email: email,
-        password: pass,
-      }),
-    });
+  //   const response = await fetch('/login', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //     },
+  //     body: JSON.stringify({
+  //       email: email,
+  //       password: pass,
+  //     }),
+  //   });
 
-    const result = await response.json();
-    if (result.status === 200) {
-      dispatch({ type: actionType.login, session: result.session });
+  // const result = await response.json();
+  // if (result.status === 200) {
+  //   dispatch({ type: actionType.login, session: result.session });
 
-      const user = result.session.name;
-      localStorage.setItem('session', true);
-      localStorage.setItem('user', user);
+  //   const user = result.session.name;
+  //   localStorage.setItem('session', true);
+  //   localStorage.setItem('user', user);
 
-      history.push('/');
-    } else {
-      setMess('Неверный Логин или Пароль');
-    }
-  }
+  //   history.push('/');
+  // } else {
+  //   setMess('Неверный Логин или Пароль');
+  // }
+  // }
 
   return (
     <div>
