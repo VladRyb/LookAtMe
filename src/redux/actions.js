@@ -8,8 +8,9 @@ export default {
   getUserTest: 'GET_USER_TEST',
   getUserTestSaga: 'GET_USER_TEST_SAGA',
   deleteLookSaga: 'DELETE_LOOK_SAGA',
-  headUrl:'addUrlHead',
-  bodyUrl:'addUrlBody',
-  legsUrl:'addUrlLegs',
-  lapkiUrl:'addUrlLapki'
+  headUrl: 'addUrlHead',
+  bodyUrl: 'addUrlBody',
+  legsUrl: 'addUrlLegs',
+  lapkiUrl: 'addUrlLapki',
+  arrImg: 'arrImg',
 };

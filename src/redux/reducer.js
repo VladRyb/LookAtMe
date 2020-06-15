@@ -85,28 +85,35 @@ const reducer = (state = defaultState, action) => {
 
     case actionType.headUrl:
       return {
-        ...state, headUrl: [
-          ...state.headUrl, action.headUrl
-        ]
-      }
+        ...state,
+        headUrl: [...state.headUrl, action.headUrl],
+      };
     case actionType.bodyUrl:
       return {
-        ...state, bodyUrl: [
-          ...state.bodyUrl, action.bodyUrl
-        ]
-      }
+        ...state,
+        bodyUrl: [...state.bodyUrl, action.bodyUrl],
+      };
     case actionType.legsUrl:
       return {
-        ...state, legsUrl: [
-          ...state.legsUrl, action.legsUrl
-        ]
-      }
+        ...state,
+        legsUrl: [...state.legsUrl, action.legsUrl],
+      };
     case actionType.lapkiUrl:
       return {
-        ...state, lapkiUrl: [
-          ...state.lapkiUrl, action.lapkiUrl
-        ]
-      }
+        ...state,
+        lapkiUrl: [...state.lapkiUrl, action.lapkiUrl],
+      };
+    case actionType.arrImg:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          head: action.arr[1],
+          body: action.arr[0],
+          legs: action.arr[2],
+          feet: action.arr[3],
+        },
+      };
     default:
       return state;
   }
