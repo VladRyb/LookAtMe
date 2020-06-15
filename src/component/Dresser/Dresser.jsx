@@ -3,7 +3,6 @@ import DressCarousel from '../DressCarousel/DressCarousel2';
 // import UploadForm from '../uploadForm/UploadForm'
 import { useSelector } from 'react-redux';
 import ModalLook from '../ModaImg/ModalLook';
-
 import './Dresser.css';
 
 export default function Dresser() {
