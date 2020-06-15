@@ -11,7 +11,7 @@ export default function ModalLogin(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  // const [image, setImage] = useState(null);
+
   const [url, setUrl] = useState('');
 
   const [fileList, setFileList] = useState([]);
@@ -38,10 +38,20 @@ export default function ModalLogin(props) {
             .getDownloadURL()
             .then((url) => {
               setUrl(url);
-              firebase.firestore().collection('images').add({
-                url: url,
-                user: firebase.auth().currentUser.uid,
-              });
+              firebase
+                .firestore()
+                .collection("images")
+                .add({
+                  headDress: [
+                    {
+                      url: url,
+                      creator:
+                        firebase.auth().currentUser.uid +
+                        "/" +
+                        firebase.auth().currentUser.displayName,
+                    },
+                  ],
+                });
             });
         }
       );
@@ -90,10 +100,10 @@ export default function ModalLogin(props) {
               />
             </div>
 
-            <div id='rowChild77673' class='flexChild'>
-              <div className='selectDiv d-flex justify-content-between'>
+            <div id="rowChild77673" class="flexChild">
+              <div className="selectDiv d-flex justify-content-between">
                 <span>Сезон: </span>
-                <select className='select btn btn-secondary btn-sm dropdown-toggle'>
+                <select className="select btn btn-secondary btn-sm dropdown-toggle">
                   <option>Не выбрано</option>
                   <option>Зима</option>
                   <option>Лето</option>
@@ -101,9 +111,10 @@ export default function ModalLogin(props) {
                   <option>Весна</option>
                 </select>
               </div>
+
               {/* <div className='selectDiv d-flex justify-content-between'>
                 <span>Тип: </span>
-                <select className='select select btn btn-secondary btn-sm dropdown-toggle'>
+                <select className="select select btn btn-secondary btn-sm dropdown-toggle">
                   <option>Не выбрано</option>
                   <option>Рубашка</option>
                   <option>Шорты</option>
@@ -119,9 +130,9 @@ export default function ModalLogin(props) {
                   })}
                 </select>
               </div>
-              <div className='selectDiv d-flex justify-content-between'>
+              <div className="selectDiv d-flex justify-content-between">
                 <span>Состояние: </span>
-                <select className='select select btn btn-secondary btn-sm dropdown-toggle'>
+                <select className="select select btn btn-secondary btn-sm dropdown-toggle">
                   <option>Не выбрано</option>
                   <option>Требует ремонта</option>
                 </select>
