@@ -17,7 +17,7 @@ export default function Dresser() {
       <div>
         <DressCarousel
           dressArray={head}
-          title={'Головушка'}
+          title={'headUrl'}
           type={['Panamka', 'Slyapa', 'Bandana']}
           property='head'
         />
@@ -25,7 +25,7 @@ export default function Dresser() {
       <div>
         <DressCarousel
           dressArray={body}
-          title={'Пузико'}
+          title={'bodyUrl'}
           type={['Panamka', 'Slyapa', 'Bandana']}
           property='body'
         />
@@ -33,7 +33,7 @@ export default function Dresser() {
       <div>
         <DressCarousel
           dressArray={legs}
-          title={'Бедрышки'}
+          title={'legsUrl'}
           type={['Panamka', 'Slyapa', 'Bandana']}
           property='legs'
         />
@@ -41,7 +41,7 @@ export default function Dresser() {
       <div>
         <DressCarousel
           dressArray={feet}
-          title={'Лапки'}
+          title={'lapkiUrl'}
           type={['Panamka', 'Slyapa', 'Bandana']}
           property='feet'
         />
