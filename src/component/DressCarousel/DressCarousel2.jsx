@@ -64,7 +64,7 @@ export default ({ dressArray, title, property, type }) => {
         outsideChevron
         chevronWidth={chevronWidth}
       >
-        <ModalImg type={type} />
+        <ModalImg type={type} title={title} />
         {dress}
       </ItemsCarousel>
     </div>

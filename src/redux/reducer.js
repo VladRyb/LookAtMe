@@ -18,6 +18,10 @@ const defaultState = {
     tags: null,
     photo: null,
   },
+  headUrl: [],
+  bodyUrl: [],
+  legsUrl: [],
+  lapkiUrl: [],
 };
 
 async function logOut() {
@@ -79,6 +83,30 @@ const reducer = (state = defaultState, action) => {
         userTest: { ...state.userTest, looks: [...newLooks] },
       };
 
+    case actionType.headUrl:
+      return {
+        ...state, headUrl: [
+          ...state.headUrl, action.headUrl
+        ]
+      }
+    case actionType.bodyUrl:
+      return {
+        ...state, bodyUrl: [
+          ...state.bodyUrl, action.bodyUrl
+        ]
+      }
+    case actionType.legsUrl:
+      return {
+        ...state, legsUrl: [
+          ...state.legsUrl, action.legsUrl
+        ]
+      }
+    case actionType.lapkiUrl:
+      return {
+        ...state, lapkiUrl: [
+          ...state.lapkiUrl, action.lapkiUrl
+        ]
+      }
     default:
       return state;
   }
