@@ -4,6 +4,10 @@
   padding: 10px;
 }
 
+#loks {
+  background-color: rgba(133, 177, 190, 0.795);
+}
+
 .multi-photo-container {
   display: flex;
   flex-direction: row;
@@ -48,7 +52,7 @@
 }
 
 .editLink:hover {
-  color: green
+  color: green;
 }
 
 .deleteLink:hover {
@@ -82,7 +86,7 @@
 .links {
   position: absolute;
   bottom: -8px;
-  right: 5px
+  right: 5px;
 }
 
 .test {
@@ -90,12 +94,13 @@
   color: white;
 }
 
-#flexcanvas{
+#flexcanvas {
   width: 100%;
   height: 600px !important;
 }
 
-.rowParent, .columnParent{
+.rowParent,
+.columnParent {
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -121,14 +126,14 @@
   align-items: stretch;
 }
 
-.columnParent{
+.columnParent {
   -webkit-box-orient: vertical;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
 }
 
-.flexChild{
+.flexChild {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
   -ms-flex: 1;
