@@ -20,29 +20,31 @@ export default function ModalLogin(props) {
   };
 
   const handleUpload = () => {
-    const uploadTask = storage
-      .ref(`images/${fileList[0].name}`)
-      .put(fileList[0].originFileObj);
-    uploadTask.on(
-      'state_changed',
-      (snapshot) => {},
-      (error) => {
-        console.log(error);
-      },
-      () => {
-        storage
-          .ref('images')
-          .child(fileList[0].name)
-          .getDownloadURL()
-          .then((url) => {
-            setUrl(url);
-            firebase.firestore().collection('images').add({
-              url: url,
-              user: firebase.auth().currentUser.uid,
+    if (fileList.length > 0) {
+      const uploadTask = storage
+        .ref(`images/${fileList[0].name}`)
+        .put(fileList[0].originFileObj);
+      uploadTask.on(
+        'state_changed',
+        (snapshot) => {},
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          storage
+            .ref('images')
+            .child(fileList[0].name)
+            .getDownloadURL()
+            .then((url) => {
+              setUrl(url);
+              firebase.firestore().collection('images').add({
+                url: url,
+                user: firebase.auth().currentUser.uid,
+              });
             });
-          });
-      }
-    );
+        }
+      );
+    }
   };
 
   const onPreview = async (file) => {

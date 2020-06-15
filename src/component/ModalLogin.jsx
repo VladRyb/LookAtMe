@@ -3,6 +3,7 @@ import { Button, Modal } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import actionType from '../redux/actions';
+import Registration from './FirebaseAuth/Registration';
 
 export default function ModalLogin(props) {
   const [messe, setMess] = useState();
@@ -59,7 +60,8 @@ export default function ModalLogin(props) {
           <Modal.Title>Login</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className='form-group'>
+          <Registration uiConfig={props.uiConfig} />
+          {/* <div className='form-group'>
             <label>Email address</label>
             <input
               value={email}
@@ -89,10 +91,10 @@ export default function ModalLogin(props) {
               required
             />
             <div>{messe} </div>
-          </div>
+          </div> */}
         </Modal.Body>
         <Modal.Footer className='d-flex justify-content-between'>
-          <Button
+          {/* <Button
             id='googleButton'
             variant='primary'
             onClick={() => {
@@ -101,14 +103,14 @@ export default function ModalLogin(props) {
           >
             <img className='googleIcon' src='../google.png' alt='' />
             Sing in with Google
-          </Button>
-          <Button
+          </Button> */}
+          {/* <Button
             className='btn btn-outline-primary'
             variant='outline-primary'
             onClick={loginSubmit}
           >
             Submit
-          </Button>
+          </Button> */}
         </Modal.Footer>
       </Modal>
     </div>

@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { Upload } from 'antd';
-import ImgCrop from 'antd-img-crop';
 import 'antd/dist/antd.css';
-import { storage } from './firebase/index';
-import firebase from 'firebase';
 
 export default function StorageUploader(props) {
   return (

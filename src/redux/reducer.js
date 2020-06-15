@@ -1,6 +1,8 @@
-import actionType from "./actions";
-import user from "../faker";
-import actions from "./actions";
+import actionType from './actions';
+import user from '../faker';
+import actions from './actions';
+
+import firebase from 'firebase';
 
 const defaultState = {
   statusSession: false,
@@ -19,9 +21,10 @@ const defaultState = {
 };
 
 async function logOut() {
-  await fetch("/logout", {
-    method: "POST",
-  });
+  firebase.auth().signOut();
+  // await fetch('/logout', {
+  //   method: 'POST',
+  // });
 }
 
 const reducer = (state = defaultState, action) => {
@@ -40,7 +43,10 @@ const reducer = (state = defaultState, action) => {
       };
 
     case actionType.login:
-      const user = { name: action.session.name };
+      const user = {
+        name: action.user.displayName,
+        photo: action.user.photoURL,
+      };
       return {
         ...state,
         statusSession: true,
@@ -48,8 +54,8 @@ const reducer = (state = defaultState, action) => {
       };
     case actionType.logout:
       logOut();
-      localStorage.setItem("session", false);
-      localStorage.setItem("user", "");
+      localStorage.setItem('session', false);
+      localStorage.setItem('user', '');
       return { ...state, statusSession: false, user: null };
     case actionType.dressForNewLook:
       return {
@@ -63,10 +69,15 @@ const reducer = (state = defaultState, action) => {
       return { ...state, user: action.user };
 
     case actionType.deleteLookSaga:
-      const newLooks = state.userTest.looks.filter((element) => element.id !== action.id)
-      console.log(newLooks)
-      console.log(state.userTest.looks)
-        return { ...state, userTest: {...state.userTest, looks: [...newLooks]}}
+      const newLooks = state.userTest.looks.filter(
+        (element) => element.id !== action.id
+      );
+      console.log(newLooks);
+      console.log(state.userTest.looks);
+      return {
+        ...state,
+        userTest: { ...state.userTest, looks: [...newLooks] },
+      };
 
     default:
       return state;
