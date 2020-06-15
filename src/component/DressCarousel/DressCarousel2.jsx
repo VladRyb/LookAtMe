@@ -17,7 +17,7 @@ export default ({ dressArray, title, property, type }) => {
     return (
       <img
         key={el.id}
-        src={el.imageUrl}
+        src={el.img.ImgUrl}
         alt='img'
         className='smallImg'
         onClick={() => {

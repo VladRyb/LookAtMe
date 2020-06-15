@@ -22,16 +22,67 @@ import './App.css';
 function App(props) {
   // console.log(state)
   const store = useSelector((state) => state);
-
   const dispatch = useDispatch();
-  const arr = []
+  // const arr = []
 
   const userUid = localStorage.getItem('uid')
   const userName = localStorage.getItem('user')
 
-  const findU = async () => {
-    arr.push(
-      await firebase
+  // const findU = async () => {
+
+  //   const arr = await firebase
+  //       .firestore()
+  //       .collection("bodyUrl")
+  //       .get()
+  //       .then((snapshot) => {
+  //         const databody = snapshot.docs.map((img) => img.data());
+  //         return databody.filter((item) => {
+  //           return item.creator == userUid + '/' + userName
+  //         })
+
+
+  //     //   }
+  //     // await firebase
+  //     //   .firestore()
+  //     //   .collection("headUrl")
+  //     //   .get()
+  //     //   .then((snapshot) => {
+  //     //     const databody = snapshot.docs.map((img) => img.data());
+  //     //     return databody.filter((item) => {
+  //     //       return item.creator == userUid + '/' + userName
+  //     //     })
+  //     //   }),
+  //     // await firebase
+  //     //   .firestore()
+  //     //   .collection("legsUrl")
+  //     //   .get()
+  //     //   .then((snapshot) => {
+  //     //     const databody = snapshot.docs.map((img) => img.data());
+  //     //     return databody.filter((item) => {
+  //     //       return item.creator == userUid + '/' + userName
+  //     //     })
+  //     //   }),
+  //     // await firebase
+  //     //   .firestore()
+  //     //   .collection("lapkiUrl")
+  //     //   .get()
+  //     //   .then((snapshot) => {
+  //     //     const databody = snapshot.docs.map((img) => img.data());
+  //     //     return databody.filter((item) => {
+  //     //       return item.creator == userUid + '/' + userName
+  //     //     })
+  //     //   }),
+  //       }
+  //   )
+  //   dispatch({ type: actionType.arrImg, arr: arr })
+  // }
+  // findU()
+  // console.log(arr)
+
+  useEffect(() => {
+    const findU = async () => {
+
+      const body = await firebase
         .firestore()
         .collection("bodyUrl")
         .get()
@@ -40,8 +91,43 @@ function App(props) {
           return databody.filter((item) => {
             return item.creator == userUid + '/' + userName
           })
-        }),
-      await firebase
+
+
+
+          //   }
+          // await firebase
+          //   .firestore()
+          //   .collection("headUrl")
+          //   .get()
+          //   .then((snapshot) => {
+          //     const databody = snapshot.docs.map((img) => img.data());
+          //     return databody.filter((item) => {
+          //       return item.creator == userUid + '/' + userName
+          //     })
+          //   }),
+          // await firebase
+          //   .firestore()
+          //   .collection("legsUrl")
+          //   .get()
+          //   .then((snapshot) => {
+          //     const databody = snapshot.docs.map((img) => img.data());
+          //     return databody.filter((item) => {
+          //       return item.creator == userUid + '/' + userName
+          //     })
+          //   }),
+          // await firebase
+          //   .firestore()
+          //   .collection("lapkiUrl")
+          //   .get()
+          //   .then((snapshot) => {
+          //     const databody = snapshot.docs.map((img) => img.data());
+          //     return databody.filter((item) => {
+          //       return item.creator == userUid + '/' + userName
+          //     })
+          //   }),
+        }
+        )
+      const head = await firebase
         .firestore()
         .collection("headUrl")
         .get()
@@ -50,8 +136,8 @@ function App(props) {
           return databody.filter((item) => {
             return item.creator == userUid + '/' + userName
           })
-        }),
-      await firebase
+        })
+      const legs = await firebase
         .firestore()
         .collection("legsUrl")
         .get()
@@ -60,8 +146,8 @@ function App(props) {
           return databody.filter((item) => {
             return item.creator == userUid + '/' + userName
           })
-        }),
-      await firebase
+        })
+      const lapki = await firebase
         .firestore()
         .collection("lapkiUrl")
         .get()
@@ -70,27 +156,12 @@ function App(props) {
           return databody.filter((item) => {
             return item.creator == userUid + '/' + userName
           })
-        }),
-    )
-  }
-  findU()
-  dispatch(actionType.arrImg)
-  console.log(arr)
-
-  // useEffect(async() => {
-  //   const user = await firebase.auth().currentUser.update({
-  //     'clothes':['aaa', 'bbbbb']
-  //   })
-  //   //   .firestore()
-  //   //   .collection("users")
-  //   //   .get()
-  //   //   .then((snapshot) => {
-  //   //     return snapshot.docs.map((img) => img.data());
-  //   //   });
-  //   // let result = data.find(
-  //   //   (item) => item.uid === firebase.auth().currentUser.uid
-  //   // );
-  // }, []);
+        })
+      dispatch({ type: actionType.arrImg, body: body, head: head, legs: legs, lapki: lapki })
+    }
+    findU()
+    // dispatch({ type: actionType.arrImg, arr: arr })
+  }, [store.user.name]);
 
   return (
     <>

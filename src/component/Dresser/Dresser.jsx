@@ -6,7 +6,7 @@ import ModalLook from '../ModaImg/ModalLook';
 import './Dresser.css';
 
 export default function Dresser() {
-  const user = useSelector((state) => state.userTest);
+  const user = useSelector((state) => state.user);
   const { head, body, legs, feet } = user;
 
   return (
