@@ -5,6 +5,7 @@ import Home from './component/Home';
 import NavBar from './component/NavBar';
 import actionType from './redux/actions';
 import MyLooks from './component/MyLooks/MyLooks';
+import MyLooks2 from './component/MyLooks/MyLooks2';
 import ModalImg from './component/ModaImg/ModalImg';
 
 import MyCarousel from './component/DressCarousel/DressCarousel';
@@ -52,7 +53,7 @@ function App(props) {
           <Home />
         </Route>
         <Route exact path='/mylooks'>
-          <MyLooks />
+          <MyLooks2 />
         </Route>
         <Route exact path='/car'>
           <Dresser />
