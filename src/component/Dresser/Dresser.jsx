@@ -4,11 +4,17 @@ import DressCarousel from '../DressCarousel/DressCarousel2';
 import { useSelector } from 'react-redux';
 import ModalLook from '../ModaImg/ModalLook';
 import './Dresser.css';
+import { useHistory } from 'react-router-dom';
 
 export default function Dresser() {
-  const user = useSelector((state) => state.user);
-  const { head=[], body=[], legs=[], feet=[] } = user;
+  const userName = localStorage.getItem('user');
+  const history = useHistory();
 
+  if (userName === '') {
+    history.push('/');
+  }
+  const user = useSelector((state) => state.user);
+  const { head = [], body = [], legs = [], feet = [] } = user;
 
   return (
     <div id='globalDiv'>

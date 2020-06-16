@@ -48,7 +48,7 @@ export default function ModalLogin(props) {
   return (
     <div>
       <span variant='primary' onClick={handleShow}>
-        Login
+        {props.title}
       </span>
       <Modal
         show={show}

@@ -75,11 +75,21 @@ export default function NavBar(props) {
               Home <span className='sr-only'>(current)</span>
             </Link>
           </li>
-          <li className='nav-item active'>
-            <Link className='nav-link' to='/car'>
-              Начать пользоваться <span className='sr-only'>(current)</span>
-            </Link>
-          </li>
+          {user.name ? (
+            <li className='nav-item active'>
+              <Link className='nav-link' to='/car'>
+                Dresser <span className='sr-only'>(current)</span>
+              </Link>
+            </li>
+          ) : (
+            <li className='nav-item '>
+              {/* <Link className='nav-link' to='#'>
+                <span>
+                  <ModalLogin title='Go Usati' uiConfig={uiConfig} />
+                </span>
+              </Link> */}
+            </li>
+          )}
         </ul>
       </div>
       <div className='d-flex justify-content-end'>
@@ -98,7 +108,7 @@ export default function NavBar(props) {
               }
               id='basic-nav-dropdown'
             >
-              <NavDropdown.Item href='/mylooks'>Dresser</NavDropdown.Item>
+              <NavDropdown.Item href='/mylooks'>My Looks</NavDropdown.Item>
 
               <NavDropdown.Divider />
               <NavDropdown.Item
@@ -114,7 +124,7 @@ export default function NavBar(props) {
               <li className='nav-item '>
                 <Link className='nav-link' to='#'>
                   <span>
-                    <ModalLogin uiConfig={uiConfig} />
+                    <ModalLogin title='Go Usati' uiConfig={uiConfig} />
                   </span>
                 </Link>
               </li>
