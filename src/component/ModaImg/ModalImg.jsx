@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import StorageUploaderModal from '../FirebaseAuth/StorageUploaderModal';
 import { storage } from '../FirebaseAuth/firebase/index';
@@ -6,6 +6,8 @@ import firebase from 'firebase';
 import useSelection from 'antd/lib/table/hooks/useSelection';
 import { useSelector, useDispatch } from 'react-redux';
 import actionType from '../../redux/actions';
+import TestOn from './TestPage';
+import CameraPhoto, { FACING_MODES } from 'jslib-html5-camera-photo';
 
 export default function ModalImg(props) {
   const [show, setShow] = useState(false);
@@ -20,12 +22,25 @@ export default function ModalImg(props) {
   const [stoyanieState, setStoyanieState] = useState('');
 
   const [fileList, setFileList] = useState([]);
+  const [onlinePhoto, setOnlinePhoto] = useState('');
 
   const onChangeProps = ({ fileList: newFileList }) => {
     setFileList(newFileList);
   };
 
   const handleUpload = () => {
+    if (onlinePhoto !== '') {
+      dispatch({
+        type: actionType[props.title],
+        [props.title]: {
+          id: Date.now() + Math.random() * 10,
+          imgUrl: onlinePhoto,
+          season: seasonState,
+          type: typeState,
+          stoyanie: stoyanieState || true,
+        },
+      });
+    }
     if (fileList.length > 0) {
       const uploadTask = storage
         .ref(`images/${fileList[0].name}`)
@@ -106,12 +121,19 @@ export default function ModalImg(props) {
         <Modal.Body>
           <div id='container' class='flexChild rowParent'>
             <div id='rowChild94955' class='flexChild'>
-              <StorageUploaderModal
-                fileList={fileList}
-                onPreview={onPreview}
-                handleUpload={handleUpload}
-                onChange={onChangeProps}
-              />
+              {onlinePhoto === '' ? (
+                <StorageUploaderModal
+                  fileList={fileList}
+                  onPreview={onPreview}
+                  handleUpload={handleUpload}
+                  onChange={onChangeProps}
+                />
+              ) : (
+                <>
+                  <img src={onlinePhoto} alt='' />
+                </>
+              )}
+              <TestOn setOnlinePhoto={setOnlinePhoto} />
             </div>
 
             <div id='rowChild77673' class='flexChild'>
