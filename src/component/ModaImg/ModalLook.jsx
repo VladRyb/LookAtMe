@@ -6,30 +6,32 @@ import firebase from "firebase";
 import actionType from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 
+import { clearDressForNewLook, addTag, deleteTag, onChangeName} from '../../redux/actioncreators/actionsSaga';
+
+
 export default function ModalLogin(props) {
-  const [show, setShow] = useState(false);
-  const [tag, setTag] = useState("");
-  const [tags, setTags] = useState(Array);
-  const [value, setValue] = useState("");
-  const dispatch = useDispatch();
   const store = useSelector((state) => state);
+
+  const {tags, name, head, body, legs, feet,} = store.dressForNewLook
+
+  const [show, setShow] = useState(false);
+  const [tag, setTag] = useState('');
+
+  const dispatch = useDispatch();
 
   function addTags(event) {
     if (event.key === "Enter") {
       const newTag = tags.findIndex((item) => item == tag);
       if (newTag === -1) {
-        setTags([...tags, tag]);
+        dispatch(addTag(tag));
+        setTag('')
       }
     }
   }
-  const [stateLooksUrl, setStateLooksUrl] = useState({
-    img: {
-      ImgUrl: null,
-      ImgId: new Date() + Math.random() * 10,
-    },
-    name: "",
-    tags: [],
-  });
+
+  function deleteOneTag(deletedItem) {
+    return tags.filter((el) => el !== deletedItem)
+  }
 
   const [fileList, setFileList] = useState([]);
   // const [url, setUrl] = useState('');
@@ -57,25 +59,30 @@ export default function ModalLogin(props) {
             .then((url) => {
               dispatch({
                 type: actionType.lookis,
-                lookis: {
-                  img: {
-                    ImgUrl: url,
-                    ImgId: Date.now() + Math.random() * 10,
-                  },
-                  name: value,
-                  tags: tags,
-                },
+                lookis:
+                {
+                  id: Date.now() + Math.random() * 10,
+                  ImgUrl: url,
+                  name,
+                  tags,
+                  head,
+                  body,
+                  legs,
+                  feet,
+                }
               });
               firebase
                 .firestore()
                 .collection('lookis')
                 .add({
-                  img: {
+                  id: Date.now() + Math.random() * 10,
                     ImgUrl: url,
-                    ImgId: Date.now() + Math.random() * 10,
-                  },
-                  name: value,
-                  tags: tags,
+                    name,
+                    tags,
+                    head,
+                    body,
+                    legs,
+                    feet,
                   creator:
                     firebase.auth().currentUser.uid +
                     "/" +
@@ -133,8 +140,8 @@ export default function ModalLogin(props) {
             <div id="rowChild77673" class="flexChild">
               <div className="selectDiv">
                 <input
-                  value={value}
-                  onChange={(event) => setValue(event.target.value)}
+                  value={name}
+                  onChange={(event) => dispatch(onChangeName(event.target.value))}
                   type="text"
                   className="form-control"
                   placeholder="Name"
@@ -155,8 +162,9 @@ export default function ModalLogin(props) {
               </div>
               {tags.map((item) => {
                 return (
-                  <span className="tags badge badge-pill badge-dark">
-                    {item}{" "}
+                  <span className='tags badge badge-pill badge-dark'
+                  onClick={()=> dispatch(deleteTag(deleteOneTag(item)))}>
+                    {item}{' '}
                   </span>
                 );
               })}
@@ -168,6 +176,7 @@ export default function ModalLogin(props) {
             onClick={() => {
               handleUpload();
               handleClose();
+              dispatch(clearDressForNewLook());
             }}
             className="btn btn-outline-primary"
             variant="outline-primary"

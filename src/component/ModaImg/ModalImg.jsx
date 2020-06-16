@@ -15,15 +15,6 @@ export default function ModalImg(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [stateUrl, setStateUrl] = useState({
-    img: {
-      ImgUrl: null,
-      ImgId: new Date() + Math.random() * 10,
-    },
-    season: '',
-    type: '',
-    stoyanie: true,
-  });
   const [typeState, setTypeState] = useState('');
   const [seasonState, setSeasonState] = useState('');
   const [stoyanieState, setStoyanieState] = useState('');
@@ -54,10 +45,8 @@ export default function ModalImg(props) {
               dispatch({
                 type: actionType[props.title],
                 [props.title]: {
-                  img: {
-                    ImgUrl: url,
-                    ImgId: Date.now() + Math.random() * 10,
-                  },
+                  id: Date.now() + Math.random() * 10,
+                  imgUrl: url,
                   season: seasonState,
                   type: typeState,
                   stoyanie: stoyanieState || true,
@@ -67,10 +56,8 @@ export default function ModalImg(props) {
                 .firestore()
                 .collection(props.title)
                 .add({
-                  img: {
-                    ImgUrl: url,
-                    ImgId: Date.now() + Math.random() * 10,
-                  },
+                  id: Date.now() + Math.random() * 10,
+                  imgUrl: url,
                   season: seasonState,
                   type: typeState,
                   stoyanie: stoyanieState || true,
