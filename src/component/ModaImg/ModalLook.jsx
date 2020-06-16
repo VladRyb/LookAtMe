@@ -32,7 +32,6 @@ export default function ModalLogin(props) {
   });
 
   const [fileList, setFileList] = useState([]);
-  // const [url, setUrl] = useState('');
 
   const onChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
@@ -150,7 +149,6 @@ export default function ModalLogin(props) {
                   className="form-control"
                   placeholder="Tags"
                   name="tags"
-                  required
                 />{" "}
               </div>
               {tags.map((item) => {

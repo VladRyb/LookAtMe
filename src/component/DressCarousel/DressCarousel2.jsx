@@ -24,7 +24,7 @@ export default ({ dressArray, title, property, type }) => {
           setchooseItem(true);
           setimageUrl(el.imageUrl);
           dispatch(
-            dressForNewLook(property, { id: el.id, imageUrl: el.imageUrl })
+            dressForNewLook(property, { id: el.img.ImgID, imageUrl: el.img.ImgUrl })
           );
         }}
       />

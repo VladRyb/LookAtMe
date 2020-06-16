@@ -118,7 +118,7 @@ const reducer = (state = defaultState, action) => {
         }
       };
     case actionType.lookis:
-      console.log('actionType.looks',action.lookis)
+      // console.log('actionType.looks>>>>>>>>>',action.lookis)
       return {
         ...state,
         user: {
@@ -127,6 +127,7 @@ const reducer = (state = defaultState, action) => {
         }
       };
     case actionType.arrImg:
+      // console.log('actionType.looks>>>>>>>>>',action.lookis)
       return {
         ...state,
         user: {

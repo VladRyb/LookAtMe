@@ -49,38 +49,64 @@ function App(props) {
           return databody.filter((item) => {
             return item.creator == userUid + '/' + userName
           })
-        })
-      const legs = await firebase
-        .firestore()
-        .collection("legs")
-        .get()
-        .then((snapshot) => {
-          const databody = snapshot.docs.map((img) => img.data());
-          return databody.filter((item) => {
-            return item.creator == userUid + '/' + userName
-          })
-        })
-      const feet = await firebase
-        .firestore()
-        .collection("feet")
-        .get()
-        .then((snapshot) => {
-          const databody = snapshot.docs.map((img) => img.data());
-          return databody.filter((item) => {
-            return item.creator == userUid + '/' + userName
-          })
-        })
-        const lookis = await firebase
-        .firestore()
-        .collection("lookis")
-        .get()
-        .then((snapshot) => {
-          const databody = snapshot.docs.map((img) => img.data());
-          return databody.filter((item) => {
-            return item.creator == userUid + '/' + userName
-          })
-        })
-      dispatch({ type: actionType.arrImg, body: body, head: head, legs: legs, feet: feet, lookis:lookis })
+        .catch(err => {
+          console.log('Error getting documents', err);
+        });
+      console.log('>>>>>>>>findLookisByCreator', findLookisByCreator)
+
+      // //////////////////////////////////////////////////////////
+      // const body = await firebase
+      //   .firestore()
+      //   .collection("body")
+      //   .get()
+      //   .then((snapshot) => {
+      //     const databody = snapshot.docs.map((img) => img.data());
+      //     return databody.filter((item) => {
+      //       return item.creator == userUid + '/' + userName
+      //     })
+      //   }
+      //   )
+      // const head = await firebase
+      //   .firestore()
+      //   .collection("head")
+      //   .get()
+      //   .then((snapshot) => {
+      //     const databody = snapshot.docs.map((img) => img.data());
+      //     return databody.filter((item) => {
+      //       return item.creator == userUid + '/' + userName
+      //     })
+      //   })
+      // const legs = await firebase
+      //   .firestore()
+      //   .collection("legs")
+      //   .get()
+      //   .then((snapshot) => {
+      //     const databody = snapshot.docs.map((img) => img.data());
+      //     return databody.filter((item) => {
+      //       return item.creator == userUid + '/' + userName
+      //     })
+      //   })
+      // const feet = await firebase
+      //   .firestore()
+      //   .collection("feet")
+      //   .get()
+      //   .then((snapshot) => {
+      //     const databody = snapshot.docs.map((img) => img.data());
+      //     return databody.filter((item) => {
+      //       return item.creator == userUid + '/' + userName
+      //     })
+      //   })
+      //   const lookis = await firebase
+      //   .firestore()
+      //   .collection("lookis")
+      //   .get()
+      //   .then((snapshot) => {
+      //     const databody = snapshot.docs.map((img) => img.data());
+      //     return databody.filter((item) => {
+      //       return item.creator == userUid + '/' + userName
+      //     })
+      //   })
+      // dispatch({ type: actionType.arrImg, body: body, head: head, legs: legs, feet: feet, lookis:lookis })
     }
     findU()
 
