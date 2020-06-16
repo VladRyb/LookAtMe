@@ -1,4 +1,4 @@
-import actionType from '../actions';
+import actionType from "../actions";
 
 // Это тригерит саму сагу.
 
@@ -16,21 +16,29 @@ export function loadingTodo(arr) {
 }
 
 export function dressForNewLook(property, value) {
-  return { type: actionType.dressForNewLook, property, value};
+  return { type: actionType.dressForNewLook, property, value };
+}
+
+export function addTag(tag) {
+  return { type: actionType.addTag, tag };
+}
+
+export function deleteTag(tags) {
+  return { type: actionType.deleteTag, tags };
+}
+
+export function onChangeName(value) {
+  return { type: actionType.onChangeName, value };
 }
 
 export function deleteLookSaga(id) {
-  return { type: actionType.deleteLookSaga, id};
+  return { type: actionType.deleteLookSaga, id };
 }
 
-export function getUserTest(user) {
-  return { type: actionType.dressForNewLook, user};
+export function deleteDress(property, id) {
+  return { type: actionType.deleteDress, property, id };
 }
 
-export function getUserTestSaga() {
-  return { type: actionType.getUserTestSaga};
-}
-
-export function deleteDress(property,id){
-  return { type: actionType.deleteDress, property, id};
+export function clearDressForNewLook() {
+  return { type: actionType.clearDressForNewLook };
 }

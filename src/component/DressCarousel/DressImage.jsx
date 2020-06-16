@@ -5,7 +5,7 @@ import {
 } from '../../redux/actioncreators/actionsSaga';
 import { useDispatch } from 'react-redux';
 
-export default function DressImage({ el, property, setSelectedmageUrl }) {
+export default function DressImage({ el, property, setSelectedImage }) {
   const [isHover, setIsHover] = useState(null);
   const dispatch = useDispatch();
 
@@ -17,14 +17,12 @@ export default function DressImage({ el, property, setSelectedmageUrl }) {
       onMouseLeave={() => setIsHover(null)}
     >
       <img
-        src={el.img.ImgUrl}
+        src={el.imgUrl}
         alt='img'
         className='smallImg'
         onClick={() => {
-          setSelectedmageUrl(el.imageUrl);
-          dispatch(
-            dressForNewLook(property, { id: el.id, imageUrl: el.imageUrl })
-          );
+          setSelectedImage(el);
+          dispatch(dressForNewLook(property, el));
         }}
       />
 
