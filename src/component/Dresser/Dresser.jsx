@@ -19,8 +19,6 @@ export default function Dresser() {
   return (
     <div id='globalDiv'>
       <div className='dresser'>
-        {/* <UploadForm /> */}
-
         <div>
           <DressCarousel
             dressArray={head}

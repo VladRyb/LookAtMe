@@ -10,7 +10,7 @@ import "./DresserCarousel.css";
 export default ({ dressArray, title, property, type }) => {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const chevronWidth = 40;
-  const [selectedImageUrl, setSelectedmageUrl] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
   const newLookFromState = useSelector((state) => state.dressForNewLook);
 
   const dress = dressArray.map((el) => {
@@ -18,7 +18,7 @@ export default ({ dressArray, title, property, type }) => {
       <DressImage
         el={el}
         property={property}
-        setSelectedmageUrl={setSelectedmageUrl}
+        setSelectedImage={setSelectedImage}
       />
     );
   });
@@ -26,15 +26,15 @@ export default ({ dressArray, title, property, type }) => {
 
   const element = newLookFromState[property] ? (
     <SelectedDressImage
-      imageUrl={newLookFromState[property].imageUrl}
+      selectedImage={newLookFromState[property]}
       property={property}
-      setSelectedmageUrl={setSelectedmageUrl}
+      setSelectedImage={setSelectedImage}
     />
-  ) : selectedImageUrl ? (
+  ) : selectedImage ? (
     <SelectedDressImage
-      imageUrl={selectedImageUrl}
+      selectedImage={selectedImage}
       property={property}
-      setSelectedmageUrl={setSelectedmageUrl}
+      setSelectedImage={setSelectedImage}
     />
   ) : (
     <div className="carouselWithYeader">
