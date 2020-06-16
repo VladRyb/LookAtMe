@@ -30,3 +30,7 @@ export function getUserTest(user) {
 export function getUserTestSaga() {
   return { type: actionType.getUserTestSaga};
 }
+
+export function deleteDress(property,id){
+  return { type: actionType.deleteDress, property, id};
+}
