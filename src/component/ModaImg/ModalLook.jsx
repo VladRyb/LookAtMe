@@ -39,6 +39,7 @@ export default function ModalLogin(props) {
   };
 
   const handleUpload = () => {
+    console.log(fileList);
     if (fileList.length > 0) {
       const uploadTask = storage
         .ref(`images/${fileList[0].name}`)

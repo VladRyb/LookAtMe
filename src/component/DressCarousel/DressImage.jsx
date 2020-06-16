@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   dressForNewLook,
   deleteDress,
-} from "../../redux/actioncreators/actionsSaga";
-import { useDispatch } from "react-redux";
+} from '../../redux/actioncreators/actionsSaga';
+import { useDispatch } from 'react-redux';
 
 export default function DressImage({ el, property, setSelectedmageUrl }) {
   const [isHover, setIsHover] = useState(null);
@@ -11,15 +11,15 @@ export default function DressImage({ el, property, setSelectedmageUrl }) {
 
   return (
     <div
-      className="imageDiv"
+      className='imageDiv'
       key={el.id}
       onMouseEnter={() => setIsHover(el.id)}
       onMouseLeave={() => setIsHover(null)}
     >
       <img
-        src={el.imageUrl}
-        alt="img"
-        className="smallImg"
+        src={el.img.ImgUrl}
+        alt='img'
+        className='smallImg'
         onClick={() => {
           setSelectedmageUrl(el.imageUrl);
           dispatch(
@@ -30,12 +30,12 @@ export default function DressImage({ el, property, setSelectedmageUrl }) {
 
       {isHover === el.id ? (
         <div
-          className="trash"
+          className='trash'
           onClick={() => {
             dispatch(deleteDress(property, el.id));
           }}
         >
-          <i className="fa fa-trash-o "></i>
+          <i className='fa fa-trash-o '></i>
         </div>
       ) : null}
     </div>
