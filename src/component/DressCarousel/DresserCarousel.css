@@ -23,3 +23,28 @@
 .addDiv:hover {
   background-color: rgba(117, 117, 117, 0.479);
 }
+
+.imageDiv{
+position: relative;
+}
+.trash{
+  position: absolute;
+  top: 115px;
+  right: 80px;
+  font-size: 25px;
+  width: 1px;
+  height: 1px;
+}
+.trash:hover{
+color: red;
+}
+
+.carouselWithYeader{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.carouselHeader{
+  margin-bottom: 20px;
+}

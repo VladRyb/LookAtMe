@@ -8,8 +8,7 @@ import MyLooks from './component/MyLooks/MyLooks';
 import MyLooks2 from './component/MyLooks/MyLooks2';
 import ModalImg from './component/ModaImg/ModalImg';
 
-import MyCarousel from './component/DressCarousel/DressCarousel';
-import MyCarousel2 from './component/DressCarousel/DressCarousel2';
+
 import Dresser from './component/Dresser/Dresser';
 import FooterPage from './component/FooterPage';
 import Edit from './component/Edit/Edit';
