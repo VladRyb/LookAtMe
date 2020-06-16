@@ -9,7 +9,7 @@ import actionType from "../../redux/actions";
 
 export default function ModalImg(props) {
   const [show, setShow] = useState(false);
-
+console.log('>>>>>>>>>>>>>>>>>>>>>>>>>',props)
   const store = useSelector((state) => state);
 
   const dispatch = useDispatch();
@@ -81,7 +81,6 @@ export default function ModalImg(props) {
                     firebase.auth().currentUser.displayName,
                 });
             });
-            
         }
       );
     }

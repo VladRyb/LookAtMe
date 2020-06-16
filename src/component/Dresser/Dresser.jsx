@@ -7,7 +7,7 @@ import './Dresser.css';
 
 export default function Dresser() {
   const user = useSelector((state) => state.user);
-  const { head, body, legs, feet } = user;
+  const { head=[], body=[], legs=[], feet=[] } = user;
 
   return (
     <div id='globalDiv'>
@@ -17,7 +17,7 @@ export default function Dresser() {
         <div>
           <DressCarousel
             dressArray={head}
-            title={'headUrl'}
+            title={'head'}
             type={['Panamka', 'Slyapa', 'Bandana']}
             property='head'
           />
@@ -25,7 +25,7 @@ export default function Dresser() {
         <div>
           <DressCarousel
             dressArray={body}
-            title={'bodyUrl'}
+            title={'body'}
             type={['Panamka', 'Slyapa', 'Bandana']}
             property='body'
           />
@@ -33,7 +33,7 @@ export default function Dresser() {
         <div>
           <DressCarousel
             dressArray={legs}
-            title={'legsUrl'}
+            title={'legs'}
             type={['Panamka', 'Slyapa', 'Bandana']}
             property='legs'
           />
@@ -41,7 +41,7 @@ export default function Dresser() {
         <div>
           <DressCarousel
             dressArray={feet}
-            title={'lapkiUrl'}
+            title={'feet'}
             type={['Panamka', 'Slyapa', 'Bandana']}
             property='feet'
           />

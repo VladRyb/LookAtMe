@@ -6,7 +6,7 @@ import firebase from 'firebase';
 
 const defaultState = {
   statusSession: false,
-  user: {name:null},
+  user: { name: null, head: [], body: [], legs: [], feet: [] },
   isLoading: null,
   userTest: null,
   dressForNewLook: {
@@ -22,7 +22,7 @@ const defaultState = {
   bodyUrl: [],
   legsUrl: [],
   lapkiUrl: [],
-  head:[],
+  head: [],
 };
 
 async function logOut() {
@@ -86,35 +86,43 @@ const reducer = (state = defaultState, action) => {
         userTest: { ...state.userTest, looks: [...newLooks] },
       };
 
-    case actionType.headUrl:
+    case actionType.head:
       return {
         ...state,
-        headUrl: [...state.headUrl, action.headUrl],
+        user: {
+          ...state.user,
+          head: [action.head,...state.user.head, ],
+        }
       };
-    case actionType.bodyUrl:
+    case actionType.body:
       return {
         ...state,
-        bodyUrl: [...state.bodyUrl, action.bodyUrl],
+        user: {
+          ...state.user,
+          body: [action.body,...state.user.body, ],
+        }
       };
-    case actionType.legsUrl:
+    case actionType.legs:
       return {
         ...state,
-        legsUrl: [...state.legsUrl, action.legsUrl],
+        user: {
+          ...state.user,
+          legs: [action.legs,...state.user.legs, ],
+        }
       };
-    case actionType.lapkiUrl:
+    case actionType.feet:
       return {
         ...state,
-        lapkiUrl: [...state.lapkiUrl, action.lapkiUrl],
+        user: {
+          ...state.user,
+          feet: [action.feet,...state.user.feet, ],
+        }
       };
     case actionType.arrImg:
-      console.log('>>>>>>>>',action.body.length)
-      // const actionArr = action.arr
-      // const result = action.body.map((elem)=>elem)
-      // console.log('>><<<<<<<<<<<<<<<<<<<<<',result)
       return {
         ...state,
-        user:{
-...state.user,
+        user: {
+          ...state.user,
           head: action.head,
           body: action.body,
           legs: action.legs,
