@@ -9,6 +9,7 @@ export default function Dresser() {
   const user = useSelector((state) => state.user);
   const { head=[], body=[], legs=[], feet=[] } = user;
 
+
   return (
     <div id='globalDiv'>
       <div className='dresser'>

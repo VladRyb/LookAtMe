@@ -13,7 +13,7 @@ import MyCarousel2 from './component/DressCarousel/DressCarousel2';
 import Dresser from './component/Dresser/Dresser';
 import FooterPage from './component/FooterPage';
 import Edit from './component/Edit/Edit';
-import firebase from "firebase";
+import firebase from 'firebase';
 
 import CropForm from './component/CropForm';
 
@@ -73,6 +73,7 @@ function App(props) {
       dispatch({ type: actionType.arrImg, body: body, head: head, legs: legs, lapki: lapki })
     }
     findU()
+
   }, [store.user.name]);
 
   return (

@@ -22,7 +22,7 @@ const defaultState = {
   bodyUrl: [],
   legsUrl: [],
   lapkiUrl: [],
-  head: [],
+
 };
 
 async function logOut() {
@@ -51,7 +51,7 @@ const reducer = (state = defaultState, action) => {
       const user = {
         name: action.user.displayName,
         photo: action.user.photoURL,
-        uid: action.user.uid
+        uid: action.user.uid,
       };
       return {
         ...state,
@@ -63,7 +63,7 @@ const reducer = (state = defaultState, action) => {
       localStorage.setItem('session', false);
       localStorage.setItem('user', '');
       localStorage.setItem('uid', '');
-      return { ...state, statusSession: false, user: null };
+      return { ...state, statusSession: false, user: { name: null } };
     case actionType.dressForNewLook:
       return {
         ...state,
@@ -119,6 +119,7 @@ const reducer = (state = defaultState, action) => {
         }
       };
     case actionType.arrImg:
+
       return {
         ...state,
         user: {
@@ -127,7 +128,7 @@ const reducer = (state = defaultState, action) => {
           body: action.body,
           legs: action.legs,
           feet: action.lapki,
-        }
+        },
       };
     default:
       return state;
