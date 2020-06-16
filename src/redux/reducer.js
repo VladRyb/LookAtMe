@@ -117,11 +117,7 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.lookis:
-<<<<<<< HEAD
-      // console.log('actionType.looks>>>>>>>>>',action.lookis)
-=======
       console.log("actionType.looks", action.lookis);
->>>>>>> master
       return {
         ...state,
         user: {

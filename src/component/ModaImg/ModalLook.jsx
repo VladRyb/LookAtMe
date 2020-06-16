@@ -39,12 +39,9 @@ export default function ModalLogin(props) {
   }
 
   const [fileList, setFileList] = useState([]);
-<<<<<<< HEAD
-=======
   const [onlinePhoto, setOnlinePhoto] = useState('');
 
   // const [url, setUrl] = useState('');
->>>>>>> master
 
   const onChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
@@ -180,20 +177,12 @@ export default function ModalLogin(props) {
                   value={tag}
                   onChange={(event) => setTag(event.target.value)}
                   onKeyPress={addTags}
-<<<<<<< HEAD
-                  type="text"
-                  className="form-control"
-                  placeholder="Tags"
-                  name="tags"
-                />{" "}
-=======
                   type='text'
                   className='form-control'
                   placeholder='Tags'
                   name='tags'
                   required
                 />{' '}
->>>>>>> master
               </div>
               {tags.map((item) => {
                 return (
