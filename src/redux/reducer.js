@@ -50,7 +50,7 @@ const reducer = (state = defaultState, action) => {
       const user = {
         name: action.user.displayName,
         photo: action.user.photoURL,
-        uid: action.user.uid
+        uid: action.user.uid,
       };
       return {
         ...state,
