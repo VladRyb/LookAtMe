@@ -80,11 +80,6 @@ export default function NavBar(props) {
               Начать пользоваться <span className='sr-only'>(current)</span>
             </Link>
           </li>
-          <li className='nav-item active'>
-            <Link className='nav-link' to='/mylooks'>
-              Гардероб <span className='sr-only'>(current)</span>
-            </Link>
-          </li>
         </ul>
       </div>
       <div className='d-flex justify-content-end'>
@@ -103,7 +98,7 @@ export default function NavBar(props) {
               }
               id='basic-nav-dropdown'
             >
-              <NavDropdown.Item href='/user'>Profile</NavDropdown.Item>
+              <NavDropdown.Item href='/mylooks'>Dresser</NavDropdown.Item>
 
               <NavDropdown.Divider />
               <NavDropdown.Item
