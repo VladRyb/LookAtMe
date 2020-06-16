@@ -5,7 +5,11 @@ import { deleteLookSaga } from '../../../redux/actioncreators/actionsSaga';
 
 function OldLooks2() {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.user.lookis);
+  const user = useSelector((state) => state.user);
+  const allLooks = useSelector((state) => state.lookis);
+  const userName = user.name;
+  const userId = user.uid;
+  const state = allLooks.filter(element => element.creator === `${userId}/${userName}`)
   while (state === undefined) {
     return 'Loading...';
   }
