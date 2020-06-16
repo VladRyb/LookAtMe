@@ -23,62 +23,57 @@ function App(props) {
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const userUid = localStorage.getItem('uid');
-  const userName = localStorage.getItem('user');
+  const userUid = localStorage.getItem('uid')
+  const userName = localStorage.getItem('user')
 
   useEffect(() => {
-    if (userName !== '') {
-      const findU = async () => {
-        const body = await firebase
-          .firestore()
-          .collection('bodyUrl')
-          .get()
-          .then((snapshot) => {
-            const databody = snapshot.docs.map((img) => img.data());
-            return databody.filter((item) => {
-              return item.creator == userUid + '/' + userName;
-            });
-          });
-        const head = await firebase
-          .firestore()
-          .collection('headUrl')
-          .get()
-          .then((snapshot) => {
-            const databody = snapshot.docs.map((img) => img.data());
-            return databody.filter((item) => {
-              return item.creator == userUid + '/' + userName;
-            });
-          });
-        const legs = await firebase
-          .firestore()
-          .collection('legsUrl')
-          .get()
-          .then((snapshot) => {
-            const databody = snapshot.docs.map((img) => img.data());
-            return databody.filter((item) => {
-              return item.creator == userUid + '/' + userName;
-            });
-          });
-        const lapki = await firebase
-          .firestore()
-          .collection('lapkiUrl')
-          .get()
-          .then((snapshot) => {
-            const databody = snapshot.docs.map((img) => img.data());
-            return databody.filter((item) => {
-              return item.creator == userUid + '/' + userName;
-            });
-          });
-        dispatch({
-          type: actionType.arrImg,
-          body: body,
-          head: head,
-          legs: legs,
-          lapki: lapki,
-        });
-      };
-      findU();
+    const findU = async () => {
+
+      const body = await firebase
+        .firestore()
+        .collection("body")
+        .get()
+        .then((snapshot) => {
+          const databody = snapshot.docs.map((img) => img.data());
+          return databody.filter((item) => {
+            return item.creator == userUid + '/' + userName
+          })
+        }
+        )
+      const head = await firebase
+        .firestore()
+        .collection("head")
+        .get()
+        .then((snapshot) => {
+          const databody = snapshot.docs.map((img) => img.data());
+          return databody.filter((item) => {
+            return item.creator == userUid + '/' + userName
+          })
+        })
+      const legs = await firebase
+        .firestore()
+        .collection("legs")
+        .get()
+        .then((snapshot) => {
+          const databody = snapshot.docs.map((img) => img.data());
+          return databody.filter((item) => {
+            return item.creator == userUid + '/' + userName
+          })
+        })
+      const lapki = await firebase
+        .firestore()
+        .collection("feet")
+        .get()
+        .then((snapshot) => {
+          const databody = snapshot.docs.map((img) => img.data());
+          return databody.filter((item) => {
+            return item.creator == userUid + '/' + userName
+          })
+        })
+      dispatch({ type: actionType.arrImg, body: body, head: head, legs: legs, lapki: lapki })
     }
+    findU()
+
   }, [store.user.name]);
 
   return (

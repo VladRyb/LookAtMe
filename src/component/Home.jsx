@@ -6,7 +6,6 @@ import Video from './startingpage/Video';
 import LookAtMy from './startingpage/LookAtMy';
 import Registration from './FirebaseAuth/Registration';
 import StorageUploader from './FirebaseAuth/StorageUploader';
-
 export default function Home(props) {
   return (
     <div id='globalDiv'>
