@@ -79,7 +79,7 @@ const reducer = (state = defaultState, action) => {
         (element) => element.id !== action.id
       );
       console.log(newLooks);
-      console.log(state.userTest.looks);
+      console.log(state.user.lookis);
       return {
         ...state,
         userTest: { ...state.userTest, looks: [...newLooks] },

@@ -5,7 +5,10 @@ import { deleteLookSaga } from '../../../redux/actioncreators/actionsSaga';
 
 function OldLooks2() {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.userTest.looks);
+  const state = useSelector((state) => state.user.lookis);
+  while (state === undefined) {
+    return 'Loading...';
+  }
   function deleteLook(id) {
     dispatch(deleteLookSaga(id));
   }
@@ -13,9 +16,9 @@ function OldLooks2() {
     return (
       <div className='card mb-3 ' style={{ width: 450 }} id='loks'>
         <div class='row no-gutters loks'>
-          {element.photo ? (
+          {element.img.ImgUrl ? (
             <div className='col-md-4'>
-              <img src={element.photo} className='card-img' alt='photo' />
+              <img src={element.img.ImgUrl} className='card-img' alt='photo' />
             </div>
           ) : (
             <div className='col-md-4'>
@@ -24,14 +27,14 @@ function OldLooks2() {
                   <div id='columnChild38068' class='flexChild rowParent'>
                     <div id='rowChild47552' class='flexChild'>
                       <img
-                        src={element.head.imageUrl}
+                        src=''
                         className='card-img'
                         alt='photo'
                       />
                     </div>
                     <div id='rowChild999' class='flexChild'>
                       <img
-                        src={element.body.imageUrl}
+                        src=''
                         className='card-img'
                         alt='photo'
                       />
@@ -40,14 +43,14 @@ function OldLooks2() {
                   <div id='columnChild9857' class='flexChild rowParent'>
                     <div id='rowChild89645' class='flexChild'>
                       <img
-                        src={element.feet.imageUrl}
+                        src=''
                         className='card-img'
                         alt='photo'
                       />
                     </div>
                     <div id='rowChild9992' class='flexChild'>
                       <img
-                        src={element.legs.imageUrl}
+                        src=''
                         className='card-img'
                         alt='photo'
                       />
@@ -69,7 +72,7 @@ function OldLooks2() {
               })}
               <div className='d-flex flex-row-reverse bd-highlight align-content-end links'>
                 <Link
-                  to={`/edit/${element.id}`}
+                  to={`/edit/${element.img.ImgId}`}
                   className='p-2 bd-highlight editLink'
                 >
                   <i className='fa fa-pencil-square-o'></i>
@@ -77,7 +80,7 @@ function OldLooks2() {
                 <span
                   className='p-2 bd-highlight deleteLink'
                   onClick={() => {
-                    deleteLook(element.id);
+                    deleteLook(element.img.ImgId);
                   }}
                 >
                   <i className='fa fa-trash-o'></i>
