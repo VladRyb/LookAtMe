@@ -1,5 +1,5 @@
 import React from 'react';
-import DressCarousel from '../DressCarousel/DressCarousel2';
+import DressCarousel from '../DressCarousel/DressCarousel';
 // import UploadForm from '../uploadForm/UploadForm'
 import { useSelector } from 'react-redux';
 import ModalLook from '../ModaImg/ModalLook';
@@ -19,8 +19,6 @@ export default function Dresser() {
   return (
     <div id='globalDiv'>
       <div className='dresser'>
-        {/* <UploadForm /> */}
-
         <div>
           <DressCarousel
             dressArray={head}

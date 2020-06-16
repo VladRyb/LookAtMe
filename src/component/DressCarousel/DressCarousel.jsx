@@ -1,39 +1,60 @@
-import React from "react";
-import {DropdownButton, Dropdown }from 'react-bootstrap';
-import Carousel, { Dots } from "@brainhubeu/react-carousel";
-import "@brainhubeu/react-carousel/lib/style.css";
-import './DresserCarousel.css'
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import ItemsCarousel from 'react-items-carousel';
+import ModalImg from '../ModaImg/ModalImg';
+import SelectedDressImage from './SelectedDressImage';
+import DressImage from './DressImage';
+import DressCarouselHeader from './DressCarouselHeader';
+import './DresserCarousel.css';
 
-class MyCarousel extends React.Component {
-  constructor() {
-    super();
-    this.state = { value: 0 };
-    this.onChange = this.onChange.bind(this);
-  }
+export default ({ dressArray, title, property, type }) => {
+  const [activeItemIndex, setActiveItemIndex] = useState(0);
+  const chevronWidth = 40;
+  const [selectedImage, setSelectedImage] = useState(null);
+  const newLookFromState = useSelector((state) => state.dressForNewLook);
 
-  onChange(value) {
-    this.setState({ value });
-  }
-
-  render() {
+  const dress = dressArray.map((el) => {
     return (
-      <>
-      <DropdownButton id="dropdown-basic-button" title="Dropdown button">
-      <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-      <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-      <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-    </DropdownButton>
-      <div className="dressCarousel">
-        <Carousel slidesPerPage={2} arrows >
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSv83sbd56zPRm8aRFcOIHfIHUpj5jYXA6DdSfZCliExCNyP_-q&usqp=CAU" alt="image" />
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSv83sbd56zPRm8aRFcOIHfIHUpj5jYXA6DdSfZCliExCNyP_-q&usqp=CAU" alt="image" />
-
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSv83sbd56zPRm8aRFcOIHfIHUpj5jYXA6DdSfZCliExCNyP_-q&usqp=CAU" alt="image" />
-        </Carousel>
-      </div>
-      </>
+      <DressImage
+        el={el}
+        property={property}
+        setSelectedImage={setSelectedImage}
+      />
     );
-  }
-}
+  });
+  dress.unshift(<ModalImg type={type} title={title} />);
 
-export default MyCarousel;
+  const element = newLookFromState[property] ? (
+    <SelectedDressImage
+      selectedImage={newLookFromState[property]}
+      property={property}
+      setSelectedImage={setSelectedImage}
+    />
+  ) : selectedImage ? (
+    <SelectedDressImage
+      selectedImage={selectedImage}
+      property={property}
+      setSelectedImage={setSelectedImage}
+    />
+  ) : (
+    <div className='carouselWithYeader'>
+      <DressCarouselHeader title={title} itemsArray={type} />
+      <div style={{ padding: `0 ${chevronWidth}px` }} className='dressCarousel'>
+        <ItemsCarousel
+          requestToChangeActive={setActiveItemIndex}
+          activeItemIndex={activeItemIndex}
+          numberOfCards={3}
+          gutter={10}
+          leftChevron={<button>{'<'}</button>}
+          rightChevron={<button>{'>'}</button>}
+          outsideChevron
+          chevronWidth={chevronWidth}
+        >
+          {dress}
+        </ItemsCarousel>
+      </div>
+    </div>
+  );
+
+  return <>{element}</>;
+};

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import StorageUploaderModal from '../FirebaseAuth/StorageUploaderModal';
 import { storage } from '../FirebaseAuth/firebase/index';
@@ -7,9 +7,12 @@ import useSelection from 'antd/lib/table/hooks/useSelection';
 import { useSelector, useDispatch } from 'react-redux';
 import actionType from '../../redux/actions';
 import TestOn from './TestPage';
-import CameraPhoto, { FACING_MODES } from 'jslib-html5-camera-photo';
 
-export default function ModalImg(props) {
+export default function ModalImgOnline(props) {
+  //////////
+
+  //////////////
+
   const [show, setShow] = useState(false);
   const store = useSelector((state) => state);
 
@@ -17,6 +20,15 @@ export default function ModalImg(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [stateUrl, setStateUrl] = useState({
+    img: {
+      ImgUrl: null,
+      ImgId: new Date() + Math.random() * 10,
+    },
+    season: '',
+    type: '',
+    stoyanie: true,
+  });
   const [typeState, setTypeState] = useState('');
   const [seasonState, setSeasonState] = useState('');
   const [stoyanieState, setStoyanieState] = useState('');
@@ -33,8 +45,10 @@ export default function ModalImg(props) {
       dispatch({
         type: actionType[props.title],
         [props.title]: {
-          id: Date.now() + Math.random() * 10,
-          imgUrl: onlinePhoto,
+          img: {
+            ImgUrl: onlinePhoto,
+            ImgId: Date.now() + Math.random() * 10,
+          },
           season: seasonState,
           type: typeState,
           stoyanie: stoyanieState || true,
@@ -60,8 +74,10 @@ export default function ModalImg(props) {
               dispatch({
                 type: actionType[props.title],
                 [props.title]: {
-                  id: Date.now() + Math.random() * 10,
-                  imgUrl: url,
+                  img: {
+                    ImgUrl: url,
+                    ImgId: Date.now() + Math.random() * 10,
+                  },
                   season: seasonState,
                   type: typeState,
                   stoyanie: stoyanieState || true,
@@ -71,8 +87,10 @@ export default function ModalImg(props) {
                 .firestore()
                 .collection(props.title)
                 .add({
-                  id: Date.now() + Math.random() * 10,
-                  imgUrl: url,
+                  img: {
+                    ImgUrl: url,
+                    ImgId: Date.now() + Math.random() * 10,
+                  },
                   season: seasonState,
                   type: typeState,
                   stoyanie: stoyanieState || true,
@@ -121,19 +139,14 @@ export default function ModalImg(props) {
         <Modal.Body>
           <div id='container' class='flexChild rowParent'>
             <div id='rowChild94955' class='flexChild'>
-              {onlinePhoto === '' ? (
-                <StorageUploaderModal
-                  fileList={fileList}
-                  onPreview={onPreview}
-                  handleUpload={handleUpload}
-                  onChange={onChangeProps}
-                />
-              ) : (
-                <>
-                  <img src={onlinePhoto} alt='' />
-                </>
-              )}
+              <StorageUploaderModal
+                fileList={fileList}
+                onPreview={onPreview}
+                handleUpload={handleUpload}
+                onChange={onChangeProps}
+              />
               <TestOn setOnlinePhoto={setOnlinePhoto} />
+              <img src={onlinePhoto} alt='' />
             </div>
 
             <div id='rowChild77673' class='flexChild'>
@@ -150,7 +163,7 @@ export default function ModalImg(props) {
                   <option value='spring'>Весна</option>
                 </select>
               </div>
-              <div className='selectDiv d-flex justify-content-between'>
+              {/* <div className='selectDiv d-flex justify-content-between'>
                 <span>Тип: </span>
                 <select
                   className='select select btn btn-secondary btn-sm dropdown-toggle'
@@ -160,7 +173,7 @@ export default function ModalImg(props) {
                     return <option value={item}>{item}</option>;
                   })}
                 </select>
-              </div>
+              </div> */}
               <div className='selectDiv d-flex justify-content-between'>
                 <span>Состояние: </span>
                 <select

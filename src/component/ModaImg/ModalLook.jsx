@@ -1,83 +1,115 @@
-import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
-import StorageUploaderModal from "../FirebaseAuth/StorageUploaderModal";
-import { storage } from "../FirebaseAuth/firebase/index";
-import firebase from "firebase";
-import actionType from "../../redux/actions";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import StorageUploaderModal from '../FirebaseAuth/StorageUploaderModal';
+import { storage } from '../FirebaseAuth/firebase/index';
+import firebase from 'firebase';
+import actionType from '../../redux/actions';
+import { useSelector, useDispatch } from 'react-redux';
+
+import {
+  clearDressForNewLook,
+  addTag,
+  deleteTag,
+  onChangeName,
+} from '../../redux/actioncreators/actionsSaga';
+import TestOn from './TestPage';
 
 export default function ModalLogin(props) {
-  const [show, setShow] = useState(false);
-  const [tag, setTag] = useState("");
-  const [tags, setTags] = useState(Array);
-  const [value, setValue] = useState("");
-  const dispatch = useDispatch();
   const store = useSelector((state) => state);
 
+  const { tags, name, head, body, legs, feet } = store.dressForNewLook;
+
+  const [show, setShow] = useState(false);
+  const [tag, setTag] = useState('');
+
+  const dispatch = useDispatch();
+
   function addTags(event) {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       const newTag = tags.findIndex((item) => item == tag);
       if (newTag === -1) {
-        setTags([...tags, tag]);
+        dispatch(addTag(tag));
+        setTag('');
       }
     }
   }
-  const [stateLooksUrl, setStateLooksUrl] = useState({
-    img: {
-      ImgUrl: null,
-      ImgId: new Date() + Math.random() * 10,
-    },
-    name: "",
-    tags: [],
-  });
+
+  function deleteOneTag(deletedItem) {
+    return tags.filter((el) => el !== deletedItem);
+  }
 
   const [fileList, setFileList] = useState([]);
+<<<<<<< HEAD
+=======
+  const [onlinePhoto, setOnlinePhoto] = useState('');
+
+  // const [url, setUrl] = useState('');
+>>>>>>> master
 
   const onChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
   };
 
   const handleUpload = () => {
+    if (onlinePhoto !== '') {
+      dispatch({
+        type: actionType.lookis,
+        lookis: {
+          id: Date.now() + Math.random() * 10,
+          ImgUrl: onlinePhoto,
+          name,
+          tags,
+          head,
+          body,
+          legs,
+          feet,
+        },
+      });
+    }
     if (fileList.length > 0) {
       const uploadTask = storage
         .ref(`images/${fileList[0].name}`)
         .put(fileList[0].originFileObj);
       uploadTask.on(
-        "state_changed",
+        'state_changed',
         (snapshot) => {},
         (error) => {
           console.log(error);
         },
         () => {
           storage
-            .ref("images")
+            .ref('images')
             .child(fileList[0].name)
             .getDownloadURL()
             .then((url) => {
               dispatch({
                 type: actionType.lookis,
                 lookis: {
-                  img: {
-                    ImgUrl: url,
-                    ImgId: Date.now() + Math.random() * 10,
-                  },
-                  name: value,
-                  tags: tags,
+                  id: Date.now() + Math.random() * 10,
+                  ImgUrl: url,
+                  name,
+                  tags,
+                  head,
+                  body,
+                  legs,
+                  feet,
                 },
               });
               firebase
                 .firestore()
                 .collection('lookis')
                 .add({
-                  img: {
-                    ImgUrl: url,
-                    ImgId: Date.now() + Math.random() * 10,
-                  },
-                  name: value,
-                  tags: tags,
+                  id: Date.now() + Math.random() * 10,
+                  ImgUrl: url,
+                  name,
+                  tags,
+                  head,
+                  body,
+                  legs,
+                  feet,
                   creator:
                     firebase.auth().currentUser.uid +
-                    "/" +
+                    '/' +
                     firebase.auth().currentUser.displayName,
                 });
             });
@@ -106,55 +138,70 @@ export default function ModalLogin(props) {
 
   return (
     <div>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant='primary' onClick={handleShow}>
         Save Look
       </Button>
       <Modal
         show={show}
         onHide={handleClose}
-        backdrop="static"
+        backdrop='static'
         keyboard={false}
       >
         <Modal.Header closeButton>
           <Modal.Title>+</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div id="container" class="flexChild rowParent">
-            <div id="rowChild94955" class="flexChild">
+          <div id='container' class='flexChild rowParent'>
+            <div id='rowChild94955' class='flexChild'>
               <StorageUploaderModal
                 fileList={fileList}
                 onPreview={onPreview}
                 handleUpload={handleUpload}
                 onChange={onChange}
               />
+              <TestOn setOnlinePhoto={setOnlinePhoto} />
             </div>
 
-            <div id="rowChild77673" class="flexChild">
-              <div className="selectDiv">
+            <div id='rowChild77673' class='flexChild'>
+              <div className='selectDiv'>
                 <input
-                  value={value}
-                  onChange={(event) => setValue(event.target.value)}
-                  type="text"
-                  className="form-control"
-                  placeholder="Name"
-                  name="name"
+                  value={name}
+                  onChange={(event) =>
+                    dispatch(onChangeName(event.target.value))
+                  }
+                  type='text'
+                  className='form-control'
+                  placeholder='Name'
+                  name='name'
                 />
               </div>
-              <div className="selectDivBottom">
+              <div className='selectDivBottom'>
                 <input
                   value={tag}
                   onChange={(event) => setTag(event.target.value)}
                   onKeyPress={addTags}
+<<<<<<< HEAD
                   type="text"
                   className="form-control"
                   placeholder="Tags"
                   name="tags"
                 />{" "}
+=======
+                  type='text'
+                  className='form-control'
+                  placeholder='Tags'
+                  name='tags'
+                  required
+                />{' '}
+>>>>>>> master
               </div>
               {tags.map((item) => {
                 return (
-                  <span className="tags badge badge-pill badge-dark">
-                    {item}{" "}
+                  <span
+                    className='tags badge badge-pill badge-dark'
+                    onClick={() => dispatch(deleteTag(deleteOneTag(item)))}
+                  >
+                    {item}{' '}
                   </span>
                 );
               })}
@@ -166,10 +213,11 @@ export default function ModalLogin(props) {
             onClick={() => {
               handleUpload();
               handleClose();
+              dispatch(clearDressForNewLook());
             }}
-            className="btn btn-outline-primary"
-            variant="outline-primary"
-            type="submit"
+            className='btn btn-outline-primary'
+            variant='outline-primary'
+            type='submit'
           >
             Submit
           </Button>
