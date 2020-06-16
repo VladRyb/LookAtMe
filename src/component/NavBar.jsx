@@ -42,7 +42,6 @@ export default function NavBar(props) {
         displayName: user.displayName,
         uid: user.uid,
         providerData: user.providerData[0].providerId,
-        clothes: [],
       });
       dispatch({ type: actionType.login, user });
 
