@@ -26,10 +26,6 @@
   padding: 0px;
 }
 
-#cam {
-  width: 100px;
-}
-
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
@@ -142,6 +138,7 @@
 
 .rowParent,
 .columnParent {
+  width: 400px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -182,4 +179,13 @@
   -webkit-align-self: auto;
   -ms-flex-item-align: auto;
   align-self: auto;
+}
+
+// .cam {
+//   width: 250px;
+// }
+.videoCam {
+  max-width: 100px;
+  color: rgba(255, 255, 255, 0);
+  background-color: rgba(255, 255, 255, 0);
 }

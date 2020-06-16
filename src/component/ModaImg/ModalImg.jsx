@@ -120,7 +120,7 @@ export default function ModalImg(props) {
         </Modal.Header>
         <Modal.Body>
           <div id='container' class='flexChild rowParent'>
-            <div id='rowChild94955' class='flexChild'>
+            <div id='rowChild94955' class='flexChild cam'>
               {onlinePhoto === '' ? (
                 <StorageUploaderModal
                   fileList={fileList}
