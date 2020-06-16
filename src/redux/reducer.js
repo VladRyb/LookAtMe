@@ -6,7 +6,7 @@ import firebase from 'firebase';
 
 const defaultState = {
   statusSession: false,
-  user: null,
+  user: {name:null},
   isLoading: null,
   userTest: null,
   dressForNewLook: {
@@ -22,6 +22,7 @@ const defaultState = {
   bodyUrl: [],
   legsUrl: [],
   lapkiUrl: [],
+  head:[],
 };
 
 async function logOut() {
@@ -106,15 +107,19 @@ const reducer = (state = defaultState, action) => {
         lapkiUrl: [...state.lapkiUrl, action.lapkiUrl],
       };
     case actionType.arrImg:
+      console.log('>>>>>>>>',action.body.length)
+      // const actionArr = action.arr
+      // const result = action.body.map((elem)=>elem)
+      // console.log('>><<<<<<<<<<<<<<<<<<<<<',result)
       return {
         ...state,
-        user: {
-          ...state.user,
-          head: action.arr[1],
-          body: action.arr[0],
-          legs: action.arr[2],
-          feet: action.arr[3],
-        },
+        user:{
+...state.user,
+          head: action.head,
+          body: action.body,
+          legs: action.legs,
+          feet: action.lapki,
+        }
       };
     default:
       return state;
