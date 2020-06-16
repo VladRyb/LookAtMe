@@ -60,7 +60,7 @@ function App(props) {
             return item.creator == userUid + '/' + userName
           })
         })
-      const lapki = await firebase
+      const feet = await firebase
         .firestore()
         .collection("feet")
         .get()
@@ -70,7 +70,17 @@ function App(props) {
             return item.creator == userUid + '/' + userName
           })
         })
-      dispatch({ type: actionType.arrImg, body: body, head: head, legs: legs, lapki: lapki })
+        const lookis = await firebase
+        .firestore()
+        .collection("lookis")
+        .get()
+        .then((snapshot) => {
+          const databody = snapshot.docs.map((img) => img.data());
+          return databody.filter((item) => {
+            return item.creator == userUid + '/' + userName
+          })
+        })
+      dispatch({ type: actionType.arrImg, body: body, head: head, legs: legs, feet: feet, lookis:lookis })
     }
     findU()
 

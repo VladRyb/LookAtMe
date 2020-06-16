@@ -13,4 +13,5 @@ export default {
   legs: 'legs',
   feet: 'feet',
   arrImg: 'arrImg',
+  lookis:'lookis',
 };

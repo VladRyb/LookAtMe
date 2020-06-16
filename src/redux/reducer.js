@@ -6,7 +6,7 @@ import firebase from 'firebase';
 
 const defaultState = {
   statusSession: false,
-  user: { name: null, head: [], body: [], legs: [], feet: [] },
+  user: { name: null, head: [], body: [], legs: [], feet: [], lookis: [] },
   isLoading: null,
   userTest: null,
   dressForNewLook: {
@@ -18,11 +18,10 @@ const defaultState = {
     tags: null,
     photo: null,
   },
-  headUrl: [],
-  bodyUrl: [],
-  legsUrl: [],
-  lapkiUrl: [],
-
+  // headUrl: [],
+  // bodyUrl: [],
+  // legsUrl: [],
+  // lapkiUrl: [],
 };
 
 async function logOut() {
@@ -91,7 +90,7 @@ const reducer = (state = defaultState, action) => {
         ...state,
         user: {
           ...state.user,
-          head: [action.head,...state.user.head, ],
+          head: [action.head, ...state.user.head,],
         }
       };
     case actionType.body:
@@ -99,7 +98,7 @@ const reducer = (state = defaultState, action) => {
         ...state,
         user: {
           ...state.user,
-          body: [action.body,...state.user.body, ],
+          body: [action.body, ...state.user.body,],
         }
       };
     case actionType.legs:
@@ -107,7 +106,7 @@ const reducer = (state = defaultState, action) => {
         ...state,
         user: {
           ...state.user,
-          legs: [action.legs,...state.user.legs, ],
+          legs: [action.legs, ...state.user.legs,],
         }
       };
     case actionType.feet:
@@ -115,11 +114,19 @@ const reducer = (state = defaultState, action) => {
         ...state,
         user: {
           ...state.user,
-          feet: [action.feet,...state.user.feet, ],
+          feet: [action.feet, ...state.user.feet,],
+        }
+      };
+    case actionType.lookis:
+      console.log('actionType.looks',action.lookis)
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          lookis: [action.lookis, ...state.user.lookis,],
         }
       };
     case actionType.arrImg:
-
       return {
         ...state,
         user: {
@@ -127,7 +134,8 @@ const reducer = (state = defaultState, action) => {
           head: action.head,
           body: action.body,
           legs: action.legs,
-          feet: action.lapki,
+          feet: action.feet,
+          lookis: action.lookis,
         },
       };
     default:
