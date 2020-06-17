@@ -17,6 +17,12 @@ const defaultState = {
     name: null,
     tags: [],
   },
+  dressFilterProperty: {
+    head: null,
+    body: null,
+    legs: null,
+    feet: null,
+  },
   // headUrl: [],
   // bodyUrl: [],
   // legsUrl: [],
@@ -183,6 +189,16 @@ const reducer = (state = defaultState, action) => {
           feet: null,
           name: null,
           tags: [],
+        },
+      };
+    case actionType.setDressFilterProperty:
+      console.log(action);
+
+      return {
+        ...state,
+        dressFilterProperty: {
+          ...state.dressFilterProperty,
+          [action.property]: action.value,
         },
       };
     default:

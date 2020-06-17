@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
-import StorageUploaderModal from '../FirebaseAuth/StorageUploaderModal';
-import { storage } from '../FirebaseAuth/firebase/index';
-import firebase from 'firebase';
-import useSelection from 'antd/lib/table/hooks/useSelection';
-import { useSelector, useDispatch } from 'react-redux';
-import actionType from '../../redux/actions';
+import React, { useState } from "react";
+import { Button, Modal } from "react-bootstrap";
+import StorageUploaderModal from "../FirebaseAuth/StorageUploaderModal";
+import { storage } from "../FirebaseAuth/firebase/index";
+import firebase from "firebase";
+import useSelection from "antd/lib/table/hooks/useSelection";
+import { useSelector, useDispatch } from "react-redux";
+import actionType from "../../redux/actions";
 
-export default function ModalImg(props) {
+export default function ModalImg({ property, categories }) {
   const [show, setShow] = useState(false);
   const store = useSelector((state) => state);
 
@@ -15,9 +15,9 @@ export default function ModalImg(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [typeState, setTypeState] = useState('');
-  const [seasonState, setSeasonState] = useState('');
-  const [stoyanieState, setStoyanieState] = useState('');
+  const [typeState, setTypeState] = useState("");
+  const [seasonState, setSeasonState] = useState("");
+  const [stoyanieState, setStoyanieState] = useState("");
 
   const [fileList, setFileList] = useState([]);
 
@@ -31,20 +31,20 @@ export default function ModalImg(props) {
         .ref(`images/${fileList[0].name}`)
         .put(fileList[0].originFileObj);
       uploadTask.on(
-        'state_changed',
+        "state_changed",
         (snapshot) => {},
         (error) => {
           console.log(error);
         },
         () => {
           storage
-            .ref('images')
+            .ref("images")
             .child(fileList[0].name)
             .getDownloadURL()
             .then((url) => {
               dispatch({
-                type: actionType[props.title],
-                [props.title]: {
+                type: actionType[property],
+                [property]: {
                   id: Date.now() + Math.random() * 10,
                   imgUrl: url,
                   season: seasonState,
@@ -54,7 +54,7 @@ export default function ModalImg(props) {
               });
               firebase
                 .firestore()
-                .collection(props.title)
+                .collection(property)
                 .add({
                   id: Date.now() + Math.random() * 10,
                   imgUrl: url,
@@ -63,7 +63,7 @@ export default function ModalImg(props) {
                   stoyanie: stoyanieState || true,
                   creator:
                     firebase.auth().currentUser.uid +
-                    '/' +
+                    "/" +
                     firebase.auth().currentUser.displayName,
                 });
             });
@@ -89,23 +89,23 @@ export default function ModalImg(props) {
 
   return (
     <div>
-      <span variant='primary' onClick={handleShow}>
-        <div className='addDiv'>
-          <i className='fa fa-plus' />
+      <span variant="primary" onClick={handleShow}>
+        <div className="addDiv">
+          <i className="fa fa-plus" />
         </div>
       </span>
       <Modal
         show={show}
         onHide={handleClose}
-        backdrop='static'
+        backdrop="static"
         keyboard={false}
       >
         <Modal.Header closeButton>
           <Modal.Title>+</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div id='container' class='flexChild rowParent'>
-            <div id='rowChild94955' class='flexChild'>
+          <div id="container" class="flexChild rowParent">
+            <div id="rowChild94955" class="flexChild">
               <StorageUploaderModal
                 fileList={fileList}
                 onPreview={onPreview}
@@ -114,39 +114,39 @@ export default function ModalImg(props) {
               />
             </div>
 
-            <div id='rowChild77673' class='flexChild'>
-              <div className='selectDiv d-flex justify-content-between'>
+            <div id="rowChild77673" class="flexChild">
+              <div className="selectDiv d-flex justify-content-between">
                 <span>Сезон: </span>
                 <select
-                  className='select btn btn-secondary btn-sm dropdown-toggle'
+                  className="select btn btn-secondary btn-sm dropdown-toggle"
                   onChange={(event) => setSeasonState(event.target.value)}
                 >
                   <option>Не выбрано</option>
-                  <option value='winter'>Зима</option>
-                  <option value='summer'>Лето</option>
-                  <option value='autumn'>Осень</option>
-                  <option value='spring'>Весна</option>
+                  <option value="winter">Зима</option>
+                  <option value="summer">Лето</option>
+                  <option value="autumn">Осень</option>
+                  <option value="spring">Весна</option>
                 </select>
               </div>
-              <div className='selectDiv d-flex justify-content-between'>
+              <div className="selectDiv d-flex justify-content-between">
                 <span>Тип: </span>
                 <select
-                  className='select select btn btn-secondary btn-sm dropdown-toggle'
+                  className="select select btn btn-secondary btn-sm dropdown-toggle"
                   onChange={(event) => setTypeState(event.target.value)}
                 >
-                  {props.type.map((item) => {
+                  {categories.map((item) => {
                     return <option value={item}>{item}</option>;
                   })}
                 </select>
               </div>
-              <div className='selectDiv d-flex justify-content-between'>
+              <div className="selectDiv d-flex justify-content-between">
                 <span>Состояние: </span>
                 <select
-                  className='select select btn btn-secondary btn-sm dropdown-toggle'
+                  className="select select btn btn-secondary btn-sm dropdown-toggle"
                   onChange={(event) => setStoyanieState(event.target.value)}
                 >
                   <option>Не выбрано</option>
-                  <option value='false'>Требует ремонта</option>
+                  <option value="false">Требует ремонта</option>
                 </select>
               </div>
             </div>
@@ -154,13 +154,13 @@ export default function ModalImg(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            className='btn btn-outline-primary'
-            variant='outline-primary'
+            className="btn btn-outline-primary"
+            variant="outline-primary"
             onClick={() => {
               handleUpload();
               handleClose();
             }}
-            type='submit'
+            type="submit"
           >
             Submit
           </Button>

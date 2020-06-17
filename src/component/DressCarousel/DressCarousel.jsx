@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import ItemsCarousel from 'react-items-carousel';
-import ModalImg from '../ModaImg/ModalImg';
-import SelectedDressImage from './SelectedDressImage';
-import DressImage from './DressImage';
-import DressCarouselHeader from './DressCarouselHeader';
-import './DresserCarousel.css';
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import ItemsCarousel from "react-items-carousel";
+import ModalImg from "../ModaImg/ModalImg";
+import SelectedDressImage from "./SelectedDressImage";
+import DressImage from "./DressImage";
+import DressCarouselHeader from "./DressCarouselHeader";
+import "./DresserCarousel.css";
 
-export default ({ dressArray, title, property, type }) => {
+export default ({ dressArray, title, property, categories }) => {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const chevronWidth = 40;
   const [selectedImage, setSelectedImage] = useState(null);
@@ -22,7 +22,6 @@ export default ({ dressArray, title, property, type }) => {
       />
     );
   });
-  dress.unshift(<ModalImg type={type} title={title} />);
 
   const element = newLookFromState[property] ? (
     <SelectedDressImage
@@ -37,19 +36,24 @@ export default ({ dressArray, title, property, type }) => {
       setSelectedImage={setSelectedImage}
     />
   ) : (
-    <div className='carouselWithYeader'>
-      <DressCarouselHeader title={title} itemsArray={type} />
-      <div style={{ padding: `0 ${chevronWidth}px` }} className='dressCarousel'>
+    <div className="carouselWithYeader">
+      <DressCarouselHeader
+        title={title}
+        categories={categories}
+        property={property}
+      />
+      <div style={{ padding: `0 ${chevronWidth}px` }} className="dressCarousel">
         <ItemsCarousel
           requestToChangeActive={setActiveItemIndex}
           activeItemIndex={activeItemIndex}
           numberOfCards={3}
           gutter={10}
-          leftChevron={<button>{'<'}</button>}
-          rightChevron={<button>{'>'}</button>}
+          leftChevron={<button>{"<"}</button>}
+          rightChevron={<button>{">"}</button>}
           outsideChevron
           chevronWidth={chevronWidth}
         >
+          <ModalImg categories={categories} property={property} />
           {dress}
         </ItemsCarousel>
       </div>

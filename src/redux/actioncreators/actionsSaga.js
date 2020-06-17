@@ -42,3 +42,7 @@ export function deleteDress(property, id) {
 export function clearDressForNewLook() {
   return { type: actionType.clearDressForNewLook };
 }
+
+export function setDressFilterProperty(property, value) {
+  return { type: actionType.setDressFilterProperty, property, value };
+}
