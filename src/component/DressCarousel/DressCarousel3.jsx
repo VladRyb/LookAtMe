@@ -2,83 +2,59 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ItemsCarousel from 'react-items-carousel';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
-import { dressForNewLook } from '../../redux/actioncreators/actionsSaga';
+// import { updateLookWatcher } from '../../redux/actioncreators/actionsSaga';
+import SelectedDressImage from './SelectedDressImage';
+import DressImage from './DressImage';
+import DressCarouselHeader from './DressCarouselHeader';
 import ModalImg from '../ModaImg/ModalImg';
 
 export default ({ dressArray, title, property, type, editedLook }) => {
   const dispatch = useDispatch();
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const chevronWidth = 40;
-  const [chooseItem, setchooseItem] = useState(true);
-  const [imageUrl, setimageUrl] = useState(`${editedLook.imageUrl}`);
+  if (editedLook === null) {
+    editedLook = {
+      imgUrl: null,
+    };
+  }
+  const [selectedImage, setSelectedImage] = useState(`${editedLook.imgUrl}`);
   const newLookFromState = useSelector((state) => state.dressForNewLook);
 
   const dress = dressArray.map((el) => {
-    return (
-      <img
-        key={el.id}
-        src={el.imageUrl}
-        alt='img'
-        className='smallImg'
-        onClick={() => {
-          setchooseItem(true);
-          setimageUrl(el.imageUrl);
-          dispatch(
-            dressForNewLook(property, { id: el.id, imageUrl: el.imageUrl })
-          );
-        }}
-      />
-    );
+    return <DressImage el={el} property={property} setSelectedImage={setSelectedImage} />;
   });
+
   const element = newLookFromState[property] ? (
-    <img
-      src={newLookFromState[property].imageUrl}
-      alt='img'
-      className='bigImg'
-      onClick={() => {
-        setchooseItem(false);
-        setimageUrl('');
-        dispatch(dressForNewLook(property, null));
-      }}
+    <SelectedDressImage
+      selectedImage={newLookFromState[property]}
+      property={property}
+      setSelectedImage={setSelectedImage}
     />
-  ) : chooseItem ? (
-    <img
-      src={imageUrl}
-      alt='img'
-      className='bigImg'
-      onClick={() => {
-        setchooseItem(false);
-        setimageUrl('');
-        dispatch(dressForNewLook(property, null));
-      }}
+  ) : selectedImage ? (
+    <SelectedDressImage
+      selectedImage={selectedImage}
+      property={property}
+      setSelectedImage={setSelectedImage}
     />
   ) : (
-    <div style={{ padding: `0 ${chevronWidth}px` }} className='dressCarousel'>
-      <ItemsCarousel
-        requestToChangeActive={setActiveItemIndex}
-        activeItemIndex={activeItemIndex}
-        numberOfCards={3}
-        gutter={1}
-        leftChevron={<button>{'<'}</button>}
-        rightChevron={<button>{'>'}</button>}
-        outsideChevron
-        chevronWidth={chevronWidth}
-      >
-        <ModalImg type={type} />
-        {dress}
-      </ItemsCarousel>
+    <div className="carouselWithYeader">
+      <DressCarouselHeader title={title} itemsArray={type} />
+      <div style={{ padding: `0 ${chevronWidth}px` }} className="dressCarousel">
+        <ItemsCarousel
+          requestToChangeActive={setActiveItemIndex}
+          activeItemIndex={activeItemIndex}
+          numberOfCards={3}
+          gutter={10}
+          leftChevron={<button>{'<'}</button>}
+          rightChevron={<button>{'>'}</button>}
+          outsideChevron
+          chevronWidth={chevronWidth}
+        >
+          {dress}
+        </ItemsCarousel>
+      </div>
     </div>
   );
 
-  return (
-    <>
-      <span>{title}</span>
-      <DropdownButton id='dropdown-basic-button' title='КЭПКИ'>
-        <Dropdown.Item href='#/action-1'>КЭПКИ</Dropdown.Item>
-        <Dropdown.Item href='#/action-2'>Another action</Dropdown.Item>
-        <Dropdown.Item href='#/action-3'>Something else</Dropdown.Item>
-      </DropdownButton>
-      {element}
-    </>
-  );
+  return <>{element}</>;
 };
