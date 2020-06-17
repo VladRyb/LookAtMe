@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import StorageUploaderModal from '../FirebaseAuth/StorageUploaderModal';
@@ -18,9 +17,9 @@ export default function ModalImg({ property, categories }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [typeState, setTypeState] = useState("");
-  const [seasonState, setSeasonState] = useState("");
-  const [stoyanieState, setStoyanieState] = useState("");
+  const [typeState, setTypeState] = useState('');
+  const [seasonState, setSeasonState] = useState('');
+  const [stoyanieState, setStoyanieState] = useState('');
 
   const [fileList, setFileList] = useState([]);
   const [onlinePhoto, setOnlinePhoto] = useState('');
@@ -32,8 +31,8 @@ export default function ModalImg({ property, categories }) {
   const handleUpload = () => {
     if (onlinePhoto !== '') {
       dispatch({
-        type: actionType[props.title],
-        [props.title]: {
+        type: actionType[property],
+        [property]: {
           id: Date.now() + Math.random() * 10,
           imgUrl: onlinePhoto,
           season: seasonState,
@@ -47,14 +46,14 @@ export default function ModalImg({ property, categories }) {
         .ref(`images/${fileList[0].name}`)
         .put(fileList[0].originFileObj);
       uploadTask.on(
-        "state_changed",
+        'state_changed',
         (snapshot) => {},
         (error) => {
           console.log(error);
         },
         () => {
           storage
-            .ref("images")
+            .ref('images')
             .child(fileList[0].name)
             .getDownloadURL()
             .then((url) => {
@@ -79,7 +78,7 @@ export default function ModalImg({ property, categories }) {
                   stoyanie: stoyanieState || true,
                   creator:
                     firebase.auth().currentUser.uid +
-                    "/" +
+                    '/' +
                     firebase.auth().currentUser.displayName,
                 });
             });
@@ -105,22 +104,21 @@ export default function ModalImg({ property, categories }) {
 
   return (
     <div>
-      <span variant="primary" onClick={handleShow}>
-        <div className="addDiv">
-          <i className="fa fa-plus" />
+      <span variant='primary' onClick={handleShow}>
+        <div className='addDiv'>
+          <i className='fa fa-plus' />
         </div>
       </span>
       <Modal
         show={show}
         onHide={handleClose}
-        backdrop="static"
+        backdrop='static'
         keyboard={false}
       >
         <Modal.Header closeButton>
           <Modal.Title>+</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-
           <div id='container' class='flexChild rowParent'>
             <div id='rowChild94955' class='flexChild cam'>
               {onlinePhoto === '' ? (
@@ -138,24 +136,24 @@ export default function ModalImg({ property, categories }) {
               <TestOn setOnlinePhoto={setOnlinePhoto} />
             </div>
 
-            <div id="rowChild77673" class="flexChild">
-              <div className="selectDiv d-flex justify-content-between">
+            <div id='rowChild77673' class='flexChild'>
+              <div className='selectDiv d-flex justify-content-between'>
                 <span>Сезон: </span>
                 <select
-                  className="select btn btn-secondary btn-sm dropdown-toggle"
+                  className='select btn btn-secondary btn-sm dropdown-toggle'
                   onChange={(event) => setSeasonState(event.target.value)}
                 >
                   <option>Не выбрано</option>
-                  <option value="winter">Зима</option>
-                  <option value="summer">Лето</option>
-                  <option value="autumn">Осень</option>
-                  <option value="spring">Весна</option>
+                  <option value='winter'>Зима</option>
+                  <option value='summer'>Лето</option>
+                  <option value='autumn'>Осень</option>
+                  <option value='spring'>Весна</option>
                 </select>
               </div>
-              <div className="selectDiv d-flex justify-content-between">
+              <div className='selectDiv d-flex justify-content-between'>
                 <span>Тип: </span>
                 <select
-                  className="select select btn btn-secondary btn-sm dropdown-toggle"
+                  className='select select btn btn-secondary btn-sm dropdown-toggle'
                   onChange={(event) => setTypeState(event.target.value)}
                 >
                   {categories.map((item) => {
@@ -163,14 +161,14 @@ export default function ModalImg({ property, categories }) {
                   })}
                 </select>
               </div>
-              <div className="selectDiv d-flex justify-content-between">
+              <div className='selectDiv d-flex justify-content-between'>
                 <span>Состояние: </span>
                 <select
-                  className="select select btn btn-secondary btn-sm dropdown-toggle"
+                  className='select select btn btn-secondary btn-sm dropdown-toggle'
                   onChange={(event) => setStoyanieState(event.target.value)}
                 >
                   <option>Не выбрано</option>
-                  <option value="false">Требует ремонта</option>
+                  <option value='false'>Требует ремонта</option>
                 </select>
               </div>
             </div>
@@ -178,13 +176,13 @@ export default function ModalImg({ property, categories }) {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            className="btn btn-outline-primary"
-            variant="outline-primary"
+            className='btn btn-outline-primary'
+            variant='outline-primary'
             onClick={() => {
               handleUpload();
               handleClose();
             }}
-            type="submit"
+            type='submit'
           >
             Submit
           </Button>
