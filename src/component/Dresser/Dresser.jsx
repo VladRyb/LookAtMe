@@ -14,13 +14,18 @@ export default function Dresser() {
     history.push("/");
   }
   const user = useSelector((state) => state.user);
-  const dressFilterProperty = useSelector((state) => state.dressFilterProperty);
+  const dressCategoryFilter = useSelector((state) => state.dressCategoryFilter);
+  const dressSeasonFilter = useSelector((state) => state.dressSeasonFilter);
 
   const { head = [], body = [], legs = [], feet = [] } = user;
 
-  const dressFilter = (array, filterProperty) => {
-    return filterProperty
-      ? array.filter((el) => el.type === filterProperty)
+  const dressFilter = (array, categoryFilter, seasonFilter) => {
+    return categoryFilter || seasonFilter
+      ? array.filter(
+          (el) =>
+            (categoryFilter ? el.type === categoryFilter : true) &&
+            (seasonFilter ? el.season === seasonFilter : true)
+        )
       : array;
   };
 
@@ -44,14 +49,18 @@ export default function Dresser() {
   const legsCategories = ["Шорты", "Джинсы", "Брюки"];
   const feetCategories = ["Кроссовки", "Туфли", "Тапки"];
 
-  console.log(dressFilter(head, dressFilterProperty.head));
+  // console.log(dressFilter(head, dressCategoryFilter.head));
 
   return (
     <div id="globalDiv">
       <div className="dresser">
         <div>
           <DressCarousel
-            dressArray={dressFilter(head, dressFilterProperty.head)}
+            dressArray={dressFilter(
+              head,
+              dressCategoryFilter.head,
+              dressSeasonFilter.head
+            )}
             categories={headCategories}
             title={"Хлебальник"}
             property={"head"}
@@ -59,7 +68,7 @@ export default function Dresser() {
         </div>
         <div>
           <DressCarousel
-            dressArray={dressFilter(body, dressFilterProperty.body)}
+            dressArray={dressFilter(body, dressCategoryFilter.body)}
             categories={bodyCategories}
             title={"Пузень"}
             property={"body"}
@@ -67,7 +76,7 @@ export default function Dresser() {
         </div>
         <div>
           <DressCarousel
-            dressArray={dressFilter(legs, dressFilterProperty.legs)}
+            dressArray={dressFilter(legs, dressCategoryFilter.legs)}
             categories={legsCategories}
             title={"Ляхи"}
             property={"legs"}
@@ -75,7 +84,7 @@ export default function Dresser() {
         </div>
         <div>
           <DressCarousel
-            dressArray={dressFilter(feet, dressFilterProperty.feet)}
+            dressArray={dressFilter(feet, dressCategoryFilter.feet)}
             categories={feetCategories}
             title={"Лапы"}
             property={"feet"}
