@@ -13,8 +13,11 @@ import {
   onChangeName,
 } from '../../redux/actioncreators/actionsSaga';
 import TestOn from './TestPage';
+import { useHistory } from 'react-router-dom';
 
 export default function ModalLogin(props) {
+  const history = useHistory();
+
   const store = useSelector((state) => state);
 
   const { tags, name, head, body, legs, feet } = store.dressForNewLook;
@@ -63,8 +66,26 @@ export default function ModalLogin(props) {
           feet,
         },
       });
-    }
-    if (fileList.length > 0) {
+      firebase
+        .firestore()
+        .collection('lookis')
+        .add({
+          id: Date.now() + Math.random() * 10,
+          ImgUrl: onlinePhoto,
+          name,
+          tags,
+          head,
+          body,
+          legs,
+          feet,
+          creator: userUid + '/' + userName,
+
+          // creator:
+          //   firebase.auth().currentUser.uid +
+          //   '/' +
+          //   firebase.auth().currentUser.displayName,
+        });
+    } else if (fileList.length > 0) {
       const uploadTask = storage
         .ref(`images/${fileList[0].name}`)
         .put(fileList[0].originFileObj);
@@ -105,14 +126,47 @@ export default function ModalLogin(props) {
                   body,
                   legs,
                   feet,
-                  creator:userUid + '/' + userName
-                    // firebase.auth().currentUser.uid +
-                    // '/' +
-                    // firebase.auth().currentUser.displayName,
+                  creator: userUid + '/' + userName,
+                  // firebase.auth().currentUser.uid +
+                  // '/' +
+                  // firebase.auth().currentUser.displayName,
                 });
             });
         }
       );
+    } else {
+      dispatch({
+        type: actionType.lookis,
+        lookis: {
+          id: Date.now() + Math.random() * 10,
+          ImgUrl: '',
+          name,
+          tags,
+          head,
+          body,
+          legs,
+          feet,
+        },
+      });
+      firebase
+        .firestore()
+        .collection('lookis')
+        .add({
+          id: Date.now() + Math.random() * 10,
+          ImgUrl: '',
+          name,
+          tags,
+          head,
+          body,
+          legs,
+          feet,
+          creator: userUid + '/' + userName,
+
+          // creator:
+          //   firebase.auth().currentUser.uid +
+          //   '/' +
+          //   firebase.auth().currentUser.displayName,
+        });
     }
   };
 
@@ -151,15 +205,20 @@ export default function ModalLogin(props) {
         <Modal.Body>
           <div id='container' class='flexChild rowParent'>
             <div id='rowChild94955' class='flexChild'>
-              <StorageUploaderModal
-                fileList={fileList}
-                onPreview={onPreview}
-                handleUpload={handleUpload}
-                onChange={onChange}
-              />
+              {onlinePhoto === '' ? (
+                <StorageUploaderModal
+                  fileList={fileList}
+                  onPreview={onPreview}
+                  handleUpload={handleUpload}
+                  onChange={onChange}
+                />
+              ) : (
+                <>
+                  <img src={onlinePhoto} alt='' />
+                </>
+              )}
               <TestOn setOnlinePhoto={setOnlinePhoto} />
             </div>
-
             <div id='rowChild77673' class='flexChild'>
               <div className='selectDiv'>
                 <input
@@ -204,6 +263,7 @@ export default function ModalLogin(props) {
               handleUpload();
               handleClose();
               dispatch(clearDressForNewLook());
+              history.push('/mylooks');
             }}
             className='btn btn-outline-primary'
             variant='outline-primary'

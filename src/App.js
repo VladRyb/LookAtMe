@@ -4,7 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './component/Home';
 import NavBar from './component/NavBar';
 import actionType from './redux/actions';
-import MyLooks from './component/MyLooks/MyLooks';
+// import MyLooks from "./component/MyLooks/MyLook";
 import MyLooks2 from './component/MyLooks/MyLooks2';
 import ModalImg from './component/ModaImg/ModalImg';
 
@@ -12,6 +12,10 @@ import Dresser from './component/Dresser/Dresser';
 import FooterPage from './component/FooterPage';
 import Edit from './component/Edit/Edit';
 import firebase from 'firebase';
+
+import WebcamCapture from './component/Camera/Camera';
+
+import CariuselSuper from './component/CaruselSuper/CariuselSuper';
 
 import CropForm from './component/CropForm';
 
@@ -29,55 +33,55 @@ function App(props) {
     const findU = async () => {
       const body = await firebase
         .firestore()
-        .collection("body")
+        .collection('body')
         .where('creator', '==', userUid + '/' + userName)
         .get()
         .then((snapshot) => {
           // console.log('snapshotbody',snapshot)
           return snapshot.docs.map((img) => img.data());
-        })
+        });
 
-      console.log('body>>>>>>>>>>>>>>', body)
+      console.log('body>>>>>>>>>>>>>>', body);
 
       const head = await firebase
         .firestore()
-        .collection("head")
+        .collection('head')
         .where('creator', '==', userUid + '/' + userName)
         .get()
         .then((snapshot) => {
           return snapshot.docs.map((img) => img.data());
-        })
+        });
       // console.log('head>>>>>>>>>>>>>>', head)
 
       const legs = await firebase
         .firestore()
-        .collection("legs")
+        .collection('legs')
         .where('creator', '==', userUid + '/' + userName)
         .get()
         .then((snapshot) => {
           return snapshot.docs.map((img) => img.data());
-        })
+        });
       // console.log('legs>>>>>>>>>>>>>>', legs)
 
       const feet = await firebase
         .firestore()
-        .collection("feet")
+        .collection('feet')
         .where('creator', '==', userUid + '/' + userName)
         .get()
         .then((snapshot) => {
           return snapshot.docs.map((img) => img.data());
-        })
-      console.log('feet>>>>>>>>>>>>>>', feet)
+        });
+      console.log('feet>>>>>>>>>>>>>>', feet);
 
       const lookis = await firebase
         .firestore()
-        .collection("lookis")
+        .collection('lookis')
         .where('creator', '==', userUid + '/' + userName)
         .get()
         .then((snapshot) => {
           return snapshot.docs.map((img) => img.data());
-        })
-      console.log('lookis>>>>>>>>>>>>>>', lookis)
+        });
+      console.log('lookis>>>>>>>>>>>>>>', lookis);
       dispatch({
         type: actionType.arrImg,
         body: body,
@@ -88,6 +92,7 @@ function App(props) {
       });
     };
     findU();
+    console.log('tttttttttttt');
   }, [userUid]);
 
   return (
@@ -109,9 +114,10 @@ function App(props) {
         </Route>
         <Route exact path='/test'>
           <CropForm />
+          {/* <WebcamCapture /> */}
         </Route>
         <Route exact path='/teston'>
-          <Online />
+          <CariuselSuper />
         </Route>
         {/* <FooterPage /> */}
       </BrowserRouter>

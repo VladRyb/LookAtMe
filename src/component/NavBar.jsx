@@ -24,6 +24,7 @@ export default function NavBar(props) {
   const dispatch = useDispatch();
   const userUid = localStorage.getItem("uid");
 
+
   const [state, setState] = useState(false);
   const [uiConfig, setUiConfig] = useState({
     signInFlow: "popup",
@@ -46,10 +47,12 @@ export default function NavBar(props) {
       .then((snapshot) => {
         return snapshot.docs.map((img) => img.data());
       });
+
     let result = data.find(
       (item) => item.uid === userUid
       // (item) => item.uid === firebase.auth().currentUser.uid
     );
+
     if (!result) {
       firebase.firestore().collection("users").add({
         email: user.email,
@@ -59,17 +62,24 @@ export default function NavBar(props) {
       });
       dispatch({ type: actionType.login, user });
 
-      localStorage.setItem("session", true);
-      localStorage.setItem("user", user.displayName);
-      localStorage.setItem("uid", user.uid);
+
+      localStorage.setItem('session', true);
+      localStorage.setItem('user', user.displayName);
+      localStorage.setItem('uid', user.uid);
+      localStorage.setItem('photo', user.photoURL);
     } else {
       dispatch({ type: actionType.login, user });
 
-      localStorage.setItem("session", true);
-      localStorage.setItem("user", user.displayName);
-      localStorage.setItem("uid", user.uid);
+      localStorage.setItem('session', true);
+      localStorage.setItem('user', user.displayName);
+      localStorage.setItem('uid', user.uid);
+      localStorage.setItem('photo', user.photoURL);
     }
   };
+  const session = localStorage.getItem('session');
+  const userName = localStorage.getItem('user');
+  const userUid = localStorage.getItem('uid');
+  const userPhoto = localStorage.getItem('photo');
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -80,6 +90,89 @@ export default function NavBar(props) {
     });
   }, []);
 
+//   return (
+//     <nav className='navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark'>
+//       <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+//         <ul className='navbar-nav mr-auto'>
+//           <li className='nav-item active'>
+//             <Link className='nav-link' to='/'>
+//               Home <span className='sr-only'>(current)</span>
+//             </Link>
+//           </li>
+//           {user.name ? (
+//             <li className='nav-item active'>
+//               <Link className='nav-link' to='/car'>
+//                 Dresser <span className='sr-only'>(current)</span>
+//               </Link>
+//             </li>
+//           ) : (
+//             <li className='nav-item '>
+//               {/* <Link className='nav-link' to='#'>
+//                 <span>
+//                   <ModalLogin title='Go Usati' uiConfig={uiConfig} />
+//                 </span>
+//               </Link> */}
+//             </li>
+//           )}
+//         </ul>
+//       </div>
+
+//       <div className='d-flex justify-content-end'>
+//         <ul className='navbar-nav mr-auto'>
+//           {user.name ? (
+//             <NavDropdown
+//               title={
+//                 <Image
+//                   id='iconProfile'
+//                   src={
+//                     // userPhoto ||
+//                     user.photo ||
+//                     'https://cdn4.iconfinder.com/data/icons/e-commerce-181/512/477_profile__avatar__man_-512.png'
+//                   }
+//                   roundedCircle
+//                 />
+//               }
+//               id='basic-nav-dropdown'
+//             >
+//               <NavDropdown.Item>
+//                 <Link to='/mylooks'>My Looks</Link>
+//               </NavDropdown.Item>
+
+//               <NavDropdown.Divider />
+//               <NavDropdown.Item
+//                 onClick={() => {
+//                   dispatch({ type: actionType.logout });
+//                 }}
+//               >
+//                 Log Out
+//               </NavDropdown.Item>
+//             </NavDropdown>
+//           ) : (
+//             <>
+//               <li className='nav-item '>
+//                 <Link className='nav-link' to='#'>
+//                   <span>
+//                     <ModalLogin title='Go Usati' uiConfig={uiConfig} />
+//                   </span>
+//                 </Link>
+//               </li>
+//             </>
+//           )}
+//         </ul>
+//       </div>
+//     </nav>
+//   );
+// }
+/// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// import React, { useState, useEffect } from 'react';
+// import { Link } from 'react-router-dom';
+// import { NavDropdown, Image } from 'react-bootstrap';
+// import ModalLogin from './ModalLogin';
+// import ModalSingUp from './ModalSingUp';
+// import { useDispatch, useSelector } from 'react-redux';
+// import actionType from '../redux/actions';
+// import firebase from 'firebase';
+
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [navbarCollapse, setNavbarCollapse] = React.useState(false);
 
@@ -88,7 +181,7 @@ export default function NavBar(props) {
     document.documentElement.classList.toggle("nav-open");
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const updateNavbarColor = () => {
       if (
         document.documentElement.scrollTop > 299 ||

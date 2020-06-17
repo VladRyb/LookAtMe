@@ -9,7 +9,7 @@ import actionType from '../../redux/actions';
 import TestOn from './TestPage';
 import CameraPhoto, { FACING_MODES } from 'jslib-html5-camera-photo';
 
-export default function ModalImg(props) {
+export default function ModalImg({ property, categories }) {
   const [show, setShow] = useState(false);
   const store = useSelector((state) => state);
 
@@ -32,8 +32,8 @@ export default function ModalImg(props) {
   const handleUpload = () => {
     if (onlinePhoto !== '') {
       dispatch({
-        type: actionType[props.title],
-        [props.title]: {
+        type: actionType[property],
+        [property]: {
           id: Date.now() + Math.random() * 10,
           imgUrl: onlinePhoto,
           season: seasonState,
@@ -41,6 +41,20 @@ export default function ModalImg(props) {
           stoyanie: stoyanieState || true,
         },
       });
+      firebase
+        .firestore()
+        .collection(property)
+        .add({
+          id: Date.now() + Math.random() * 10,
+          imgUrl: onlinePhoto,
+          season: seasonState,
+          type: typeState,
+          stoyanie: stoyanieState || true,
+          creator: userUid + '/' + userName,
+          // firebase.auth().currentUser.uid +
+          // '/' +
+          // firebase.auth().currentUser.displayName,
+        });
     }
     if (fileList.length > 0) {
       const uploadTask = storage
@@ -59,8 +73,8 @@ export default function ModalImg(props) {
             .getDownloadURL()
             .then((url) => {
               dispatch({
-                type: actionType[props.title],
-                [props.title]: {
+                type: actionType[property],
+                [property]: {
                   id: Date.now() + Math.random() * 10,
                   imgUrl: url,
                   season: seasonState,
@@ -70,18 +84,17 @@ export default function ModalImg(props) {
               });
               firebase
                 .firestore()
-                .collection(props.title)
+                .collection(property)
                 .add({
                   id: Date.now() + Math.random() * 10,
                   imgUrl: url,
                   season: seasonState,
                   type: typeState,
                   stoyanie: stoyanieState || true,
-                  creator:
-                  userUid + "/" + userName,
-                    // firebase.auth().currentUser.uid +
-                    // '/' +
-                    // firebase.auth().currentUser.displayName,
+                  creator: userUid + '/' + userName,
+                  // firebase.auth().currentUser.uid +
+                  // '/' +
+                  // firebase.auth().currentUser.displayName,
                 });
             });
         }
@@ -122,7 +135,7 @@ export default function ModalImg(props) {
         </Modal.Header>
         <Modal.Body>
           <div id='container' class='flexChild rowParent'>
-            <div id='rowChild94955' class='flexChild'>
+            <div id='rowChild94955' class='flexChild cam'>
               {onlinePhoto === '' ? (
                 <StorageUploaderModal
                   fileList={fileList}
@@ -158,7 +171,7 @@ export default function ModalImg(props) {
                   className='select select btn btn-secondary btn-sm dropdown-toggle'
                   onChange={(event) => setTypeState(event.target.value)}
                 >
-                  {props.type.map((item) => {
+                  {categories.map((item) => {
                     return <option value={item}>{item}</option>;
                   })}
                 </select>

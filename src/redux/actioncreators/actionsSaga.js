@@ -1,4 +1,4 @@
-import actionType from "../actions";
+import actionType from '../actions';
 
 // Это тригерит саму сагу.
 
@@ -27,18 +27,39 @@ export function deleteTag(tags) {
   return { type: actionType.deleteTag, tags };
 }
 
+export function watcherDeleteLook(collection, id) {
+  return { type: actionType.watcherDeleteLook, collection, id };
+}
+
 export function onChangeName(value) {
   return { type: actionType.onChangeName, value };
 }
 
-export function deleteLookSaga(id) {
-  return { type: actionType.deleteLookSaga, id };
+export function deleteLook(property, id) {
+  return { type: actionType.deleteLook, property, id };
+}
+
+export function watcherTest(id) {
+  return { type: actionType.watcherTest, id };
 }
 
 export function deleteDress(property, id) {
   return { type: actionType.deleteDress, property, id };
 }
 
+export function deleteDresssSaga(property, id) {
+  return { type: actionType.deleteDressSaga, property, id };
+}
+
 export function clearDressForNewLook() {
   return { type: actionType.clearDressForNewLook };
+}
+
+export function setDressFilterProperty(property, value, filterName) {
+  return {
+    type: actionType.setDressFilterProperty,
+    property,
+    value,
+    filterName,
+  };
 }
