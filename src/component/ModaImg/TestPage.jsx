@@ -45,7 +45,7 @@ function TestOn(props) {
 
   return (
     <>
-      <div id='cam'>
+      <div>
         <button
           onClick={() => {
             let facingMode = FACING_MODES.ENVIRONMENT;
@@ -66,7 +66,7 @@ function TestOn(props) {
           Take photo{' '}
         </button>
       </div>
-      <video ref={videoRef} autoPlay='true' />
+      <video className='videoCam' ref={videoRef} autoPlay='true' />
     </>
   );
 }

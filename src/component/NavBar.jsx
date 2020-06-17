@@ -34,10 +34,12 @@ export default function NavBar(props) {
       .then((snapshot) => {
         return snapshot.docs.map((img) => img.data());
       });
+
     let result = data.find(
       (item) => item.uid === userUid
       // (item) => item.uid === firebase.auth().currentUser.uid
     );
+
     if (!result) {
       firebase.firestore().collection('users').add({
         email: user.email,
@@ -50,14 +52,20 @@ export default function NavBar(props) {
       localStorage.setItem('session', true);
       localStorage.setItem('user', user.displayName);
       localStorage.setItem('uid', user.uid);
+      localStorage.setItem('photo', user.photoURL);
     } else {
       dispatch({ type: actionType.login, user });
 
       localStorage.setItem('session', true);
       localStorage.setItem('user', user.displayName);
       localStorage.setItem('uid', user.uid);
+      localStorage.setItem('photo', user.photoURL);
     }
   };
+  const session = localStorage.getItem('session');
+  const userName = localStorage.getItem('user');
+  const userUid = localStorage.getItem('uid');
+  const userPhoto = localStorage.getItem('photo');
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -68,22 +76,22 @@ export default function NavBar(props) {
     });
   }, []);
   return (
-    <nav className='navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark'>
-      <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-        <ul className='navbar-nav mr-auto'>
-          <li className='nav-item active'>
-            <Link className='nav-link' to='/'>
-              Home <span className='sr-only'>(current)</span>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark">
+      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul className="navbar-nav mr-auto">
+          <li className="nav-item active">
+            <Link className="nav-link" to="/">
+              Home <span className="sr-only">(current)</span>
             </Link>
           </li>
-          {user.name ? (
+          {session === 'true' ? (
             <li className='nav-item active'>
               <Link className='nav-link' to='/car'>
                 Dresser <span className='sr-only'>(current)</span>
               </Link>
             </li>
           ) : (
-            <li className='nav-item '>
+            <li className="nav-item ">
               {/* <Link className='nav-link' to='#'>
                 <span>
                   <ModalLogin title='Go Usati' uiConfig={uiConfig} />
@@ -93,23 +101,26 @@ export default function NavBar(props) {
           )}
         </ul>
       </div>
-      <div className='d-flex justify-content-end'>
-        <ul className='navbar-nav mr-auto'>
-          {user.name ? (
+
+      <div className="d-flex justify-content-end">
+        <ul className="navbar-nav mr-auto">
+          {session === 'true' ? (
             <NavDropdown
               title={
                 <Image
-                  id='iconProfile'
+                  id="iconProfile"
                   src={
-                    user.photo ||
+                    userPhoto ||
                     'https://cdn4.iconfinder.com/data/icons/e-commerce-181/512/477_profile__avatar__man_-512.png'
                   }
                   roundedCircle
                 />
               }
-              id='basic-nav-dropdown'
+              id="basic-nav-dropdown"
             >
-              <NavDropdown.Item href='/mylooks'>My Looks</NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="/mylooks">My Looks</Link>
+              </NavDropdown.Item>
 
               <NavDropdown.Divider />
               <NavDropdown.Item
@@ -122,10 +133,10 @@ export default function NavBar(props) {
             </NavDropdown>
           ) : (
             <>
-              <li className='nav-item '>
-                <Link className='nav-link' to='#'>
+              <li className="nav-item ">
+                <Link className="nav-link" to="#">
                   <span>
-                    <ModalLogin title='Go Usati' uiConfig={uiConfig} />
+                    <ModalLogin title="Go Usati" uiConfig={uiConfig} />
                   </span>
                 </Link>
               </li>

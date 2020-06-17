@@ -55,6 +55,22 @@ export default function ModalImgOnline(props) {
           stoyanie: stoyanieState || true,
         },
       });
+      firebase
+        .firestore()
+        .collection(props.title)
+        .add({
+          img: {
+            ImgUrl: onlinePhoto,
+            ImgId: Date.now() + Math.random() * 10,
+          },
+          season: seasonState,
+          type: typeState,
+          stoyanie: stoyanieState || true,
+          creator:
+            firebase.auth().currentUser.uid +
+            '/' +
+            firebase.auth().currentUser.displayName,
+        });
     }
     if (fileList.length > 0) {
       const uploadTask = storage

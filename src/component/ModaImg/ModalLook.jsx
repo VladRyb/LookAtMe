@@ -63,6 +63,23 @@ export default function ModalLogin(props) {
           feet,
         },
       });
+      firebase
+        .firestore()
+        .collection('lookis')
+        .add({
+          id: Date.now() + Math.random() * 10,
+          ImgUrl: onlinePhoto,
+          name,
+          tags,
+          head,
+          body,
+          legs,
+          feet,
+          creator:
+            firebase.auth().currentUser.uid +
+            '/' +
+            firebase.auth().currentUser.displayName,
+        });
     }
     if (fileList.length > 0) {
       const uploadTask = storage
@@ -151,15 +168,20 @@ export default function ModalLogin(props) {
         <Modal.Body>
           <div id='container' class='flexChild rowParent'>
             <div id='rowChild94955' class='flexChild'>
-              <StorageUploaderModal
-                fileList={fileList}
-                onPreview={onPreview}
-                handleUpload={handleUpload}
-                onChange={onChange}
-              />
+              {onlinePhoto === '' ? (
+                <StorageUploaderModal
+                  fileList={fileList}
+                  onPreview={onPreview}
+                  handleUpload={handleUpload}
+                  onChange={onChange}
+                />
+              ) : (
+                <>
+                  <img src={onlinePhoto} alt='' />
+                </>
+              )}
               <TestOn setOnlinePhoto={setOnlinePhoto} />
             </div>
-
             <div id='rowChild77673' class='flexChild'>
               <div className='selectDiv'>
                 <input

@@ -24,10 +24,10 @@
   background-color: rgba(117, 117, 117, 0.479);
 }
 
-.imageDiv{
-position: relative;
+.imageDiv {
+  position: relative;
 }
-.trash{
+.trash {
   position: absolute;
   top: 115px;
   right: 80px;
@@ -35,16 +35,16 @@ position: relative;
   width: 1px;
   height: 1px;
 }
-.trash:hover{
-color: red;
+.trash:hover {
+  color: red;
 }
 
-.carouselWithYeader{
+.carouselWithYeader {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
 }
-.carouselHeader{
+.carouselHeader {
   margin-bottom: 20px;
 }
