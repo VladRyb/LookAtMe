@@ -21,7 +21,8 @@ export default function ModalLogin(props) {
 
   const [show, setShow] = useState(false);
   const [tag, setTag] = useState('');
-
+  const userUid = localStorage.getItem('uid');
+  const userName = localStorage.getItem('user');
   const dispatch = useDispatch();
 
   function addTags(event) {
@@ -104,10 +105,10 @@ export default function ModalLogin(props) {
                   body,
                   legs,
                   feet,
-                  creator:
-                    firebase.auth().currentUser.uid +
-                    '/' +
-                    firebase.auth().currentUser.displayName,
+                  creator:userUid + '/' + userName
+                    // firebase.auth().currentUser.uid +
+                    // '/' +
+                    // firebase.auth().currentUser.displayName,
                 });
             });
         }

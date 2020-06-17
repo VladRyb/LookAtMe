@@ -10,6 +10,7 @@ import firebase from 'firebase';
 export default function NavBar(props) {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const userUid = localStorage.getItem('uid');
 
   const [state, setState] = useState(false);
   const [uiConfig, setUiConfig] = useState({
@@ -34,7 +35,8 @@ export default function NavBar(props) {
         return snapshot.docs.map((img) => img.data());
       });
     let result = data.find(
-      (item) => item.uid === firebase.auth().currentUser.uid
+      (item) => item.uid === userUid
+      // (item) => item.uid === firebase.auth().currentUser.uid
     );
     if (!result) {
       firebase.firestore().collection('users').add({
