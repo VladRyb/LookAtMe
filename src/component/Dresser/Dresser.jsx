@@ -34,20 +34,35 @@ export default function Dresser() {
     "Кепки",
     "Шляпы",
     "Береты",
-    "Пилотки",
-    "Кандибобрики",
+    "Панамы",
   ];
   const bodyCategories = [
-    "Футболки поло и майки",
+    "Футболки и поло",
     "Толстовки и свитшоты",
+    "Свитера и джемперы",
     "Платья и сарафаны",
     "Пиджаки",
-    "Рубашки",
-    "Блузы",
-    "Джемперы, свитеры и кардиганы",
+    "Блузы и рубашки",
+    "Куртки и пуховики",
+    "Пальто и плащи",
+    "Спортивные куртки",
   ];
-  const legsCategories = ["Шорты", "Джинсы", "Брюки"];
-  const feetCategories = ["Кроссовки", "Туфли", "Тапки"];
+  const legsCategories = [
+    "Шорты",
+    "Джинсы",
+    "Брюки",
+    "Юбки",
+    "Спортивные штаны",
+    "Комбинезоны",
+  ];
+  const feetCategories = [
+    "Кроссовки",
+    "Туфли",
+    "Босоножки",
+    "Сланцы",
+    "Ботинки",
+    "Сапоги",
+  ];
 
   // console.log(dressFilter(head, dressCategoryFilter.head));
 
@@ -62,7 +77,8 @@ export default function Dresser() {
               dressSeasonFilter.head
             )}
             categories={headCategories}
-            title={"Хлебальник"}
+            // title={"Верхняя часть тела"}
+            title={"Головные уборы"}
             property={"head"}
           />
         </div>
@@ -70,7 +86,7 @@ export default function Dresser() {
           <DressCarousel
             dressArray={dressFilter(body, dressCategoryFilter.body)}
             categories={bodyCategories}
-            title={"Пузень"}
+            title={"Верхняя часть тела"}
             property={"body"}
           />
         </div>
@@ -78,7 +94,7 @@ export default function Dresser() {
           <DressCarousel
             dressArray={dressFilter(legs, dressCategoryFilter.legs)}
             categories={legsCategories}
-            title={"Ляхи"}
+            title={"Нижняя часть тела"}
             property={"legs"}
           />
         </div>
@@ -86,7 +102,7 @@ export default function Dresser() {
           <DressCarousel
             dressArray={dressFilter(feet, dressCategoryFilter.feet)}
             categories={feetCategories}
-            title={"Лапы"}
+            title={"Обувь"}
             property={"feet"}
           />
         </div>

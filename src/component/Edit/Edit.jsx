@@ -52,7 +52,7 @@ export default function Dresser() {
             dressArray={dressFilter(head, dressFilterProperty.head)}
             editedLook={editedLook.head}
             categories={headCategories}
-            title={'Хлебальник'}
+            title={'Головные уборы'}
             property={'head'}
           />
         </div>
@@ -61,7 +61,7 @@ export default function Dresser() {
             dressArray={dressFilter(body, dressFilter.body)}
             editedLook={editedLook.body}
             categories={bodyCategories}
-            title={'Пузень'}
+            title={'Верхняя часть тела'}
             property={'body'}
           />
         </div>
@@ -70,7 +70,7 @@ export default function Dresser() {
             dressArray={dressFilter(legs, dressFilter.legs)}
             editedLook={editedLook.legs}
             categories={legsCategories}
-            title={'Ляхи'}
+            title={'Нижняя часть тела'}
             property={'legs'}
           />
         </div>
@@ -79,7 +79,7 @@ export default function Dresser() {
             dressArray={dressFilter(feet, dressFilter.feet)}
             editedLook={editedLook.feet}
             categories={feetCategories}
-            title={'Лапы'}
+            title={'Обувь'}
             property={'feet'}
           />
         </div>

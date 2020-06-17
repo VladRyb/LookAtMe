@@ -2,7 +2,7 @@
   /* background-image: url('https://abrikos-mebel24.ru/wp-content/uploads/2017/12/garderob-komnata.jpg'); */
   /* background-image: url('http://xn---21-5cdgjndb4dde6s.xn--p1ai/userfiles/content/0/0/0/94_original.jpg'); */
   /* background-image: url('http://my-muzh.ru/wp-content/uploads/2017/01/garderob.jpg'); */
-  background-image: url('https://sturmproject.com/wp-content/uploads/2015/12/blue_moon_interni_01.jpg');
+  background-image: url("https://sturmproject.com/wp-content/uploads/2015/12/blue_moon_interni_01.jpg");
   background-size: 100%;
   background-attachment: fixed;
 }
@@ -35,12 +35,12 @@ a.nav-link {
   color: #574f43;
   margin-top: -30px;
 }
-@import url(https://fonts.googleapis.com/css2?family=Paytone + One);
+@import url(https://fonts.googleapis.com/css2?family=Paytone+One);
 
 @import url(https://fonts.googleapis.com/css2?family=Jost:wght@300);
 
 h3 {
-  font-family: 'Paytone One';
+  font-family: "Paytone One";
   color: #202020;
   text-transform: uppercase;
   letter-spacing: -2px;
@@ -55,17 +55,48 @@ h3 span {
   letter-spacing: -4px;
 }
 .lookatmy {
-  font-family: 'Jost', sans-serif;
+  font-family: "Jost", sans-serif;
 }
-.olesyaHeader {
-  font-family: 'Jost', sans-serif;
-  text-shadow: 0 12.36px 8.896px #a7a29b, 0 -2px 1px rgb(184, 182, 179);
-  letter-spacing: -2px;
-  font-size: 50px;
-  color: #574f43;
-}
+
 .aboutContainer {
-  font-family: 'Jost', sans-serif;
+  font-family: "Jost", sans-serif;
   font-size: 30px;
   color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+span.carouselWithHeader {
+  color: red;
+}
+.carouselHeader {
+  width: 300px;
+}
+.textCatSeason {
+  font-family: "Jost", sans-serif;
+  font-size: 25px;
+  text-align: center;
+}
+.flexChild {
+  /* background-color: aquamarine; */
+  margin: 0;
+}
+.modal-body {
+  /* background-color: blueviolet; */
+  display: flex;
+}
+.formsdiv {
+  /* background-color: chartreuse; */
+}
+#rowChild94955{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ant-upload-picture-card-wrapper{
+  /* background-color: brown; */
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
