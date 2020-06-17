@@ -1,8 +1,8 @@
-import actionType from "./actions";
+import actionType from './actions';
 // import user from '../faker';
-import actions from "./actions";
+import actions from './actions';
 
-import firebase from "firebase";
+import firebase from 'firebase';
 
 const defaultState = {
   statusSession: false,
@@ -58,9 +58,10 @@ const reducer = (state = defaultState, action) => {
       };
     case actionType.logout:
       logOut();
-      localStorage.setItem("session", false);
-      localStorage.setItem("user", "");
-      localStorage.setItem("uid", "");
+      localStorage.setItem('session', false);
+      localStorage.setItem('user', '');
+      localStorage.setItem('uid', '');
+      localStorage.setItem('photo', null);
       return { ...state, statusSession: false, user: { name: null } };
     case actionType.dressForNewLook:
       return {
@@ -117,7 +118,7 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.lookis:
-      console.log("actionType.looks", action.lookis);
+      console.log('actionType.looks', action.lookis);
       return {
         ...state,
         user: {

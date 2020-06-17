@@ -48,14 +48,20 @@ export default function NavBar(props) {
       localStorage.setItem('session', true);
       localStorage.setItem('user', user.displayName);
       localStorage.setItem('uid', user.uid);
+      localStorage.setItem('photo', user.photoURL);
     } else {
       dispatch({ type: actionType.login, user });
 
       localStorage.setItem('session', true);
       localStorage.setItem('user', user.displayName);
       localStorage.setItem('uid', user.uid);
+      localStorage.setItem('photo', user.photoURL);
     }
   };
+  const session = localStorage.getItem('session');
+  const userName = localStorage.getItem('user');
+  const userUid = localStorage.getItem('uid');
+  const userPhoto = localStorage.getItem('photo');
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -74,7 +80,7 @@ export default function NavBar(props) {
               Home <span className='sr-only'>(current)</span>
             </Link>
           </li>
-          {user.name ? (
+          {session === 'true' ? (
             <li className='nav-item active'>
               <Link className='nav-link' to='/car'>
                 Dresser <span className='sr-only'>(current)</span>
@@ -93,13 +99,13 @@ export default function NavBar(props) {
       </div>
       <div className='d-flex justify-content-end'>
         <ul className='navbar-nav mr-auto'>
-          {user.name ? (
+          {session === 'true' ? (
             <NavDropdown
               title={
                 <Image
                   id='iconProfile'
                   src={
-                    user.photo ||
+                    userPhoto ||
                     'https://cdn4.iconfinder.com/data/icons/e-commerce-181/512/477_profile__avatar__man_-512.png'
                   }
                   roundedCircle
