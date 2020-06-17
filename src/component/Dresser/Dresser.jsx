@@ -68,7 +68,11 @@ export default function Dresser() {
         </div>
         <div>
           <DressCarousel
-            dressArray={dressFilter(body, dressCategoryFilter.body)}
+            dressArray={dressFilter(
+              body,
+              dressCategoryFilter.body,
+              dressSeasonFilter.body
+            )}
             categories={bodyCategories}
             title={"Пузень"}
             property={"body"}
@@ -76,7 +80,11 @@ export default function Dresser() {
         </div>
         <div>
           <DressCarousel
-            dressArray={dressFilter(legs, dressCategoryFilter.legs)}
+            dressArray={dressFilter(
+              legs,
+              dressCategoryFilter.legs,
+              dressSeasonFilter.legs
+            )}
             categories={legsCategories}
             title={"Ляхи"}
             property={"legs"}
@@ -84,7 +92,11 @@ export default function Dresser() {
         </div>
         <div>
           <DressCarousel
-            dressArray={dressFilter(feet, dressCategoryFilter.feet)}
+            dressArray={dressFilter(
+              feet,
+              dressCategoryFilter.feet,
+              dressSeasonFilter.feet
+            )}
             categories={feetCategories}
             title={"Лапы"}
             property={"feet"}
