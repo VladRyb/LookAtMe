@@ -4,12 +4,15 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import actionType from '../redux/actions';
 import Registration from './FirebaseAuth/Registration';
+import { loadingColWather } from '../redux/actioncreators/actionsSaga';
 
 export default function ModalLogin(props) {
   // const [messe, setMess] = useState();
   // const [email, setEmail] = useState('');
   // const [pass, setPass] = useState('');
   const [show, setShow] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

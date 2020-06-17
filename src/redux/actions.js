@@ -25,4 +25,5 @@ export default {
   feet: 'feet',
   arrImg: 'arrImg',
   lookis: 'lookis',
+  loadingColWather: 'loadingColWather',
 };

@@ -100,7 +100,7 @@ function OldLooks2() {
                 >
                   <i className="fa fa-trash-o"></i>
                 </span>
-                <div class="custom-control custom-switch">
+                <div class="custom-control custom-switch" style={{ display: 'none' }}>
                   <input type="checkbox" className="custom-control-input" id="customSwitch1" />
                   <label className="custom-control-label" for="customSwitch1">
                     Share
@@ -112,7 +112,9 @@ function OldLooks2() {
                     deleteTags(element.id);
                   }}
                 >
-                  <i className="fa fa-trash-o">delete tags</i>
+                  <i className="fa fa-trash-o" style={{ display: 'none' }}>
+                    delete tags
+                  </i>
                 </span>
               </div>
             </div>
