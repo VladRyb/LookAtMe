@@ -75,10 +75,12 @@ export default function ModalLogin(props) {
           body,
           legs,
           feet,
-          creator:
-            firebase.auth().currentUser.uid +
-            '/' +
-            firebase.auth().currentUser.displayName,
+          creator: userUid + '/' + userName,
+
+          // creator:
+          //   firebase.auth().currentUser.uid +
+          //   '/' +
+          //   firebase.auth().currentUser.displayName,
         });
     }
     if (fileList.length > 0) {
@@ -122,10 +124,10 @@ export default function ModalLogin(props) {
                   body,
                   legs,
                   feet,
-                  creator:userUid + '/' + userName
-                    // firebase.auth().currentUser.uid +
-                    // '/' +
-                    // firebase.auth().currentUser.displayName,
+                  creator: userUid + '/' + userName,
+                  // firebase.auth().currentUser.uid +
+                  // '/' +
+                  // firebase.auth().currentUser.displayName,
                 });
             });
         }
