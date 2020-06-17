@@ -17,7 +17,12 @@
   float: left;
 }
 
-.col-md-4 #container img {
+#containerq {
+  width: 200px;
+  height: 200px;
+}
+
+.col-md-4 #containerq img {
   width: 100px;
   height: 100px;
 }

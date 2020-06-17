@@ -39,6 +39,10 @@ export function deleteLook(id) {
   return { type: actionType.deleteLook, id };
 }
 
+export function watcherTest(id) {
+  return { type: actionType.watcherTest, id };
+}
+
 export function deleteDress(property, id) {
   return { type: actionType.deleteDress, property, id };
 }
@@ -50,4 +54,3 @@ export function clearDressForNewLook() {
 export function setDressFilterProperty(property, value) {
   return { type: actionType.setDressFilterProperty, property, value };
 }
-
