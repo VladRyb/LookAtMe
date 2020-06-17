@@ -1,79 +1,83 @@
-import React, { useEffect, useState } from 'react';
-import { connect, useSelector, useDispatch } from 'react-redux';
-import { BrowserRouter, Route } from 'react-router-dom';
-import Home from './component/Home';
-import NavBar from './component/NavBar';
-import actionType from './redux/actions';
-import MyLooks2 from './component/MyLooks/MyLooks2';
-import ModalImg from './component/ModaImg/ModalImg';
+import React, { useEffect, useState } from "react";
+import { connect, useSelector, useDispatch } from "react-redux";
+import { BrowserRouter, Route } from "react-router-dom";
+import Home from "./component/Home";
+import NavBar from "./component/NavBar";
+import actionType from "./redux/actions";
+import MyLooks from "./component/MyLooks/MyLooks";
+import MyLooks2 from "./component/MyLooks/MyLooks2";
+import ModalImg from "./component/ModaImg/ModalImg";
 
-import Dresser from './component/Dresser/Dresser';
-import FooterPage from './component/FooterPage';
-import Edit from './component/Edit/Edit';
-import firebase from 'firebase';
 
-import CropForm from './component/CropForm';
+import Dresser from "./component/Dresser/Dresser";
+import FooterPage from "./component/FooterPage";
+import Edit from "./component/Edit/Edit";
+import firebase from "firebase";
 
-import './App.css';
-import Online from './component/ModaImg/TestOnline';
+import WebcamCapture from "./component/Camera/Camera";
+
+import CropForm from "./component/CropForm";
+
+import "./App.css";
+import Online from "./component/ModaImg/TestOnline";
 
 function App(props) {
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const userUid = localStorage.getItem('uid');
-  const userName = localStorage.getItem('user');
+  const userUid = localStorage.getItem("uid");
+  const userName = localStorage.getItem("user");
 
   useEffect(() => {
     const findU = async () => {
       const body = await firebase
         .firestore()
-        .collection('body')
+        .collection("body")
         .get()
         .then((snapshot) => {
           const databody = snapshot.docs.map((img) => img.data());
           return databody.filter((item) => {
-            return item.creator == userUid + '/' + userName;
+            return item.creator == userUid + "/" + userName;
           });
         });
       const head = await firebase
         .firestore()
-        .collection('head')
+        .collection("head")
         .get()
         .then((snapshot) => {
           const databody = snapshot.docs.map((img) => img.data());
           return databody.filter((item) => {
-            return item.creator == userUid + '/' + userName;
+            return item.creator == userUid + "/" + userName;
           });
         });
       const legs = await firebase
         .firestore()
-        .collection('legs')
+        .collection("legs")
         .get()
         .then((snapshot) => {
           const databody = snapshot.docs.map((img) => img.data());
           return databody.filter((item) => {
-            return item.creator == userUid + '/' + userName;
+            return item.creator == userUid + "/" + userName;
           });
         });
       const feet = await firebase
         .firestore()
-        .collection('feet')
+        .collection("feet")
         .get()
         .then((snapshot) => {
           const databody = snapshot.docs.map((img) => img.data());
           return databody.filter((item) => {
-            return item.creator == userUid + '/' + userName;
+            return item.creator == userUid + "/" + userName;
           });
         });
       const lookis = await firebase
         .firestore()
-        .collection('lookis')
+        .collection("lookis")
         .get()
         .then((snapshot) => {
           const databody = snapshot.docs.map((img) => img.data());
           return databody.filter((item) => {
-            return item.creator == userUid + '/' + userName;
+            return item.creator == userUid + "/" + userName;
           });
         });
       dispatch({
@@ -106,7 +110,9 @@ function App(props) {
           <Edit />
         </Route>
         <Route exact path="/test">
-          <CropForm />
+          {/* <CropForm /> */}
+          <WebcamCapture />
+
         </Route>
         <Route exact path="/teston">
           <Online />
