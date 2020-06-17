@@ -18,6 +18,7 @@ export default {
   deleteDressSaga: 'DELETE_DRESS_SAGA',
   deleteLook: 'DeleteLook',
   watcherTest: 'TestWatcher',
+  deleteTagOnEdit: 'Delete_Edit_Tags',
   head: 'head',
   body: 'body',
   legs: 'legs',
