@@ -44,11 +44,15 @@ function OldLooks2() {
                       />
                     </div>
                     <div id='rowChild999' className='flexChild'>
-                      <img
-                        src={element.body.imgUrl}
-                        className='card-img'
-                        alt='photo'
-                      />
+                      {element.body.imgUrl ? (
+                        <img
+                          src={element.body.imgUrl}
+                          className='card-img'
+                          alt='photo'
+                        />
+                      ) : (
+                        <div>NoPhoto</div>
+                      )}
                     </div>
                   </div>
                   <div id='columnChild9857' className='flexChild rowParent'>
