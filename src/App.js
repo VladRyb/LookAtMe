@@ -4,7 +4,6 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './component/Home';
 import NavBar from './component/NavBar';
 import actionType from './redux/actions';
-import MyLooks from './component/MyLooks/MyLooks';
 import MyLooks2 from './component/MyLooks/MyLooks2';
 import ModalImg from './component/ModaImg/ModalImg';
 
@@ -93,23 +92,23 @@ function App(props) {
     <>
       <BrowserRouter>
         <NavBar user={store.user} />
-        <Route exact path='/'>
+        <Route exact path="/">
           <Home />
         </Route>
-        <Route exact path='/mylooks'>
+        <Route exact path="/mylooks">
           <MyLooks2 />
         </Route>
-        <Route exact path='/car'>
+        <Route exact path="/car">
           <Dresser />
           {/* <MyCarousel /> */}
         </Route>
-        <Route exact path='/edit/:id'>
+        <Route exact path="/edit/:id">
           <Edit />
         </Route>
-        <Route exact path='/test'>
+        <Route exact path="/test">
           <CropForm />
         </Route>
-        <Route exact path='/teston'>
+        <Route exact path="/teston">
           <Online />
         </Route>
         {/* <FooterPage /> */}
