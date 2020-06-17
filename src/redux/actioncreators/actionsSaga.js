@@ -55,6 +55,11 @@ export function clearDressForNewLook() {
   return { type: actionType.clearDressForNewLook };
 }
 
-export function setDressFilterProperty(property, value) {
-  return { type: actionType.setDressFilterProperty, property, value };
+export function setDressFilterProperty(property, value, filterName) {
+  return {
+    type: actionType.setDressFilterProperty,
+    property,
+    value,
+    filterName,
+  };
 }
