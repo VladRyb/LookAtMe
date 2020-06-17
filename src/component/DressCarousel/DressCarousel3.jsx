@@ -1,23 +1,16 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ItemsCarousel from 'react-items-carousel';
-import { DropdownButton, Dropdown } from 'react-bootstrap';
-// import { updateLookWatcher } from '../../redux/actioncreators/actionsSaga';
+import ModalImg from '../ModaImg/ModalImg';
 import SelectedDressImage from './SelectedDressImage';
 import DressImage from './DressImage';
 import DressCarouselHeader from './DressCarouselHeader';
-import ModalImg from '../ModaImg/ModalImg';
+import './DresserCarousel.css';
 
-export default ({ dressArray, title, property, type, editedLook }) => {
-  const dispatch = useDispatch();
+export default ({ dressArray, title, property, categories, editedLook }) => {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const chevronWidth = 40;
-  if (editedLook === null) {
-    editedLook = {
-      imgUrl: null,
-    };
-  }
-  const [selectedImage, setSelectedImage] = useState(`${editedLook.imgUrl}`);
+  const [selectedImage, setSelectedImage] = useState(editedLook);
   const newLookFromState = useSelector((state) => state.dressForNewLook);
 
   const dress = dressArray.map((el) => {
@@ -38,7 +31,7 @@ export default ({ dressArray, title, property, type, editedLook }) => {
     />
   ) : (
     <div className="carouselWithYeader">
-      <DressCarouselHeader title={title} itemsArray={type} />
+      <DressCarouselHeader title={title} categories={categories} property={property} />
       <div style={{ padding: `0 ${chevronWidth}px` }} className="dressCarousel">
         <ItemsCarousel
           requestToChangeActive={setActiveItemIndex}
@@ -50,6 +43,7 @@ export default ({ dressArray, title, property, type, editedLook }) => {
           outsideChevron
           chevronWidth={chevronWidth}
         >
+          <ModalImg categories={categories} property={property} />
           {dress}
         </ItemsCarousel>
       </div>

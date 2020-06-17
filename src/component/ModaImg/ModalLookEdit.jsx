@@ -3,35 +3,92 @@ import { Button, Modal } from 'react-bootstrap';
 import StorageUploaderModal from '../FirebaseAuth/StorageUploaderModal';
 import { storage } from '../FirebaseAuth/firebase/index';
 import firebase from 'firebase';
+import actionType from '../../redux/actions';
+import { useSelector, useDispatch } from 'react-redux';
+
+import {
+  clearDressForNewLook,
+  addTag,
+  deleteTagOnEdit,
+  onChangeName,
+} from '../../redux/actioncreators/actionsSaga';
+import TestOn from './TestPage';
+import { useHistory } from 'react-router-dom';
 
 export default function ModalLogin(props) {
-  const [show, setShow] = useState(true);
+  const history = useHistory();
+
+  const store = useSelector((state) => state);
+
+  const { head, body, legs, feet } = store.dressForNewLook;
+  const tags = props.editedLook.tags;
+  const name = props.editedLook.name;
+  const [show, setShow] = useState(false);
   const [tag, setTag] = useState('');
-  const [tags, setTags] = useState(props.editedLook.tags);
-  const [value, setValue] = useState(props.editedLook.name);
   const userUid = localStorage.getItem('uid');
-  
+  const userName = localStorage.getItem('user');
+  const dispatch = useDispatch();
+
   function addTags(event) {
     if (event.key === 'Enter') {
       const newTag = tags.findIndex((item) => item == tag);
       if (newTag === -1) {
-        setTags([...tags, tag]);
+        dispatch(addTag(tag));
+        setTag('');
       }
     }
   }
 
+  function deleteOneTag(deletedItem) {
+    const filter = tags.filter((el) => el !== deletedItem);
+    return filter;
+  }
+
   const [fileList, setFileList] = useState([]);
-  const [url, setUrl] = useState('');
+  const [onlinePhoto, setOnlinePhoto] = useState('');
+
+  // const [url, setUrl] = useState('');
 
   const onChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
   };
 
   const handleUpload = () => {
-    if (fileList.length > 0) {
-      const uploadTask = storage
-        .ref(`images/${fileList[0].name}`)
-        .put(fileList[0].originFileObj);
+    if (onlinePhoto !== '') {
+      dispatch({
+        type: actionType.lookis,
+        lookis: {
+          id: Date.now() + Math.random() * 10,
+          ImgUrl: onlinePhoto,
+          name,
+          tags,
+          head,
+          body,
+          legs,
+          feet,
+        },
+      });
+      firebase
+        .firestore()
+        .collection('lookis')
+        .add({
+          id: Date.now() + Math.random() * 10,
+          ImgUrl: onlinePhoto,
+          name,
+          tags,
+          head,
+          body,
+          legs,
+          feet,
+          creator: userUid + '/' + userName,
+
+          // creator:
+          //   firebase.auth().currentUser.uid +
+          //   '/' +
+          //   firebase.auth().currentUser.displayName,
+        });
+    } else if (fileList.length > 0) {
+      const uploadTask = storage.ref(`images/${fileList[0].name}`).put(fileList[0].originFileObj);
       uploadTask.on(
         'state_changed',
         (snapshot) => {},
@@ -44,20 +101,78 @@ export default function ModalLogin(props) {
             .child(fileList[0].name)
             .getDownloadURL()
             .then((url) => {
-              setUrl(url);
-              firebase.firestore().collection('images').add({
-                url: url,
-                // user: firebase.auth().currentUser.uid,
-                user: userUid,
+              dispatch({
+                type: actionType.lookis,
+                lookis: {
+                  id: Date.now() + Math.random() * 10,
+                  ImgUrl: url,
+                  name,
+                  tags,
+                  head,
+                  body,
+                  legs,
+                  feet,
+                },
               });
+              firebase
+                .firestore()
+                .collection('lookis')
+                .add({
+                  id: Date.now() + Math.random() * 10,
+                  ImgUrl: url,
+                  name,
+                  tags,
+                  head,
+                  body,
+                  legs,
+                  feet,
+                  creator: userUid + '/' + userName,
+                  // firebase.auth().currentUser.uid +
+                  // '/' +
+                  // firebase.auth().currentUser.displayName,
+                });
             });
         }
       );
+    } else {
+      dispatch({
+        type: actionType.lookis,
+        lookis: {
+          id: Date.now() + Math.random() * 10,
+          ImgUrl: '',
+          name,
+          tags,
+          head,
+          body,
+          legs,
+          feet,
+        },
+      });
+      firebase
+        .firestore()
+        .collection('lookis')
+        .add({
+          id: Date.now() + Math.random() * 10,
+          ImgUrl: '',
+          name,
+          tags,
+          head,
+          body,
+          legs,
+          feet,
+          creator: userUid + '/' + userName,
+
+          // creator:
+          //   firebase.auth().currentUser.uid +
+          //   '/' +
+          //   firebase.auth().currentUser.displayName,
+        });
     }
   };
 
   const onPreview = async (file) => {
-    let src = file.url;
+    let src = props.editedLook.ImgUrl;
+    console.log(src);
     if (!src) {
       src = await new Promise((resolve) => {
         const reader = new FileReader();
@@ -76,55 +191,61 @@ export default function ModalLogin(props) {
 
   return (
     <div>
-      <Button variant='primary' onClick={handleShow}>
+      <Button variant="primary" onClick={handleShow}>
         Save Look
       </Button>
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop='static'
-        keyboard={false}
-      >
+      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>+</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div id='container' class='flexChild rowParent'>
-            <div id='rowChild94955' class='flexChild'>
-              <StorageUploaderModal
-                fileList={fileList}
-                onPreview={onPreview}
-                handleUpload={handleUpload}
-                onChange={onChange}
-              />
+          <div id="container" class="flexChild rowParent">
+            <div id="rowChild94955" class="flexChild">
+              {onlinePhoto === '' ? (
+                <StorageUploaderModal
+                  fileList={fileList}
+                  onPreview={onPreview}
+                  handleUpload={handleUpload}
+                  onChange={onChange}
+                />
+              ) : (
+                <>
+                  <img src={onlinePhoto} alt="" />
+                </>
+              )}
+              <TestOn setOnlinePhoto={setOnlinePhoto} />
             </div>
-
-            <div id='rowChild77673' class='flexChild'>
-              <div className='selectDiv'>
+            <div id="rowChild77673" class="flexChild">
+              <div className="selectDiv">
                 <input
-                  value={value}
-                  onChange={(event) => setValue(event.target.value)}
-                  type='text'
-                  className='form-control'
-                  placeholder='Name'
-                  name='name'
+                  value={name}
+                  onChange={(event) => dispatch(onChangeName(event.target.value))}
+                  type="text"
+                  className="form-control"
+                  placeholder="Name"
+                  name="name"
                 />
               </div>
-              <div className='selectDivBottom'>
+              <div className="selectDivBottom">
                 <input
                   value={tag}
                   onChange={(event) => setTag(event.target.value)}
                   onKeyPress={addTags}
-                  type='text'
-                  className='form-control'
-                  placeholder='Tags'
-                  name='tags'
+                  type="text"
+                  className="form-control"
+                  placeholder="Tags"
+                  name="tags"
                   required
                 />{' '}
               </div>
               {tags.map((item) => {
                 return (
-                  <span className='tags badge badge-pill badge-dark'>
+                  <span
+                    className="tags badge badge-pill badge-dark"
+                    onClick={() =>
+                      dispatch(deleteTagOnEdit(deleteOneTag(item), props.editedLook.id))
+                    }
+                  >
                     {item}{' '}
                   </span>
                 );
@@ -137,9 +258,12 @@ export default function ModalLogin(props) {
             onClick={() => {
               handleUpload();
               handleClose();
+              dispatch(clearDressForNewLook());
+              history.push('/mylooks');
             }}
-            className='btn btn-outline-primary'
-            variant='outline-primary'
+            className="btn btn-outline-primary"
+            variant="outline-primary"
+            type="submit"
           >
             Submit
           </Button>

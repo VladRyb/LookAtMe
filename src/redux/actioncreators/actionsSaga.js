@@ -27,6 +27,10 @@ export function deleteTag(tags) {
   return { type: actionType.deleteTag, tags };
 }
 
+export function deleteTagOnEdit(tags, id) {
+  return { type: actionType.deleteTagOnEdit, tags, id };
+}
+
 export function watcherDeleteLook(collection, id) {
   return { type: actionType.watcherDeleteLook, collection, id };
 }
