@@ -19,6 +19,8 @@ export default function LookAtMy() {
           />
         </p>
         <br />
+        </div>
+        <div className='lookatmy'>
         <p>...Я знаю тебе нравится</p>
       </div>
     </>

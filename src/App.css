@@ -6,3 +6,50 @@
   background-size: 100%;
   background-attachment: fixed;
 }
+#navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-self: start;
+  margin: 0;
+  margin-top: 30px;
+}
+a.nav-link {
+  font-size: 35px;
+  color: #574f43;
+  margin-top: -30px;
+}
+@import url(https://fonts.googleapis.com/css2?family=Paytone+One);
+
+@import url(https://fonts.googleapis.com/css2?family=Jost:wght@300);
+
+h3 {
+  font-family: "Paytone One";
+  color: #202020;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+}
+h3 span {
+  display: block;
+  margin: 11px 0 17px 0;
+  font-size: 80px;
+  line-height: 80px;
+  color: #f1ebe5;
+  text-shadow: 0 15.36px 10.896px #c4b59d, 0 -4px 1px #fff;
+  letter-spacing: -4px;
+}
+.lookatmy {
+  font-family: "Jost", sans-serif;
+}
+.olesyaHeader {
+  font-family: "Jost", sans-serif;
+  text-shadow: 0 12.36px 8.896px #a7a29b, 0 -2px 1px rgb(184, 182, 179);
+  letter-spacing: -2px;
+  font-size: 50px;
+  color: #574f43;
+}
+.aboutContainer {
+  font-family: "Jost", sans-serif;
+  font-size: 30px;
+  color: #000000;
+}
