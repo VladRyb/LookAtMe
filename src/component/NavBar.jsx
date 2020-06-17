@@ -83,7 +83,7 @@ export default function NavBar(props) {
               Home <span className='sr-only'>(current)</span>
             </Link>
           </li>
-          {session === 'true' ? (
+          {user.name ? (
             <li className='nav-item active'>
               <Link className='nav-link' to='/car'>
                 Dresser <span className='sr-only'>(current)</span>
@@ -103,13 +103,14 @@ export default function NavBar(props) {
 
       <div className='d-flex justify-content-end'>
         <ul className='navbar-nav mr-auto'>
-          {session === 'true' ? (
+          {user.name ? (
             <NavDropdown
               title={
                 <Image
                   id='iconProfile'
                   src={
-                    userPhoto ||
+                    // userPhoto ||
+                    user.photo ||
                     'https://cdn4.iconfinder.com/data/icons/e-commerce-181/512/477_profile__avatar__man_-512.png'
                   }
                   roundedCircle
