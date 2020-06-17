@@ -45,7 +45,7 @@ export default function ModalLogin(props) {
   }
 
   const [fileList, setFileList] = useState([]);
-  const [onlinePhoto, setOnlinePhoto] = useState('');
+  const [onlinePhoto, setOnlinePhoto] = useState(`${props.editedLook.ImgUrl}`);
 
   // const [url, setUrl] = useState('');
 
@@ -171,7 +171,7 @@ export default function ModalLogin(props) {
   };
 
   const onPreview = async (file) => {
-    let src = props.editedLook.ImgUrl;
+    let src = file.url;
     console.log(src);
     if (!src) {
       src = await new Promise((resolve) => {
