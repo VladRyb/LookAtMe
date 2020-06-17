@@ -148,7 +148,19 @@ const reducer = (state = defaultState, action) => {
           lookis: action.lookis,
         },
       };
-
+    case actionType.deleteTagOnEdit:
+      const lookis = state.user.lookis;
+      const unEditedLooks = lookis.filter((el) => el.id !== action.id);
+      const edtitedLooks = lookis.find((el) => el.id === action.id);
+      edtitedLooks.tags = action.tags;
+      unEditedLooks.push(edtitedLooks);
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          lookis: unEditedLooks,
+        },
+      };
     case actionType.addTag:
       return {
         ...state,
