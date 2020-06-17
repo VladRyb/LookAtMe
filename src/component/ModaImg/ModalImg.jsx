@@ -24,7 +24,8 @@ export default function ModalImg({ property, categories }) {
 
   const [fileList, setFileList] = useState([]);
   const [onlinePhoto, setOnlinePhoto] = useState('');
-
+  const userUid = localStorage.getItem('uid');
+  const userName = localStorage.getItem('user');
   const onChangeProps = ({ fileList: newFileList }) => {
     setFileList(newFileList);
   };
@@ -78,9 +79,12 @@ export default function ModalImg({ property, categories }) {
                   type: typeState,
                   stoyanie: stoyanieState || true,
                   creator:
-                    firebase.auth().currentUser.uid +
-                    "/" +
-                    firebase.auth().currentUser.displayName,
+
+                  userUid + "/" + userName,
+                    // firebase.auth().currentUser.uid +
+                    // '/' +
+                    // firebase.auth().currentUser.displayName,
+
                 });
             });
         }
