@@ -17,6 +17,12 @@ const defaultState = {
     name: null,
     tags: [],
   },
+  dressFilterProperty: {
+    head: null,
+    body: null,
+    legs: null,
+    feet: null,
+  },
   // headUrl: [],
   // bodyUrl: [],
   // legsUrl: [],
@@ -74,15 +80,13 @@ const reducer = (state = defaultState, action) => {
     case actionType.getUserTest:
       return { ...state, user: action.user };
 
-    case actionType.deleteLookSaga:
-      const newLooks = state.userTest.looks.filter(
-        (element) => element.id !== action.id
-      );
+    case actionType.deleteLook:
+      const newLooks = state.user.lookis.filter((element) => element.id !== action.id);
+      console.log(action.id);
       console.log(newLooks);
-      console.log(state.user.lookis);
       return {
         ...state,
-        userTest: { ...state.userTest, looks: [...newLooks] },
+        user: { ...state.user, lookis: [...newLooks] },
       };
 
     case actionType.head:
@@ -127,6 +131,7 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.arrImg:
+      // console.log('actionType.looks>>>>>>>>>',action.lookis)
       return {
         ...state,
         user: {
@@ -164,9 +169,7 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.deleteDress:
-      const newDresses = state.userTest[action.property].filter(
-        (el) => el.id !== action.id
-      );
+      const newDresses = state.userTest[action.property].filter((el) => el.id !== action.id);
       return {
         ...state,
         userTest: {
@@ -184,6 +187,16 @@ const reducer = (state = defaultState, action) => {
           feet: null,
           name: null,
           tags: [],
+        },
+      };
+    case actionType.setDressFilterProperty:
+      console.log(action);
+
+      return {
+        ...state,
+        dressFilterProperty: {
+          ...state.dressFilterProperty,
+          [action.property]: action.value,
         },
       };
     default:
