@@ -1,8 +1,8 @@
-import actionType from "./actions";
+import actionType from './actions';
 // import user from '../faker';
-import actions from "./actions";
+import actions from './actions';
 
-import firebase from "firebase";
+import firebase from 'firebase';
 
 const defaultState = {
   statusSession: false,
@@ -17,7 +17,13 @@ const defaultState = {
     name: null,
     tags: [],
   },
-  dressFilterProperty: {
+  dressCategoryFilter: {
+    head: null,
+    body: null,
+    legs: null,
+    feet: null,
+  },
+  dressSeasonFilter: {
     head: null,
     body: null,
     legs: null,
@@ -64,10 +70,10 @@ const reducer = (state = defaultState, action) => {
       };
     case actionType.logout:
       logOut();
-      localStorage.setItem("session", false);
-      localStorage.setItem("user", "");
-      localStorage.setItem("uid", "");
-      localStorage.setItem("photo", null);
+      localStorage.setItem('session', false);
+      localStorage.setItem('user', '');
+      localStorage.setItem('uid', '');
+      localStorage.setItem('photo', null);
       return { ...state, statusSession: false, user: { name: null } };
     case actionType.dressForNewLook:
       return {
@@ -78,9 +84,9 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.deleteLook:
-      const newLooks = state.user.lookis.filter(
-        (element) => element.id !== action.id
-      );
+      console.log(action);
+      console.log(action.id);
+      const newLooks = state.user.lookis.filter((element) => element.id !== action.id);
       console.log(action.id);
       console.log(newLooks);
       return {
@@ -121,7 +127,7 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.lookis:
-      console.log("actionType.looks", action.lookis);
+      console.log('actionType.looks', action.lookis);
       return {
         ...state,
         user: {
@@ -168,9 +174,7 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.deleteDress:
-      const newDresses = state.user[action.property].filter(
-        (el) => el.id !== action.id
-      );
+      const newDresses = state.user[action.property].filter((el) => el.id !== action.id);
       return {
         ...state,
         user: {
@@ -192,12 +196,10 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.setDressFilterProperty:
-      console.log(action);
-
       return {
         ...state,
-        dressFilterProperty: {
-          ...state.dressFilterProperty,
+        [action.filterName]: {
+          ...state[action.filterName],
           [action.property]: action.value,
         },
       };
