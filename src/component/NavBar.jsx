@@ -39,7 +39,6 @@ export default function NavBar(props) {
     callbacks: {
       signInSuccess: () => {
         dispatch(loadingColWather());
-        return true;
       },
     },
   });
