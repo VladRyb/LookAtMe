@@ -36,18 +36,18 @@ function CariuselSuper() {
       navigation={false}
       enableHeading={false}
     >
-      <div
-        // onClick={() => fn()}
-        // onKeyDown={() => fn()}
-        role='menuitem'
-        tabIndex='0'
-      >
-        {/* <img
+      {/* <div
+          onClick={() => fn()}
+          onKeyDown={() => fn()}
+          role='menuitem'
+          tabIndex='0'
+        >
+          <img
           src='https://cs9.pikabu.ru/images/big_size_comm/2018-12_2/154416720229829073.jpg'
           alt='title or description'
           style={{ display: 'block', width: '100%' }}
-        /> */}
-      </div>
+        />
+        </div> */}
       <img
         src='https://cs9.pikabu.ru/images/big_size_comm/2018-12_2/154416720229829073.jpg'
         alt='title or description'
