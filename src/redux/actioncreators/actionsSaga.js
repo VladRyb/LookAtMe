@@ -1,4 +1,4 @@
-import actionType from "../actions";
+import actionType from '../actions';
 
 // Это тригерит саму сагу.
 
@@ -27,16 +27,16 @@ export function deleteTag(tags) {
   return { type: actionType.deleteTag, tags };
 }
 
-export function watcherDeleteLook(id) {
-  return { type: actionType.watcherDeleteLook, id };
+export function watcherDeleteLook(collection, id) {
+  return { type: actionType.watcherDeleteLook, collection, id };
 }
 
 export function onChangeName(value) {
   return { type: actionType.onChangeName, value };
 }
 
-export function deleteLook(id) {
-  return { type: actionType.deleteLook, id };
+export function deleteLook(property, id) {
+  return { type: actionType.deleteLook, property, id };
 }
 
 export function watcherTest(id) {
