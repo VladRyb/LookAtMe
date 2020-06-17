@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Coverflow from 'react-coverflow';
 import { useState } from 'react';
 import { Image } from 'react-bootstrap';
+import { StyleRoot } from 'radium';
 
 function CariuselSuper() {
   // constructor(props) {
@@ -24,10 +25,14 @@ function CariuselSuper() {
   }
 
   return (
+    // <StyleRoot>
     <Coverflow
-      width={960}
-      height={480}
-      displayQuantityOfSide={2}
+      width={100}
+      height={300}
+      // navigation
+      // infiniteScroll
+      // enableHeading
+      displayQuantityOfSide={1.8}
       navigation={false}
       enableHeading={false}
     >
@@ -79,6 +84,7 @@ function CariuselSuper() {
         data-action='http://andyyou.github.io/react-coverflow/'
       />
     </Coverflow>
+    // </StyleRoot>
   );
 
   // _handleClick() {

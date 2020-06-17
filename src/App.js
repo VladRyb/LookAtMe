@@ -117,7 +117,8 @@ function App(props) {
           {/* <WebcamCapture /> */}
         </Route>
         <Route exact path='/teston'>
-          <CariuselSuper />
+          {/* <CariuselSuper /> */}
+          <Online />
         </Route>
         {/* <FooterPage /> */}
       </BrowserRouter>
