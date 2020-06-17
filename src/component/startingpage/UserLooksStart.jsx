@@ -39,5 +39,37 @@ export default function UserLooksStart() {
     },
   ];
 
-  return <CarouselSlider slideItems={data} />;
+  let manner = {
+    autoSliding: { interval: "3s" },
+    duration: "2s",
+  };
+
+  let buttonSetting = {
+    placeOn: "middle-inside",
+    hoverEvent: true,
+    style: {
+      left: {
+        height: "50px",
+        width: "50px",
+        color: "#929393",
+        background: "rgba(225, 228, 232, 0.8)",
+        borderRadius: "50%",
+      },
+      right: {
+        height: "50px",
+        width: "50px",
+        color: "#929393",
+        background: "rgba(225, 228, 232, 0.8)",
+        borderRadius: "50%",
+      },
+    },
+  };
+
+  return (
+    <CarouselSlider
+      slideItems={data}
+      manner={manner}
+      buttonSetting={buttonSetting}
+    />
+  );
 }
