@@ -90,6 +90,7 @@ function App(props) {
       });
     };
     findU();
+    console.log('tttttttttttt');
   }, [userUid]);
 
   return (

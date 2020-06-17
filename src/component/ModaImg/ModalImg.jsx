@@ -41,6 +41,20 @@ export default function ModalImg({ property, categories }) {
           stoyanie: stoyanieState || true,
         },
       });
+      firebase
+        .firestore()
+        .collection(property)
+        .add({
+          id: Date.now() + Math.random() * 10,
+          imgUrl: onlinePhoto,
+          season: seasonState,
+          type: typeState,
+          stoyanie: stoyanieState || true,
+          creator: userUid + '/' + userName,
+          // firebase.auth().currentUser.uid +
+          // '/' +
+          // firebase.auth().currentUser.displayName,
+        });
     }
     if (fileList.length > 0) {
       const uploadTask = storage

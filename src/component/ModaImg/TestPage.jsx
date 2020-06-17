@@ -25,7 +25,7 @@ function TestOn(props) {
       .catch((error) => {
         console.error('Camera not started!', error);
       });
-  }
+  } ///
 
   function takePhoto() {
     const config = {
@@ -33,14 +33,26 @@ function TestOn(props) {
     };
     let dataUri = cameraPhoto.getDataUri(config);
     props.setOnlinePhoto(dataUri);
-    cameraPhoto
-      .stopCamera()
-      .then(() => {
-        console.log('Camera stoped!');
-      })
-      .catch((error) => {
-        console.log('No camera to stop!:', error);
-      });
+
+    // cameraPhoto
+    //   .stopCamera()
+    //   .then(() => {
+    //     console.log('Camera stoped!');
+    //   })
+    //   .catch((error) => {
+    //     console.log('No camera to stop!:', error);
+    //   });
+    function stopCamera() {
+      cameraPhoto
+        .stopCamera()
+        .then(() => {
+          console.log('Camera stoped!');
+        })
+        .catch((error) => {
+          console.log('No camera to stop!:', error);
+        });
+    }
+    stopCamera();
   }
 
   return (
