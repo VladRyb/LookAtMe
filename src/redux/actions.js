@@ -1,4 +1,5 @@
 export default {
+
   start: "loadStart",
   todo: "loadTodo",
   saga: "SAGA",
@@ -16,6 +17,7 @@ export default {
   watcherDeleteLook: "watcherDeleteLook",
   deleteDress: "DELETE_DRESS",
   deleteDressSaga: "DELETE_DRESS_SAGA",
+    watcherTest: 'TestWatcher',
   head: "head",
   body: "body",
   legs: "legs",
