@@ -1,4 +1,5 @@
 export default {
+
   start: "loadStart",
   todo: "loadTodo",
   saga: "SAGA",
@@ -13,10 +14,11 @@ export default {
   onChangeName: "ON_CHANGE_NAME",
   clearDressForNewLook: "CLEAR_DRESS_FOR_NEW_LOOK",
   setDressFilterProperty: "SET_DRESS_FILTER_PROPERTY",
-  head: "head",
-  body: "body",
-  legs: "legs",
-  feet: "feet",
-  arrImg: "arrImg",
-  lookis: "lookis",
+  watcherDeleteLook: 'watcherDeleteLook',
+  head: 'head',
+  body: 'body',
+  legs: 'legs',
+  feet: 'feet',
+  arrImg: 'arrImg',
+  lookis: 'lookis',
 };

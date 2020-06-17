@@ -8,6 +8,7 @@ import MyLooks from "./component/MyLooks/MyLooks";
 import MyLooks2 from "./component/MyLooks/MyLooks2";
 import ModalImg from "./component/ModaImg/ModalImg";
 
+
 import Dresser from "./component/Dresser/Dresser";
 import FooterPage from "./component/FooterPage";
 import Edit from "./component/Edit/Edit";
@@ -111,6 +112,7 @@ function App(props) {
         <Route exact path="/test">
           {/* <CropForm /> */}
           <WebcamCapture />
+
         </Route>
         <Route exact path="/teston">
           <Online />

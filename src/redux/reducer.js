@@ -1,8 +1,8 @@
-import actionType from "./actions";
+import actionType from './actions';
 // import user from '../faker';
-import actions from "./actions";
+import actions from './actions';
 
-import firebase from "firebase";
+import firebase from 'firebase';
 
 const defaultState = {
   statusSession: false,
@@ -64,9 +64,9 @@ const reducer = (state = defaultState, action) => {
       };
     case actionType.logout:
       logOut();
-      localStorage.setItem("session", false);
-      localStorage.setItem("user", "");
-      localStorage.setItem("uid", "");
+      localStorage.setItem('session', false);
+      localStorage.setItem('user', '');
+      localStorage.setItem('uid', '');
       return { ...state, statusSession: false, user: { name: null } };
     case actionType.dressForNewLook:
       return {
@@ -79,15 +79,13 @@ const reducer = (state = defaultState, action) => {
     case actionType.getUserTest:
       return { ...state, user: action.user };
 
-    case actionType.deleteLookSaga:
-      const newLooks = state.userTest.looks.filter(
-        (element) => element.id !== action.id
-      );
+    case actionType.deleteLook:
+      const newLooks = state.user.lookis.filter((element) => element.id !== action.id);
+      console.log(action.id);
       console.log(newLooks);
-      console.log(state.user.lookis);
       return {
         ...state,
-        userTest: { ...state.userTest, looks: [...newLooks] },
+        user: { ...state.user, lookis: [...newLooks] },
       };
 
     case actionType.head:
@@ -123,7 +121,7 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.lookis:
-      console.log("actionType.looks", action.lookis);
+      console.log('actionType.looks', action.lookis);
       return {
         ...state,
         user: {
@@ -132,6 +130,7 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.arrImg:
+      // console.log('actionType.looks>>>>>>>>>',action.lookis)
       return {
         ...state,
         user: {
@@ -169,9 +168,7 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.deleteDress:
-      const newDresses = state.userTest[action.property].filter(
-        (el) => el.id !== action.id
-      );
+      const newDresses = state.userTest[action.property].filter((el) => el.id !== action.id);
       return {
         ...state,
         userTest: {

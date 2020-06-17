@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "proxy": "http://localhost:4000/",
   "private": true,
+  hyjyjy
   "dependencies": {
     "@ant-design/icons": "^4.2.1",
     "@brainhubeu/react-carousel": "^1.18.6",
