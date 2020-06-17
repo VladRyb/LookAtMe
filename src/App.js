@@ -32,53 +32,54 @@ function App(props) {
       const body = await firebase
         .firestore()
         .collection('body')
+        .where('creator', '==', userUid + '/' + userName)
         .get()
         .then((snapshot) => {
-          const databody = snapshot.docs.map((img) => img.data());
-          return databody.filter((item) => {
-            return item.creator == userUid + '/' + userName;
-          });
+          // console.log('snapshotbody',snapshot)
+          return snapshot.docs.map((img) => img.data());
         });
+
+      console.log('body>>>>>>>>>>>>>>', body);
+
       const head = await firebase
         .firestore()
         .collection('head')
+        .where('creator', '==', userUid + '/' + userName)
         .get()
         .then((snapshot) => {
-          const databody = snapshot.docs.map((img) => img.data());
-          return databody.filter((item) => {
-            return item.creator == userUid + '/' + userName;
-          });
+          return snapshot.docs.map((img) => img.data());
         });
+      // console.log('head>>>>>>>>>>>>>>', head)
+
       const legs = await firebase
         .firestore()
         .collection('legs')
+        .where('creator', '==', userUid + '/' + userName)
         .get()
         .then((snapshot) => {
-          const databody = snapshot.docs.map((img) => img.data());
-          return databody.filter((item) => {
-            return item.creator == userUid + '/' + userName;
-          });
+          return snapshot.docs.map((img) => img.data());
         });
+      // console.log('legs>>>>>>>>>>>>>>', legs)
+
       const feet = await firebase
         .firestore()
         .collection('feet')
+        .where('creator', '==', userUid + '/' + userName)
         .get()
         .then((snapshot) => {
-          const databody = snapshot.docs.map((img) => img.data());
-          return databody.filter((item) => {
-            return item.creator == userUid + '/' + userName;
-          });
+          return snapshot.docs.map((img) => img.data());
         });
+      console.log('feet>>>>>>>>>>>>>>', feet);
+
       const lookis = await firebase
         .firestore()
         .collection('lookis')
+        .where('creator', '==', userUid + '/' + userName)
         .get()
         .then((snapshot) => {
-          const databody = snapshot.docs.map((img) => img.data());
-          return databody.filter((item) => {
-            return item.creator == userUid + '/' + userName;
-          });
+          return snapshot.docs.map((img) => img.data());
         });
+      console.log('lookis>>>>>>>>>>>>>>', lookis);
       dispatch({
         type: actionType.arrImg,
         body: body,
@@ -89,7 +90,7 @@ function App(props) {
       });
     };
     findU();
-  }, [store.user.name]);
+  }, [userUid]);
 
   return (
     <>
@@ -120,5 +121,4 @@ function App(props) {
     </>
   );
 }
-
 export default App;

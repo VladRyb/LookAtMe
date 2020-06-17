@@ -9,7 +9,8 @@ export default function ModalLogin(props) {
   const [tag, setTag] = useState('');
   const [tags, setTags] = useState(props.editedLook.tags);
   const [value, setValue] = useState(props.editedLook.name);
-
+  const userUid = localStorage.getItem('uid');
+  
   function addTags(event) {
     if (event.key === 'Enter') {
       const newTag = tags.findIndex((item) => item == tag);
@@ -46,7 +47,8 @@ export default function ModalLogin(props) {
               setUrl(url);
               firebase.firestore().collection('images').add({
                 url: url,
-                user: firebase.auth().currentUser.uid,
+                // user: firebase.auth().currentUser.uid,
+                user: userUid,
               });
             });
         }
