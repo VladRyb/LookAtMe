@@ -1,4 +1,4 @@
-import actionType from '../actions';
+import actionType from "../actions";
 
 // Это тригерит саму сагу.
 
@@ -43,6 +43,10 @@ export function deleteDress(property, id) {
   return { type: actionType.deleteDress, property, id };
 }
 
+export function deleteDresssSaga(property, id) {
+  return { type: actionType.deleteDressSaga, property, id };
+}
+
 export function clearDressForNewLook() {
   return { type: actionType.clearDressForNewLook };
 }
@@ -50,4 +54,3 @@ export function clearDressForNewLook() {
 export function setDressFilterProperty(property, value) {
   return { type: actionType.setDressFilterProperty, property, value };
 }
-
