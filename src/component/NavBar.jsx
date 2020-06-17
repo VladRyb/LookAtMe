@@ -202,11 +202,7 @@ export default function NavBar(props) {
   });
 
   return (
-    <Navbar
-      className={classnames('fixed-top', navbarColor)}
-      color-on-scroll='300'
-      expand='lg'
-    >
+    <div className='clobal-nav'>
       <NavbarBrand>
         {/* <div className="navbar-translate"> */}
         <NavLink to='/' tag={Link} id='sign'>
@@ -215,130 +211,140 @@ export default function NavBar(props) {
           </h3>
         </NavLink>
       </NavbarBrand>
-      {/* </div> */}
-      <div id='navbar'>
-        <Collapse
-          className='justify-content-end'
-          navbar
-          isOpen={navbarCollapse}
-        >
-          <Nav navbar>
-            {user.name ? (
+
+      <Navbar
+        id='fixed-top'
+        className={classnames('fixed-top', navbarColor)}
+        color-on-scroll='300'
+        expand='lg'
+      >
+        {/* </div> */}
+        <div id='navbar'>
+          <Collapse
+            className='justify-content-end'
+            navbar
+            isOpen={navbarCollapse}
+          >
+            <Nav navbar>
+              {user.name ? (
+                <NavItem>
+                  <NavLink to='/car' tag={Link}>
+                    <img
+                      src='superLogo.png'
+                      style={{
+                        width: '27px',
+                        height: '37px',
+                        marginRight: '0.4em',
+                      }}
+                      title='Гардероб'
+                    />
+                    {/* Гардероб */}
+                  </NavLink>
+                </NavItem>
+              ) : (
+                <NavItem>
+                  <NavLink to='#' tag={Link}>
+                    <ModalLogin
+                      title={
+                        <img
+                          src='superLogo.png'
+                          style={{
+                            width: '25px',
+                            height: '35px',
+                            marginRight: '1em',
+                          }}
+                          title='Гардероб'
+                        />
+                      }
+                      uiConfig={uiConfig}
+                    />
+                  </NavLink>
+                </NavItem>
+              )}
               <NavItem>
-                <NavLink to='/car' tag={Link}>
-                  <img
-                    src='superLogo.png'
-                    style={{
-                      width: '27px',
-                      height: '37px',
-                      marginRight: '0.4em',
-                    }}
-                    title='Гардероб'
-                  />
-                  {/* Гардероб */}
+                <NavLink
+                  data-placement='bottom'
+                  href='https://twitter.com/'
+                  target='_blank'
+                  title='Follow us on Twitter'
+                >
+                  <i className='fa fa-twitter' />
+                  <p className='d-lg-none'>Twitter</p>
                 </NavLink>
               </NavItem>
-            ) : (
               <NavItem>
-                <NavLink to='#' tag={Link}>
-                  <ModalLogin
+                <NavLink
+                  data-placement='bottom'
+                  href='https://www.facebook.com/'
+                  target='_blank'
+                  title='Like us on Facebook'
+                >
+                  <i className='fa fa-facebook-square' />
+                  <p className='d-lg-none'>Facebook</p>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  data-placement='bottom'
+                  href='https://www.instagram.com'
+                  target='_blank'
+                  title='Follow us on Instagram'
+                >
+                  <i className='fa fa-instagram' />
+                  <p className='d-lg-none'>Instagram</p>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  data-placement='bottom'
+                  href='https://github.com/VladRyb/LookAtMe'
+                  target='_blank'
+                  title='Star on GitHub'
+                >
+                  <i className='fa fa-github' />
+                  <p className='d-lg-none'>GitHub</p>
+                </NavLink>
+              </NavItem>
+              {user.name ? (
+                <NavItem>
+                  <NavDropdown
                     title={
-                      <img
-                        src='superLogo.png'
-                        style={{
-                          width: '25px',
-                          height: '35px',
-                          marginRight: '1em',
-                        }}
-                        title='Гардероб'
+                      <Image
+                        id='iconProfile'
+                        src={
+                          user.photo ||
+                          'https://cdn4.iconfinder.com/data/icons/e-commerce-181/512/477_profile__avatar__man_-512.png'
+                        }
+                        roundedCircle
                       />
                     }
-                    uiConfig={uiConfig}
-                  />
-                </NavLink>
-              </NavItem>
-            )}
-            <NavItem>
-              <NavLink
-                data-placement='bottom'
-                href='https://twitter.com/'
-                target='_blank'
-                title='Follow us on Twitter'
-              >
-                <i className='fa fa-twitter' />
-                <p className='d-lg-none'>Twitter</p>
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                data-placement='bottom'
-                href='https://www.facebook.com/'
-                target='_blank'
-                title='Like us on Facebook'
-              >
-                <i className='fa fa-facebook-square' />
-                <p className='d-lg-none'>Facebook</p>
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                data-placement='bottom'
-                href='https://www.instagram.com'
-                target='_blank'
-                title='Follow us on Instagram'
-              >
-                <i className='fa fa-instagram' />
-                <p className='d-lg-none'>Instagram</p>
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                data-placement='bottom'
-                href='https://github.com/VladRyb/LookAtMe'
-                target='_blank'
-                title='Star on GitHub'
-              >
-                <i className='fa fa-github' />
-                <p className='d-lg-none'>GitHub</p>
-              </NavLink>
-            </NavItem>
-            {user.name ? (
-              <NavItem>
-                <NavDropdown
-                  title={
-                    <Image
-                      id='iconProfile'
-                      src={
-                        user.photo ||
-                        'https://cdn4.iconfinder.com/data/icons/e-commerce-181/512/477_profile__avatar__man_-512.png'
-                      }
-                      roundedCircle
-                    />
-                  }
-                  id='basic-nav-dropdown'
-                >
-                  <NavDropdown.Item href='/mylooks'>Мои луки</NavDropdown.Item>
-
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item
-                    onClick={() => {
-                      dispatch({ type: actionType.logout });
-                    }}
+                    id='basic-nav-dropdown'
                   >
-                    Выйти
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </NavItem>
-            ) : (
-              <NavItem>
-                <NavLink to='#' tag={Link}>
-                  <i className='nc-icon nc-layout-11' />{' '}
-                </NavLink>
-              </NavItem>
-            )}
-          </Nav>
-        </Collapse>
-      </div>
-    </Navbar>
+                    <NavDropdown.Item href='/mylooks'>
+                      Мои луки
+                    </NavDropdown.Item>
+
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item
+                      onClick={() => {
+                        dispatch({ type: actionType.logout });
+                      }}
+                    >
+                      Выйти
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </NavItem>
+              ) : (
+                <NavItem>
+                  <NavLink to='#' tag={Link}>
+                    <i className='nc-icon nc-layout-11' />{' '}
+                  </NavLink>
+                </NavItem>
+              )}
+            </Nav>
+          </Collapse>
+        </div>
+      </Navbar>
+    </div>
   );
 }
