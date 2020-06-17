@@ -1,5 +1,11 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { loadingStart, loadingTodo, deleteLook, deleteDress } from '../actioncreators/actionsSaga';
+import {
+  loadingStart,
+  loadingTodo,
+  deleteLook,
+  deleteDress,
+  handleToggle1,
+} from '../actioncreators/actionsSaga';
 import actionType from '../actions';
 import firebase from 'firebase';
 const database = firebase.firestore();
@@ -19,6 +25,15 @@ async function rewriteData(collection, id) {
   gotIt.get().then((query) => {
     query.forEach((data) => {
       data.ref.delete();
+    });
+  });
+}
+
+async function handleToggleFB(id, status) {
+  const gotIt = await database.collection('lookis').where('id', '==', id);
+  gotIt.get().then((query) => {
+    query.forEach((data) => {
+      data.ref.update({ share: status });
     });
   });
 }
@@ -59,6 +74,15 @@ async function updateTags1(id) {
   });
 }
 
+function* HandleToggle({ id, status }) {
+  try {
+    handleToggleFB(id, status);
+    yield put(handleToggle1(id, status));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // Функция-наблюдатель.
 function* sagas() {
   // yield takeEvery(actionType.saga, loadTodo);
@@ -67,6 +91,8 @@ function* sagas() {
   yield takeEvery(actionType.watcherTest, updateTags);
 
   yield takeEvery(actionType.deleteDressSaga, deleteDressFromBase);
+
+  yield takeEvery(actionType.watcherHandleToggle, HandleToggle);
 }
 
 export default sagas;

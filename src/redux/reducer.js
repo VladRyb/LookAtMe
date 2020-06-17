@@ -1,7 +1,4 @@
 import actionType from './actions';
-// import user from '../faker';
-import actions from './actions';
-
 import firebase from 'firebase';
 
 const defaultState = {
@@ -84,11 +81,7 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.deleteLook:
-      console.log(action);
-      console.log(action.id);
       const newLooks = state.user.lookis.filter((element) => element.id !== action.id);
-      console.log(action.id);
-      console.log(newLooks);
       return {
         ...state,
         user: { ...state.user, lookis: [...newLooks] },
@@ -133,6 +126,31 @@ const reducer = (state = defaultState, action) => {
         user: {
           ...state.user,
           lookis: [...state.user.lookis, action.lookis],
+        },
+      };
+    case actionType.lookisUpd:
+      console.log(action);
+      const allOthers = state.user.lookis.filter((element) => element.id !== action.lookis.id);
+      allOthers.push(action.lookis);
+      console.log(allOthers);
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          lookis: allOthers,
+        },
+      };
+
+    case actionType.handleToggle1:
+      const query = state.user.lookis.find((element) => element.id === action.id);
+      const index = state.user.lookis.indexOf(query);
+      query.share = action.status;
+      state.user.lookis.splice(index, 1, query);
+      console.log(state.user.lookis);
+      return {
+        ...state,
+        user: {
+          ...state.user,
         },
       };
     case actionType.arrImg:
@@ -183,6 +201,32 @@ const reducer = (state = defaultState, action) => {
         dressForNewLook: {
           ...state.dressForNewLook,
           name: action.value,
+        },
+      };
+    case actionType.onChangeNameEdit:
+      const lookis1 = state.user.lookis;
+      const unEditedLooks1 = lookis1.filter((el) => el.id !== action.id);
+      const edtitedLooks1 = lookis1.find((el) => el.id === action.id);
+      edtitedLooks1.name = action.value;
+      unEditedLooks1.push(edtitedLooks1);
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          lookis: unEditedLooks1,
+        },
+      };
+    case actionType.addTagEdit:
+      const lookis2 = state.user.lookis;
+      const unEditedLooks2 = lookis2.filter((el) => el.id !== action.id);
+      const edtitedLooks2 = lookis2.find((el) => el.id === action.id);
+      edtitedLooks2.tags.push(action.tag);
+      unEditedLooks2.push(edtitedLooks2);
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          lookis: unEditedLooks2,
         },
       };
     case actionType.deleteDress:
