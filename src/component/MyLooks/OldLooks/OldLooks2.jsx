@@ -20,8 +20,8 @@ function OldLooks2() {
   const userName = user.name;
   const userId = user.uid;
   // const state = allLooks.filter((element) => element.creator === `${userId}/${userName}`);
-  function deleteLook(id) {
-    dispatch(watcherDeleteLook(id));
+  function deleteLook(collection, id) {
+    dispatch(watcherDeleteLook(collection, id));
   }
   function deleteTags(id) {
     dispatch(watcherTest(id));

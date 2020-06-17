@@ -1,12 +1,7 @@
-import { call, put, takeEvery } from "redux-saga/effects";
-import {
-  loadingStart,
-  loadingTodo,
-  deleteLook,
-  deleteDress,
-} from "../actioncreators/actionsSaga";
-import actionType from "../actions";
-import firebase from "firebase";
+import { call, put, takeEvery } from 'redux-saga/effects';
+import { loadingStart, loadingTodo, deleteLook, deleteDress } from '../actioncreators/actionsSaga';
+import actionType from '../actions';
+import firebase from 'firebase';
 const database = firebase.firestore();
 
 // function* loadTodo() {
@@ -20,7 +15,7 @@ const database = firebase.firestore();
 // }
 
 async function rewriteData(collection, id) {
-  const gotIt = await database.collection(collection).where("id", "==", id);
+  const gotIt = await database.collection(collection).where('id', '==', id);
   gotIt.get().then((query) => {
     query.forEach((data) => {
       data.ref.delete();
@@ -28,10 +23,11 @@ async function rewriteData(collection, id) {
   });
 }
 
-function* deleteLooka({ id }) {
+function* deleteLooka({ collection, id }) {
+  console.log(collection);
   try {
-    rewriteData(id);
-    yield put(deleteLook(id));
+    rewriteData(collection, id);
+    yield put(deleteLook(collection, id));
   } catch (error) {
     console.log(error);
   }
@@ -41,7 +37,7 @@ function* updateTags({ id }) {
   try {
     updateTags1(id);
     yield 'a';
-    } catch (error) {
+  } catch (error) {
     console.log(error);
   }
 }
@@ -62,7 +58,6 @@ async function updateTags1(id) {
     });
   });
 }
-
 
 // Функция-наблюдатель.
 function* sagas() {
