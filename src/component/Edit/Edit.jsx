@@ -27,7 +27,6 @@ export default function Dresser() {
   }
   const { head = [], body = [], legs = [], feet = [] } = user;
   const editedLook = user.lookis.find((element) => element.id == id);
-  console.log(editedLook.head);
 
   const dressFilter = (array, categoryFilter, seasonFilter) => {
     return categoryFilter || seasonFilter
@@ -39,7 +38,14 @@ export default function Dresser() {
       : array;
   };
 
-  const headCategories = ['Шапки', 'Кепки', 'Шляпы', 'Береты', 'Пилотки', 'Кандибобрики'];
+  const headCategories = [
+    'Шапки',
+    'Кепки',
+    'Шляпы',
+    'Береты',
+    'Пилотки',
+    'Кандибобрики',
+  ];
   const bodyCategories = [
     'Футболки поло и майки',
     'Толстовки и свитшоты',
@@ -53,11 +59,15 @@ export default function Dresser() {
   const feetCategories = ['Кроссовки', 'Туфли', 'Тапки'];
 
   return (
-    <div id="globalDiv">
-      <div className="dresser">
+    <div id='globalDiv'>
+      <div className='dresser'>
         <div>
           <DressCarousel
-            dressArray={dressFilter(head, dressCategoryFilter.head, dressSeasonFilter.head)}
+            dressArray={dressFilter(
+              head,
+              dressCategoryFilter.head,
+              dressSeasonFilter.head
+            )}
             editedLook={editedLook}
             categories={headCategories}
             title={'Головные уборы'}

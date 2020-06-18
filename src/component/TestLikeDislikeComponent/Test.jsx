@@ -6,7 +6,6 @@ function Test({ editedLook }) {
   const dispatch = useDispatch();
 
   function handleLike(id, status) {
-    console.log('id:' + id, 'status:' + status);
     dispatch(watcherHandleLike(id, status));
   }
   return (
