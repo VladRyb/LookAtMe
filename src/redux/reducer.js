@@ -273,8 +273,12 @@ const reducer = (state = defaultState, action) => {
       const indexLiked = state.user.lookis.indexOf(queryLiked);
       queryLiked[action.status] = ++queryLiked[action.status];
       state.user.lookis.splice(indexLiked, 1, queryLiked);
+      const queryLiked2 = state.lookisShare.find((element) => element.id === action.id);
+      const indexLiked2 = state.lookisShare.indexOf(queryLiked2);
+      state.lookisShare.splice(indexLiked2, 1, queryLiked2);
       return {
         ...state,
+        lookisShare: [...state.lookisShare],
         user: {
           ...state.user,
         },
