@@ -118,31 +118,34 @@ function OldLooks2() {
                 >
                   <i className="fa fa-trash-o"></i>
                 </span>
-
-                {element.share || element.ImgUrl ? (
-                  <div className="custom-control custom-switch shareEgorZ">
-                    <input
-                      onClick={() => handleToggle(element.id, element.share)}
-                      type="checkbox"
-                      className="custom-control-input"
-                      id={`customSwitch${element.id}`}
-                      checked
-                    />
-                    <label className="custom-control-label" for={`customSwitch${element.id}`}>
-                      Публичный
-                    </label>
-                  </div>
-                ) : element.ImgUrl ? (
-                  <div className="custom-control custom-switch shareEgorZ">
-                    <input
-                      onClick={() => handleToggle(element.id, element.share)}
-                      type="checkbox"
-                      className="custom-control-input"
-                      id={`customSwitch${element.id}`}
-                    />
-                    <label className="custom-control-label" for={`customSwitch${element.id}`}>
-                      Приватный
-                    </label>
+                {element.ImgUrl ? (
+                  <div>
+                    {element.share ? (
+                      <div className="custom-control custom-switch shareEgorZ">
+                        <input
+                          onClick={() => handleToggle(element.id, element.share)}
+                          type="checkbox"
+                          className="custom-control-input"
+                          id={`customSwitch${element.id}`}
+                          checked
+                        />
+                        <label className="custom-control-label" for={`customSwitch${element.id}`}>
+                          Публичный
+                        </label>
+                      </div>
+                    ) : (
+                      <div className="custom-control custom-switch shareEgorZ">
+                        <input
+                          onClick={() => handleToggle(element.id, element.share)}
+                          type="checkbox"
+                          className="custom-control-input"
+                          id={`customSwitch${element.id}`}
+                        />
+                        <label className="custom-control-label" for={`customSwitch${element.id}`}>
+                          Приватный
+                        </label>
+                      </div>
+                    )}
                   </div>
                 ) : null}
                 <span

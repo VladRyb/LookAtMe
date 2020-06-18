@@ -11,7 +11,6 @@ export default function DressCarouselHeader({ categories, title, property }) {
 
   return (
     <div className="carouselHeader">
-
       <b>
         <Form.Label class="textCatSeason">{title}</Form.Label>
       </b>
@@ -31,7 +30,7 @@ export default function DressCarouselHeader({ categories, title, property }) {
               )
             }
           >
-            <option>Не выбрано</option>
+            <option value="">Не выбрано</option>
             {items}
           </Form.Control>
         </Form.Group>

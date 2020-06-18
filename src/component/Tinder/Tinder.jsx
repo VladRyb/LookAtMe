@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './Tinder.css';
 import './TinderIndex.css';
 import TinderCard from './TinderPage';
+import { useDispatch, useSelector } from 'react-redux';
+import { watcherHandleLike } from '../../redux/actioncreators/actionsSaga';
 
 const db = [
   {
@@ -32,23 +34,29 @@ const db = [
 ];
 
 function Tinder() {
+  const dispatch = useDispatch();
   const characters = db;
+
+  const looksShre = useSelector((state) => state.lookisShare);
+
   const [lastDirection, setLastDirection] = useState();
 
   const [left, setLeft] = useState([]);
   const [right, setRight] = useState([]);
 
-  const swiped = (direction, toDelete) => {
+  const swiped = (direction, toDelete, id) => {
     if (direction === 'left') {
+      dispatch(watcherHandleLike(id, 'dislike'));
+
       setLeft((prev) => [...prev, toDelete]);
     } else if (direction === 'right') {
+      dispatch(watcherHandleLike(id, 'like'));
+
       setRight((prev) => [...prev, toDelete]);
     }
 
     setLastDirection(direction);
   };
-  console.log(left);
-  console.log(right);
 
   const outOfFrame = (name) => {
     console.log(name + ' left the screen!');
@@ -66,19 +74,19 @@ function Tinder() {
           rel='stylesheet'
         />
         <div className='cardContainer'>
-          {characters.map((character) => (
+          {looksShre.map((character) => (
             <TinderCard
               className='swipe'
-              key={character.name}
+              key={character.id}
               onSwipe={(dir) => {
-                swiped(dir, character);
+                swiped(dir, character, character.id);
               }}
               onCardLeftScreen={() => {
                 outOfFrame(character.name);
               }}
             >
               <div
-                style={{ backgroundImage: 'url(' + character.url + ')' }}
+                style={{ backgroundImage: 'url(' + character.ImgUrl + ')' }}
                 className='card'
               >
                 <h3 className='like'></h3>
