@@ -1,3 +1,26 @@
 .webcam {
   width: 200px;
 }
+
+.camera {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cameraNav {
+  width: 90px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 30px;
+}
+
+.primary {
+  color: #0275d8;
+}
+.red {
+  color: red;
+}

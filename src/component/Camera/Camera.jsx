@@ -8,7 +8,6 @@ import { dressForNewLook } from "../../redux/actioncreators/actionsSaga";
 import "./camera.css";
 
 const Camera = ({ setOnlinePhoto, setIsCamera }) => {
-
   const dispatch = useDispatch();
   const webcamRef = React.useRef(null);
   const [imgSrc, setImgSrc] = React.useState(null);
@@ -17,11 +16,10 @@ const Camera = ({ setOnlinePhoto, setIsCamera }) => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
     setOnlinePhoto(imageSrc);
-
   }, [webcamRef, setImgSrc]);
 
   return (
-    <>
+    <div className="camera">
       {imgSrc ? (
         imgSrc && <img src={imgSrc} />
       ) : (
@@ -32,31 +30,20 @@ const Camera = ({ setOnlinePhoto, setIsCamera }) => {
           screenshotFormat="image/jpeg"
         />
       )}
-      <IconButton
-        color="primary"
-        aria-label="upload picture"
-        component="span"
-        onClick={capture}
-      >
-        <PhotoCamera />
-      </IconButton>
 
-      <i
-        className="fa fa-times-circle-o"
-        style={{ fontSize: 25 }}
-        onClick={() => setIsCamera(false)}
-      ></i>
+      <div className="cameraNav">
+        <i
+          className="fa fa-times-circle-o red"
+          onClick={() => {
+            setIsCamera(false);
+            setOnlinePhoto("");
+          }}
+        ></i>
 
-      <i
-        className="fa fa-camera"
-        style={{ fontSize: 25 }}
-        onClick={capture}
-      ></i>
-      {/* <button onClick={() => setIsCamera(false)}>X</button> */}
-
-    </>
+        <i className="fa fa-camera primary" onClick={capture}></i>
+      </div>
+    </div>
   );
 };
 
 export default Camera;
-
