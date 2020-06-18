@@ -1,37 +1,52 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import ReactDOM from "react-dom";
 import Coverflow from "react-coverflow";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { Image } from "react-bootstrap";
 import { StyleRoot } from "radium";
 
 function CariuselSuper() {
-  const [state, setState] = useState({
-    active: 0,
+  const looksArray = useSelector((state) => state.lookisShare);
+  const [activeElem, setActiveElem] = useState(3);
+
+  while (looksArray[1] === undefined) {
+    return "loading";
+  }
+  const carousel = looksArray.map((el) => {
+    return (
+      <img
+        src={el.ImgUrl}
+        alt={`👍${el.like ? el.like : "0"}
+        👎${el.dislike ? el.dislike : "0"}`}
+      />
+    );
   });
 
-  const looksArray = useSelector((state) => state.lookisShare);
-
-  function _handleClick() {
-    var num = Math.floor(Math.random() * 10 + 1);
-    setState({
-      active: num,
-    });
-  }
-
+  setTimeout(() => {
+    if (activeElem >= looksArray.length) {
+      setActiveElem(0);
+    } else {
+      setActiveElem((activeElem) => ++activeElem);
+    }
+    console.log(activeElem);
+  }, 2000);
   return (
     // <StyleRoot>
     <Coverflow
-      width={100}
-      height={300}
+      clickable={false}
+      enableScroll={false}
+      active={activeElem}
+      currentFigureScale={1.7}
+      height={350}
+      width={300}
       // navigation
-      // infiniteScroll
+      infiniteScroll={true}
       // enableHeading
-      displayQuantityOfSide={1.8}
-      navigation={false}
-      enableHeading={false}
+      displayQuantityOfSide={2}
+      enableHeading
     >
-      {}
+      {carousel}
     </Coverflow>
     // </StyleRoot>
   );
