@@ -43,72 +43,52 @@ function OldLooks2() {
   return allLooks.map((element) => {
     console.log(element.ImgUrl);
     return (
-      <div
-        className='card mb-3'
-        style={{ maxWidth: '150%', maxHeight: 200 }}
-        id='loks'
-      >
-        <div className='row no-gutters loks'>
+      <div className="card mb-3" style={{ maxWidth: '150%', maxHeight: 200 }} id="loks">
+        <div className="row no-gutters loks">
           {element.ImgUrl ? (
-            <div className='col-md-4'>
-              <img src={element.ImgUrl} className='card-img' alt='photo' />
+            <div className="col-md-4">
+              <img src={element.ImgUrl} className="card-img" alt="photo" />
             </div>
           ) : (
-            <div className='col-md-4'>
-              <div id='containerq' className='flexChild rowParent'>
-                <div id='rowChild93188' className='flexChild columnParent'>
-                  <div id='columnChild38068' className='flexChild rowParent'>
-                    <div id='rowChild47552' className='flexChild'>
+            <div className="col-md-4">
+              <div id="containerq" className="flexChild rowParent">
+                <div id="rowChild93188" className="flexChild columnParent">
+                  <div id="columnChild38068" className="flexChild rowParent">
+                    <div id="rowChild47552" className="flexChild">
                       {element.head ? (
-                        <img
-                          src={element.head.imgUrl}
-                          className='card-img'
-                          alt='photo'
-                        />
+                        <img src={element.head.imgUrl} className="card-img" alt="photo" />
                       ) : (
                         <img
-                          src='https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg'
-                          className='card-img'
+                          src="https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg"
+                          className="card-img"
                         />
                       )}
                       {element.body ? (
-                        <img
-                          src={element.body.imgUrl}
-                          className='card-img'
-                          alt='photo'
-                        />
+                        <img src={element.body.imgUrl} className="card-img" alt="photo" />
                       ) : (
                         <img
-                          src='https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg'
-                          className='card-img'
+                          src="https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg"
+                          className="card-img"
                         />
                       )}
                     </div>
                   </div>
-                  <div id='columnChild9857' className='flexChild rowParent'>
-                    <div id='rowChild89645' className='flexChild'>
+                  <div id="columnChild9857" className="flexChild rowParent">
+                    <div id="rowChild89645" className="flexChild">
                       {element.legs ? (
-                        <img
-                          src={element.legs.imgUrl}
-                          className='card-img'
-                          alt='photo'
-                        />
+                        <img src={element.legs.imgUrl} className="card-img" alt="photo" />
                       ) : (
                         <img
-                          src='https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg'
-                          className='card-img'
+                          src="https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg"
+                          className="card-img"
                         />
                       )}
                       {element.feet ? (
-                        <img
-                          src={element.feet.imgUrl}
-                          className='card-img'
-                          alt='photo'
-                        />
+                        <img src={element.feet.imgUrl} className="card-img" alt="photo" />
                       ) : (
                         <img
-                          src='https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg'
-                          className='card-img'
+                          src="https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg"
+                          className="card-img"
                         />
                       )}
                     </div>
@@ -117,84 +97,80 @@ function OldLooks2() {
               </div>
             </div>
           )}
-          <div className='col-md-8'>
-            <div className='card-body'>
-              <h5 className='card-title'>{element.name}</h5>
+          <div className="col-md-8">
+            <div className="card-body">
+              <h5 className="card-title" id="card-title">
+                {element.name}
+              </h5>
 
               {element.tags.map((element2) => {
                 return (
-                  <span
-                    className='tags badge badge-pill badge-dark'
-                    style={{ minHeight: '1em' }}
-                  >
+                  <span className="tags badge badge-pill badge-dark" style={{ minHeight: '1em' }}>
                     {element2}
                   </span>
                 );
               })}
-              <div className='iconsLook'>
+              {element.ImgUrl ? (
+                <div className="shareIcons">
+                  <VKShareButton
+                    url={'https://lookatme-31fb3.web.app/'}
+                    title={`Приложение для создания луков и хранения своей одежды!`}
+                    image={element.ImgUrl}
+                    className="VKicon"
+                  >
+                    <VKIcon size={32} round />
+                  </VKShareButton>
+                  <OKShareButton
+                    url={'https://lookatme-31fb3.web.app/'}
+                    image={element.ImgUrl}
+                    className="Okicon"
+                  >
+                    <OKIcon size={32} round />
+                  </OKShareButton>
+                </div>
+              ) : (
+                <span></span>
+              )}
+              <div className="iconsLook">
                 {element.ImgUrl ? (
                   <div>
                     {element.share ? (
-                      <div className='custom-control custom-switch shareEgorZ'>
+                      <div className="custom-control custom-switch shareEgorZ">
                         <input
-                          onClick={() =>
-                            handleToggle(element.id, element.share)
-                          }
-                          type='checkbox'
-                          className='custom-control-input'
+                          onClick={() => handleToggle(element.id, element.share)}
+                          type="checkbox"
+                          className="custom-control-input"
                           id={`customSwitch${element.id}`}
                           checked
                         />
-                        <label
-                          className='custom-control-label'
-                          for={`customSwitch${element.id}`}
-                        >
+                        <label className="custom-control-label" for={`customSwitch${element.id}`}>
                           Публичный
                         </label>
                         <div></div>
                       </div>
                     ) : (
-                      <div className='custom-control custom-switch shareEgorZ'>
+                      <div className="custom-control custom-switch shareEgorZ">
                         <input
-                          onClick={() =>
-                            handleToggle(element.id, element.share)
-                          }
-                          type='checkbox'
-                          className='custom-control-input'
+                          onClick={() => handleToggle(element.id, element.share)}
+                          type="checkbox"
+                          className="custom-control-input"
                           id={`customSwitch${element.id}`}
                         />
-                        <label
-                          className='custom-control-label'
-                          for={`customSwitch${element.id}`}
-                        >
+                        <label className="custom-control-label" for={`customSwitch${element.id}`}>
                           Приватный
                         </label>
                       </div>
                     )}
-                    <VKShareButton
-                      url={'https://lookatme-31fb3.web.app/'}
-                      title={`Приложение для создания луков и хранения своей одежды!`}
-                      image={element.ImgUrl}
-                    >
-                      <VKIcon size={32} round />
-                    </VKShareButton>
-                    <span> </span>
-                    <OKShareButton
-                      url={'https://lookatme-31fb3.web.app/'}
-                      image={element.ImgUrl}
-                    >
-                      <OKIcon size={32} round />
-                    </OKShareButton>
                   </div>
                 ) : null}
                 <div>
                   <span
-                    className='p-2 bd-highlight deleteLink'
+                    className="p-2 bd-highlight deleteLink"
                     onClick={() => {
                       deleteLook('lookis', element.id);
                     }}
                   >
-                    <i className='fa fa-trash-o'></i>
+                    <i className="fa fa-trash-o"></i>
                   </span>
                 </div>
               </div>

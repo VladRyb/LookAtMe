@@ -13,8 +13,16 @@
 }
 .shareEgorZ {
   /* bottom: 133px; */
-  left: 30px;
+  left: 70%;
+  margin-top: 6%;
 }
+
+.shareIcons {
+  margin-left: 13em;
+  margin-top: -4em;
+  display: flex;
+}
+
 .card-title {
   display: flex;
   justify-content: center;
@@ -23,7 +31,7 @@
   display: flex;
   justify-content: space-between;
   bottom: 0;
-  margin-top: 30%;
+  margin-top: 40%;
 }
 .multi-photo-container {
   display: flex;
@@ -71,6 +79,7 @@
 
 .deleteLink {
   font-size: 25px;
+  margin-left: 50%;
 }
 
 .editLink:hover {
