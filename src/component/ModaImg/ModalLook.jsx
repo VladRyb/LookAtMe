@@ -93,7 +93,9 @@ export default function ModalLook(props) {
           //   firebase.auth().currentUser.displayName,
         });
     } else if (fileList.length > 0) {
-      const uploadTask = storage.ref(`images/${fileList[0].name}`).put(fileList[0].originFileObj);
+      const uploadTask = storage
+        .ref(`images/${fileList[0].name}`)
+        .put(fileList[0].originFileObj);
       uploadTask.on(
         'state_changed',
         (snapshot) => {},
@@ -217,19 +219,24 @@ export default function ModalLook(props) {
         backdrop='static'
         keyboard={false}
       > */}
-      <MDBBtn color="primary" onClick={handleShow}>
-        <MDBIcon icon="user-plus" className="mr-1" /> Сохранить лук
+      <MDBBtn color='primary' onClick={handleShow}>
+        <MDBIcon icon='user-plus' className='mr-1' /> Сохранить лук
       </MDBBtn>
       {/* <Button variant="outline-primary" onClick={handleShow}>
         Save Look
       </Button> */}
-      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop='static'
+        keyboard={false}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Сохранить лук</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div id="container" class="flexChild rowParent">
-            <div id="rowChild94955" class="flexChild">
+          <div id='container' class='flexChild rowParent'>
+            <div id='rowChild94955' class='flexChild'>
               {onlinePhoto === '' ? (
                 <StorageUploaderModal
                   fileList={fileList}
@@ -239,38 +246,40 @@ export default function ModalLook(props) {
                 />
               ) : (
                 <>
-                  <img src={onlinePhoto} alt="" />
+                  <img src={onlinePhoto} alt='' />
                 </>
               )}
               <TestOn setOnlinePhoto={setOnlinePhoto} />
             </div>
-            <div id="rowChild77673" class="flexChild">
-              <div className="selectDiv">
+            <div id='rowChild77673' class='flexChild'>
+              <div className='selectDiv'>
                 <input
                   value={name}
-                  onChange={(event) => dispatch(onChangeName(event.target.value))}
-                  type="text"
-                  className="form-control"
-                  placeholder="Name"
-                  name="name"
+                  onChange={(event) =>
+                    dispatch(onChangeName(event.target.value))
+                  }
+                  type='text'
+                  className='form-control'
+                  placeholder='Name'
+                  name='name'
                 />
               </div>
-              <div className="selectDivBottom">
+              <div className='selectDivBottom'>
                 <input
                   value={tag}
                   onChange={(event) => setTag(event.target.value)}
                   onKeyPress={addTags}
-                  type="text"
-                  className="form-control"
-                  placeholder="Tags"
-                  name="tags"
+                  type='text'
+                  className='form-control'
+                  placeholder='Tags'
+                  name='tags'
                   required
                 />{' '}
               </div>
               {tags.map((item) => {
                 return (
                   <span
-                    className="tags badge badge-pill badge-dark"
+                    className='tags badge badge-pill badge-dark'
                     onClick={() => dispatch(deleteTag(deleteOneTag(item)))}
                   >
                     {item}{' '}
@@ -288,9 +297,9 @@ export default function ModalLook(props) {
               dispatch(clearDressForNewLook());
               history.push('/mylooks');
             }}
-            className="btn btn-outline-primary"
-            variant="outline-primary"
-            type="submit"
+            className='btn btn-outline-primary'
+            variant='outline-primary'
+            type='submit'
           >
             Submit
           </Button>

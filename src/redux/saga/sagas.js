@@ -33,7 +33,6 @@ async function findU() {
     .where('creator', '==', userUid + '/' + userName)
     .get()
     .then((snapshot) => {
-      // console.log('snapshotbody',snapshot)
       return snapshot.docs.map((img) => img.data());
     });
 
@@ -80,7 +79,6 @@ async function findU() {
     .then((snapshot) => {
       return snapshot.docs.map((img) => img.data());
     });
-  console.log('lookisShare', lookisShare)
   // dispatch({
   //   type: actionType.arrImg,
   //   body: body,
@@ -89,7 +87,7 @@ async function findU() {
   //   feet: feet,
   //   lookis: lookis,
   // });
-  return { body, head, legs, feet, lookis,lookisShare };
+  return { body, head, legs, feet, lookis, lookisShare };
 }
 
 async function rewriteData(collection, id) {
@@ -167,7 +165,6 @@ function* HandleToggle({ id, status }) {
 
 function* handleLikeSaga({ id, status }) {
   try {
-    console.log('id:' + id, 'status:' + status);
     handleLikeFB(id, status);
     yield put(handleLike(id, status));
   } catch (error) {
@@ -187,7 +184,9 @@ async function handleLikeFB(id, status) {
     const gotIt = await database.collection('lookis').where('id', '==', id);
     gotIt.get().then((query) => {
       query.forEach((data) => {
-        data.ref.update({ dislike: firebase.firestore.FieldValue.increment(1) });
+        data.ref.update({
+          dislike: firebase.firestore.FieldValue.increment(1),
+        });
       });
     });
   }
