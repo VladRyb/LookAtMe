@@ -3,7 +3,7 @@ import firebase from 'firebase';
 
 const defaultState = {
   statusSession: false,
-  user: { name: null, head: [], body: [], legs: [], feet: [], lookis: []},
+  user: { name: null, head: [], body: [], legs: [], feet: [], lookis: [] },
   isLoading: null,
   userTest: null,
   dressForNewLook: {
@@ -166,6 +166,7 @@ const reducer = (state = defaultState, action) => {
           feet: action.feet,
           lookis: action.lookis,
         },
+        lookisShare:action.lookisShare
       };
     case actionType.deleteTagOnEdit:
       const lookis = state.user.lookis;
@@ -258,6 +259,14 @@ const reducer = (state = defaultState, action) => {
         [action.filterName]: {
           ...state[action.filterName],
           [action.property]: action.value,
+        },
+      };
+    case actionType.lookisShare:
+      return {
+        ...state,
+        lookisShare: {
+          ...state.lookisShare,
+          lookisShare: action.lookisShare,
         },
       };
     default:
