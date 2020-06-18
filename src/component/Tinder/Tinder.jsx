@@ -58,9 +58,7 @@ function Tinder() {
     setLastDirection(direction);
   };
 
-  const outOfFrame = (name) => {
-    console.log(name + ' left the screen!');
-  };
+  const outOfFrame = (name) => {};
 
   return (
     <div id='tinderCart'>

@@ -43,6 +43,7 @@
     "react-rotating-text": "^1.4.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-share": "^4.2.0",
     "react-spring": "^8.0.27",
     "react-tinder-card": "^1.1.4",
     "react-webcam": "^5.2.0",

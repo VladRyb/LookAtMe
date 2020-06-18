@@ -38,11 +38,8 @@ app.use(
   })
 );
 
-
-
 app.options('/uploadImage', async (req, res) => {
-  console.log('>>>>>>>>>>>>>>>',req);
-  res.json({info:{file:{status:'done'}}});
+  res.json({ info: { file: { status: 'done' } } });
 });
 
 app.post('/', async (req, res) => {
@@ -52,7 +49,6 @@ app.post('/', async (req, res) => {
 
 app.use('/', authRouter);
 app.use('/user', userRouter);
-
 
 app.listen(4000, () => {
   console.log('Starting Port 4000');

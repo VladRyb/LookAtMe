@@ -1,24 +1,24 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import ReactDOM from "react-dom";
-import Coverflow from "react-coverflow";
-import { useState } from "react";
-import { Image } from "react-bootstrap";
-import { StyleRoot } from "radium";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import ReactDOM from 'react-dom';
+import Coverflow from 'react-coverflow';
+import { useState } from 'react';
+import { Image } from 'react-bootstrap';
+import { StyleRoot } from 'radium';
 
 function CariuselSuper() {
   const looksArray = useSelector((state) => state.lookisShare);
   const [activeElem, setActiveElem] = useState(3);
 
   while (looksArray[1] === undefined) {
-    return "loading";
+    return 'loading';
   }
   const carousel = looksArray.map((el) => {
     return (
       <img
         src={el.ImgUrl}
-        alt={`👍${el.like ? el.like : "0"}
-        👎${el.dislike ? el.dislike : "0"}`}
+        alt={`👍${el.like ? el.like : '0'}
+        👎${el.dislike ? el.dislike : '0'}`}
       />
     );
   });
@@ -29,25 +29,27 @@ function CariuselSuper() {
     } else {
       setActiveElem((activeElem) => ++activeElem);
     }
-    console.log(activeElem);
+    // console.log(activeElem);
   }, 2000);
   return (
     // <StyleRoot>
-    <Coverflow
-      clickable={false}
-      enableScroll={false}
-      active={activeElem}
-      currentFigureScale={1.7}
-      height={350}
-      width={300}
-      // navigation
-      infiniteScroll={true}
-      // enableHeading
-      displayQuantityOfSide={2}
-      enableHeading
-    >
-      {carousel}
-    </Coverflow>
+    <div id='cour'>
+      <Coverflow
+        clickable={false}
+        enableScroll={false}
+        active={activeElem}
+        currentFigureScale={1.7}
+        height={350}
+        width={300}
+        // navigation
+        infiniteScroll={true}
+        // enableHeading
+        displayQuantityOfSide={2}
+        enableHeading
+      >
+        {carousel}
+      </Coverflow>
+    </div>
     // </StyleRoot>
   );
 }

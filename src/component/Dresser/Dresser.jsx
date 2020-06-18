@@ -63,8 +63,9 @@ export default function Dresser() {
   // console.log(dressFilter(head, dressCategoryFilter.head));
 
   return (
-    <div id="globalDiv">
-      <div className="dresser">
+
+    <div id='globalDivman'>
+      <div className='dresser'>
         <div>
           <DressCarousel
             dressArray={dressFilter(
@@ -74,8 +75,9 @@ export default function Dresser() {
             )}
             categories={headCategories}
             // title={"Верхняя часть тела"}
-            title={"Головные уборы"}
-            property={"head"}
+
+            title={'Головушка'}
+            property={'head'}
           />
         </div>
         <div>
@@ -86,8 +88,9 @@ export default function Dresser() {
               dressSeasonFilter.body
             )}
             categories={bodyCategories}
-            title={"Верхняя часть тела"}
-            property={"body"}
+
+            title={'Пузико'}
+            property={'body'}
           />
         </div>
         <div>
@@ -98,8 +101,9 @@ export default function Dresser() {
               dressSeasonFilter.legs
             )}
             categories={legsCategories}
-            title={"Нижняя часть тела"}
-            property={"legs"}
+
+            title={'Ножки'}
+            property={'legs'}
           />
         </div>
         <div>
@@ -110,8 +114,9 @@ export default function Dresser() {
               dressSeasonFilter.feet
             )}
             categories={feetCategories}
-            title={"Обувь"}
-            property={"feet"}
+
+            title={'Лапки'}
+            property={'feet'}
           />
         </div>
         <div>

@@ -8,6 +8,7 @@ import { dressForNewLook } from "../../redux/actioncreators/actionsSaga";
 import "./camera.css";
 
 const Camera = ({ setOnlinePhoto, setIsCamera }) => {
+
   const dispatch = useDispatch();
   const webcamRef = React.useRef(null);
   const [imgSrc, setImgSrc] = React.useState(null);
@@ -16,6 +17,7 @@ const Camera = ({ setOnlinePhoto, setIsCamera }) => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
     setOnlinePhoto(imageSrc);
+
   }, [webcamRef, setImgSrc]);
 
   return (
@@ -51,8 +53,10 @@ const Camera = ({ setOnlinePhoto, setIsCamera }) => {
         onClick={capture}
       ></i>
       {/* <button onClick={() => setIsCamera(false)}>X</button> */}
+
     </>
   );
 };
 
 export default Camera;
+

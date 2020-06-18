@@ -9,7 +9,9 @@ import StorageUploader from "./FirebaseAuth/StorageUploader";
 import CariuselSuper from "./CaruselSuper/CariuselSuper";
 export default function Home(props) {
   return (
-    <div id="globalDiv">
+    <div id="globalDiv"
+    // style={{backgroundImage="man.png"}}
+    >
       {/* <Registration /> */}
       {/* <StorageUploader /> */}
       <LookAtMy />
