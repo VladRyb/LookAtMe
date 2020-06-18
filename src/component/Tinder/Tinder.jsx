@@ -31,7 +31,7 @@ const db = [
   },
 ];
 
-function Online() {
+function Tinder() {
   const characters = db;
   const [lastDirection, setLastDirection] = useState();
 
@@ -55,7 +55,7 @@ function Online() {
   };
 
   return (
-    <div id='globalDiv'>
+    <div id='tinderCart'>
       <div>
         <link
           href='https://fonts.googleapis.com/css?family=Damion&display=swap'
@@ -65,7 +65,6 @@ function Online() {
           href='https://fonts.googleapis.com/css?family=Alatsi&display=swap'
           rel='stylesheet'
         />
-        <h1>React Tinder Card</h1>
         <div className='cardContainer'>
           {characters.map((character) => (
             <TinderCard
@@ -82,19 +81,23 @@ function Online() {
                 style={{ backgroundImage: 'url(' + character.url + ')' }}
                 className='card'
               >
-                <h3>{character.name}</h3>
+                <h3 className='like'></h3>
               </div>
             </TinderCard>
           ))}
         </div>
-        {lastDirection ? (
-          <h2 className='infoText'>You swiped {lastDirection}</h2>
-        ) : (
-          <h2 className='infoText' />
-        )}
+        {/* {lastDirection ? ( */}
+        <div className='infoText' id='like'>
+          {' '}
+          <span>&#128078;</span>
+          <span>&#128077;</span>
+        </div>
+        {/* ) : ( */}
+        {/* <h2 className='infoText' /> */}
+        {/* )} */}
       </div>
     </div>
   );
 }
 
-export default Online;
+export default Tinder;

@@ -20,7 +20,7 @@ import CariuselSuper from './component/CaruselSuper/CariuselSuper';
 import CropForm from './component/CropForm';
 
 import './App.css';
-import Online from './component/Tinder/TestOnline';
+// import Online from './component/Tinder/TestOnline';
 import { loadingColWather } from './redux/actioncreators/actionsSaga';
 
 function App(props) {
@@ -114,7 +114,7 @@ function App(props) {
         </Route>
         <Route exact path='/teston'>
           {/* <CariuselSuper /> */}
-          <Online />
+          {/* <Online /> */}
         </Route>
         {/* <FooterPage /> */}
       </BrowserRouter>

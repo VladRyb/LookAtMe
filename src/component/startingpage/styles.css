@@ -4,7 +4,9 @@
   font-size: 30px;
 }
 .video {
+  margin: 5%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 .aboutContainer {
@@ -16,10 +18,10 @@
   justify-content: center;
 }
 
-.card{
+.card {
   width: 400px;
 }
-.slider{
+.slider {
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;

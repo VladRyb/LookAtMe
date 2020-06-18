@@ -27,6 +27,9 @@ export default function NavBar(props) {
   const dispatch = useDispatch();
   const userUid = localStorage.getItem("uid");
 
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+
   const [state, setState] = useState(false);
   const [uiConfig, setUiConfig] = useState({
     signInFlow: "popup",
@@ -38,6 +41,7 @@ export default function NavBar(props) {
     ],
     callbacks: {
       signInSuccess: () => {
+        handleClose();
         dispatch(loadingColWather());
       },
     },
@@ -151,6 +155,7 @@ export default function NavBar(props) {
           >
             <Nav navbar>
               {/* <NavItem>
+
                 <NavLink
                   data-placement="bottom"
                   href="https://twitter.com/"
