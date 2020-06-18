@@ -278,7 +278,7 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.handleLike:
-      console.log("Reducer");
+
       const queryLiked = state.user.lookis.find(
         (element) => element.id === action.id
       );

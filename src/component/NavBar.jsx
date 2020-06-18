@@ -77,8 +77,6 @@ export default function NavBar(props) {
     } else {
       dispatch({ type: actionType.login, user });
 
-      history.push('/');
-
       localStorage.setItem('session', true);
       localStorage.setItem('user', user.displayName);
       localStorage.setItem('uid', user.uid);

@@ -146,6 +146,19 @@ function OldLooks2() {
                         </label>
                       </div>
                     )}
+                    <div
+                      class="fb-share-button"
+                      data-href="http://localhost:3000/"
+                      data-layout="button"
+                      data-size="large"
+                    >
+                      <a
+                        target="_blank"
+                        href={`http://www.facebook.com/sharer.php?s=100&p[title]=LookAtMe&p[summary]=Только%20что%20сделал%20невероятный%20новый%20лук%20в%20новом%20прекрасном%20приложении%20LookAtMe&p[url]=http://localhost:3000&p[images][0]=${element.imgUrl}`}
+                      >
+                        Подделиться
+                      </a>
+                    </div>
                   </div>
                 ) : null}
                 <span
