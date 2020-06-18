@@ -7,6 +7,7 @@ import {
   watcherHandleToggle,
 } from '../../../redux/actioncreators/actionsSaga';
 import LikeDislikeTest from '../../TestLikeDislikeComponent/Test';
+import { OKShareButton, VKShareButton, OKIcon, VKIcon } from 'react-share';
 
 function OldLooks2() {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ function OldLooks2() {
     }
   }
   return allLooks.map((element) => {
+    console.log(element.ImgUrl);
     return (
       <div
         className='card mb-3'
@@ -181,6 +183,30 @@ function OldLooks2() {
                     <i className='fa fa-trash-o'></i>
                   </span>
                 </div>
+                    )}
+                    <VKShareButton
+                      url={'https://lookatme-31fb3.web.app/'}
+                      title={`Приложение для создания луков и хранения своей одежды!`}
+                      image={element.ImgUrl}
+                    >
+                      <VKIcon size={32} round />
+                    </VKShareButton>
+                    <span> </span>
+                    <OKShareButton url={'https://lookatme-31fb3.web.app/'} image={element.ImgUrl}>
+                      <OKIcon size={32} round />
+                    </OKShareButton>
+                  </div>
+                ) : null}
+                <span
+                  className='p-2 bd-highlight deleteLink'
+                  onClick={() => {
+                    deleteLook("lookis", element.id);
+                  }}
+                >
+                  <i className="fa fa-trash-o"></i>
+
+                </span>
+              </div>
               </div>
             </div>
           </div>

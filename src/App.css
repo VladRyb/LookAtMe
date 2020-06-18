@@ -122,3 +122,8 @@ span.carouselWithHeader {
 .brandLogo {
   margin-top: -50px;
 }
+#logoDresserNotLogined{
+  font-family: 'Jost', sans-serif;
+  color: #202020;
+  letter-spacing: -2px;
+}
