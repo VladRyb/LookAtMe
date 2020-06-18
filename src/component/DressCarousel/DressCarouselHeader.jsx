@@ -11,6 +11,7 @@ export default function DressCarouselHeader({ categories, title, property }) {
 
   return (
     <div className="carouselHeader">
+
       <b>
         <Form.Label class="textCatSeason">{title}</Form.Label>
       </b>

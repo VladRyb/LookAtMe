@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
+import Coverflow from "react-coverflow";
+import { useState } from "react";
+
 import { useSelector } from "react-redux";
-import ItemsCarousel from "react-items-carousel";
+
 import ModalImg from "../ModaImg/ModalImg";
 import SelectedDressImage from "./SelectedDressImage";
 import DressImage from "./DressImage";
 import DressCarouselHeader from "./DressCarouselHeader";
 import "./DresserCarousel.css";
 
-export default ({ dressArray, title, property, categories }) => {
-  const [activeItemIndex, setActiveItemIndex] = useState(0);
-  const chevronWidth = 40;
+function CariuselSuper({ dressArray, title, property, categories }) {
+  const [state, setState] = useState({
+    active: 0,
+  });
+
   const [selectedImage, setSelectedImage] = useState(null);
   const newLookFromState = useSelector((state) => state.dressForNewLook);
 
@@ -22,6 +27,13 @@ export default ({ dressArray, title, property, categories }) => {
       />
     );
   });
+
+  function _handleClick() {
+    var num = Math.floor(Math.random() * 10 + 1);
+    setState({
+      active: num,
+    });
+  }
 
   const element = newLookFromState[property] ? (
     <SelectedDressImage
@@ -36,29 +48,26 @@ export default ({ dressArray, title, property, categories }) => {
       setSelectedImage={setSelectedImage}
     />
   ) : (
-    <div className="carouselWithHeader">
+    <div className="carouselWithYeader">
       <DressCarouselHeader
         title={title}
         categories={categories}
         property={property}
       />
-      <div style={{ padding: `0 ${chevronWidth}px` }} className="dressCarousel">
-        <ItemsCarousel
-          requestToChangeActive={setActiveItemIndex}
-          activeItemIndex={activeItemIndex}
-          numberOfCards={3}
-          gutter={10}
-          leftChevron={<i class="fa fa-arrow-circle-o-left chevrons"></i>}
-          rightChevron={<i class="fa fa-arrow-circle-o-right chevrons"></i>}
-          outsideChevron
-          chevronWidth={chevronWidth}
-        >
-          <ModalImg categories={categories} property={property} />
-          {dress}
-        </ItemsCarousel>
-      </div>
+
+      <Coverflow
+        width={960}
+        height={480}
+        displayQuantityOfSide={2}
+        navigation={false}
+        enableHeading={false}
+      >
+        <ModalImg categories={categories} property={property} />
+        {dress}
+      </Coverflow>
     </div>
   );
 
   return <>{element}</>;
-};
+}
+export default CariuselSuper;
