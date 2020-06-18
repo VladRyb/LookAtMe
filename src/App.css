@@ -17,11 +17,14 @@
 }
 #fixed-top {
   width: 20%;
-  margin-right: 0;
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .navbar-brand {
   position: fixed;
+  margin-top: 50px;
+  margin-left: 0.4%;
 }
 
 /* .clobal-nav {

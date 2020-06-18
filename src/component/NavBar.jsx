@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { NavDropdown, Image } from 'react-bootstrap';
 import ModalLogin from './ModalLogin';
 import ModalSingUp from './ModalSingUp';
@@ -19,7 +19,10 @@ import {
 } from 'reactstrap';
 
 import '../App.css';
+import { loadingColWather } from '../redux/actioncreators/actionsSaga';
 export default function NavBar(props) {
+  const history = useHistory();
+
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const userUid = localStorage.getItem('uid');
@@ -34,7 +37,9 @@ export default function NavBar(props) {
       firebase.auth.EmailAuthProvider.PROVIDER_ID,
     ],
     callbacks: {
-      signInSuccess: () => false,
+      signInSuccess: () => {
+        dispatch(loadingColWather());
+      },
     },
   });
 
@@ -67,6 +72,8 @@ export default function NavBar(props) {
       localStorage.setItem('photo', user.photoURL);
     } else {
       dispatch({ type: actionType.login, user });
+
+      history.push('/');
 
       localStorage.setItem('session', true);
       localStorage.setItem('user', user.displayName);
@@ -239,8 +246,8 @@ export default function NavBar(props) {
                     }
                     id='basic-nav-dropdown'
                   >
-                    <NavDropdown.Item href='/mylooks'>
-                      Мои луки
+                    <NavDropdown.Item>
+                      <Link to='/mylooks'>Мои луки</Link>
                     </NavDropdown.Item>
 
                     <NavDropdown.Divider />

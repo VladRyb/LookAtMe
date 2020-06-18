@@ -15,7 +15,8 @@ export default function Dresser() {
   if (userName === '') {
     history.push('/');
   }
-  const dressFilterProperty = useSelector((state) => state.dressFilterProperty);
+  const dressCategoryFilter = useSelector((state) => state.dressCategoryFilter);
+  const dressSeasonFilter = useSelector((state) => state.dressSeasonFilter);
 
   const user = useSelector((state) => state.user);
   while (user.uid === undefined) {
@@ -26,9 +27,16 @@ export default function Dresser() {
   }
   const { head = [], body = [], legs = [], feet = [] } = user;
   const editedLook = user.lookis.find((element) => element.id == id);
+  console.log(editedLook.head);
 
-  const dressFilter = (array, filterProperty) => {
-    return filterProperty ? array.filter((el) => el.type === filterProperty) : array;
+  const dressFilter = (array, categoryFilter, seasonFilter) => {
+    return categoryFilter || seasonFilter
+      ? array.filter(
+          (el) =>
+            (categoryFilter ? el.type === categoryFilter : true) &&
+            (seasonFilter ? el.season === seasonFilter : true)
+        )
+      : array;
   };
 
   const headCategories = ['Шапки', 'Кепки', 'Шляпы', 'Береты', 'Пилотки', 'Кандибобрики'];
@@ -49,8 +57,8 @@ export default function Dresser() {
       <div className="dresser">
         <div>
           <DressCarousel
-            dressArray={dressFilter(head, dressFilterProperty.head)}
-            editedLook={editedLook.head}
+            dressArray={dressFilter(head, dressCategoryFilter.head, dressSeasonFilter.head)}
+            editedLook={editedLook}
             categories={headCategories}
             title={'Головные уборы'}
             property={'head'}
@@ -58,8 +66,8 @@ export default function Dresser() {
         </div>
         <div>
           <DressCarousel
-            dressArray={dressFilter(body, dressFilter.body)}
-            editedLook={editedLook.body}
+            dressArray={dressFilter(body, dressCategoryFilter.body)}
+            editedLook={editedLook}
             categories={bodyCategories}
             title={'Верхняя часть тела'}
             property={'body'}
@@ -67,8 +75,8 @@ export default function Dresser() {
         </div>
         <div>
           <DressCarousel
-            dressArray={dressFilter(legs, dressFilter.legs)}
-            editedLook={editedLook.legs}
+            dressArray={dressFilter(legs, dressCategoryFilter.legs)}
+            editedLook={editedLook}
             categories={legsCategories}
             title={'Нижняя часть тела'}
             property={'legs'}
@@ -76,8 +84,8 @@ export default function Dresser() {
         </div>
         <div>
           <DressCarousel
-            dressArray={dressFilter(feet, dressFilter.feet)}
-            editedLook={editedLook.feet}
+            dressArray={dressFilter(feet, dressCategoryFilter.feet)}
+            editedLook={editedLook}
             categories={feetCategories}
             title={'Обувь'}
             property={'feet'}

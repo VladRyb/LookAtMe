@@ -8,21 +8,19 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import {
   clearDressForNewLook,
-  addTag,
+  addTagEdit,
   deleteTagOnEdit,
-  onChangeName,
+  onChangeNameEdit,
 } from '../../redux/actioncreators/actionsSaga';
 import TestOn from './TestPage';
 import { useHistory } from 'react-router-dom';
 
-export default function ModalLogin(props) {
+export default function ModalLookEdit(props) {
   const history = useHistory();
 
   const store = useSelector((state) => state);
 
-  const { head, body, legs, feet } = store.dressForNewLook;
-  const tags = props.editedLook.tags;
-  const name = props.editedLook.name;
+  const { tags, name, head, body, legs, feet } = props.editedLook;
   const [show, setShow] = useState(false);
   const [tag, setTag] = useState('');
   const userUid = localStorage.getItem('uid');
@@ -33,7 +31,7 @@ export default function ModalLogin(props) {
     if (event.key === 'Enter') {
       const newTag = tags.findIndex((item) => item == tag);
       if (newTag === -1) {
-        dispatch(addTag(tag));
+        dispatch(addTagEdit(tag, props.editedLook.id));
         setTag('');
       }
     }
@@ -56,9 +54,10 @@ export default function ModalLogin(props) {
   const handleUpload = () => {
     if (onlinePhoto !== '') {
       dispatch({
-        type: actionType.lookis,
+        type: actionType.lookisUpd,
         lookis: {
-          id: Date.now() + Math.random() * 10,
+          id: props.editedLook.id,
+          creator: userUid + '/' + userName,
           ImgUrl: onlinePhoto,
           name,
           tags,
@@ -66,27 +65,26 @@ export default function ModalLogin(props) {
           body,
           legs,
           feet,
+          share: props.editedLook.shared,
         },
       });
-      firebase
+      const gotIt = firebase
         .firestore()
         .collection('lookis')
-        .add({
-          id: Date.now() + Math.random() * 10,
-          ImgUrl: onlinePhoto,
-          name,
-          tags,
-          head,
-          body,
-          legs,
-          feet,
-          creator: userUid + '/' + userName,
-
-          // creator:
-          //   firebase.auth().currentUser.uid +
-          //   '/' +
-          //   firebase.auth().currentUser.displayName,
+        .where('id', '==', props.editedLook.id);
+      gotIt.get().then((query) => {
+        query.forEach((data) => {
+          data.ref.update({
+            ImgUrl: onlinePhoto,
+            name,
+            tags,
+            head,
+            body,
+            legs,
+            feet,
+          });
         });
+      });
     } else if (fileList.length > 0) {
       const uploadTask = storage.ref(`images/${fileList[0].name}`).put(fileList[0].originFileObj);
       uploadTask.on(
@@ -102,9 +100,9 @@ export default function ModalLogin(props) {
             .getDownloadURL()
             .then((url) => {
               dispatch({
-                type: actionType.lookis,
+                type: actionType.lookisUpd,
                 lookis: {
-                  id: Date.now() + Math.random() * 10,
+                  creator: userUid + '/' + userName,
                   ImgUrl: url,
                   name,
                   tags,
@@ -112,33 +110,35 @@ export default function ModalLogin(props) {
                   body,
                   legs,
                   feet,
+                  id: props.editedLook.id,
+                  share: props.editedLook.shared,
                 },
               });
-              firebase
+              const gotIt = firebase
                 .firestore()
                 .collection('lookis')
-                .add({
-                  id: Date.now() + Math.random() * 10,
-                  ImgUrl: url,
-                  name,
-                  tags,
-                  head,
-                  body,
-                  legs,
-                  feet,
-                  creator: userUid + '/' + userName,
-                  // firebase.auth().currentUser.uid +
-                  // '/' +
-                  // firebase.auth().currentUser.displayName,
+                .where('id', '==', props.editedLook.id);
+              gotIt.get().then((query) => {
+                query.forEach((data) => {
+                  data.ref.update({
+                    ImgUrl: url,
+                    name,
+                    tags,
+                    head,
+                    body,
+                    legs,
+                    feet,
+                  });
                 });
+              });
             });
         }
       );
     } else {
       dispatch({
-        type: actionType.lookis,
+        type: actionType.lookisUpd,
         lookis: {
-          id: Date.now() + Math.random() * 10,
+          creator: userUid + '/' + userName,
           ImgUrl: '',
           name,
           tags,
@@ -146,32 +146,32 @@ export default function ModalLogin(props) {
           body,
           legs,
           feet,
+          id: props.editedLook.id,
+          share: props.editedLook.shared,
         },
       });
-      firebase
+      const gotIt = firebase
         .firestore()
         .collection('lookis')
-        .add({
-          id: Date.now() + Math.random() * 10,
-          ImgUrl: '',
-          name,
-          tags,
-          head,
-          body,
-          legs,
-          feet,
-          creator: userUid + '/' + userName,
-
-          // creator:
-          //   firebase.auth().currentUser.uid +
-          //   '/' +
-          //   firebase.auth().currentUser.displayName,
+        .where('id', '==', props.editedLook.id);
+      gotIt.get().then((query) => {
+        query.forEach((data) => {
+          data.ref.update({
+            ImgUrl: '',
+            name,
+            tags,
+            head,
+            body,
+            legs,
+            feet,
+          });
         });
+      });
     }
   };
 
   const onPreview = async (file) => {
-    let src = props.editedLook.ImgUrl;
+    let src = file.url;
     console.log(src);
     if (!src) {
       src = await new Promise((resolve) => {
@@ -219,7 +219,9 @@ export default function ModalLogin(props) {
               <div className="selectDiv">
                 <input
                   value={name}
-                  onChange={(event) => dispatch(onChangeName(event.target.value))}
+                  onChange={(event) =>
+                    dispatch(onChangeNameEdit(event.target.value, props.editedLook.id))
+                  }
                   type="text"
                   className="form-control"
                   placeholder="Name"

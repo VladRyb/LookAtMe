@@ -20,7 +20,8 @@ import CariuselSuper from './component/CaruselSuper/CariuselSuper';
 import CropForm from './component/CropForm';
 
 import './App.css';
-import Online from './component/ModaImg/TestOnline';
+import Online from './component/Tinder/TestOnline';
+import { loadingColWather } from './redux/actioncreators/actionsSaga';
 
 function App(props) {
   const store = useSelector((state) => state);
@@ -30,69 +31,63 @@ function App(props) {
   const userName = localStorage.getItem('user');
 
   useEffect(() => {
-    const findU = async () => {
-      const body = await firebase
-        .firestore()
-        .collection('body')
-        .where('creator', '==', userUid + '/' + userName)
-        .get()
-        .then((snapshot) => {
-          // console.log('snapshotbody',snapshot)
-          return snapshot.docs.map((img) => img.data());
-        });
+    dispatch(loadingColWather());
+    // const findU = async () => {
+    //   const body = await firebase
+    //     .firestore()
+    //     .collection('body')
+    //     .where('creator', '==', userUid + '/' + userName)
+    //     .get()
+    //     .then((snapshot) => {
+    //       // console.log('snapshotbody',snapshot)
+    //       return snapshot.docs.map((img) => img.data());
+    //     });
 
-      console.log('body>>>>>>>>>>>>>>', body);
+    //   const head = await firebase
+    //     .firestore()
+    //     .collection('head')
+    //     .where('creator', '==', userUid + '/' + userName)
+    //     .get()
+    //     .then((snapshot) => {
+    //       return snapshot.docs.map((img) => img.data());
+    //     });
 
-      const head = await firebase
-        .firestore()
-        .collection('head')
-        .where('creator', '==', userUid + '/' + userName)
-        .get()
-        .then((snapshot) => {
-          return snapshot.docs.map((img) => img.data());
-        });
-      // console.log('head>>>>>>>>>>>>>>', head)
+    //   const legs = await firebase
+    //     .firestore()
+    //     .collection('legs')
+    //     .where('creator', '==', userUid + '/' + userName)
+    //     .get()
+    //     .then((snapshot) => {
+    //       return snapshot.docs.map((img) => img.data());
+    //     });
 
-      const legs = await firebase
-        .firestore()
-        .collection('legs')
-        .where('creator', '==', userUid + '/' + userName)
-        .get()
-        .then((snapshot) => {
-          return snapshot.docs.map((img) => img.data());
-        });
-      // console.log('legs>>>>>>>>>>>>>>', legs)
+    //   const feet = await firebase
+    //     .firestore()
+    //     .collection('feet')
+    //     .where('creator', '==', userUid + '/' + userName)
+    //     .get()
+    //     .then((snapshot) => {
+    //       return snapshot.docs.map((img) => img.data());
+    //     });
 
-      const feet = await firebase
-        .firestore()
-        .collection('feet')
-        .where('creator', '==', userUid + '/' + userName)
-        .get()
-        .then((snapshot) => {
-          return snapshot.docs.map((img) => img.data());
-        });
-      console.log('feet>>>>>>>>>>>>>>', feet);
-
-      const lookis = await firebase
-        .firestore()
-        .collection('lookis')
-        .where('creator', '==', userUid + '/' + userName)
-        .get()
-        .then((snapshot) => {
-          return snapshot.docs.map((img) => img.data());
-        });
-      console.log('lookis>>>>>>>>>>>>>>', lookis);
-      dispatch({
-        type: actionType.arrImg,
-        body: body,
-        head: head,
-        legs: legs,
-        feet: feet,
-        lookis: lookis,
-      });
-    };
-    findU();
-    console.log('tttttttttttt');
+    //   const lookis = await firebase
+    //     .firestore()
+    //     .collection('lookis')
+    //     .where('creator', '==', userUid + '/' + userName)
+    //     .get()
+    //     .then((snapshot) => {
+    //       return snapshot.docs.map((img) => img.data());
+    //     });
+    //   dispatch({
+    //     type: actionType.arrImg,
+    //     body: body,
+    //     head: head,
+    //     legs: legs,
+    //     feet: feet,
+    //     lookis: lookis,
+    //   });
+    // };
+    // findU();
   }, [userUid]);
 
   return (
@@ -118,7 +113,8 @@ function App(props) {
           {/* <WebcamCapture /> */}
         </Route>
         <Route exact path='/teston'>
-          <CariuselSuper />
+          {/* <CariuselSuper /> */}
+          <Online />
         </Route>
         {/* <FooterPage /> */}
       </BrowserRouter>
