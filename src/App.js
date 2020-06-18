@@ -22,7 +22,7 @@ import CropForm from "./component/CropForm";
 import "./App.css";
 
 // import Online from './component/Tinder/TestOnline';
-import { loadingColWather } from './redux/actioncreators/actionsSaga';
+import { loadingColWather } from "./redux/actioncreators/actionsSaga";
 
 function App(props) {
   const store = useSelector((state) => state);
@@ -32,7 +32,6 @@ function App(props) {
   const userName = localStorage.getItem("user");
 
   useEffect(() => {
-
     dispatch(loadingColWather());
     // const findU = async () => {
     //   const body = await firebase
@@ -104,8 +103,7 @@ function App(props) {
         </Route>
 
         {/* <Route exact path='/car'> */}
-        <Route exact path='/dresser'>
-
+        <Route exact path="/dresser">
           <Dresser />
           {/* <MyCarousel /> */}
         </Route>
@@ -113,11 +111,11 @@ function App(props) {
           <Edit />
         </Route>
         <Route exact path="/test">
-          <CropForm />
-          {/* <WebcamCapture /> */}
+          {/* <CropForm /> */}
+          <WebcamCapture />
         </Route>
 
-        <Route exact path='/teston'>
+        <Route exact path="/teston">
           {/* <CariuselSuper /> */}
           {/* <Online /> */}
         </Route>
