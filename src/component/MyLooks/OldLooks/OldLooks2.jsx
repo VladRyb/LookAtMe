@@ -7,7 +7,7 @@ import {
   watcherHandleToggle,
 } from '../../../redux/actioncreators/actionsSaga';
 import LikeDislikeTest from '../../TestLikeDislikeComponent/Test';
-import { FacebookShareButton, VKShareButton, FacebookIcon, VKIcon } from 'react-share';
+import { OKShareButton, VKShareButton, OKIcon, VKIcon } from 'react-share';
 
 function OldLooks2() {
   const dispatch = useDispatch();
@@ -155,6 +155,10 @@ function OldLooks2() {
                     >
                       <VKIcon size={32} round />
                     </VKShareButton>
+                    <span> </span>
+                    <OKShareButton url={'https://lookatme-31fb3.web.app/'} image={element.ImgUrl}>
+                      <OKIcon size={32} round />
+                    </OKShareButton>
                   </div>
                 ) : null}
                 <span
