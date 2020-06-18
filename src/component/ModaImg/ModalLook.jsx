@@ -220,7 +220,7 @@ export default function ModalLook(props) {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>+</Modal.Title>
+          <Modal.Title>Сохранить лук</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div id='container' class='flexChild rowParent'>

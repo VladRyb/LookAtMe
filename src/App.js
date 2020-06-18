@@ -100,7 +100,8 @@ function App(props) {
         <Route exact path='/mylooks'>
           <MyLooks2 />
         </Route>
-        <Route exact path='/car'>
+        {/* <Route exact path='/car'> */}
+        <Route exact path='/dresser'>
           <Dresser />
           {/* <MyCarousel /> */}
         </Route>
