@@ -5,25 +5,25 @@
 }
 
 #loks {
-  background-color:rgba(150, 160, 164, 0.89);
+  background-color: rgba(150, 160, 164, 0.89);
   width: 90%;
 }
-.card-body{
+.card-body {
   height: 100%;
 }
 .shareEgorZ {
   /* bottom: 133px; */
   left: 30px;
 }
-.card-title{
+.card-title {
   display: flex;
   justify-content: center;
 }
-.iconsLook{
+.iconsLook {
   display: flex;
   justify-content: space-between;
-  bottom:0;
-  margin-top: 40%;
+  bottom: 0;
+  margin-top: 30%;
 }
 .multi-photo-container {
   display: flex;
