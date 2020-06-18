@@ -1,4 +1,3 @@
-
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
     window.location.hostname === '[::1]' ||
@@ -11,7 +10,6 @@ export default function register() {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location);
     if (publicUrl.origin !== window.location.origin) {
-
       return;
     }
 
@@ -37,7 +35,7 @@ export default function register() {
 function registerValidSW(swUrl) {
   navigator.serviceWorker
     .register(swUrl)
-    .then(registration => {
+    .then((registration) => {
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         installingWorker.onstatechange = () => {
@@ -51,19 +49,19 @@ function registerValidSW(swUrl) {
         };
       };
     })
-    .catch(error => {
+    .catch((error) => {
       console.error('Error during service worker registration:', error);
     });
 }
 
 function checkValidServiceWorker(swUrl) {
   fetch(swUrl)
-    .then(response => {
+    .then((response) => {
       if (
         response.status === 404 ||
         response.headers.get('content-type').indexOf('javascript') === -1
       ) {
-        navigator.serviceWorker.ready.then(registration => {
+        navigator.serviceWorker.ready.then((registration) => {
           registration.unregister().then(() => {
             window.location.reload();
           });
@@ -81,7 +79,7 @@ function checkValidServiceWorker(swUrl) {
 
 export function unregister() {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.ready.then(registration => {
+    navigator.serviceWorker.ready.then((registration) => {
       registration.unregister();
     });
   }

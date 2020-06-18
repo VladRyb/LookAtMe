@@ -1,17 +1,17 @@
-import React from "react";
-import DressCarousel from "../DressCarousel/DressCarousel";
+import React from 'react';
+import DressCarousel from '../DressCarousel/DressCarousel';
 // import UploadForm from '../uploadForm/UploadForm'
-import { useSelector } from "react-redux";
-import ModalLook from "../ModaImg/ModalLook";
-import "./Dresser.css";
-import { useHistory } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import ModalLook from '../ModaImg/ModalLook';
+import './Dresser.css';
+import { useHistory } from 'react-router-dom';
 
 export default function Dresser() {
-  const userName = localStorage.getItem("user");
+  const userName = localStorage.getItem('user');
   const history = useHistory();
 
-  if (userName === "") {
-    history.push("/");
+  if (userName === '') {
+    history.push('/');
   }
   const user = useSelector((state) => state.user);
   const dressCategoryFilter = useSelector((state) => state.dressCategoryFilter);
@@ -30,30 +30,47 @@ export default function Dresser() {
   };
 
   const headCategories = [
+
     "Шапки",
     "Кепки",
     "Шляпы",
     "Береты",
-    "Пилотки",
-    "Кандибобрики",
+    "Панамы",
   ];
   const bodyCategories = [
-    "Футболки поло и майки",
+    "Футболки и поло",
     "Толстовки и свитшоты",
+    "Свитера и джемперы",
     "Платья и сарафаны",
     "Пиджаки",
-    "Рубашки",
-    "Блузы",
-    "Джемперы, свитеры и кардиганы",
+    "Блузы и рубашки",
+    "Куртки и пуховики",
+    "Пальто и плащи",
+    "Спортивные куртки",
   ];
-  const legsCategories = ["Шорты", "Джинсы", "Брюки"];
-  const feetCategories = ["Кроссовки", "Туфли", "Тапки"];
+  const legsCategories = [
+    "Шорты",
+    "Джинсы",
+    "Брюки",
+    "Юбки",
+    "Спортивные штаны",
+    "Комбинезоны",
+  ];
+  const feetCategories = [
+    "Кроссовки",
+    "Туфли",
+    "Босоножки",
+    "Сланцы",
+    "Ботинки",
+    "Сапоги",
+  ];
+
 
   // console.log(dressFilter(head, dressCategoryFilter.head));
 
   return (
-    <div id="globalDiv">
-      <div className="dresser">
+    <div id='globalDiv'>
+      <div className='dresser'>
         <div>
           <DressCarousel
             dressArray={dressFilter(
@@ -62,32 +79,37 @@ export default function Dresser() {
               dressSeasonFilter.head
             )}
             categories={headCategories}
-            title={"Хлебальник"}
+            // title={"Верхняя часть тела"}
+            title={"Головные уборы"}
             property={"head"}
+
           />
         </div>
         <div>
           <DressCarousel
             dressArray={dressFilter(body, dressCategoryFilter.body)}
             categories={bodyCategories}
-            title={"Пузень"}
+            title={"Верхняя часть тела"}
             property={"body"}
+
           />
         </div>
         <div>
           <DressCarousel
             dressArray={dressFilter(legs, dressCategoryFilter.legs)}
             categories={legsCategories}
-            title={"Ляхи"}
+            title={"Нижняя часть тела"}
             property={"legs"}
+
           />
         </div>
         <div>
           <DressCarousel
             dressArray={dressFilter(feet, dressCategoryFilter.feet)}
             categories={feetCategories}
-            title={"Лапы"}
+            title={"Обувь"}
             property={"feet"}
+
           />
         </div>
         <div>

@@ -5,6 +5,7 @@ import {
   deleteLook,
   deleteDress,
   handleToggle1,
+  loadingCol,
 } from '../actioncreators/actionsSaga';
 import actionType from '../actions';
 import firebase from 'firebase';
@@ -19,6 +20,66 @@ const database = firebase.firestore();
 //     console.log(error);
 //   }
 // }
+
+async function findU() {
+  const userUid = localStorage.getItem('uid');
+  const userName = localStorage.getItem('user');
+
+  const body = await firebase
+    .firestore()
+    .collection('body')
+    .where('creator', '==', userUid + '/' + userName)
+    .get()
+    .then((snapshot) => {
+      // console.log('snapshotbody',snapshot)
+      return snapshot.docs.map((img) => img.data());
+    });
+
+  const head = await firebase
+    .firestore()
+    .collection('head')
+    .where('creator', '==', userUid + '/' + userName)
+    .get()
+    .then((snapshot) => {
+      return snapshot.docs.map((img) => img.data());
+    });
+
+  const legs = await firebase
+    .firestore()
+    .collection('legs')
+    .where('creator', '==', userUid + '/' + userName)
+    .get()
+    .then((snapshot) => {
+      return snapshot.docs.map((img) => img.data());
+    });
+
+  const feet = await firebase
+    .firestore()
+    .collection('feet')
+    .where('creator', '==', userUid + '/' + userName)
+    .get()
+    .then((snapshot) => {
+      return snapshot.docs.map((img) => img.data());
+    });
+
+  const lookis = await firebase
+    .firestore()
+    .collection('lookis')
+    .where('creator', '==', userUid + '/' + userName)
+    .get()
+    .then((snapshot) => {
+      return snapshot.docs.map((img) => img.data());
+    });
+  // dispatch({
+  //   type: actionType.arrImg,
+  //   body: body,
+  //   head: head,
+  //   legs: legs,
+  //   feet: feet,
+  //   lookis: lookis,
+  // });
+  return { body, head, legs, feet, lookis };
+}
 
 async function rewriteData(collection, id) {
   const gotIt = await database.collection(collection).where('id', '==', id);
@@ -37,9 +98,19 @@ async function handleToggleFB(id, status) {
     });
   });
 }
+///start
+
+function* loadColektion() {
+  try {
+    const result = yield call(findU);
+    yield put(loadingCol(result));
+  } catch (error) {
+    console.log(error);
+  }
+}
+/////
 
 function* deleteLooka({ collection, id }) {
-  console.log(collection);
   try {
     rewriteData(collection, id);
     yield put(deleteLook(collection, id));
@@ -93,6 +164,7 @@ function* sagas() {
   yield takeEvery(actionType.deleteDressSaga, deleteDressFromBase);
 
   yield takeEvery(actionType.watcherHandleToggle, HandleToggle);
+  yield takeEvery(actionType.loadingColWather, loadColektion);
 }
 
 export default sagas;

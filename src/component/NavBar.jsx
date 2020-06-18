@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { NavDropdown, Image } from 'react-bootstrap';
 import ModalLogin from './ModalLogin';
 import ModalSingUp from './ModalSingUp';
@@ -19,7 +19,10 @@ import {
 } from 'reactstrap';
 
 import '../App.css';
+import { loadingColWather } from '../redux/actioncreators/actionsSaga';
 export default function NavBar(props) {
+  const history = useHistory();
+
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const userUid = localStorage.getItem('uid');
@@ -34,7 +37,9 @@ export default function NavBar(props) {
       firebase.auth.EmailAuthProvider.PROVIDER_ID,
     ],
     callbacks: {
-      signInSuccess: () => false,
+      signInSuccess: () => {
+        dispatch(loadingColWather());
+      },
     },
   });
 
@@ -68,6 +73,8 @@ export default function NavBar(props) {
     } else {
       dispatch({ type: actionType.login, user });
 
+      history.push('/');
+
       localStorage.setItem('session', true);
       localStorage.setItem('user', user.displayName);
       localStorage.setItem('uid', user.uid);
@@ -87,89 +94,6 @@ export default function NavBar(props) {
       }
     });
   }, []);
-
-  //   return (
-  //     <nav className='navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark'>
-  //       <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-  //         <ul className='navbar-nav mr-auto'>
-  //           <li className='nav-item active'>
-  //             <Link className='nav-link' to='/'>
-  //               Home <span className='sr-only'>(current)</span>
-  //             </Link>
-  //           </li>
-  //           {user.name ? (
-  //             <li className='nav-item active'>
-  //               <Link className='nav-link' to='/car'>
-  //                 Dresser <span className='sr-only'>(current)</span>
-  //               </Link>
-  //             </li>
-  //           ) : (
-  //             <li className='nav-item '>
-  //               {/* <Link className='nav-link' to='#'>
-  //                 <span>
-  //                   <ModalLogin title='Go Usati' uiConfig={uiConfig} />
-  //                 </span>
-  //               </Link> */}
-  //             </li>
-  //           )}
-  //         </ul>
-  //       </div>
-
-  //       <div className='d-flex justify-content-end'>
-  //         <ul className='navbar-nav mr-auto'>
-  //           {user.name ? (
-  //             <NavDropdown
-  //               title={
-  //                 <Image
-  //                   id='iconProfile'
-  //                   src={
-  //                     // userPhoto ||
-  //                     user.photo ||
-  //                     'https://cdn4.iconfinder.com/data/icons/e-commerce-181/512/477_profile__avatar__man_-512.png'
-  //                   }
-  //                   roundedCircle
-  //                 />
-  //               }
-  //               id='basic-nav-dropdown'
-  //             >
-  //               <NavDropdown.Item>
-  //                 <Link to='/mylooks'>My Looks</Link>
-  //               </NavDropdown.Item>
-
-  //               <NavDropdown.Divider />
-  //               <NavDropdown.Item
-  //                 onClick={() => {
-  //                   dispatch({ type: actionType.logout });
-  //                 }}
-  //               >
-  //                 Log Out
-  //               </NavDropdown.Item>
-  //             </NavDropdown>
-  //           ) : (
-  //             <>
-  //               <li className='nav-item '>
-  //                 <Link className='nav-link' to='#'>
-  //                   <span>
-  //                     <ModalLogin title='Go Usati' uiConfig={uiConfig} />
-  //                   </span>
-  //                 </Link>
-  //               </li>
-  //             </>
-  //           )}
-  //         </ul>
-  //       </div>
-  //     </nav>
-  //   );
-  // }
-  /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // import React, { useState, useEffect } from 'react';
-  // import { Link } from 'react-router-dom';
-  // import { NavDropdown, Image } from 'react-bootstrap';
-  // import ModalLogin from './ModalLogin';
-  // import ModalSingUp from './ModalSingUp';
-  // import { useDispatch, useSelector } from 'react-redux';
-  // import actionType from '../redux/actions';
-  // import firebase from 'firebase';
 
   const [navbarColor, setNavbarColor] = React.useState('navbar-transparent');
   const [navbarCollapse, setNavbarCollapse] = React.useState(false);

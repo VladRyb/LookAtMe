@@ -30,4 +30,5 @@ export default {
   arrImg: 'arrImg',
   lookis: 'lookis',
   lookisUpd: 'lookisUpd',
+  loadingColWather: 'loadingColWather',
 };

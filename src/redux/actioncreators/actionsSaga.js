@@ -15,6 +15,21 @@ export function loadingTodo(arr) {
   return { type: actionType.todo, todo: arr };
 }
 
+export function loadingCol({ body, head, legs, feet, lookis }) {
+  return {
+    type: actionType.arrImg,
+    body: body,
+    head: head,
+    legs: legs,
+    feet: feet,
+    lookis: lookis,
+  };
+}
+
+export function loadingColWather() {
+  return { type: actionType.loadingColWather };
+}
+
 export function dressForNewLook(property, value) {
   return { type: actionType.dressForNewLook, property, value };
 }
