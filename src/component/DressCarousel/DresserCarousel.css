@@ -1,5 +1,5 @@
 .dressCarousel {
-  width: 700px;
+  width: 600px;
 }
 .smallImg {
   width: 150px;
@@ -30,7 +30,7 @@
 .trash {
   position: absolute;
   top: 115px;
-  right: 80px;
+  right: 45px;
   font-size: 25px;
   width: 1px;
   height: 1px;
