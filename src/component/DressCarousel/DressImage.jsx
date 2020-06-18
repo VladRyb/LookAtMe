@@ -11,7 +11,7 @@ export default function DressImage({ el, property, setSelectedImage }) {
 
   return (
     <div
-      className="imageDiv"
+      className="imageDivInCarousel"
       key={el.id}
       onMouseEnter={() => setIsHover(el.id)}
       onMouseLeave={() => setIsHover(null)}

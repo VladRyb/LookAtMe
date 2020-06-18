@@ -6,9 +6,11 @@ import {
   deleteDress,
   handleToggle1,
   loadingCol,
+  handleLike,
 } from '../actioncreators/actionsSaga';
 import actionType from '../actions';
 import firebase from 'firebase';
+import { act } from 'react-dom/test-utils';
 const database = firebase.firestore();
 
 // function* loadTodo() {
@@ -163,15 +165,41 @@ function* HandleToggle({ id, status }) {
   }
 }
 
+function* handleLikeSaga({ id, status }) {
+  try {
+    console.log('id:' + id, 'status:' + status);
+    handleLikeFB(id, status);
+    yield put(handleLike(id, status));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function handleLikeFB(id, status) {
+  if (status === 'like') {
+    const gotIt = await database.collection('lookis').where('id', '==', id);
+    gotIt.get().then((query) => {
+      query.forEach((data) => {
+        data.ref.update({ like: firebase.firestore.FieldValue.increment(1) });
+      });
+    });
+  } else {
+    const gotIt = await database.collection('lookis').where('id', '==', id);
+    gotIt.get().then((query) => {
+      query.forEach((data) => {
+        data.ref.update({ dislike: firebase.firestore.FieldValue.increment(1) });
+      });
+    });
+  }
+}
+
 // Функция-наблюдатель.
 function* sagas() {
   // yield takeEvery(actionType.saga, loadTodo);
   yield takeEvery(actionType.watcherDeleteLook, deleteLooka);
-
   yield takeEvery(actionType.watcherTest, updateTags);
-
   yield takeEvery(actionType.deleteDressSaga, deleteDressFromBase);
-
+  yield takeEvery(actionType.watcherHandleLike, handleLikeSaga);
   yield takeEvery(actionType.watcherHandleToggle, HandleToggle);
   yield takeEvery(actionType.loadingColWather, loadColektion);
 }
