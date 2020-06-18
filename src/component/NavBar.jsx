@@ -244,8 +244,8 @@ export default function NavBar(props) {
                     }
                     id='basic-nav-dropdown'
                   >
-                    <NavDropdown.Item href='/mylooks'>
-                      Мои луки
+                    <NavDropdown.Item>
+                      <Link to='/mylooks'>Мои луки</Link>
                     </NavDropdown.Item>
 
                     <NavDropdown.Divider />
