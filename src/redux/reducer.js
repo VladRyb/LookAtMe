@@ -1,5 +1,5 @@
-import actionType from './actions';
-import firebase from 'firebase';
+import actionType from "./actions";
+import firebase from "firebase";
 
 const defaultState = {
   statusSession: false,
@@ -68,10 +68,10 @@ const reducer = (state = defaultState, action) => {
       };
     case actionType.logout:
       logOut();
-      localStorage.setItem('session', false);
-      localStorage.setItem('user', '');
-      localStorage.setItem('uid', '');
-      localStorage.setItem('photo', null);
+      localStorage.setItem("session", false);
+      localStorage.setItem("user", "");
+      localStorage.setItem("uid", "");
+      localStorage.setItem("photo", null);
       return { ...state, statusSession: false, user: { name: null } };
     case actionType.dressForNewLook:
       return {
@@ -123,7 +123,7 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.lookis:
-      console.log('actionType.looks', action.lookis);
+      console.log("actionType.looks", action.lookis);
       return {
         ...state,
         user: {
@@ -278,7 +278,7 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.handleLike:
-      console.log('Reducer');
+
       const queryLiked = state.user.lookis.find(
         (element) => element.id === action.id
       );
