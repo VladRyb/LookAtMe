@@ -118,7 +118,8 @@ function OldLooks2() {
                 >
                   <i className="fa fa-trash-o"></i>
                 </span>
-                {element.share ? (
+
+                {element.share || element.ImgUrl ? (
                   <div className="custom-control custom-switch shareEgorZ">
                     <input
                       onClick={() => handleToggle(element.id, element.share)}
@@ -131,7 +132,7 @@ function OldLooks2() {
                       Публичный
                     </label>
                   </div>
-                ) : (
+                ) : element.ImgUrl ? (
                   <div className="custom-control custom-switch shareEgorZ">
                     <input
                       onClick={() => handleToggle(element.id, element.share)}
@@ -143,7 +144,7 @@ function OldLooks2() {
                       Приватный
                     </label>
                   </div>
-                )}
+                ) : null}
                 <span
                   className="p-2 bd-highlight deleteLink"
                   onClick={() => {
