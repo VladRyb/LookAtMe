@@ -9,6 +9,8 @@ import actionType from "../../redux/actions";
 import TestOn from "./TestPage";
 import CameraPhoto, { FACING_MODES } from "jslib-html5-camera-photo";
 import { Form } from "react-bootstrap";
+import Camera from "../Camera/Camera";
+import "./modalStyle.css";
 
 export default function ModalImg({ property, categories }) {
   const [show, setShow] = useState(false);
@@ -21,6 +23,7 @@ export default function ModalImg({ property, categories }) {
   const [typeState, setTypeState] = useState("");
   const [seasonState, setSeasonState] = useState("");
   const [stoyanieState, setStoyanieState] = useState("");
+  const [isCamera, setIsCamera] = useState(false);
 
   const [fileList, setFileList] = useState([]);
   const [onlinePhoto, setOnlinePhoto] = useState("");
@@ -137,65 +140,78 @@ export default function ModalImg({ property, categories }) {
         <Modal.Body>
           <div id="container" class="flexChild rowParent">
             <div id="rowChild94955" class="flexChild cam">
-              {onlinePhoto === "" ? (
-                <StorageUploaderModal
-                  fileList={fileList}
-                  onPreview={onPreview}
-                  handleUpload={handleUpload}
-                  onChange={onChangeProps}
-                />
-              ) : (
-                <>
-                  <img src={onlinePhoto} alt="" />
-                </>
-              )}
-              <TestOn setOnlinePhoto={setOnlinePhoto} />
+              <div className="modalCamera">
+                {!isCamera ? (
+                  <>
+                    <StorageUploaderModal
+                      fileList={fileList}
+                      onPreview={onPreview}
+                      handleUpload={handleUpload}
+                      onChange={onChangeProps}
+                    />
+
+                    <Button
+                      onClick={() => setIsCamera((isCamera) => !isCamera)}
+                      className="btn btn-outline-primary"
+                      variant="outline-primary"
+                      type="submit"
+                    >
+                      Сделать фото
+                    </Button>
+                  </>
+                ) : (
+                  <Camera
+                    setOnlinePhoto={setOnlinePhoto}
+                    setIsCamera={setIsCamera}
+                  />
+                )}
+              </div>
             </div>
-<div class='formsdiv'>
-            <Form class='formFilters'>
+            <div class="formsdiv">
+              <Form class="formFilters">
                 <Form.Label>Сезон:</Form.Label>
-              <Form.Group controlId="exampleForm.SelectCustom">
-                <Form.Control
-                  as="select"
-                  custom
-                  onChange={(event) => setSeasonState(event.target.value)}
-                >
-                  <option>Не выбрано</option>
-                  <option value="winter">Зима</option>
-                  <option value="summer">Лето</option>
-                  <option value="autumn">Осень</option>
-                  <option value="spring">Весна</option>
-                </Form.Control>
-              </Form.Group>
-            </Form>
-            <Form>
+                <Form.Group controlId="exampleForm.SelectCustom">
+                  <Form.Control
+                    as="select"
+                    custom
+                    onChange={(event) => setSeasonState(event.target.value)}
+                  >
+                    <option>Не выбрано</option>
+                    <option value="winter">Зима</option>
+                    <option value="summer">Лето</option>
+                    <option value="autumn">Осень</option>
+                    <option value="spring">Весна</option>
+                  </Form.Control>
+                </Form.Group>
+              </Form>
+              <Form>
                 <Form.Label>Категории:</Form.Label>
-              <Form.Group controlId="exampleForm.SelectCustom">
-                <Form.Control
-                  as="select"
-                  custom
-                  onChange={(event) => setTypeState(event.target.value)}
-                >
-                  <option>Не выбрано</option>
-                  {categories.map((item) => {
-                    return <option value={item}>{item}</option>;
-                  })}
-                </Form.Control>
-              </Form.Group>
-            </Form>
-            <Form>
+                <Form.Group controlId="exampleForm.SelectCustom">
+                  <Form.Control
+                    as="select"
+                    custom
+                    onChange={(event) => setTypeState(event.target.value)}
+                  >
+                    <option>Не выбрано</option>
+                    {categories.map((item) => {
+                      return <option value={item}>{item}</option>;
+                    })}
+                  </Form.Control>
+                </Form.Group>
+              </Form>
+              <Form>
                 <Form.Label>Состояние:</Form.Label>
-              <Form.Group controlId="exampleForm.SelectCustom">
-                <Form.Control
-                  as="select"
-                  custom
-                  onChange={(event) => setStoyanieState(event.target.value)}
-                >
-                  <option>В хорошем состоянии</option>
-                  <option value="false">Требует ремонта</option>
-                </Form.Control>
-              </Form.Group>
-            </Form>
+                <Form.Group controlId="exampleForm.SelectCustom">
+                  <Form.Control
+                    as="select"
+                    custom
+                    onChange={(event) => setStoyanieState(event.target.value)}
+                  >
+                    <option>В хорошем состоянии</option>
+                    <option value="false">Требует ремонта</option>
+                  </Form.Control>
+                </Form.Group>
+              </Form>
             </div>
           </div>
         </Modal.Body>

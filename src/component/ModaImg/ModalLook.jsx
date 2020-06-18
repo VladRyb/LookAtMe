@@ -7,6 +7,7 @@ import actionType from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { MDBBtn, MDBIcon } from "mdbreact";
 import Camera from "../Camera/Camera";
+import "./modalStyle.css";
 
 import {
   clearDressForNewLook,
@@ -243,7 +244,7 @@ export default function ModalLook(props) {
         <Modal.Body>
           <div id="container" class="flexChild rowParent">
             <div id="rowChild94955" class="flexChild">
-              <div>
+              <div className="modalCamera">
                 {!isCamera ? (
                   <>
                     <StorageUploaderModal
@@ -252,11 +253,15 @@ export default function ModalLook(props) {
                       handleUpload={handleUpload}
                       onChange={onChange}
                     />
-                    <button
+
+                    <Button
                       onClick={() => setIsCamera((isCamera) => !isCamera)}
+                      className="btn btn-outline-primary"
+                      variant="outline-primary"
+                      type="submit"
                     >
                       Сделать фото
-                    </button>
+                    </Button>
                   </>
                 ) : (
                   <Camera
@@ -316,7 +321,7 @@ export default function ModalLook(props) {
             variant="outline-primary"
             type="submit"
           >
-            Submit
+            Создать
           </Button>
         </Modal.Footer>
       </Modal>
