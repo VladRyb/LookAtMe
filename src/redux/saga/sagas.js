@@ -72,6 +72,15 @@ async function findU() {
     .then((snapshot) => {
       return snapshot.docs.map((img) => img.data());
     });
+  const lookisShare = await firebase
+    .firestore()
+    .collection('lookis')
+    .where('share', '==', true)
+    .get()
+    .then((snapshot) => {
+      return snapshot.docs.map((img) => img.data());
+    });
+  // console.log('lookisShare', lookisShare)
   // dispatch({
   //   type: actionType.arrImg,
   //   body: body,
@@ -80,7 +89,7 @@ async function findU() {
   //   feet: feet,
   //   lookis: lookis,
   // });
-  return { body, head, legs, feet, lookis };
+  return { body, head, legs, feet, lookis,lookisShare };
 }
 
 async function rewriteData(collection, id) {

@@ -3,7 +3,7 @@ import firebase from 'firebase';
 
 const defaultState = {
   statusSession: false,
-  user: { name: null, head: [], body: [], legs: [], feet: [], lookis: [] },
+  user: { name: null, head: [], body: [], legs: [], feet: [], lookis: []},
   isLoading: null,
   userTest: null,
   dressForNewLook: {
@@ -26,6 +26,7 @@ const defaultState = {
     legs: null,
     feet: null,
   },
+  lookisShare: []
   // headUrl: [],
   // bodyUrl: [],
   // legsUrl: [],

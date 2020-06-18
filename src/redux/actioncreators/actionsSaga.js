@@ -15,7 +15,7 @@ export function loadingTodo(arr) {
   return { type: actionType.todo, todo: arr };
 }
 
-export function loadingCol({ body, head, legs, feet, lookis }) {
+export function loadingCol({ body, head, legs, feet, lookis, lookisShare }) {
   return {
     type: actionType.arrImg,
     body: body,
@@ -23,6 +23,7 @@ export function loadingCol({ body, head, legs, feet, lookis }) {
     legs: legs,
     feet: feet,
     lookis: lookis,
+    lookisShare:lookisShare,
   };
 }
 
