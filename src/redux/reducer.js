@@ -1,5 +1,5 @@
-import actionType from './actions';
-import firebase from 'firebase';
+import actionType from "./actions";
+import firebase from "firebase";
 
 const defaultState = {
   statusSession: false,
@@ -26,7 +26,7 @@ const defaultState = {
     legs: null,
     feet: null,
   },
-  lookisShare: []
+  lookisShare: [],
   // headUrl: [],
   // bodyUrl: [],
   // legsUrl: [],
@@ -68,10 +68,10 @@ const reducer = (state = defaultState, action) => {
       };
     case actionType.logout:
       logOut();
-      localStorage.setItem('session', false);
-      localStorage.setItem('user', '');
-      localStorage.setItem('uid', '');
-      localStorage.setItem('photo', null);
+      localStorage.setItem("session", false);
+      localStorage.setItem("user", "");
+      localStorage.setItem("uid", "");
+      localStorage.setItem("photo", null);
       return { ...state, statusSession: false, user: { name: null } };
     case actionType.dressForNewLook:
       return {
@@ -82,7 +82,9 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.deleteLook:
-      const newLooks = state.user.lookis.filter((element) => element.id !== action.id);
+      const newLooks = state.user.lookis.filter(
+        (element) => element.id !== action.id
+      );
       return {
         ...state,
         user: { ...state.user, lookis: [...newLooks] },
@@ -121,7 +123,7 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.lookis:
-      console.log('actionType.looks', action.lookis);
+      console.log("actionType.looks", action.lookis);
       return {
         ...state,
         user: {
@@ -131,7 +133,9 @@ const reducer = (state = defaultState, action) => {
       };
     case actionType.lookisUpd:
       console.log(action);
-      const allOthers = state.user.lookis.filter((element) => element.id !== action.lookis.id);
+      const allOthers = state.user.lookis.filter(
+        (element) => element.id !== action.lookis.id
+      );
       allOthers.push(action.lookis);
       console.log(allOthers);
       return {
@@ -143,7 +147,9 @@ const reducer = (state = defaultState, action) => {
       };
 
     case actionType.handleToggle1:
-      const query = state.user.lookis.find((element) => element.id === action.id);
+      const query = state.user.lookis.find(
+        (element) => element.id === action.id
+      );
       const index = state.user.lookis.indexOf(query);
       query.share = action.status;
       state.user.lookis.splice(index, 1, query);
@@ -166,7 +172,7 @@ const reducer = (state = defaultState, action) => {
           feet: action.feet,
           lookis: action.lookis,
         },
-        lookisShare:action.lookisShare
+        lookisShare: action.lookisShare,
       };
     case actionType.deleteTagOnEdit:
       const lookis = state.user.lookis;
@@ -232,7 +238,9 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.deleteDress:
-      const newDresses = state.user[action.property].filter((el) => el.id !== action.id);
+      const newDresses = state.user[action.property].filter(
+        (el) => el.id !== action.id
+      );
       return {
         ...state,
         user: {
@@ -267,11 +275,13 @@ const reducer = (state = defaultState, action) => {
         lookisShare: {
           ...state.lookisShare,
           lookisShare: action.lookisShare,
-          ,
+        },
       };
     case actionType.handleLike:
-      console.log('Reducer');
-      const queryLiked = state.user.lookis.find((element) => element.id === action.id);
+      console.log("Reducer");
+      const queryLiked = state.user.lookis.find(
+        (element) => element.id === action.id
+      );
       const indexLiked = state.user.lookis.indexOf(queryLiked);
       queryLiked[action.status] = ++queryLiked[action.status];
       state.user.lookis.splice(indexLiked, 1, queryLiked);
@@ -279,7 +289,6 @@ const reducer = (state = defaultState, action) => {
         ...state,
         user: {
           ...state.user,
-
         },
       };
     default:
