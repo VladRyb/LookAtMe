@@ -5,7 +5,8 @@ import { useSelector } from "react-redux";
 import ModalLook from "../ModaImg/ModalLook";
 import "./Dresser.css";
 import { useHistory } from "react-router-dom";
-
+import CariuselSuper from "../DressCarousel/CariuselSuper";
+import Carousel from "../DressCarousel/CariuselSupercopy";
 export default function Dresser() {
   const userName = localStorage.getItem("user");
   const history = useHistory();

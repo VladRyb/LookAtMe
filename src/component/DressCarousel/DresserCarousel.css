@@ -24,7 +24,7 @@
   background-color: rgba(117, 117, 117, 0.479);
 }
 
-.imageDiv {
+.imageDivInCarousel {
   position: relative;
 }
 .trash {
@@ -38,8 +38,11 @@
 .trash:hover {
   color: red;
 }
-
-.carouselWithYeader {
+.chevrons {
+  font-size: 40px;
+  color: rgb(53, 53, 53);
+}
+.carouselWithHeader {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,4 +50,10 @@
 }
 .carouselHeader {
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.carousel {
+  width: 600px;
 }
