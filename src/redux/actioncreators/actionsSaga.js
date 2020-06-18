@@ -15,12 +15,44 @@ export function loadingTodo(arr) {
   return { type: actionType.todo, todo: arr };
 }
 
+export function loadingCol({ body, head, legs, feet, lookis, lookisShare }) {
+  return {
+    type: actionType.arrImg,
+    body: body,
+    head: head,
+    legs: legs,
+    feet: feet,
+    lookis: lookis,
+    lookisShare:lookisShare,
+  };
+}
+
+export function loadingColWather() {
+  return { type: actionType.loadingColWather };
+}
+
 export function dressForNewLook(property, value) {
   return { type: actionType.dressForNewLook, property, value };
 }
 
+export function watcherHandleToggle(id, status) {
+  return { type: actionType.watcherHandleToggle, id, status };
+}
+
+export function handleToggle1(id, status) {
+  return { type: actionType.handleToggle1, id, status };
+}
+
 export function addTag(tag) {
   return { type: actionType.addTag, tag };
+}
+
+export function addTagEdit(tag, id) {
+  return { type: actionType.addTagEdit, tag, id };
+}
+
+export function onChangeNameEdit(value, id) {
+  return { type: actionType.onChangeNameEdit, value, id };
 }
 
 export function deleteTag(tags) {
@@ -29,6 +61,14 @@ export function deleteTag(tags) {
 
 export function deleteTagOnEdit(tags, id) {
   return { type: actionType.deleteTagOnEdit, tags, id };
+}
+
+export function watcherHandleLike(id, status) {
+  return { type: actionType.watcherHandleLike, id, status };
+}
+
+export function handleLike(id, status) {
+  return { type: actionType.handleLike, id, status };
 }
 
 export function watcherDeleteLook(collection, id) {

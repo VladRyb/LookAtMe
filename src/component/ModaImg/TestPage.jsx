@@ -4,17 +4,20 @@ import ModalImgOnline from './ModalImgOnline';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import actionType from '../../redux/actions';
+import IconButton from '@material-ui/core/IconButton';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import Button from '@material-ui/core/Button';
 
 function TestOn(props) {
   const dispatch = useDispatch();
   let cameraPhoto = null;
-  const videoRef = React.createRef();
+  const videoRef = React.useRef();
 
   const [dataUri, setDataUri] = useState('');
 
   useEffect(() => {
     cameraPhoto = new CameraPhoto(videoRef.current);
-  }, []);
+  }, [videoRef.current]);
 
   function startCamera(idealFacingMode, idealResolution) {
     cameraPhoto
@@ -58,25 +61,45 @@ function TestOn(props) {
   return (
     <>
       <div>
-        <button
+        <Button
+          variant='outlined'
+          color='primary'
           onClick={() => {
             let facingMode = FACING_MODES.ENVIRONMENT;
             let idealResolution = { width: 100, height: 100 };
             startCamera(facingMode, idealResolution);
           }}
         >
-          {' '}
-          Start{' '}
-        </button>
-
-        <button
+          Включить камеру
+        </Button>
+        {/* <button
+          onClick={() => {
+            let facingMode = FACING_MODES.ENVIRONMENT;
+            let idealResolution = { width: 100, height: 100 };
+            startCamera(facingMode, idealResolution);
+          }}
+        > OOOO
+        </button> */}
+        <IconButton
+          color='primary'
+          aria-label='upload picture'
+          component='span'
+          onClick={() => {
+            takePhoto();
+          }}
+        >
+          <div ref={videoRef}>
+            <PhotoCamera />
+          </div>
+        </IconButton>
+        {/* <button
           onClick={() => {
             takePhoto();
           }}
         >
           {' '}
-          Take photo{' '}
-        </button>
+          Сделать фото{' '}
+        </button> */}
       </div>
       <video className='videoCam' ref={videoRef} autoPlay='true' />
     </>

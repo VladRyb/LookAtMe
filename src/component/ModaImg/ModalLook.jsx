@@ -5,6 +5,7 @@ import { storage } from '../FirebaseAuth/firebase/index';
 import firebase from 'firebase';
 import actionType from '../../redux/actions';
 import { useSelector, useDispatch } from 'react-redux';
+import { MDBBtn, MDBIcon } from 'mdbreact';
 
 import {
   clearDressForNewLook,
@@ -15,7 +16,7 @@ import {
 import TestOn from './TestPage';
 import { useHistory } from 'react-router-dom';
 
-export default function ModalLogin(props) {
+export default function ModalLook(props) {
   const history = useHistory();
 
   const store = useSelector((state) => state);
@@ -64,6 +65,9 @@ export default function ModalLogin(props) {
           body,
           legs,
           feet,
+          share: false,
+          like: 0,
+          dislike: 0,
         },
       });
       firebase
@@ -78,6 +82,9 @@ export default function ModalLogin(props) {
           body,
           legs,
           feet,
+          share: false,
+          like: 0,
+          dislike: 0,
           creator: userUid + '/' + userName,
 
           // creator:
@@ -86,9 +93,7 @@ export default function ModalLogin(props) {
           //   firebase.auth().currentUser.displayName,
         });
     } else if (fileList.length > 0) {
-      const uploadTask = storage
-        .ref(`images/${fileList[0].name}`)
-        .put(fileList[0].originFileObj);
+      const uploadTask = storage.ref(`images/${fileList[0].name}`).put(fileList[0].originFileObj);
       uploadTask.on(
         'state_changed',
         (snapshot) => {},
@@ -112,6 +117,9 @@ export default function ModalLogin(props) {
                   body,
                   legs,
                   feet,
+                  share: false,
+                  like: 0,
+                  dislike: 0,
                 },
               });
               firebase
@@ -126,7 +134,11 @@ export default function ModalLogin(props) {
                   body,
                   legs,
                   feet,
+                  share: false,
+                  like: 0,
+                  dislike: 0,
                   creator: userUid + '/' + userName,
+
                   // firebase.auth().currentUser.uid +
                   // '/' +
                   // firebase.auth().currentUser.displayName,
@@ -146,6 +158,9 @@ export default function ModalLogin(props) {
           body,
           legs,
           feet,
+          share: false,
+          like: 0,
+          dislike: 0,
         },
       });
       firebase
@@ -160,6 +175,9 @@ export default function ModalLogin(props) {
           body,
           legs,
           feet,
+          share: false,
+          like: 0,
+          dislike: 0,
           creator: userUid + '/' + userName,
 
           // creator:
@@ -190,21 +208,28 @@ export default function ModalLogin(props) {
 
   return (
     <div>
-      <Button variant='primary' onClick={handleShow}>
+      {/* <Button variant='primary' onClick={handleShow}>
         Save Look
-      </Button>
-      <Modal
+      </Button> */}
+      {/* <Modal
         show={show}
         onHide={handleClose}
         backdrop='static'
         keyboard={false}
-      >
+      > */}
+      <MDBBtn color="primary" onClick={handleShow}>
+        <MDBIcon icon="user-plus" className="mr-1" /> Сохранить лук
+      </MDBBtn>
+      {/* <Button variant="outline-primary" onClick={handleShow}>
+        Save Look
+      </Button> */}
+      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
-          <Modal.Title>+</Modal.Title>
+          <Modal.Title>Сохранить лук</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div id='container' class='flexChild rowParent'>
-            <div id='rowChild94955' class='flexChild'>
+          <div id="container" class="flexChild rowParent">
+            <div id="rowChild94955" class="flexChild">
               {onlinePhoto === '' ? (
                 <StorageUploaderModal
                   fileList={fileList}
@@ -214,40 +239,38 @@ export default function ModalLogin(props) {
                 />
               ) : (
                 <>
-                  <img src={onlinePhoto} alt='' />
+                  <img src={onlinePhoto} alt="" />
                 </>
               )}
               <TestOn setOnlinePhoto={setOnlinePhoto} />
             </div>
-            <div id='rowChild77673' class='flexChild'>
-              <div className='selectDiv'>
+            <div id="rowChild77673" class="flexChild">
+              <div className="selectDiv">
                 <input
                   value={name}
-                  onChange={(event) =>
-                    dispatch(onChangeName(event.target.value))
-                  }
-                  type='text'
-                  className='form-control'
-                  placeholder='Name'
-                  name='name'
+                  onChange={(event) => dispatch(onChangeName(event.target.value))}
+                  type="text"
+                  className="form-control"
+                  placeholder="Name"
+                  name="name"
                 />
               </div>
-              <div className='selectDivBottom'>
+              <div className="selectDivBottom">
                 <input
                   value={tag}
                   onChange={(event) => setTag(event.target.value)}
                   onKeyPress={addTags}
-                  type='text'
-                  className='form-control'
-                  placeholder='Tags'
-                  name='tags'
+                  type="text"
+                  className="form-control"
+                  placeholder="Tags"
+                  name="tags"
                   required
                 />{' '}
               </div>
               {tags.map((item) => {
                 return (
                   <span
-                    className='tags badge badge-pill badge-dark'
+                    className="tags badge badge-pill badge-dark"
                     onClick={() => dispatch(deleteTag(deleteOneTag(item)))}
                   >
                     {item}{' '}
@@ -265,9 +288,9 @@ export default function ModalLogin(props) {
               dispatch(clearDressForNewLook());
               history.push('/mylooks');
             }}
-            className='btn btn-outline-primary'
-            variant='outline-primary'
-            type='submit'
+            className="btn btn-outline-primary"
+            variant="outline-primary"
+            type="submit"
           >
             Submit
           </Button>

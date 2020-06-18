@@ -1,7 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { watcherTest, watcherDeleteLook } from '../../../redux/actioncreators/actionsSaga';
+import {
+  watcherTest,
+  watcherDeleteLook,
+  watcherHandleToggle,
+} from '../../../redux/actioncreators/actionsSaga';
+import LikeDislikeTest from '../../TestLikeDislikeComponent/Test';
 
 function OldLooks2() {
   const dispatch = useDispatch();
@@ -19,12 +24,21 @@ function OldLooks2() {
   }
   const userName = user.name;
   const userId = user.uid;
-  // const state = allLooks.filter((element) => element.creator === `${userId}/${userName}`);
+  console.log(user);
   function deleteLook(collection, id) {
     dispatch(watcherDeleteLook(collection, id));
   }
   function deleteTags(id) {
     dispatch(watcherTest(id));
+  }
+  function handleToggle(id, status) {
+    if (status === true) {
+      console.log('was true');
+      dispatch(watcherHandleToggle(id, false));
+    } else {
+      console.log('was false');
+      dispatch(watcherHandleToggle(id, true));
+    }
   }
   return allLooks.map((element) => {
     return (
@@ -89,7 +103,11 @@ function OldLooks2() {
                 return <span className="tags badge badge-pill badge-dark">{element2}</span>;
               })}
               <div className="d-flex flex-row-reverse bd-highlight align-content-end links">
-                <Link to={`/edit/${element.id}`} className="p-2 bd-highlight editLink">
+                <Link
+                  to={`/edit/${element.id}`}
+                  className="p-2 bd-highlight editLink"
+                  style={{ display: 'none' }}
+                >
                   <i className="fa fa-pencil-square-o"></i>
                 </Link>
                 <span
@@ -100,21 +118,44 @@ function OldLooks2() {
                 >
                   <i className="fa fa-trash-o"></i>
                 </span>
-                <div class="custom-control custom-switch">
-                  <input type="checkbox" className="custom-control-input" id="customSwitch1" />
-                  <label className="custom-control-label" for="customSwitch1">
-                    Share
-                  </label>
-                </div>
+                {element.share ? (
+                  <div className="custom-control custom-switch shareEgorZ">
+                    <input
+                      onClick={() => handleToggle(element.id, element.share)}
+                      type="checkbox"
+                      className="custom-control-input"
+                      id={`customSwitch${element.id}`}
+                      checked
+                    />
+                    <label className="custom-control-label" for={`customSwitch${element.id}`}>
+                      Публичный
+                    </label>
+                  </div>
+                ) : (
+                  <div className="custom-control custom-switch shareEgorZ">
+                    <input
+                      onClick={() => handleToggle(element.id, element.share)}
+                      type="checkbox"
+                      className="custom-control-input"
+                      id={`customSwitch${element.id}`}
+                    />
+                    <label className="custom-control-label" for={`customSwitch${element.id}`}>
+                      Приватный
+                    </label>
+                  </div>
+                )}
                 <span
                   className="p-2 bd-highlight deleteLink"
                   onClick={() => {
                     deleteTags(element.id);
                   }}
                 >
-                  <i className="fa fa-trash-o">delete tags</i>
+                  <i className="fa fa-trash-o" style={{ display: 'none', top: 300 }}>
+                    delete tags
+                  </i>
                 </span>
               </div>
+              <LikeDislikeTest editedLook={element} />
             </div>
           </div>
         </div>
