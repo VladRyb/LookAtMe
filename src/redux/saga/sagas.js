@@ -80,7 +80,7 @@ async function findU() {
     .then((snapshot) => {
       return snapshot.docs.map((img) => img.data());
     });
-  // console.log('lookisShare', lookisShare)
+  console.log('lookisShare', lookisShare)
   // dispatch({
   //   type: actionType.arrImg,
   //   body: body,
