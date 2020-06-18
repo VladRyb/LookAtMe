@@ -16,7 +16,7 @@ import {
 import TestOn from "./TestPage";
 import { useHistory } from "react-router-dom";
 
-export default function ModalLogin(props) {
+export default function ModalLook(props) {
   const history = useHistory();
 
   const store = useSelector((state) => state);
@@ -65,6 +65,7 @@ export default function ModalLogin(props) {
           body,
           legs,
           feet,
+          share: false,
         },
       });
       firebase
@@ -79,7 +80,9 @@ export default function ModalLogin(props) {
           body,
           legs,
           feet,
-          creator: userUid + "/" + userName,
+          share: false,
+          creator: userUid + '/' + userName,
+
 
           // creator:
           //   firebase.auth().currentUser.uid +
@@ -87,9 +90,7 @@ export default function ModalLogin(props) {
           //   firebase.auth().currentUser.displayName,
         });
     } else if (fileList.length > 0) {
-      const uploadTask = storage
-        .ref(`images/${fileList[0].name}`)
-        .put(fileList[0].originFileObj);
+      const uploadTask = storage.ref(`images/${fileList[0].name}`).put(fileList[0].originFileObj);
       uploadTask.on(
         "state_changed",
         (snapshot) => {},
@@ -113,6 +114,7 @@ export default function ModalLogin(props) {
                   body,
                   legs,
                   feet,
+                  share: false,
                 },
               });
               firebase
@@ -127,7 +129,9 @@ export default function ModalLogin(props) {
                   body,
                   legs,
                   feet,
-                  creator: userUid + "/" + userName,
+                  share: false,
+                  creator: userUid + '/' + userName,
+
                   // firebase.auth().currentUser.uid +
                   // '/' +
                   // firebase.auth().currentUser.displayName,
@@ -147,6 +151,7 @@ export default function ModalLogin(props) {
           body,
           legs,
           feet,
+          share: false,
         },
       });
       firebase
@@ -161,7 +166,9 @@ export default function ModalLogin(props) {
           body,
           legs,
           feet,
-          creator: userUid + "/" + userName,
+          share: false,
+          creator: userUid + '/' + userName,
+
 
           // creator:
           //   firebase.auth().currentUser.uid +
@@ -191,7 +198,12 @@ export default function ModalLogin(props) {
 
   return (
     <div>
-      <MDBBtn color="primary" onClick={handleShow}>
+      <Button variant="primary" onClick={handleShow}>
+        Save Look
+      </Button>
+      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+
+<!--       <MDBBtn color="primary" onClick={handleShow}>
         <MDBIcon icon="user-plus" className="mr-1" /> Сохранить лук
       </MDBBtn>
       {/* <Button variant="outline-primary" onClick={handleShow}>
@@ -202,14 +214,15 @@ export default function ModalLogin(props) {
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
-      >
+      > -->
         <Modal.Header closeButton>
           <Modal.Title>+</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div id="container" class="flexChild rowParent">
             <div id="rowChild94955" class="flexChild">
-              {onlinePhoto === "" ? (
+              {onlinePhoto === '' ? (
+
                 <StorageUploaderModal
                   fileList={fileList}
                   onPreview={onPreview}
@@ -227,12 +240,11 @@ export default function ModalLogin(props) {
               <div className="selectDiv">
                 <input
                   value={name}
-                  onChange={(event) =>
-                    dispatch(onChangeName(event.target.value))
-                  }
+                  onChange={(event) => dispatch(onChangeName(event.target.value))}
                   type="text"
                   className="form-control"
-                  placeholder="Название"
+                  placeholder="Name"
+
                   name="name"
                 />
               </div>
@@ -243,7 +255,8 @@ export default function ModalLogin(props) {
                   onKeyPress={addTags}
                   type="text"
                   className="form-control"
-                  placeholder="Теги"
+                  placeholder="Tags"
+
                   name="tags"
                   required
                 />{" "}

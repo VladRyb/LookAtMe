@@ -10,16 +10,16 @@ import './DresserCarousel.css';
 export default ({ dressArray, title, property, categories, editedLook }) => {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const chevronWidth = 40;
-  const [selectedImage, setSelectedImage] = useState(editedLook);
-  const newLookFromState = useSelector((state) => state.dressForNewLook);
+  const [selectedImage, setSelectedImage] = useState(null);
+  // const newLookFromState = useSelector((state) => state.dressForNewLook);
 
   const dress = dressArray.map((el) => {
     return <DressImage el={el} property={property} setSelectedImage={setSelectedImage} />;
   });
 
-  const element = newLookFromState[property] ? (
+  const element = editedLook[property] ? (
     <SelectedDressImage
-      selectedImage={newLookFromState[property]}
+      selectedImage={editedLook[property]}
       property={property}
       setSelectedImage={setSelectedImage}
     />

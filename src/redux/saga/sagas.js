@@ -4,6 +4,7 @@ import {
   loadingTodo,
   deleteLook,
   deleteDress,
+  handleToggle1,
   loadingCol,
 } from '../actioncreators/actionsSaga';
 import actionType from '../actions';
@@ -89,6 +90,14 @@ async function rewriteData(collection, id) {
   });
 }
 
+async function handleToggleFB(id, status) {
+  const gotIt = await database.collection('lookis').where('id', '==', id);
+  gotIt.get().then((query) => {
+    query.forEach((data) => {
+      data.ref.update({ share: status });
+    });
+  });
+}
 ///start
 
 function* loadColektion() {
@@ -136,6 +145,15 @@ async function updateTags1(id) {
   });
 }
 
+function* HandleToggle({ id, status }) {
+  try {
+    handleToggleFB(id, status);
+    yield put(handleToggle1(id, status));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // Функция-наблюдатель.
 function* sagas() {
   // yield takeEvery(actionType.saga, loadTodo);
@@ -145,6 +163,7 @@ function* sagas() {
 
   yield takeEvery(actionType.deleteDressSaga, deleteDressFromBase);
 
+  yield takeEvery(actionType.watcherHandleToggle, HandleToggle);
   yield takeEvery(actionType.loadingColWather, loadColektion);
 }
 

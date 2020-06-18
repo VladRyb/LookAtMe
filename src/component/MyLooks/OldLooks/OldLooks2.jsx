@@ -1,7 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { watcherTest, watcherDeleteLook } from '../../../redux/actioncreators/actionsSaga';
+import {
+  watcherTest,
+  watcherDeleteLook,
+  watcherHandleToggle,
+} from '../../../redux/actioncreators/actionsSaga';
 
 function OldLooks2() {
   const dispatch = useDispatch();
@@ -19,12 +23,21 @@ function OldLooks2() {
   }
   const userName = user.name;
   const userId = user.uid;
-  // const state = allLooks.filter((element) => element.creator === `${userId}/${userName}`);
+  console.log(user);
   function deleteLook(collection, id) {
     dispatch(watcherDeleteLook(collection, id));
   }
   function deleteTags(id) {
     dispatch(watcherTest(id));
+  }
+  function handleToggle(id, status) {
+    if (status === true) {
+      console.log('was true');
+      dispatch(watcherHandleToggle(id, false));
+    } else {
+      console.log('was false');
+      dispatch(watcherHandleToggle(id, true));
+    }
   }
   return allLooks.map((element) => {
     return (
@@ -100,12 +113,32 @@ function OldLooks2() {
                 >
                   <i className="fa fa-trash-o"></i>
                 </span>
-                <div class="custom-control custom-switch" style={{ display: 'none' }}>
-                  <input type="checkbox" className="custom-control-input" id="customSwitch1" />
-                  <label className="custom-control-label" for="customSwitch1">
-                    Share
-                  </label>
-                </div>
+                {element.share ? (
+                  <div className="custom-control custom-switch shareEgorZ">
+                    <input
+                      onClick={() => handleToggle(element.id, element.share)}
+                      type="checkbox"
+                      className="custom-control-input"
+                      id={`customSwitch${element.id}`}
+                      checked
+                    />
+                    <label className="custom-control-label" for={`customSwitch${element.id}`}>
+                      Share
+                    </label>
+                  </div>
+                ) : (
+                  <div className="custom-control custom-switch shareEgorZ">
+                    <input
+                      onClick={() => handleToggle(element.id, element.share)}
+                      type="checkbox"
+                      className="custom-control-input"
+                      id={`customSwitch${element.id}`}
+                    />
+                    <label className="custom-control-label" for={`customSwitch${element.id}`}>
+                      Share
+                    </label>
+                  </div>
+                )}
                 <span
                   className="p-2 bd-highlight deleteLink"
                   onClick={() => {

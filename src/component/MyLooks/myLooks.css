@@ -8,6 +8,11 @@
   background-color: rgba(133, 177, 190, 0.795);
 }
 
+.shareEgorZ {
+  bottom: 133px;
+  left: 67px;
+}
+
 .multi-photo-container {
   display: flex;
   flex-direction: row;
