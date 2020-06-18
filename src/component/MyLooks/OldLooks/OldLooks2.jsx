@@ -132,7 +132,7 @@ function OldLooks2() {
                       Публичный
                     </label>
                   </div>
-                ) : element.share || element.ImgUrl ? (
+                ) : element.ImgUrl ? (
                   <div className="custom-control custom-switch shareEgorZ">
                     <input
                       onClick={() => handleToggle(element.id, element.share)}
