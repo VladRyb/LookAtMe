@@ -1,4 +1,4 @@
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
 #login {
   margin-top: 10%;
@@ -9,7 +9,22 @@
   box-shadow: 0 20px 100px 10px rgba(0, 0, 0, 0.521);
 }
 
-#globalDiv {
+#globalDivman  {
+  background-image: url("https://cdn.pixabay.com/photo/2015/12/04/20/09/doll-1077114_1280.png");
+  // background-image:url('%PUBLIC_URL%/man.png');
+  // background-image: url("./man.png");
+  background-color: rgba(168, 163, 152, 0.81);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 60%;
+  height: 80%;
+  z-index: 999999;
+}
+
+#globalDiv  {
+
   background-color: rgba(168, 163, 152, 0.81);
   margin-left: auto;
   margin-right: auto;
@@ -24,6 +39,7 @@
   margin-top: 5%;
 }
 
+
 #iconProfile {
   width: 30px;
   height: 30px;
@@ -32,15 +48,15 @@
 }
 
 @font-face {
-  font-family: 'Material Icons';
+  font-family: "Material Icons";
   font-style: normal;
   font-weight: 400;
   src: url(https://fonts.gstatic.com/s/materialicons/v52/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2)
-    format('woff2');
+    format("woff2");
 }
 
 .material-icons {
-  font-family: 'Material Icons';
+  font-family: "Material Icons";
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
@@ -51,7 +67,7 @@
   white-space: nowrap;
   word-wrap: normal;
   direction: ltr;
-  -webkit-font-feature-settings: 'liga';
+  -webkit-font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
 }
 
@@ -59,7 +75,7 @@
   padding: 1em;
   margin: 1em;
 }
-.example-1 input[type='file'] {
+.example-1 input[type="file"] {
   outline: 0;
   opacity: 0;
   pointer-events: none;
