@@ -24,7 +24,6 @@ function OldLooks2() {
   }
   const userName = user.name;
   const userId = user.uid;
-  console.log(user);
   function deleteLook(collection, id) {
     dispatch(watcherDeleteLook(collection, id));
   }
@@ -48,26 +47,28 @@ function OldLooks2() {
         id="loks"
       >
         <div className="row no-gutters loks">
+
           {element.ImgUrl ? (
-            <div className="col-md-4">
-              <img src={element.ImgUrl} className="card-img" alt="photo" />
+            <div className='col-md-4'>
+              <img src={element.ImgUrl} className='card-img' alt='photo' />
             </div>
           ) : (
-            <div className="col-md-4">
-              <div id="containerq" className="flexChild rowParent">
-                <div id="rowChild93188" className="flexChild columnParent">
-                  <div id="columnChild38068" className="flexChild rowParent">
-                    <div id="rowChild47552" className="flexChild">
+            <div className='col-md-4'>
+              <div id='containerq' className='flexChild rowParent'>
+                <div id='rowChild93188' className='flexChild columnParent'>
+                  <div id='columnChild38068' className='flexChild rowParent'>
+                    <div id='rowChild47552' className='flexChild'>
                       {element.head ? (
                         <img
                           src={element.head.imgUrl}
                           className="card-img"
                           alt="photo"
+
                         />
                       ) : (
                         <img
-                          src="https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg"
-                          className="card-img"
+                          src='https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg'
+                          className='card-img'
                         />
                       )}
                       {element.body ? (
@@ -75,27 +76,29 @@ function OldLooks2() {
                           src={element.body.imgUrl}
                           className="card-img"
                           alt="photo"
+
                         />
                       ) : (
                         <img
-                          src="https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg"
-                          className="card-img"
+                          src='https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg'
+                          className='card-img'
                         />
                       )}
                     </div>
                   </div>
-                  <div id="columnChild9857" className="flexChild rowParent">
-                    <div id="rowChild89645" className="flexChild">
+                  <div id='columnChild9857' className='flexChild rowParent'>
+                    <div id='rowChild89645' className='flexChild'>
                       {element.legs ? (
                         <img
                           src={element.legs.imgUrl}
                           className="card-img"
                           alt="photo"
+
                         />
                       ) : (
                         <img
-                          src="https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg"
-                          className="card-img"
+                          src='https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg'
+                          className='card-img'
                         />
                       )}
                       {element.feet ? (
@@ -103,11 +106,12 @@ function OldLooks2() {
                           src={element.feet.imgUrl}
                           className="card-img"
                           alt="photo"
+
                         />
                       ) : (
                         <img
-                          src="https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg"
-                          className="card-img"
+                          src='https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg'
+                          className='card-img'
                         />
                       )}
                     </div>
@@ -116,12 +120,13 @@ function OldLooks2() {
               </div>
             </div>
           )}
-          <div className="col-md-8">
-            <div className="card-body">
-              <h5 className="card-title">{element.name}</h5>
+          <div className='col-md-8'>
+            <div className='card-body'>
+              <h5 className='card-title'>{element.name}</h5>
               {element.tags.map((element2) => {
                 return (
                   <span className="tags badge badge-pill badge-dark" style={{minHeight: '1em' }}>
+
                     {element2}
                   </span>
                 );
@@ -166,13 +171,15 @@ function OldLooks2() {
                 </div>
               ) : null}
               <div>
+
                 <span
-                  className="p-2 bd-highlight deleteLink"
+                  className='p-2 bd-highlight deleteLink'
                   onClick={() => {
                     deleteLook("lookis", element.id);
                   }}
                 >
                   <i className="fa fa-trash-o"></i>
+
                 </span>
               </div>
               </div>

@@ -123,7 +123,6 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.lookis:
-      console.log('actionType.looks', action.lookis);
       return {
         ...state,
         user: {
@@ -132,12 +131,10 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.lookisUpd:
-      console.log(action);
       const allOthers = state.user.lookis.filter(
         (element) => element.id !== action.lookis.id
       );
       allOthers.push(action.lookis);
-      console.log(allOthers);
       return {
         ...state,
         user: {
@@ -153,7 +150,6 @@ const reducer = (state = defaultState, action) => {
       const index = state.user.lookis.indexOf(query);
       query.share = action.status;
       state.user.lookis.splice(index, 1, query);
-      console.log(state.user.lookis);
       return {
         ...state,
         user: {
@@ -161,7 +157,6 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.arrImg:
-      // console.log('actionType.looks>>>>>>>>>',action.lookis)
       return {
         ...state,
         user: {
@@ -278,7 +273,6 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.handleLike:
-      console.log('Reducer');
       const queryLiked = state.user.lookis.find(
         (element) => element.id === action.id
       );
