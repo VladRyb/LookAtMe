@@ -8,9 +8,9 @@ import { StyleRoot } from 'radium';
 
 function CariuselSuper() {
   const looksArray = useSelector((state) => state.lookisShare);
-  const [activeElem, setActiveElem] = useState(3);
+  const [activeElem, setActiveElem] = useState(0);
 
-  while (looksArray[1] === undefined) {
+  while (looksArray[0] === undefined) {
     return 'loading';
   }
   const carousel = looksArray.map((el) => {
