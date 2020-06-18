@@ -7,6 +7,7 @@ import {
   watcherHandleToggle,
 } from '../../../redux/actioncreators/actionsSaga';
 import LikeDislikeTest from '../../TestLikeDislikeComponent/Test';
+import { FacebookShareButton, VKShareButton, FacebookIcon, VKIcon } from 'react-share';
 
 function OldLooks2() {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ function OldLooks2() {
     }
   }
   return allLooks.map((element) => {
+    console.log(element.ImgUrl);
     return (
       <div className="card mb-3 " style={{ width: 450 }} id="loks">
         <div className="row no-gutters loks">
@@ -146,19 +148,13 @@ function OldLooks2() {
                         </label>
                       </div>
                     )}
-                    <div
-                      class="fb-share-button"
-                      data-href="http://localhost:3000/"
-                      data-layout="button"
-                      data-size="large"
+                    <VKShareButton
+                      url={'https://lookatme-31fb3.web.app/'}
+                      title={`Приложение для создания луков и хранения своей одежды!`}
+                      image={element.ImgUrl}
                     >
-                      <a
-                        target="_blank"
-                        href={`http://www.facebook.com/sharer.php?s=100&p[title]=LookAtMe&p[summary]=Только%20что%20сделал%20невероятный%20новый%20лук%20в%20новом%20прекрасном%20приложении%20LookAtMe&p[url]=http://localhost:3000&p[images][0]=${element.imgUrl}`}
-                      >
-                        Подделиться
-                      </a>
-                    </div>
+                      <VKIcon size={32} round />
+                    </VKShareButton>
                   </div>
                 ) : null}
                 <span
