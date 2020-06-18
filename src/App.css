@@ -2,7 +2,7 @@
   /* background-image: url('https://abrikos-mebel24.ru/wp-content/uploads/2017/12/garderob-komnata.jpg'); */
   /* background-image: url('http://xn---21-5cdgjndb4dde6s.xn--p1ai/userfiles/content/0/0/0/94_original.jpg'); */
   /* background-image: url('http://my-muzh.ru/wp-content/uploads/2017/01/garderob.jpg'); */
-  background-image: url('https://sturmproject.com/wp-content/uploads/2015/12/blue_moon_interni_01.jpg');
+  background-image: url("https://sturmproject.com/wp-content/uploads/2015/12/blue_moon_interni_01.jpg");
   background-size: 100%;
   background-attachment: fixed;
 }
@@ -46,12 +46,12 @@ a.nav-link {
   color: #574f43;
   margin-top: -30px;
 }
-@import url(https://fonts.googleapis.com/css2?family=Paytone+One);
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
 
 @import url(https://fonts.googleapis.com/css2?family=Jost:wght@300);
 
 h3 {
-  font-family: 'Paytone One';
+  font-family: "Paytone One";
   color: #202020;
   text-transform: uppercase;
   letter-spacing: -2px;
@@ -66,11 +66,11 @@ h3 span {
   letter-spacing: -4px;
 }
 .lookatmy {
-  font-family: 'Jost', sans-serif;
+  font-family: "Jost", sans-serif;
 }
 
 .aboutContainer {
-  font-family: 'Jost', sans-serif;
+  font-family: "Jost", sans-serif;
   font-size: 30px;
   color: #000000;
   display: flex;
@@ -85,7 +85,7 @@ span.carouselWithHeader {
   margin-top: 20px;
 }
 .textCatSeason {
-  font-family: 'Jost', sans-serif;
+  font-family: "Jost", sans-serif;
   font-size: 25px;
   text-align: center;
 }
@@ -122,8 +122,16 @@ span.carouselWithHeader {
 .brandLogo {
   margin-top: -50px;
 }
-#logoDresserNotLogined{
-  font-family: 'Jost', sans-serif;
+#logoDresserNotLogined {
+  font-family: "Jost", sans-serif;
   color: #202020;
   letter-spacing: -2px;
 }
+#caruselH1 {
+  font-family: "Damion", cursive;
+  margin-left: 1em;
+  /* font-family: 'Pacifico', cursive; */
+  /* font-family: 'Ruslan Display', cursive; */
+}
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Ruslan+Display&display=swap");

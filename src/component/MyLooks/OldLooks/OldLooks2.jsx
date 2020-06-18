@@ -181,6 +181,7 @@ function OldLooks2() {
                   <i className="fa fa-trash-o"></i>
 
                 </span>
+                
               </div>
               </div>
             </div>
