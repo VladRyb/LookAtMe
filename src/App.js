@@ -22,7 +22,7 @@ import CropForm from './component/CropForm';
 import './App.css';
 
 // import Online from './component/Tinder/TestOnline';
-import { loadingColWather } from './redux/actioncreators/actionsSaga';
+import { loadingColWather } from "./redux/actioncreators/actionsSaga";
 
 function App(props) {
   const store = useSelector((state) => state);
@@ -47,19 +47,21 @@ function App(props) {
         </Route>
 
         {/* <Route exact path='/car'> */}
-        <Route exact path='/dresser'>
+        <Route exact path="/dresser">
+
           <Dresser />
           {/* <MyCarousel /> */}
         </Route>
         <Route exact path='/edit/:id'>
           <Edit />
         </Route>
-        <Route exact path='/test'>
-          <CropForm />
-          {/* <WebcamCapture /> */}
+        <Route exact path="/test">
+          {/* <CropForm /> */}
+          <WebcamCapture />
+
         </Route>
 
-        <Route exact path='/teston'>
+        <Route exact path="/teston">
           {/* <CariuselSuper /> */}
           {/* <Online /> */}
         </Route>
