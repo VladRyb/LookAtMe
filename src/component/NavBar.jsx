@@ -145,7 +145,9 @@ export default function NavBar(props) {
             <Nav navbar>
               {user.name ? (
                 <NavItem>
-                  <NavLink to='/car' tag={Link}>
+                  <NavLink to='/dresser' tag={Link}>
+
+                  {/* <NavLink to='/car' tag={Link}> */}
                     <img
                       src='superLogo.png'
                       style={{

@@ -30,6 +30,7 @@ export default function DressCarouselHeader({ categories, title, property }) {
               )
             }
           >
+            <option>Не выбрано</option>
             {items}
           </Form.Control>
         </Form.Group>
