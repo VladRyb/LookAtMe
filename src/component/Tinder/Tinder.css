@@ -24,6 +24,17 @@ h1 {
   text-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.3);
 }
 
+#tinderCart {
+  display: flex;
+  justify-content: center;
+}
+
+#like {
+  font-size: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .swipe {
   position: absolute;
 }

@@ -10,12 +10,11 @@ export default function ModalLogin(props) {
   // const [messe, setMess] = useState();
   // const [email, setEmail] = useState('');
   // const [pass, setPass] = useState('');
-  const [show, setShow] = useState(false);
-
   const dispatch = useDispatch();
+  // const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // const handleClose = () => setShow(false);
+  const handleShow = () => props.setShow(true);
 
   // const history = useHistory();
   // const dispatch = useDispatch();
@@ -54,8 +53,8 @@ export default function ModalLogin(props) {
         {props.title}
       </span>
       <Modal
-        show={show}
-        onHide={handleClose}
+        show={props.show}
+        onHide={props.handleClose}
         backdrop='static'
         keyboard={false}
       >

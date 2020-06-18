@@ -27,6 +27,9 @@ export default function NavBar(props) {
   const dispatch = useDispatch();
   const userUid = localStorage.getItem('uid');
 
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+
   const [state, setState] = useState(false);
   const [uiConfig, setUiConfig] = useState({
     signInFlow: 'popup',
@@ -38,6 +41,7 @@ export default function NavBar(props) {
     ],
     callbacks: {
       signInSuccess: () => {
+        handleClose();
         dispatch(loadingColWather());
       },
     },
@@ -169,6 +173,9 @@ export default function NavBar(props) {
                 <NavItem>
                   <NavLink to='#' tag={Link}>
                     <ModalLogin
+                      handleClose={handleClose}
+                      show={show}
+                      setShow={setShow}
                       title={
                         <img
                           src='superLogo.png'
