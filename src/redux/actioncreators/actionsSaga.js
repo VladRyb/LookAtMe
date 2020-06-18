@@ -62,6 +62,14 @@ export function deleteTagOnEdit(tags, id) {
   return { type: actionType.deleteTagOnEdit, tags, id };
 }
 
+export function watcherHandleLike(id, status) {
+  return { type: actionType.watcherHandleLike, id, status };
+}
+
+export function handleLike(id, status) {
+  return { type: actionType.handleLike, id, status };
+}
+
 export function watcherDeleteLook(collection, id) {
   return { type: actionType.watcherDeleteLook, collection, id };
 }

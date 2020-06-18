@@ -1,11 +1,11 @@
-import React from "react";
-import "./styles.css";
-import { Card } from "react-bootstrap";
+import React from 'react';
+import './styles.css';
+import { Card } from 'react-bootstrap';
 
 export default function Video() {
   return (
     <>
-      <div className="video">
+      {/* <div className="video">
         <Card >
           <Card.Body>
             <Card.Text>
@@ -18,7 +18,7 @@ export default function Video() {
             alt="video"
           />
         </Card>
-      </div>
+      </div> */}
     </>
   );
 }

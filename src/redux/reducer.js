@@ -259,6 +259,18 @@ const reducer = (state = defaultState, action) => {
           [action.property]: action.value,
         },
       };
+    case actionType.handleLike:
+      console.log('Reducer');
+      const queryLiked = state.user.lookis.find((element) => element.id === action.id);
+      const indexLiked = state.user.lookis.indexOf(queryLiked);
+      queryLiked[action.status] = ++queryLiked[action.status];
+      state.user.lookis.splice(indexLiked, 1, queryLiked);
+      return {
+        ...state,
+        user: {
+          ...state.user,
+        },
+      };
     default:
       return state;
   }

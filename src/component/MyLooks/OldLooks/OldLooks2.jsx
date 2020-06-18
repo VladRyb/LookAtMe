@@ -6,6 +6,7 @@ import {
   watcherDeleteLook,
   watcherHandleToggle,
 } from '../../../redux/actioncreators/actionsSaga';
+import LikeDislikeTest from '../../TestLikeDislikeComponent/Test';
 
 function OldLooks2() {
   const dispatch = useDispatch();
@@ -102,7 +103,11 @@ function OldLooks2() {
                 return <span className="tags badge badge-pill badge-dark">{element2}</span>;
               })}
               <div className="d-flex flex-row-reverse bd-highlight align-content-end links">
-                <Link to={`/edit/${element.id}`} className="p-2 bd-highlight editLink">
+                <Link
+                  to={`/edit/${element.id}`}
+                  className="p-2 bd-highlight editLink"
+                  style={{ display: 'none' }}
+                >
                   <i className="fa fa-pencil-square-o"></i>
                 </Link>
                 <span
@@ -123,7 +128,7 @@ function OldLooks2() {
                       checked
                     />
                     <label className="custom-control-label" for={`customSwitch${element.id}`}>
-                      Share
+                      Публичный
                     </label>
                   </div>
                 ) : (
@@ -135,7 +140,7 @@ function OldLooks2() {
                       id={`customSwitch${element.id}`}
                     />
                     <label className="custom-control-label" for={`customSwitch${element.id}`}>
-                      Share
+                      Приватный
                     </label>
                   </div>
                 )}
@@ -145,11 +150,12 @@ function OldLooks2() {
                     deleteTags(element.id);
                   }}
                 >
-                  <i className="fa fa-trash-o" style={{ display: 'none' }}>
+                  <i className="fa fa-trash-o" style={{ display: 'none', top: 300 }}>
                     delete tags
                   </i>
                 </span>
               </div>
+              <LikeDislikeTest editedLook={element} />
             </div>
           </div>
         </div>
