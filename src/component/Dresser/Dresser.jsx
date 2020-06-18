@@ -74,7 +74,7 @@ export default function Dresser() {
             )}
             categories={headCategories}
             // title={"Верхняя часть тела"}
-            title={'Головные уборы'}
+            title={'Головушка'}
             property={'head'}
           />
         </div>
@@ -86,7 +86,7 @@ export default function Dresser() {
               dressSeasonFilter.body
             )}
             categories={bodyCategories}
-            title={'Верхняя часть тела'}
+            title={'Пузико'}
             property={'body'}
           />
         </div>
@@ -98,7 +98,7 @@ export default function Dresser() {
               dressSeasonFilter.legs
             )}
             categories={legsCategories}
-            title={'Нижняя часть тела'}
+            title={'Ножки'}
             property={'legs'}
           />
         </div>
@@ -110,7 +110,7 @@ export default function Dresser() {
               dressSeasonFilter.feet
             )}
             categories={feetCategories}
-            title={'Обувь'}
+            title={'Лапки'}
             property={'feet'}
           />
         </div>

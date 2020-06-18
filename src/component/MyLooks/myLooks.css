@@ -1,18 +1,30 @@
 .mylookswrapper {
   margin: auto;
-  width: 40%;
-  padding: 10px;
+  width: 50%;
+  padding-top: 1em;
 }
 
 #loks {
-  background-color: rgba(133, 177, 190, 0.795);
+  background-color:rgba(150, 160, 164, 0.89);
+  width: 90%;
 }
-
+.card-body{
+  height: 100%;
+}
 .shareEgorZ {
-  bottom: 133px;
-  left: 67px;
+  /* bottom: 133px; */
+  left: 30px;
 }
-
+.card-title{
+  display: flex;
+  justify-content: center;
+}
+.iconsLook{
+  display: flex;
+  justify-content: space-between;
+  bottom:0;
+  margin-top: 40%;
+}
 .multi-photo-container {
   display: flex;
   flex-direction: row;

@@ -47,6 +47,7 @@
   flex-direction: row-reverse;
   align-items: center;
   margin-bottom: 20px;
+  border-top: 4px solid rgb(95, 86, 86);
 }
 .carouselHeader {
   margin-bottom: 20px;
