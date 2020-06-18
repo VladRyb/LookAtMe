@@ -1,19 +1,19 @@
-import React from 'react';
-import DressCarousel from '../DressCarousel/DressCarousel';
+import React from "react";
+import DressCarousel from "../DressCarousel/DressCarousel";
 // import UploadForm from '../uploadForm/UploadForm'
-import { useSelector } from 'react-redux';
-import ModalLook from '../ModaImg/ModalLook';
-import './Dresser.css';
-import { useHistory } from 'react-router-dom';
-import CariuselSuper from '../DressCarousel/CariuselSuper';
-import Carousel from '../DressCarousel/CariuselSupercopy';
+import { useSelector } from "react-redux";
+import ModalLook from "../ModaImg/ModalLook";
+import "./Dresser.css";
+import { useHistory } from "react-router-dom";
+import CariuselSuper from "../DressCarousel/CariuselSuper";
+import Carousel from "../DressCarousel/CariuselSupercopy";
 
 export default function Dresser() {
-  const userName = localStorage.getItem('user');
+  const userName = localStorage.getItem("user");
   const history = useHistory();
 
-  if (userName === '') {
-    history.push('/');
+  if (userName === "") {
+    history.push("/");
   }
   const user = useSelector((state) => state.user);
   const dressCategoryFilter = useSelector((state) => state.dressCategoryFilter);
@@ -31,38 +31,39 @@ export default function Dresser() {
       : array;
   };
 
-  const headCategories = ['Шапки', 'Кепки', 'Шляпы', 'Береты', 'Панамы'];
+  const headCategories = ["Шапки", "Кепки", "Шляпы", "Береты", "Панамы"];
   const bodyCategories = [
-    'Футболки и поло',
-    'Толстовки и свитшоты',
-    'Свитера и джемперы',
-    'Платья и сарафаны',
-    'Пиджаки',
-    'Блузы и рубашки',
-    'Куртки и пуховики',
-    'Пальто и плащи',
-    'Спортивные куртки',
+    "Футболки и поло",
+    "Толстовки и свитшоты",
+    "Свитера и джемперы",
+    "Платья и сарафаны",
+    "Пиджаки",
+    "Блузы и рубашки",
+    "Куртки и пуховики",
+    "Пальто и плащи",
+    "Спортивные куртки",
   ];
   const legsCategories = [
-    'Шорты',
-    'Джинсы',
-    'Брюки',
-    'Юбки',
-    'Спортивные штаны',
-    'Комбинезоны',
+    "Шорты",
+    "Джинсы",
+    "Брюки",
+    "Юбки",
+    "Спортивные штаны",
+    "Комбинезоны",
   ];
   const feetCategories = [
-    'Кроссовки',
-    'Туфли',
-    'Босоножки',
-    'Сланцы',
-    'Ботинки',
-    'Сапоги',
+    "Кроссовки",
+    "Туфли",
+    "Босоножки",
+    "Сланцы",
+    "Ботинки",
+    "Сапоги",
   ];
 
   // console.log(dressFilter(head, dressCategoryFilter.head));
 
   return (
+
     <div id='globalDivman'>
       <div className='dresser'>
         <div>
@@ -74,6 +75,7 @@ export default function Dresser() {
             )}
             categories={headCategories}
             // title={"Верхняя часть тела"}
+
             title={'Головушка'}
             property={'head'}
           />
@@ -86,6 +88,7 @@ export default function Dresser() {
               dressSeasonFilter.body
             )}
             categories={bodyCategories}
+
             title={'Пузико'}
             property={'body'}
           />
@@ -98,6 +101,7 @@ export default function Dresser() {
               dressSeasonFilter.legs
             )}
             categories={legsCategories}
+
             title={'Ножки'}
             property={'legs'}
           />
@@ -110,12 +114,13 @@ export default function Dresser() {
               dressSeasonFilter.feet
             )}
             categories={feetCategories}
+
             title={'Лапки'}
             property={'feet'}
           />
         </div>
         <div>
-          <ModalLook />
+          <ModalLook camera={false} />
         </div>
       </div>
     </div>
