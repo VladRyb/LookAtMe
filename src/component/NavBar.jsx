@@ -202,17 +202,7 @@ export default function NavBar(props) {
                   <NavLink to="/dresser" tag={Link}>
                     {/* <NavLink to='/car' tag={Link}> */}
                     {/* <div style={{ backgroundColor: "red"}}> */}
-                    <img
-                      src="superLogo.png"
-                      style={{
-                        width: "27px",
-                        height: "37px",
-                        marginRight: "0.4em",
-                      }}
-                      title="Гардероб"
-                    />
-                    {/* </div> */}
-                    {/* Гардероб */}
+                    <p  id="logoDresserNotLogined">ВГардероб</p>
                   </NavLink>
                 </NavItem>
               ) : (

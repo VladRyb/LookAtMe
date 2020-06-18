@@ -67,7 +67,6 @@ function CariuselSuper({ dressArray, title, property, categories }) {
       </Coverflow>
     </div>
   );
-
   return <>{element}</>;
 }
 export default CariuselSuper;
