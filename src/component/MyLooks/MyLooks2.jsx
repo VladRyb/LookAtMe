@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import './myLooks.css';
 import OldLooks2 from './OldLooks/OldLooks2';
 import { useHistory } from 'react-router-dom';
-
 function MyLooks2(props) {
   const history = useHistory();
   const userName = localStorage.getItem('user');

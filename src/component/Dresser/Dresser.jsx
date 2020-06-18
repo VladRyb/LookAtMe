@@ -63,7 +63,7 @@ export default function Dresser() {
   // console.log(dressFilter(head, dressCategoryFilter.head));
 
   return (
-    <div id='globalDiv'>
+    <div id='globalDivman'>
       <div className='dresser'>
         <div>
           <DressCarousel
