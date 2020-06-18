@@ -171,6 +171,20 @@ function OldLooks2() {
                         </label>
                       </div>
                     )}
+                    <VKShareButton
+                      url={'https://lookatme-31fb3.web.app/'}
+                      title={`Приложение для создания луков и хранения своей одежды!`}
+                      image={element.ImgUrl}
+                    >
+                      <VKIcon size={32} round />
+                    </VKShareButton>
+                    <span> </span>
+                    <OKShareButton
+                      url={'https://lookatme-31fb3.web.app/'}
+                      image={element.ImgUrl}
+                    >
+                      <OKIcon size={32} round />
+                    </OKShareButton>
                   </div>
                 ) : null}
                 <div>
@@ -183,30 +197,6 @@ function OldLooks2() {
                     <i className='fa fa-trash-o'></i>
                   </span>
                 </div>
-                    )}
-                    <VKShareButton
-                      url={'https://lookatme-31fb3.web.app/'}
-                      title={`Приложение для создания луков и хранения своей одежды!`}
-                      image={element.ImgUrl}
-                    >
-                      <VKIcon size={32} round />
-                    </VKShareButton>
-                    <span> </span>
-                    <OKShareButton url={'https://lookatme-31fb3.web.app/'} image={element.ImgUrl}>
-                      <OKIcon size={32} round />
-                    </OKShareButton>
-                  </div>
-                ) : null}
-                <span
-                  className='p-2 bd-highlight deleteLink'
-                  onClick={() => {
-                    deleteLook("lookis", element.id);
-                  }}
-                >
-                  <i className="fa fa-trash-o"></i>
-
-                </span>
-              </div>
               </div>
             </div>
           </div>
