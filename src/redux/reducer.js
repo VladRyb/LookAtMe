@@ -26,7 +26,7 @@ const defaultState = {
     legs: null,
     feet: null,
   },
-  lookisShare: []
+  lookisShare: [],
   // headUrl: [],
   // bodyUrl: [],
   // legsUrl: [],
@@ -166,7 +166,7 @@ const reducer = (state = defaultState, action) => {
           feet: action.feet,
           lookis: action.lookis,
         },
-        lookisShare:action.lookisShare
+        lookisShare: action.lookisShare,
       };
     case actionType.deleteTagOnEdit:
       const lookis = state.user.lookis;
@@ -267,7 +267,7 @@ const reducer = (state = defaultState, action) => {
         lookisShare: {
           ...state.lookisShare,
           lookisShare: action.lookisShare,
-          ,
+        },
       };
     case actionType.handleLike:
       console.log('Reducer');
@@ -279,7 +279,6 @@ const reducer = (state = defaultState, action) => {
         ...state,
         user: {
           ...state.user,
-
         },
       };
     default:
