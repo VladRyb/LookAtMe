@@ -82,9 +82,7 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.deleteLook:
-      const newLooks = state.user.lookis.filter(
-        (element) => element.id !== action.id
-      );
+      const newLooks = state.user.lookis.filter((element) => element.id !== action.id);
       return {
         ...state,
         user: { ...state.user, lookis: [...newLooks] },
@@ -131,9 +129,7 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.lookisUpd:
-      const allOthers = state.user.lookis.filter(
-        (element) => element.id !== action.lookis.id
-      );
+      const allOthers = state.user.lookis.filter((element) => element.id !== action.lookis.id);
       allOthers.push(action.lookis);
       return {
         ...state,
@@ -144,14 +140,16 @@ const reducer = (state = defaultState, action) => {
       };
 
     case actionType.handleToggle1:
-      const query = state.user.lookis.find(
-        (element) => element.id === action.id
-      );
+      const query = state.user.lookis.find((element) => element.id === action.id);
       const index = state.user.lookis.indexOf(query);
       query.share = action.status;
       state.user.lookis.splice(index, 1, query);
       return {
         ...state,
+        lookisShare: {
+          ...state.lookisShare,
+          query,
+        },
         user: {
           ...state.user,
         },
@@ -233,9 +231,7 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.deleteDress:
-      const newDresses = state.user[action.property].filter(
-        (el) => el.id !== action.id
-      );
+      const newDresses = state.user[action.property].filter((el) => el.id !== action.id);
       return {
         ...state,
         user: {
@@ -273,9 +269,7 @@ const reducer = (state = defaultState, action) => {
         },
       };
     case actionType.handleLike:
-      const queryLiked = state.user.lookis.find(
-        (element) => element.id === action.id
-      );
+      const queryLiked = state.user.lookis.find((element) => element.id === action.id);
       const indexLiked = state.user.lookis.indexOf(queryLiked);
       queryLiked[action.status] = ++queryLiked[action.status];
       state.user.lookis.splice(indexLiked, 1, queryLiked);

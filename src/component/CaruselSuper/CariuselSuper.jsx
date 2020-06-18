@@ -8,9 +8,9 @@ import { StyleRoot } from 'radium';
 
 function CariuselSuper() {
   const looksArray = useSelector((state) => state.lookisShare);
-  const [activeElem, setActiveElem] = useState(3);
+  const [activeElem, setActiveElem] = useState(0);
 
-  while (looksArray[1] === undefined) {
+  while (looksArray[0] === undefined) {
     return 'loading';
   }
   const carousel = looksArray.map((el) => {
@@ -33,21 +33,23 @@ function CariuselSuper() {
   }, 2000);
   return (
     // <StyleRoot>
-    <Coverflow
-      clickable={false}
-      enableScroll={false}
-      active={activeElem}
-      currentFigureScale={1.7}
-      height={350}
-      width={300}
-      // navigation
-      infiniteScroll={true}
-      // enableHeading
-      displayQuantityOfSide={2}
-      enableHeading
-    >
-      {carousel}
-    </Coverflow>
+    <div id='cour'>
+      <Coverflow
+        clickable={false}
+        enableScroll={false}
+        active={activeElem}
+        currentFigureScale={1.7}
+        height={350}
+        width={300}
+        // navigation
+        infiniteScroll={true}
+        // enableHeading
+        displayQuantityOfSide={2}
+        enableHeading
+      >
+        {carousel}
+      </Coverflow>
+    </div>
     // </StyleRoot>
   );
 }
