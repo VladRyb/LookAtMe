@@ -2,7 +2,7 @@
   /* background-image: url('https://abrikos-mebel24.ru/wp-content/uploads/2017/12/garderob-komnata.jpg'); */
   /* background-image: url('http://xn---21-5cdgjndb4dde6s.xn--p1ai/userfiles/content/0/0/0/94_original.jpg'); */
   /* background-image: url('http://my-muzh.ru/wp-content/uploads/2017/01/garderob.jpg'); */
-  background-image: url("https://sturmproject.com/wp-content/uploads/2015/12/blue_moon_interni_01.jpg");
+  background-image: url('https://sturmproject.com/wp-content/uploads/2015/12/blue_moon_interni_01.jpg');
   background-size: 100%;
   background-attachment: fixed;
 }
@@ -25,15 +25,21 @@
 
 .navbar-brand {
   position: fixed;
-  margin-top: 50px;
-  margin-left: 0.4%;
+  margin-left: -3%;
 }
 
-/* .clobal-nav {
+.clobal-nav {
   display: flex;
-  justify-content: space-between;
-  height: 1px;
-} */
+  justify-content: flex-end;
+}
+
+.clobal-nav a {
+  margin-top: 2%;
+}
+
+.brandLogo {
+  margin-top: 2%;
+}
 
 a.nav-link {
   font-size: 35px;
@@ -45,7 +51,7 @@ a.nav-link {
 @import url(https://fonts.googleapis.com/css2?family=Jost:wght@300);
 
 h3 {
-  font-family: "Paytone One";
+  font-family: 'Paytone One';
   color: #202020;
   text-transform: uppercase;
   letter-spacing: -2px;
@@ -60,11 +66,11 @@ h3 span {
   letter-spacing: -4px;
 }
 .lookatmy {
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
 }
 
 .aboutContainer {
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
   font-size: 30px;
   color: #000000;
   display: flex;
@@ -79,7 +85,7 @@ span.carouselWithHeader {
   margin-top: 20px;
 }
 .textCatSeason {
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
   font-size: 25px;
   text-align: center;
 }
@@ -104,12 +110,13 @@ span.carouselWithHeader {
 }
 
 .navbar-nav {
-  width: 100%;
-  margin-left: 90em;
-  display: flex;
-  justify-content: end;
+
+  /* margin-left: 90%; */
+  /* right: 100px; */
+  /* display: flex;
+  justify-items: end;
   align-items: center;
-  align-content: center;
+  align-content: center; */
   /* margin-right: 0; */
 }
 

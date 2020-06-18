@@ -15,6 +15,8 @@ export default {
   onChangeNameEdit: 'ON_CHANGE_NAME_EDIT',
   clearDressForNewLook: 'CLEAR_DRESS_FOR_NEW_LOOK',
   setDressFilterProperty: 'SET_DRESS_FILTER_PROPERTY',
+  watcherHandleLike: 'WatcherHandleLike',
+  handleLike: 'HandleLike',
   watcherDeleteLook: 'watcherDeleteLook',
   deleteDress: 'DELETE_DRESS',
   handleToggle1: 'handleToggle1',

@@ -1,10 +1,12 @@
 import React from 'react';
 import DressCarousel from '../DressCarousel/DressCarousel';
 // import UploadForm from '../uploadForm/UploadForm'
-import { useSelector } from 'react-redux';
-import ModalLook from '../ModaImg/ModalLook';
-import './Dresser.css';
-import { useHistory } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import ModalLook from "../ModaImg/ModalLook";
+import "./Dresser.css";
+import { useHistory } from "react-router-dom";
+import CariuselSuper from "../DressCarousel/CariuselSuper";
+import Carousel from "../DressCarousel/CariuselSupercopy";
 
 export default function Dresser() {
   const userName = localStorage.getItem('user');
@@ -87,7 +89,11 @@ export default function Dresser() {
         </div>
         <div>
           <DressCarousel
-            dressArray={dressFilter(body, dressCategoryFilter.body)}
+            dressArray={dressFilter(
+              body,
+              dressCategoryFilter.body,
+              dressSeasonFilter.body
+            )}
             categories={bodyCategories}
             title={"Верхняя часть тела"}
             property={"body"}
@@ -96,7 +102,11 @@ export default function Dresser() {
         </div>
         <div>
           <DressCarousel
-            dressArray={dressFilter(legs, dressCategoryFilter.legs)}
+            dressArray={dressFilter(
+              legs,
+              dressCategoryFilter.legs,
+              dressSeasonFilter.legs
+            )}
             categories={legsCategories}
             title={"Нижняя часть тела"}
             property={"legs"}
@@ -105,7 +115,11 @@ export default function Dresser() {
         </div>
         <div>
           <DressCarousel
-            dressArray={dressFilter(feet, dressCategoryFilter.feet)}
+            dressArray={dressFilter(
+              feet,
+              dressCategoryFilter.feet,
+              dressSeasonFilter.feet
+            )}
             categories={feetCategories}
             title={"Обувь"}
             property={"feet"}
