@@ -4,13 +4,11 @@ import { Card } from 'react-bootstrap';
 
 import Tinder from '../Tinder/Tinder';
 
-
 export default function Video() {
   return (
     <>
-
       <div className='video'>
-        <h1 id="caruselH1">Tinder</h1>
+        <h1 id='caruselH1'>Битва луков</h1>
         <Tinder />
       </div>
     </>
