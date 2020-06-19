@@ -41,9 +41,8 @@ function OldLooks2() {
     }
   }
   return allLooks.map((element) => {
-    console.log(element.ImgUrl);
     return (
-      <div className="card mb-3" style={{ maxWidth: '150%', maxHeight: 200 }} id="loks">
+      <div className="card mb-3" style={{ maxWidth: '150%', maxHeight: 200, color: 'white' }} id="loks">
         <div className="row no-gutters loks">
           {element.ImgUrl ? (
             <div className="col-md-4">
@@ -99,7 +98,7 @@ function OldLooks2() {
           )}
           <div className="col-md-8">
             <div className="card-body">
-              <h5 className="card-title" id="card-title">
+              <h5 className="card-title" id="card-title" style={{color: 'white'}}>
                 {element.name}
               </h5>
 

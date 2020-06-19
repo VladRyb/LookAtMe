@@ -55,6 +55,9 @@ a.nav-link {
 }
 
 h3 {
+  /* font-family: "Jost", sans-serif; */
+  /* font-family: 'Caveat', cursive; */
+
   font-family: "Paytone One";
   color: #202020;
   text-transform: uppercase;
@@ -76,7 +79,7 @@ h3 span {
 .aboutContainer {
   font-family: "Jost", sans-serif;
   font-size: 30px;
-  color: #000000;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -132,10 +135,12 @@ span.carouselWithHeader {
   letter-spacing: -2px;
 }
 #caruselH1 {
-  font-family: "Damion", cursive;
+  font-family: "Jost", sans-serif;
   margin-left: 1em;
-  /* font-family: 'Pacifico', cursive; */
-  /* font-family: 'Ruslan Display', cursive; */
+  font-size: 3em;
+  color:white
 }
-@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Ruslan+Display&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+p{
+  color:white
+}

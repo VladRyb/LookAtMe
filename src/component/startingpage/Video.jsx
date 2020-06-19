@@ -10,7 +10,7 @@ export default function Video() {
     <>
 
       <div className='video'>
-        <h1>Tinder</h1>
+        <h1 id="caruselH1">Tinder</h1>
         <Tinder />
       </div>
     </>
