@@ -38,7 +38,7 @@ function CariuselSuper() {
         clickable={false}
         enableScroll={false}
         active={activeElem}
-        currentFigureScale={1.7}
+        currentFigureScale={1}
         height={350}
         width={300}
         // navigation
