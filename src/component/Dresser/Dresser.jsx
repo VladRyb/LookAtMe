@@ -31,7 +31,14 @@ export default function Dresser() {
       : array;
   };
 
-  const headCategories = ["Шапки", "Кепки", "Шляпы", "Береты", "Панамы"];
+  const headCategories = [
+    "Шапки",
+    "Кепки",
+    "Шляпы",
+    "Береты",
+    "Панамы",
+    "Кандибобрики",
+  ];
   const bodyCategories = [
     "Футболки и поло",
     "Толстовки и свитшоты",
@@ -63,9 +70,8 @@ export default function Dresser() {
   // console.log(dressFilter(head, dressCategoryFilter.head));
 
   return (
-
-    <div id='globalDivman' style={{color: 'white'}}>
-      <div className='dresser'>
+    <div id="globalDivman" style={{ color: "white" }}>
+      <div className="dresser">
         <div>
           <DressCarousel
             dressArray={dressFilter(
@@ -76,8 +82,8 @@ export default function Dresser() {
             categories={headCategories}
             // title={"Верхняя часть тела"}
 
-            title={'Головушка'}
-            property={'head'}
+            title={"Головушка"}
+            property={"head"}
           />
         </div>
         <div>
@@ -88,9 +94,8 @@ export default function Dresser() {
               dressSeasonFilter.body
             )}
             categories={bodyCategories}
-
-            title={'Пузико'}
-            property={'body'}
+            title={"Пузико"}
+            property={"body"}
           />
         </div>
         <div>
@@ -101,9 +106,8 @@ export default function Dresser() {
               dressSeasonFilter.legs
             )}
             categories={legsCategories}
-
-            title={'Ножки'}
-            property={'legs'}
+            title={"Ножки"}
+            property={"legs"}
           />
         </div>
         <div>
@@ -114,9 +118,8 @@ export default function Dresser() {
               dressSeasonFilter.feet
             )}
             categories={feetCategories}
-
-            title={'Лапки'}
-            property={'feet'}
+            title={"Лапки"}
+            property={"feet"}
           />
         </div>
         <div>
