@@ -18,7 +18,7 @@ export default function Home(props) {
       <AboutComponent />
       <Video />
       {/* <UserLooksStart /> */}
-      <h1 id="caruselH1">Samye luchshie looks</h1>
+      <h1 id="caruselH1">Самые облайканные луки</h1>
       <CariuselSuper />
     </div>
   );

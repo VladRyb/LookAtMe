@@ -133,7 +133,7 @@ export default function NavBar(props) {
         {/* <div className="navbar-translate"> */}
         <NavLink to="/" tag={Link} id="sign">
           <h3>
-            <span>Look</span> <span>At</span> <span>Me</span>
+            <span>Look</span> <span>On</span> <span>Me</span>
           </h3>
         </NavLink>
       </NavbarBrand>

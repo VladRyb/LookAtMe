@@ -64,7 +64,7 @@ export default function Dresser() {
 
   return (
 
-    <div id='globalDivman'>
+    <div id='globalDivman' style={{color: 'white'}}>
       <div className='dresser'>
         <div>
           <DressCarousel
