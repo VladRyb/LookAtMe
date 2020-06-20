@@ -1,20 +1,16 @@
-import React from "react";
-import Coverflow from "react-coverflow";
-import { useState } from "react";
+import React from 'react';
+import Coverflow from 'react-coverflow';
+import { useState } from 'react';
 
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
-import ModalImg from "../ModaImg/ModalImg";
-import SelectedDressImage from "./SelectedDressImage";
-import DressImage from "./DressImage";
-import DressCarouselHeader from "./DressCarouselHeader";
-import "./DresserCarousel.css";
+import ModalImg from '../ModaImg/ModalImg';
+import SelectedDressImage from './SelectedDressImage';
+import DressImage from './DressImage';
+import DressCarouselHeader from './DressCarouselHeader';
+import './DresserCarousel.css';
 
 function CariuselSuper({ dressArray, title, property, categories }) {
-  const [state, setState] = useState({
-    active: 0,
-  });
-
   const [selectedImage, setSelectedImage] = useState(null);
   const newLookFromState = useSelector((state) => state.dressForNewLook);
 
@@ -27,13 +23,6 @@ function CariuselSuper({ dressArray, title, property, categories }) {
       />
     );
   });
-
-  function _handleClick() {
-    var num = Math.floor(Math.random() * 10 + 1);
-    setState({
-      active: num,
-    });
-  }
 
   const element = newLookFromState[property] ? (
     <SelectedDressImage
@@ -48,7 +37,7 @@ function CariuselSuper({ dressArray, title, property, categories }) {
       setSelectedImage={setSelectedImage}
     />
   ) : (
-    <div className="carouselWithYeader">
+    <div className='carouselWithYeader'>
       <DressCarouselHeader
         title={title}
         categories={categories}

@@ -1,17 +1,15 @@
-import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
-import StorageUploaderModal from "../FirebaseAuth/StorageUploaderModal";
-import { storage } from "../FirebaseAuth/firebase/index";
-import firebase from "firebase";
-import useSelection from "antd/lib/table/hooks/useSelection";
-import { useSelector, useDispatch } from "react-redux";
-import actionType from "../../redux/actions";
-import TestOn from "./TestPage";
+import React, { useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import StorageUploaderModal from '../FirebaseAuth/StorageUploaderModal';
+import { storage } from '../FirebaseAuth/firebase/index';
+import firebase from 'firebase';
+import { useSelector, useDispatch } from 'react-redux';
+import actionType from '../../redux/actions';
 
 export default function ModalImgOnline(props) {
   //////////
-  const userUid = localStorage.getItem("uid");
-  const userName = localStorage.getItem("user");
+  const userUid = localStorage.getItem('uid');
+  const userName = localStorage.getItem('user');
   //////////////
 
   const [show, setShow] = useState(false);
@@ -26,23 +24,23 @@ export default function ModalImgOnline(props) {
       ImgUrl: null,
       ImgId: new Date() + Math.random() * 10,
     },
-    season: "",
-    type: "",
+    season: '',
+    type: '',
     stoyanie: true,
   });
-  const [typeState, setTypeState] = useState("");
-  const [seasonState, setSeasonState] = useState("");
-  const [stoyanieState, setStoyanieState] = useState("");
+  const [typeState, setTypeState] = useState('');
+  const [seasonState, setSeasonState] = useState('');
+  const [stoyanieState, setStoyanieState] = useState('');
 
   const [fileList, setFileList] = useState([]);
-  const [onlinePhoto, setOnlinePhoto] = useState("");
+  const [onlinePhoto, setOnlinePhoto] = useState('');
 
   const onChangeProps = ({ fileList: newFileList }) => {
     setFileList(newFileList);
   };
 
   const handleUpload = () => {
-    if (onlinePhoto !== "") {
+    if (onlinePhoto !== '') {
       dispatch({
         type: actionType[props.title],
         [props.title]: {
@@ -77,14 +75,14 @@ export default function ModalImgOnline(props) {
         .ref(`images/${fileList[0].name}`)
         .put(fileList[0].originFileObj);
       uploadTask.on(
-        "state_changed",
+        'state_changed',
         (snapshot) => {},
         (error) => {
           console.log(error);
         },
         () => {
           storage
-            .ref("images")
+            .ref('images')
             .child(fileList[0].name)
             .getDownloadURL()
             .then((url) => {
@@ -111,7 +109,7 @@ export default function ModalImgOnline(props) {
                   season: seasonState,
                   type: typeState,
                   stoyanie: stoyanieState || true,
-                  creator: userUid + "/" + userName,
+                  creator: userUid + '/' + userName,
 
                   // firebase.auth().currentUser.uid +
                   // '/' +
@@ -140,23 +138,23 @@ export default function ModalImgOnline(props) {
 
   return (
     <div>
-      <span variant="primary" onClick={handleShow}>
-        <div className="addDiv">
-          <i className="fa fa-plus" />
+      <span variant='primary' onClick={handleShow}>
+        <div className='addDiv'>
+          <i className='fa fa-plus' />
         </div>
       </span>
       <Modal
         show={show}
         onHide={handleClose}
-        backdrop="static"
+        backdrop='static'
         keyboard={false}
       >
         <Modal.Header closeButton>
           <Modal.Title>+</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div id="container" class="flexChild rowParent">
-            <div id="rowChild94955" class="flexChild">
+          <div id='container' class='flexChild rowParent'>
+            <div id='rowChild94955' class='flexChild'>
               <StorageUploaderModal
                 fileList={fileList}
                 onPreview={onPreview}
@@ -164,21 +162,21 @@ export default function ModalImgOnline(props) {
                 onChange={onChangeProps}
               />
               <TestOn setOnlinePhoto={setOnlinePhoto} />
-              <img src={onlinePhoto} alt="" />
+              <img src={onlinePhoto} alt='' />
             </div>
 
-            <div id="rowChild77673" class="flexChild">
-              <div className="selectDiv d-flex justify-content-between">
+            <div id='rowChild77673' class='flexChild'>
+              <div className='selectDiv d-flex justify-content-between'>
                 <span>Сезон: </span>
                 <select
-                  className="select btn btn-secondary btn-sm dropdown-toggle"
+                  className='select btn btn-secondary btn-sm dropdown-toggle'
                   onChange={(event) => setSeasonState(event.target.value)}
                 >
                   <option>Не выбрано</option>
-                  <option value="winter">Зима</option>
-                  <option value="summer">Лето</option>
-                  <option value="autumn">Осень</option>
-                  <option value="spring">Весна</option>
+                  <option value='winter'>Зима</option>
+                  <option value='summer'>Лето</option>
+                  <option value='autumn'>Осень</option>
+                  <option value='spring'>Весна</option>
                 </select>
               </div>
               {/* <div className='selectDiv d-flex justify-content-between'>
@@ -192,14 +190,14 @@ export default function ModalImgOnline(props) {
                   })}
                 </select>
               </div> */}
-              <div className="selectDiv d-flex justify-content-between">
+              <div className='selectDiv d-flex justify-content-between'>
                 <span>Состояние: </span>
                 <select
-                  className="select select btn btn-secondary btn-sm dropdown-toggle"
+                  className='select select btn btn-secondary btn-sm dropdown-toggle'
                   onChange={(event) => setStoyanieState(event.target.value)}
                 >
                   <option>Не выбрано</option>
-                  <option value="false">Требует ремонта</option>
+                  <option value='false'>Требует ремонта</option>
                 </select>
               </div>
             </div>
@@ -207,13 +205,13 @@ export default function ModalImgOnline(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            className="btn btn-outline-primary"
-            variant="outline-primary"
+            className='btn btn-outline-primary'
+            variant='outline-primary'
             onClick={() => {
               handleUpload();
               handleClose();
             }}
-            type="submit"
+            type='submit'
           >
             Submit
           </Button>

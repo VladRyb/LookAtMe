@@ -12,13 +12,10 @@ import {
   deleteTagOnEdit,
   onChangeNameEdit,
 } from '../../redux/actioncreators/actionsSaga';
-import TestOn from './TestPage';
 import { useHistory } from 'react-router-dom';
 
 export default function ModalLookEdit(props) {
   const history = useHistory();
-
-  const store = useSelector((state) => state);
 
   const { tags, name, head, body, legs, feet } = props.editedLook;
   const [show, setShow] = useState(false);
@@ -219,7 +216,6 @@ export default function ModalLookEdit(props) {
                   <img src={onlinePhoto} alt='' />
                 </>
               )}
-              <TestOn setOnlinePhoto={setOnlinePhoto} />
             </div>
             <div id='rowChild77673' class='flexChild'>
               <div className='selectDiv'>

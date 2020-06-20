@@ -1,18 +1,15 @@
-import React, { useState } from "react";
-import Coverflow from "react-coverflow";
-import { StyleRoot } from "radium";
+import React, { useState } from 'react';
+import Coverflow from 'react-coverflow';
+import { StyleRoot } from 'radium';
 
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
-import ModalImg from "../ModaImg/ModalImg";
-import SelectedDressImage from "./SelectedDressImage";
-import DressImage from "./DressImage";
-import DressCarouselHeader from "./DressCarouselHeader";
-import "./DresserCarousel.css";
+import ModalImg from '../ModaImg/ModalImg';
+import SelectedDressImage from './SelectedDressImage';
+import DressImage from './DressImage';
+import DressCarouselHeader from './DressCarouselHeader';
+import './DresserCarousel.css';
 
-var fn = function () {
-  /* do you want */
-};
 export default function Carousel({ dressArray, title, property, categories }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const newLookFromState = useSelector((state) => state.dressForNewLook);
@@ -41,7 +38,7 @@ export default function Carousel({ dressArray, title, property, categories }) {
       setSelectedImage={setSelectedImage}
     />
   ) : (
-    <div className="carouselWithHeader">
+    <div className='carouselWithHeader'>
       <DressCarouselHeader
         title={title}
         categories={categories}
@@ -51,7 +48,7 @@ export default function Carousel({ dressArray, title, property, categories }) {
         <Coverflow
           width={800}
           height={300}
-          className="carousel"
+          className='carousel'
           enableHeading={false}
           enableScroll={false}
           active={2}
@@ -59,7 +56,7 @@ export default function Carousel({ dressArray, title, property, categories }) {
           displayQuantityOfSide={2}
           // displayQuantityOfSide={2}
           navigation
-          style={{ width: "600px" }}
+          style={{ width: '600px' }}
           // infiniteScroll
           // enableHeading
           // media={{

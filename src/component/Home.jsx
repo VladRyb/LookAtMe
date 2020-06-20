@@ -1,24 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import UserLooksStart from "./startingpage/UserLooksStart";
-import AboutComponent from "./startingpage/AboutComponent";
-import Video from "./startingpage/Video";
-import LookAtMy from "./startingpage/LookAtMy";
-import Registration from "./FirebaseAuth/Registration";
-import StorageUploader from "./FirebaseAuth/StorageUploader";
-import CariuselSuper from "./CaruselSuper/CariuselSuper";
+import AboutComponent from './startingpage/AboutComponent';
+import Video from './startingpage/Video';
+import LookAtMy from './startingpage/LookAtMy';
+import CariuselSuper from './CaruselSuper/CariuselSuper';
 export default function Home(props) {
   return (
-    <div id="globalDiv"
-    // style={{backgroundImage="man.png"}}
-    >
-      {/* <Registration /> */}
-      {/* <StorageUploader /> */}
+    <div id='globalDiv'>
       <LookAtMy />
       <AboutComponent />
       <Video />
-      {/* <UserLooksStart /> */}
-      <h1 id="caruselH1">Самые облайканные луки</h1>
+      <h1 id='caruselH1'>Самые облайканные луки</h1>
       <CariuselSuper />
     </div>
   );

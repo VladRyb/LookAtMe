@@ -1,7 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import {
-  loadingStart,
-  loadingTodo,
   deleteLook,
   deleteDress,
   handleToggle1,
@@ -10,18 +8,7 @@ import {
 } from '../actioncreators/actionsSaga';
 import actionType from '../actions';
 import firebase from 'firebase';
-import { act } from 'react-dom/test-utils';
 const database = firebase.firestore();
-
-// function* loadTodo() {
-//   try {
-//     yield put(loadingStart());
-//     const result = yield call(fetchTodo);
-//     yield put(loadingTodo(result.todo));
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
 
 async function findU() {
   const userUid = localStorage.getItem('uid');
@@ -79,14 +66,6 @@ async function findU() {
     .then((snapshot) => {
       return snapshot.docs.map((img) => img.data());
     });
-  // dispatch({
-  //   type: actionType.arrImg,
-  //   body: body,
-  //   head: head,
-  //   legs: legs,
-  //   feet: feet,
-  //   lookis: lookis,
-  // });
   return { body, head, legs, feet, lookis, lookisShare };
 }
 

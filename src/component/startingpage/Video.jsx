@@ -1,6 +1,5 @@
 import React from 'react';
 import './styles.css';
-import { Card } from 'react-bootstrap';
 
 import Tinder from '../Tinder/Tinder';
 

@@ -1,38 +1,33 @@
-import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { NavDropdown, Image } from "react-bootstrap";
-import ModalLogin from "./ModalLogin";
-import ModalSingUp from "./ModalSingUp";
-import { useDispatch, useSelector } from "react-redux";
-import actionType from "../redux/actions";
-import firebase from "firebase";
-import classnames from "classnames";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { NavDropdown, Image } from 'react-bootstrap';
+import ModalLogin from './ModalLogin';
+import { useDispatch, useSelector } from 'react-redux';
+import actionType from '../redux/actions';
+import firebase from 'firebase';
+import classnames from 'classnames';
 import {
-  Button,
   Collapse,
   NavbarBrand,
   Navbar,
   NavItem,
   NavLink,
   Nav,
-  Container,
-} from "reactstrap";
+} from 'reactstrap';
 
-import "../App.css";
-import { loadingColWather } from "../redux/actioncreators/actionsSaga";
+import '../App.css';
+import { loadingColWather } from '../redux/actioncreators/actionsSaga';
 export default function NavBar(props) {
-  const history = useHistory();
-
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const userUid = localStorage.getItem("uid");
+  const userUid = localStorage.getItem('uid');
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
 
-  const [state, setState] = useState(false);
+  // const [state, setState] = useState(false);
   const [uiConfig, setUiConfig] = useState({
-    signInFlow: "popup",
+    signInFlow: 'popup',
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
@@ -50,19 +45,16 @@ export default function NavBar(props) {
   const usersDB = async (user) => {
     let data = await firebase
       .firestore()
-      .collection("users")
+      .collection('users')
       .get()
       .then((snapshot) => {
         return snapshot.docs.map((img) => img.data());
       });
 
-    let result = data.find(
-      (item) => item.uid === userUid
-      // (item) => item.uid === firebase.auth().currentUser.uid
-    );
+    let result = data.find((item) => item.uid === userUid);
 
     if (!result) {
-      firebase.firestore().collection("users").add({
+      firebase.firestore().collection('users').add({
         email: user.email,
         displayName: user.displayName,
         uid: user.uid,
@@ -70,39 +62,35 @@ export default function NavBar(props) {
       });
       dispatch({ type: actionType.login, user });
 
-      localStorage.setItem("session", true);
-      localStorage.setItem("user", user.displayName);
-      localStorage.setItem("uid", user.uid);
-      localStorage.setItem("photo", user.photoURL);
+      localStorage.setItem('session', true);
+      localStorage.setItem('user', user.displayName);
+      localStorage.setItem('uid', user.uid);
+      localStorage.setItem('photo', user.photoURL);
     } else {
       dispatch({ type: actionType.login, user });
 
-      localStorage.setItem("session", true);
-      localStorage.setItem("user", user.displayName);
-      localStorage.setItem("uid", user.uid);
-      localStorage.setItem("photo", user.photoURL);
+      localStorage.setItem('session', true);
+      localStorage.setItem('user', user.displayName);
+      localStorage.setItem('uid', user.uid);
+      localStorage.setItem('photo', user.photoURL);
     }
   };
-  const session = localStorage.getItem("session");
-  const userName = localStorage.getItem("user");
-  // const userUid = localStorage.getItem('uid');
-  const userPhoto = localStorage.getItem("photo");
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
-      setState({ isSignedIn: !!user });
+      // setState({ isSignedIn: !!user });
       if (user) {
         usersDB(user);
       }
     });
   }, []);
 
-  const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
+  const [navbarColor, setNavbarColor] = React.useState('navbar-transparent');
   const [navbarCollapse, setNavbarCollapse] = React.useState(false);
 
   const toggleNavbarCollapse = () => {
     setNavbarCollapse(!navbarCollapse);
-    document.documentElement.classList.toggle("nav-open");
+    document.documentElement.classList.toggle('nav-open');
   };
 
   useEffect(() => {
@@ -111,27 +99,26 @@ export default function NavBar(props) {
         document.documentElement.scrollTop > 299 ||
         document.body.scrollTop > 299
       ) {
-        setNavbarColor("");
+        setNavbarColor('');
       } else if (
         document.documentElement.scrollTop < 300 ||
         document.body.scrollTop < 300
       ) {
-        setNavbarColor("navbar-transparent");
+        setNavbarColor('navbar-transparent');
       }
     };
 
-    window.addEventListener("scroll", updateNavbarColor);
+    window.addEventListener('scroll', updateNavbarColor);
 
     return function cleanup() {
-      window.removeEventListener("scroll", updateNavbarColor);
+      window.removeEventListener('scroll', updateNavbarColor);
     };
   });
 
   return (
-    <div className="clobal-nav">
-      <NavbarBrand className="brandLogo">
-        {/* <div className="navbar-translate"> */}
-        <NavLink to="/" tag={Link} id="sign">
+    <div className='clobal-nav'>
+      <NavbarBrand className='brandLogo'>
+        <NavLink to='/' tag={Link} id='sign'>
           <h3>
             <span>Look</span> <span>On</span> <span>Me</span>
           </h3>
@@ -139,80 +126,65 @@ export default function NavBar(props) {
       </NavbarBrand>
 
       <Navbar
-        id="fixed-top"
-        className={classnames("fixed-top", navbarColor)}
-        color-on-scroll="300"
-        expand="lg"
+        id='fixed-top'
+        className={classnames('fixed-top', navbarColor)}
+        color-on-scroll='300'
+        expand='lg'
       >
-        {/* </div> */}
-        <div id="navbar">
+        <div id='navbar'>
           <Collapse
-            className="justify-content-end"
+            className='justify-content-end'
             navbar
             isOpen={navbarCollapse}
           >
             <Nav navbar>
-              {/* <NavItem>
-
-                <NavLink
-                  data-placement="bottom"
-                  href="https://twitter.com/"
-                  target="_blank"
-                  title="Follow us on Twitter"
-                >
-                  <i className="fa fa-twitter" />
-                  <p className="d-lg-none">Twitter</p>
-                </NavLink>
-              </NavItem> */}
               <NavItem>
                 <NavLink
-                  data-placement="bottom"
-                  href="https://www.facebook.com/"
-                  target="_blank"
-                  title="Like us on Facebook"
+                  data-placement='bottom'
+                  href='https://www.facebook.com/'
+                  target='_blank'
+                  title='Like us on Facebook'
                 >
-                  <i className="fa fa-facebook-square" />
-                  <p className="d-lg-none">Facebook</p>
+                  <i className='fa fa-facebook-square' />
+                  <p className='d-lg-none'>Facebook</p>
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink
-                  data-placement="bottom"
-                  href="https://www.instagram.com"
-                  target="_blank"
-                  title="Follow us on Instagram"
+                  data-placement='bottom'
+                  href='https://www.instagram.com'
+                  target='_blank'
+                  title='Follow us on Instagram'
                 >
-                  <i className="fa fa-instagram" />
-                  <p className="d-lg-none">Instagram</p>
+                  <i className='fa fa-instagram' />
+                  <p className='d-lg-none'>Instagram</p>
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink
-                  data-placement="bottom"
-                  href="https://github.com/VladRyb/LookAtMe"
-                  target="_blank"
-                  title="Star on GitHub"
+                  data-placement='bottom'
+                  href='https://github.com/VladRyb/LookAtMe'
+                  target='_blank'
+                  title='Star on GitHub'
                 >
-                  <i className="fa fa-github" />
-                  <p className="d-lg-none">GitHub</p>
+                  <i className='fa fa-github' />
+                  <p className='d-lg-none'>GitHub</p>
                 </NavLink>
               </NavItem>
               {user.name ? (
-                <NavItem id="logoDresser">
-                  <NavLink to="/dresser" tag={Link}>
-                    {/* <NavLink to='/car' tag={Link}> */}
-                    {/* <div style={{ backgroundColor: "red"}}> */}
-                    <p  id="logoDresserNotLogined">ВГардероб</p>
+                <NavItem id='logoDresser'>
+                  <NavLink to='/dresser' tag={Link}>
+                    <p id='logoDresserNotLogined'>ВГардероб</p>
                   </NavLink>
                 </NavItem>
               ) : (
-                <NavItem id="logoDresserNotLogined">
-                  <NavLink to="#" tag={Link}>
+                <NavItem id='logoDresserNotLogined'>
+                  <NavLink to='#' tag={Link}>
                     <ModalLogin
                       setShow={setShow}
                       handleClose={handleClose}
                       show={show}
-                      title={"ВГардероб"}
+                      title={'ВГардероб'}
                       uiConfig={uiConfig}
                     />
                   </NavLink>
@@ -223,18 +195,18 @@ export default function NavBar(props) {
                   <NavDropdown
                     title={
                       <Image
-                        id="iconProfile"
+                        id='iconProfile'
                         src={
                           user.photo ||
-                          "https://cdn4.iconfinder.com/data/icons/e-commerce-181/512/477_profile__avatar__man_-512.png"
+                          'https://cdn4.iconfinder.com/data/icons/e-commerce-181/512/477_profile__avatar__man_-512.png'
                         }
                         roundedCircle
                       />
                     }
-                    id="basic-nav-dropdown"
+                    id='basic-nav-dropdown'
                   >
                     <NavDropdown.Item>
-                      <Link to="/mylooks">Мои луки</Link>
+                      <Link to='/mylooks'>Мои луки</Link>
                     </NavDropdown.Item>
 
                     <NavDropdown.Divider />
@@ -249,8 +221,8 @@ export default function NavBar(props) {
                 </NavItem>
               ) : (
                 <NavItem>
-                  <NavLink to="#" tag={Link}>
-                    <i className="nc-icon nc-layout-11" />{" "}
+                  <NavLink to='#' tag={Link}>
+                    <i className='nc-icon nc-layout-11' />{' '}
                   </NavLink>
                 </NavItem>
               )}

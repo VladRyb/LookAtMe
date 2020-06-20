@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './myLooks.css';
 import OldLooks2 from './OldLooks/OldLooks2';
 import { useHistory } from 'react-router-dom';
@@ -16,7 +16,6 @@ function MyLooks2(props) {
     return (
       <div id='globalDiv'>
         <div className='mylookswrapper'>
-          {/* <NewLook /> */}
           <OldLooks2 />
         </div>
       </div>

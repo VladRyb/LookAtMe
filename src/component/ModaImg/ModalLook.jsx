@@ -1,22 +1,21 @@
-import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
-import StorageUploaderModal from "../FirebaseAuth/StorageUploaderModal";
-import { storage } from "../FirebaseAuth/firebase/index";
-import firebase from "firebase";
-import actionType from "../../redux/actions";
-import { useSelector, useDispatch } from "react-redux";
-import { MDBBtn, MDBIcon } from "mdbreact";
-import Camera from "../Camera/Camera";
-import "./modalStyle.css";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Button, Modal } from 'react-bootstrap';
+import actionType from '../../redux/actions';
+import StorageUploaderModal from '../FirebaseAuth/StorageUploaderModal';
+import { storage } from '../FirebaseAuth/firebase/index';
+import firebase from 'firebase';
+import { MDBBtn, MDBIcon } from 'mdbreact';
+import Camera from '../Camera/Camera';
+import './modalStyle.css';
 
 import {
   clearDressForNewLook,
   addTag,
   deleteTag,
   onChangeName,
-} from "../../redux/actioncreators/actionsSaga";
-import TestOn from "./TestPage";
-import { useHistory } from "react-router-dom";
+} from '../../redux/actioncreators/actionsSaga';
 
 export default function ModalLook(props) {
   const history = useHistory();
@@ -24,21 +23,20 @@ export default function ModalLook(props) {
   const { tags, name, head, body, legs, feet } = store.dressForNewLook;
 
   const [show, setShow] = useState(false);
-  const [tag, setTag] = useState("");
-  const userUid = localStorage.getItem("uid");
-  const userName = localStorage.getItem("user");
+  const [tag, setTag] = useState('');
+  const userUid = localStorage.getItem('uid');
+  const userName = localStorage.getItem('user');
 
   const [isCamera, setIsCamera] = useState(false);
-  // setIsCamera(props.camera);
 
   const dispatch = useDispatch();
 
   function addTags(event) {
-    if (event.key === "Enter") {
-      const newTag = tags.findIndex((item) => item == tag);
+    if (event.key === 'Enter') {
+      const newTag = tags.findIndex((item) => item === tag);
       if (newTag === -1) {
         dispatch(addTag(tag));
-        setTag("");
+        setTag('');
       }
     }
   }
@@ -48,16 +46,14 @@ export default function ModalLook(props) {
   }
 
   const [fileList, setFileList] = useState([]);
-  const [onlinePhoto, setOnlinePhoto] = useState("");
-
-  // const [url, setUrl] = useState('');
+  const [onlinePhoto, setOnlinePhoto] = useState('');
 
   const onChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
   };
 
   const handleUpload = () => {
-    if (onlinePhoto !== "") {
+    if (onlinePhoto !== '') {
       dispatch({
         type: actionType.lookis,
         lookis: {
@@ -76,7 +72,7 @@ export default function ModalLook(props) {
       });
       firebase
         .firestore()
-        .collection("lookis")
+        .collection('lookis')
         .add({
           id: Date.now() + Math.random() * 10,
           ImgUrl: onlinePhoto,
@@ -89,26 +85,21 @@ export default function ModalLook(props) {
           share: false,
           like: 0,
           dislike: 0,
-          creator: userUid + "/" + userName,
-
-          // creator:
-          //   firebase.auth().currentUser.uid +
-          //   '/' +
-          //   firebase.auth().currentUser.displayName,
+          creator: userUid + '/' + userName,
         });
     } else if (fileList.length > 0) {
       const uploadTask = storage
         .ref(`images/${fileList[0].name}`)
         .put(fileList[0].originFileObj);
       uploadTask.on(
-        "state_changed",
+        'state_changed',
         (snapshot) => {},
         (error) => {
           console.log(error);
         },
         () => {
           storage
-            .ref("images")
+            .ref('images')
             .child(fileList[0].name)
             .getDownloadURL()
             .then((url) => {
@@ -130,7 +121,7 @@ export default function ModalLook(props) {
               });
               firebase
                 .firestore()
-                .collection("lookis")
+                .collection('lookis')
                 .add({
                   id: Date.now() + Math.random() * 10,
                   ImgUrl: url,
@@ -143,7 +134,7 @@ export default function ModalLook(props) {
                   share: false,
                   like: 0,
                   dislike: 0,
-                  creator: userUid + "/" + userName,
+                  creator: userUid + '/' + userName,
 
                   // firebase.auth().currentUser.uid +
                   // '/' +
@@ -157,7 +148,7 @@ export default function ModalLook(props) {
         type: actionType.lookis,
         lookis: {
           id: Date.now() + Math.random() * 10,
-          ImgUrl: "",
+          ImgUrl: '',
           name,
           tags,
           head,
@@ -171,10 +162,10 @@ export default function ModalLook(props) {
       });
       firebase
         .firestore()
-        .collection("lookis")
+        .collection('lookis')
         .add({
           id: Date.now() + Math.random() * 10,
-          ImgUrl: "",
+          ImgUrl: '',
           name,
           tags,
           head,
@@ -184,7 +175,7 @@ export default function ModalLook(props) {
           share: false,
           like: 0,
           dislike: 0,
-          creator: userUid + "/" + userName,
+          creator: userUid + '/' + userName,
 
           // creator:
           //   firebase.auth().currentUser.uid +
@@ -226,8 +217,8 @@ export default function ModalLook(props) {
         backdrop='static'
         keyboard={false}
       > */}
-      <MDBBtn color="primary" onClick={handleShow}>
-        <MDBIcon icon="user-plus" className="mr-1" /> Сохранить лук
+      <MDBBtn color='primary' onClick={handleShow}>
+        <MDBIcon icon='user-plus' className='mr-1' /> Сохранить лук
       </MDBBtn>
       {/* <Button variant="outline-primary" onClick={handleShow}>
         Save Look
@@ -235,16 +226,16 @@ export default function ModalLook(props) {
       <Modal
         show={show}
         onHide={handleClose}
-        backdrop="static"
+        backdrop='static'
         keyboard={false}
       >
         <Modal.Header closeButton>
           <Modal.Title>Сохранить лук</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div id="container" class="flexChild rowParent">
-            <div id="rowChild94955" class="flexChild">
-              <div className="modalCamera">
+          <div id='container' class='flexChild rowParent'>
+            <div id='rowChild94955' class='flexChild'>
+              <div className='modalCamera'>
                 {!isCamera ? (
                   <>
                     <StorageUploaderModal
@@ -256,9 +247,9 @@ export default function ModalLook(props) {
 
                     <Button
                       onClick={() => setIsCamera((isCamera) => !isCamera)}
-                      className="btn btn-outline-primary"
-                      variant="outline-primary"
-                      type="submit"
+                      className='btn btn-outline-primary'
+                      variant='outline-primary'
+                      type='submit'
                     >
                       Сделать фото
                     </Button>
@@ -271,38 +262,38 @@ export default function ModalLook(props) {
                 )}
               </div>
             </div>
-            <div id="rowChild77673" class="flexChild">
-              <div className="selectDiv">
+            <div id='rowChild77673' class='flexChild'>
+              <div className='selectDiv'>
                 <input
                   value={name}
                   onChange={(event) =>
                     dispatch(onChangeName(event.target.value))
                   }
-                  type="text"
-                  className="form-control"
-                  placeholder="Name"
-                  name="name"
+                  type='text'
+                  className='form-control'
+                  placeholder='Name'
+                  name='name'
                 />
               </div>
-              <div className="selectDivBottom">
+              <div className='selectDivBottom'>
                 <input
                   value={tag}
                   onChange={(event) => setTag(event.target.value)}
                   onKeyPress={addTags}
-                  type="text"
-                  className="form-control"
-                  placeholder="Tags"
-                  name="tags"
+                  type='text'
+                  className='form-control'
+                  placeholder='Tags'
+                  name='tags'
                   required
-                />{" "}
+                />{' '}
               </div>
               {tags.map((item) => {
                 return (
                   <span
-                    className="tags badge badge-pill badge-dark"
+                    className='tags badge badge-pill badge-dark'
                     onClick={() => dispatch(deleteTag(deleteOneTag(item)))}
                   >
-                    {item}{" "}
+                    {item}{' '}
                   </span>
                 );
               })}
@@ -315,11 +306,11 @@ export default function ModalLook(props) {
               handleUpload();
               handleClose();
               dispatch(clearDressForNewLook());
-              history.push("/mylooks");
+              history.push('/mylooks');
             }}
-            className="btn btn-outline-primary"
-            variant="outline-primary"
-            type="submit"
+            className='btn btn-outline-primary'
+            variant='outline-primary'
+            type='submit'
           >
             Создать
           </Button>

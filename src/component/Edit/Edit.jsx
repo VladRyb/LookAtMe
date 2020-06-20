@@ -26,7 +26,7 @@ export default function Dresser() {
     return 'Loading...';
   }
   const { head = [], body = [], legs = [], feet = [] } = user;
-  const editedLook = user.lookis.find((element) => element.id == id);
+  const editedLook = user.lookis.find((element) => element.id === id);
 
   const dressFilter = (array, categoryFilter, seasonFilter) => {
     return categoryFilter || seasonFilter
