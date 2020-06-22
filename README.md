@@ -22,11 +22,11 @@ npm start
 - Создание сочетаний одежды и отображение сочетания на главной странице в карусели и в битве луков
 - Реализация оценки сочетания (лайк или дизлайк) 
 
-## Authors:
--[Владислав Рыбаков](https://github.com/VladRyb)
+## Authors
+- [Владислав Рыбаков](https://github.com/VladRyb)
 
--[Егор Желтухин](https://github.com/EgorZ7901)
+- [Егор Желтухин](https://github.com/EgorZ7901)
 
--[Сергей Сутковецкий ](https://github.com/SutkoVetskii)
+- [Сергей Сутковецкий ](https://github.com/SutkoVetskii)
 
--[Олеся Ананьева](https://github.com/OlesyaAnaneva)
+- [Олеся Ананьева](https://github.com/OlesyaAnaneva)
