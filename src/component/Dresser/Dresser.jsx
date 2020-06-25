@@ -1,12 +1,9 @@
 import React from "react";
 import DressCarousel from "../DressCarousel/DressCarousel";
-// import UploadForm from '../uploadForm/UploadForm'
 import { useSelector } from "react-redux";
 import ModalLook from "../ModaImg/ModalLook";
 import "./Dresser.css";
 import { useHistory } from "react-router-dom";
-import CariuselSuper from "../DressCarousel/CariuselSuper";
-import Carousel from "../DressCarousel/CariuselSupercopy";
 
 export default function Dresser() {
   const userName = localStorage.getItem("user");
@@ -67,8 +64,6 @@ export default function Dresser() {
     "Сапоги",
   ];
 
-  // console.log(dressFilter(head, dressCategoryFilter.head));
-
   return (
     <div id="globalDivman" style={{ color: "white" }}>
       <div className="dresser">
@@ -80,8 +75,6 @@ export default function Dresser() {
               dressSeasonFilter.head
             )}
             categories={headCategories}
-            // title={"Верхняя часть тела"}
-
             title={"Головушка"}
             property={"head"}
           />
