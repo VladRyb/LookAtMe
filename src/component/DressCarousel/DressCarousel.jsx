@@ -48,8 +48,18 @@ export default ({ dressArray, title, property, categories }) => {
           activeItemIndex={activeItemIndex}
           numberOfCards={3}
           gutter={10}
-          leftChevron={<i class="fa fa-arrow-circle-o-left chevrons" style={{color: 'white'}}></i>}
-          rightChevron={<i class="fa fa-arrow-circle-o-right chevrons" style={{color: 'white'}}></i>}
+          leftChevron={
+            <i
+              class="fa fa-arrow-circle-o-left chevrons"
+              style={{ color: "white" }}
+            ></i>
+          }
+          rightChevron={
+            <i
+              class="fa fa-arrow-circle-o-right chevrons"
+              style={{ color: "white" }}
+            ></i>
+          }
           outsideChevron
           chevronWidth={chevronWidth}
         >
