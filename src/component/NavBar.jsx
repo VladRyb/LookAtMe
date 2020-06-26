@@ -25,7 +25,6 @@ export default function NavBar(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
 
-  // const [state, setState] = useState(false);
   const [uiConfig, setUiConfig] = useState({
     signInFlow: 'popup',
     signInOptions: [
@@ -78,7 +77,6 @@ export default function NavBar(props) {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
-      // setState({ isSignedIn: !!user });
       if (user) {
         usersDB(user);
       }
