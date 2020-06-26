@@ -9,8 +9,6 @@ import sagas from './redux/saga/sagas';
 import './index.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// Пример saga.
-
 const sagaMiddleware = createSagaMiddleware();
 const enhancers = compose(
   applyMiddleware(sagaMiddleware),
@@ -19,14 +17,11 @@ const enhancers = compose(
 
 const store = createStore(reducer, enhancers);
 
-// Пример saga.
 sagaMiddleware.run(sagas);
 
 ReactDOM.render(
-  // <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>,
-  // </React.StrictMode>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );

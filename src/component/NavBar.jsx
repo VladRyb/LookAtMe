@@ -6,14 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import actionType from '../redux/actions';
 import firebase from 'firebase';
 import classnames from 'classnames';
-import {
-  Collapse,
-  NavbarBrand,
-  Navbar,
-  NavItem,
-  NavLink,
-  Nav,
-} from 'reactstrap';
+import { Collapse, NavbarBrand, Navbar, NavItem, NavLink, Nav } from 'reactstrap';
 
 import '../App.css';
 import { loadingColWather } from '../redux/actioncreators/actionsSaga';
@@ -93,15 +86,9 @@ export default function NavBar(props) {
 
   useEffect(() => {
     const updateNavbarColor = () => {
-      if (
-        document.documentElement.scrollTop > 299 ||
-        document.body.scrollTop > 299
-      ) {
+      if (document.documentElement.scrollTop > 299 || document.body.scrollTop > 299) {
         setNavbarColor('');
-      } else if (
-        document.documentElement.scrollTop < 300 ||
-        document.body.scrollTop < 300
-      ) {
+      } else if (document.documentElement.scrollTop < 300 || document.body.scrollTop < 300) {
         setNavbarColor('navbar-transparent');
       }
     };
@@ -114,9 +101,9 @@ export default function NavBar(props) {
   });
 
   return (
-    <div className='clobal-nav'>
-      <NavbarBrand className='brandLogo'>
-        <NavLink to='/' tag={Link} id='sign'>
+    <div className="clobal-nav">
+      <NavbarBrand className="brandLogo">
+        <NavLink to="/" tag={Link} id="sign">
           <h3>
             <span>Look</span> <span>On</span> <span>Me</span>
           </h3>
@@ -124,60 +111,56 @@ export default function NavBar(props) {
       </NavbarBrand>
 
       <Navbar
-        id='fixed-top'
+        id="fixed-top"
         className={classnames('fixed-top', navbarColor)}
-        color-on-scroll='300'
-        expand='lg'
+        color-on-scroll="300"
+        expand="lg"
       >
-        <div id='navbar'>
-          <Collapse
-            className='justify-content-end'
-            navbar
-            isOpen={navbarCollapse}
-          >
+        <div id="navbar">
+          <Collapse className="justify-content-end" navbar isOpen={navbarCollapse}>
             <Nav navbar>
               <NavItem>
                 <NavLink
-                  data-placement='bottom'
-                  href='https://www.facebook.com/'
-                  target='_blank'
-                  title='Like us on Facebook'
+                  data-placement="bottom"
+                  href="https://www.facebook.com/"
+                  target="_blank"
+                  title="Like us on Facebook"
                 >
-                  <i className='fa fa-facebook-square' />
-                  <p className='d-lg-none'>Facebook</p>
+                  <i className="fa fa-facebook-square" />
+                  <p className="d-lg-none">Facebook</p>
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink
-                  data-placement='bottom'
-                  href='https://www.instagram.com'
-                  target='_blank'
-                  title='Follow us on Instagram'
+                  data-placement="bottom"
+                  href="https://www.instagram.com"
+                  target="_blank"
+                  title="Follow us on Instagram"
                 >
-                  <i className='fa fa-instagram' />
-                  <p className='d-lg-none'>Instagram</p>
+                  <i className="fa fa-instagram" />
+                  <p className="d-lg-none">Instagram</p>
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink
-                  data-placement='bottom'
-                  href='https://github.com/VladRyb/LookAtMe'
-                  target='_blank'
-                  title='Star on GitHub'
+                  data-placement="bottom"
+                  href="https://github.com/VladRyb/LookAtMe"
+                  target="_blank"
+                  title="Star on GitHub"
                 >
-                  <i className='fa fa-github' />
-                  <p className='d-lg-none'>GitHub</p>
+                  <i className="fa fa-github" />
+                  <p className="d-lg-none">GitHub</p>
                 </NavLink>
               </NavItem>
               {user.name ? (
-                <NavItem id='logoDresser'>
-                  <NavLink to='/dresser' tag={Link}>
-                    <p id='logoDresserNotLogined'>ВГардероб</p>
+                <NavItem id="logoDresser">
+                  <NavLink to="/dresser" tag={Link}>
+                    <p id="logoDresserNotLogined">ВГардероб</p>
                   </NavLink>
                 </NavItem>
               ) : (
-                <NavItem id='logoDresserNotLogined'>
-                  <NavLink to='#' tag={Link}>
+                <NavItem id="logoDresserNotLogined">
+                  <NavLink to="#" tag={Link}>
                     <ModalLogin
                       setShow={setShow}
                       handleClose={handleClose}
@@ -193,7 +176,7 @@ export default function NavBar(props) {
                   <NavDropdown
                     title={
                       <Image
-                        id='iconProfile'
+                        id="iconProfile"
                         src={
                           user.photo ||
                           'https://cdn4.iconfinder.com/data/icons/e-commerce-181/512/477_profile__avatar__man_-512.png'
@@ -201,10 +184,10 @@ export default function NavBar(props) {
                         roundedCircle
                       />
                     }
-                    id='basic-nav-dropdown'
+                    id="basic-nav-dropdown"
                   >
                     <NavDropdown.Item>
-                      <Link to='/mylooks'>Мои луки</Link>
+                      <Link to="/mylooks">Мои луки</Link>
                     </NavDropdown.Item>
 
                     <NavDropdown.Divider />
@@ -219,8 +202,8 @@ export default function NavBar(props) {
                 </NavItem>
               ) : (
                 <NavItem>
-                  <NavLink to='#' tag={Link}>
-                    <i className='nc-icon nc-layout-11' />{' '}
+                  <NavLink to="#" tag={Link}>
+                    <i className="nc-icon nc-layout-11" />{' '}
                   </NavLink>
                 </NavItem>
               )}

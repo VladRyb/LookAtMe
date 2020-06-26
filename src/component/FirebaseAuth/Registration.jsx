@@ -5,10 +5,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 export default function Registration(props) {
   return (
     <>
-      <StyledFirebaseAuth
-        uiConfig={props.uiConfig}
-        firebaseAuth={firebase.auth()}
-      />
+      <StyledFirebaseAuth uiConfig={props.uiConfig} firebaseAuth={firebase.auth()} />
     </>
   );
 }

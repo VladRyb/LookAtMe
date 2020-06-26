@@ -1,10 +1,8 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  watcherDeleteLook,
-  watcherHandleToggle,
-} from "../../../redux/actioncreators/actionsSaga";
-import { OKShareButton, VKShareButton, OKIcon, VKIcon } from "react-share";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { watcherDeleteLook, watcherHandleToggle } from '../../../redux/actioncreators/actionsSaga';
+import { OKShareButton, VKShareButton, OKIcon, VKIcon } from 'react-share';
+
 
 function OldLooks2() {
   const dispatch = useDispatch();
@@ -33,133 +31,131 @@ function OldLooks2() {
   }
   return allLooks.map((element) => {
     return (
-      <>
-        <div id="containerloks" class="flexChild rowParent">
-          <div id="rowChild95896" class="flexChild">
-            {element.ImgUrl ? (
-              <img
-                src={element.ImgUrl}
-                className="card-img"
-                alt="photo"
-                style={{ height: "250px", width: "200px" }}
-              />
-            ) : (
+      <div
+        className="card mb-3"
+        style={{ maxWidth: '150%', maxHeight: 200, color: 'white' }}
+        id="loks"
+      >
+        <div className="row no-gutters loks">
+          {element.ImgUrl ? (
+            <div className="col-md-4">
+              <img src={element.ImgUrl} className="card-img" alt="lookPhoto" />
+            </div>
+          ) : (
+            <div className="col-md-4">
               <div id="containerq" className="flexChild rowParent">
-                {/* <div id="rowChild93188" className="flexChild columnParent"> */}
-                <div id="columnChild38068" className="flexChild rowParent">
-                  <div id="rowChild47552" className="flexChild">
-                    {element.head ? (
-                      <img
-                        src={element.head.imgUrl}
-                        className="card-img"
-                        alt="photo"
-                        style={{ maxWidth: "100px", maxHeight: "100px" }}
-                      />
-                    ) : (
-                      <img
-                        src="https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg"
-                        className="card-img"
-                      />
-                    )}
-                    {element.body ? (
-                      <img
-                        src={element.body.imgUrl}
-                        className="card-img"
-                        alt="photo"
-                        style={{ maxWidth: "100px", maxHeight: "100px" }}
-                      />
-                    ) : (
-                      <img
-                        src="https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg"
-                        className="card-img"
-                      />
-                    )}
+                <div id="rowChild93188" className="flexChild columnParent">
+                  <div id="columnChild38068" className="flexChild rowParent">
+                    <div id="rowChild47552" className="flexChild">
+                      {element.head ? (
+                        <img src={element.head.imgUrl} className="card-img" alt="head" />
+                      ) : (
+                        <img
+                          src="https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg"
+                          className="card-img"
+                          alt="head"
+                        />
+                      )}
+                      {element.body ? (
+                        <img src={element.body.imgUrl} className="card-img" alt="body" />
+                      ) : (
+                        <img
+                          src="https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg"
+                          className="card-img"
+                          alt="body"
+                        />
+                      )}
+                    </div>
                   </div>
-                </div>
-                <div id="columnChild9857" className="flexChild rowParent">
-                  <div id="rowChild89645" className="flexChild">
-                    {element.legs ? (
-                      <img
-                        src={element.legs.imgUrl}
-                        className="card-img"
-                        alt="photo"
-                        style={{ maxWidth: "100px", maxHeight: "100px" }}
-                      />
-                    ) : (
-                      <img
-                        src="https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg"
-                        className="card-img"
-                      />
-                    )}
-                    {element.feet ? (
-                      <img
-                        src={element.feet.imgUrl}
-                        className="card-img"
-                        alt="photo"
-                        style={{ maxWidth: "100px", maxHeight: "100px" }}
-                      />
-                    ) : (
-                      <img
-                        src="https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg"
-                        className="card-img"
-                      />
-                    )}
+                  <div id="columnChild9857" className="flexChild rowParent">
+                    <div id="rowChild89645" className="flexChild">
+                      {element.legs ? (
+                        <img src={element.legs.imgUrl} className="card-img" alt="legs" />
+                      ) : (
+                        <img
+                          src="https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg"
+                          className="card-img"
+                          alt="legs"
+                        />
+                      )}
+                      {element.feet ? (
+                        <img src={element.feet.imgUrl} className="card-img" alt="feet" />
+                      ) : (
+                        <img
+                          src="https://www.clipartsfree.net/svg/61688-black-question-mark-square-icon-vector.svg"
+                          className="card-img"
+                          alt="feet"
+                        />
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-              // </div>
-            )}
-          </div>
+            </div>
+          )}
+          <div className="col-md-8">
+            <div className="card-body">
+              <h5 className="card-title" id="card-title" style={{ color: 'white' }}>
+                {element.name}
+              </h5>
 
-          {/* <div id="rowChild65972" class="flexChild columnParent"> */}
-          <div id="columnChild58421" class="flexChild rowParent">
-            <div id="rowChild92572" class="flexChild rowParent">
-              <div id="rowChild16716" class="flexChild columnParent">
-                <div
-                  id="columnChild23845"
-                  class="flexChild rowParent columnParent"
-                >
-                  <div id="columnChild90075" class="flexChild columnParent">
-                    <div id="columnChild91059" class="flexChild">
-                      {" "}
-                      <h4>{element.name}</h4>
-                    </div>
-
-                    <div id="columnChild88933" class="flexChild">
-                      {element.tags.map((element2) => {
-                        return (
-                          <span
-                            className="tags badge badge-pill badge-dark"
-                            style={{ minHeight: "1em" }}
-                          >
-                            {element2}
-                          </span>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  <div id="columnChild80137" class="flexChild rowParent">
-                    <div id="rowChild39726" class="flexChild rowParent">
-                      <div id="rowChild67747" class="flexChild">
-                        <VKShareButton
-                          url={"https://lookatme-31fb3.web.app/"}
-                          title={`Приложение для создания луков и хранения своей одежды!`}
-                          image={element.ImgUrl}
-                          className="VKicon"
-                        >
-                          <VKIcon size={32} round />
-                        </VKShareButton>
+              {element.tags.map((element2) => {
+                return (
+                  <span className="tags badge badge-pill badge-dark" style={{ minHeight: '1em' }}>
+                    {element2}
+                  </span>
+                );
+              })}
+              {element.ImgUrl ? (
+                <div className="shareIcons">
+                  <VKShareButton
+                    url={'https://lookatme-31fb3.web.app/'}
+                    title={`Приложение для создания луков и хранения своей одежды!`}
+                    image={element.ImgUrl}
+                    className="VKicon"
+                  >
+                    <VKIcon size={32} round />
+                  </VKShareButton>
+                  <OKShareButton
+                    url={'https://lookatme-31fb3.web.app/'}
+                    image={element.ImgUrl}
+                    className="Okicon"
+                  >
+                    <OKIcon size={32} round />
+                  </OKShareButton>
+                </div>
+              ) : (
+                <span></span>
+              )}
+              <div className="iconsLook">
+                {element.ImgUrl ? (
+                  <div>
+                    {element.share ? (
+                      <div className="custom-control custom-switch shareEgorZ">
+                        <input
+                          onClick={() => handleToggle(element.id, element.share)}
+                          type="checkbox"
+                          className="custom-control-input"
+                          id={`customSwitch${element.id}`}
+                          checked
+                        />
+                        <label className="custom-control-label" for={`customSwitch${element.id}`}>
+                          Публичный
+                        </label>
+                        <div></div>
                       </div>
+                    ) : (
+                      <div className="custom-control custom-switch shareEgorZ">
+                        <input
+                          onClick={() => handleToggle(element.id, element.share)}
+                          type="checkbox"
+                          className="custom-control-input"
+                          id={`customSwitch${element.id}`}
+                        />
+                        <label className="custom-control-label" for={`customSwitch${element.id}`}>
+                          Приватный
+                        </label>
 
-                      <div id="rowChild8133" class="flexChild">
-                        <OKShareButton
-                          url={"https://lookatme-31fb3.web.app/"}
-                          image={element.ImgUrl}
-                          className="Okicon"
-                        >
-                          <OKIcon size={32} round />
-                        </OKShareButton>
                       </div>
                     </div>
 
@@ -218,6 +214,17 @@ function OldLooks2() {
                       </div>
                     </div>
                   </div>
+                ) : null}
+                <div>
+                  <span
+                    className="p-2 bd-highlight deleteLink"
+                    onClick={() => {
+                      deleteLook('lookis', element.id);
+                    }}
+                  >
+                    <i className="fa fa-trash-o"></i>
+                  </span>
+
                 </div>
               </div>
             </div>

@@ -1,7 +1,7 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { setDressFilterProperty } from "../../redux/actioncreators/actionsSaga";
-import { Form } from "react-bootstrap";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { setDressFilterProperty } from '../../redux/actioncreators/actionsSaga';
+import { Form } from 'react-bootstrap';
 
 export default function DressCarouselHeader({ categories, title, property }) {
   const dispatch = useDispatch();
@@ -21,13 +21,7 @@ export default function DressCarouselHeader({ categories, title, property }) {
             as="select"
             custom
             onChange={({ target }) =>
-              dispatch(
-                setDressFilterProperty(
-                  property,
-                  target.value,
-                  "dressCategoryFilter"
-                )
-              )
+              dispatch(setDressFilterProperty(property, target.value, 'dressCategoryFilter'))
             }
           >
             <option value="">Не выбрано</option>
@@ -42,20 +36,14 @@ export default function DressCarouselHeader({ categories, title, property }) {
             as="select"
             custom
             onChange={({ target }) =>
-              dispatch(
-                setDressFilterProperty(
-                  property,
-                  target.value,
-                  "dressSeasonFilter"
-                )
-              )
+              dispatch(setDressFilterProperty(property, target.value, 'dressSeasonFilter'))
             }
           >
             <option value="">Не выбрано</option>
             <option value="winter">Зима</option>
             <option value="summer">Лето</option>
             <option value="autumn">Осень</option>
-            <option value="spring">Весна</option>{" "}
+            <option value="spring">Весна</option>{' '}
           </Form.Control>
         </Form.Group>
       </Form>

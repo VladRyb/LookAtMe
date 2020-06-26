@@ -64,16 +64,11 @@ export default function ModalImgOnline(props) {
           season: seasonState,
           type: typeState,
           stoyanie: stoyanieState || true,
-          creator:
-            firebase.auth().currentUser.uid +
-            '/' +
-            firebase.auth().currentUser.displayName,
+          creator: firebase.auth().currentUser.uid + '/' + firebase.auth().currentUser.displayName,
         });
     }
     if (fileList.length > 0) {
-      const uploadTask = storage
-        .ref(`images/${fileList[0].name}`)
-        .put(fileList[0].originFileObj);
+      const uploadTask = storage.ref(`images/${fileList[0].name}`).put(fileList[0].originFileObj);
       uploadTask.on(
         'state_changed',
         (snapshot) => {},
@@ -138,23 +133,18 @@ export default function ModalImgOnline(props) {
 
   return (
     <div>
-      <span variant='primary' onClick={handleShow}>
-        <div className='addDiv'>
-          <i className='fa fa-plus' />
+      <span variant="primary" onClick={handleShow}>
+        <div className="addDiv">
+          <i className="fa fa-plus" />
         </div>
       </span>
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop='static'
-        keyboard={false}
-      >
+      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>+</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div id='container' class='flexChild rowParent'>
-            <div id='rowChild94955' class='flexChild'>
+          <div id="container" class="flexChild rowParent">
+            <div id="rowChild94955" class="flexChild">
               <StorageUploaderModal
                 fileList={fileList}
                 onPreview={onPreview}
@@ -162,21 +152,21 @@ export default function ModalImgOnline(props) {
                 onChange={onChangeProps}
               />
               <TestOn setOnlinePhoto={setOnlinePhoto} />
-              <img src={onlinePhoto} alt='' />
+              <img src={onlinePhoto} alt="" />
             </div>
 
-            <div id='rowChild77673' class='flexChild'>
-              <div className='selectDiv d-flex justify-content-between'>
+            <div id="rowChild77673" class="flexChild">
+              <div className="selectDiv d-flex justify-content-between">
                 <span>Сезон: </span>
                 <select
-                  className='select btn btn-secondary btn-sm dropdown-toggle'
+                  className="select btn btn-secondary btn-sm dropdown-toggle"
                   onChange={(event) => setSeasonState(event.target.value)}
                 >
                   <option>Не выбрано</option>
-                  <option value='winter'>Зима</option>
-                  <option value='summer'>Лето</option>
-                  <option value='autumn'>Осень</option>
-                  <option value='spring'>Весна</option>
+                  <option value="winter">Зима</option>
+                  <option value="summer">Лето</option>
+                  <option value="autumn">Осень</option>
+                  <option value="spring">Весна</option>
                 </select>
               </div>
               {/* <div className='selectDiv d-flex justify-content-between'>
@@ -190,14 +180,14 @@ export default function ModalImgOnline(props) {
                   })}
                 </select>
               </div> */}
-              <div className='selectDiv d-flex justify-content-between'>
+              <div className="selectDiv d-flex justify-content-between">
                 <span>Состояние: </span>
                 <select
-                  className='select select btn btn-secondary btn-sm dropdown-toggle'
+                  className="select select btn btn-secondary btn-sm dropdown-toggle"
                   onChange={(event) => setStoyanieState(event.target.value)}
                 >
                   <option>Не выбрано</option>
-                  <option value='false'>Требует ремонта</option>
+                  <option value="false">Требует ремонта</option>
                 </select>
               </div>
             </div>
@@ -205,13 +195,13 @@ export default function ModalImgOnline(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            className='btn btn-outline-primary'
-            variant='outline-primary'
+            className="btn btn-outline-primary"
+            variant="outline-primary"
             onClick={() => {
               handleUpload();
               handleClose();
             }}
-            type='submit'
+            type="submit"
           >
             Submit
           </Button>

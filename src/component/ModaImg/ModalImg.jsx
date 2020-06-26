@@ -54,9 +54,7 @@ export default function ModalImg({ property, categories }) {
         });
     }
     if (fileList.length > 0) {
-      const uploadTask = storage
-        .ref(`images/${fileList[0].name}`)
-        .put(fileList[0].originFileObj);
+      const uploadTask = storage.ref(`images/${fileList[0].name}`).put(fileList[0].originFileObj);
       uploadTask.on(
         'state_changed',
         (snapshot) => {},
@@ -113,24 +111,19 @@ export default function ModalImg({ property, categories }) {
 
   return (
     <div>
-      <span variant='primary' onClick={handleShow}>
-        <div className='addDiv'>
-          <i className='fa fa-plus' />
+      <span variant="primary" onClick={handleShow}>
+        <div className="addDiv">
+          <i className="fa fa-plus" />
         </div>
       </span>
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop='static'
-        keyboard={false}
-      >
+      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>Добавить одежду</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div id='container' class='flexChild rowParent'>
-            <div id='rowChild94955' class='flexChild cam'>
-              <div className='modalCamera'>
+          <div id="container" class="flexChild rowParent">
+            <div id="rowChild94955" class="flexChild cam">
+              <div className="modalCamera">
                 {!isCamera ? (
                   <>
                     <StorageUploaderModal
@@ -142,43 +135,40 @@ export default function ModalImg({ property, categories }) {
 
                     <Button
                       onClick={() => setIsCamera((isCamera) => !isCamera)}
-                      className='btn btn-outline-primary'
-                      variant='outline-primary'
-                      type='submit'
+                      className="btn btn-outline-primary"
+                      variant="outline-primary"
+                      type="submit"
                     >
                       Сделать фото
                     </Button>
                   </>
                 ) : (
-                  <Camera
-                    setOnlinePhoto={setOnlinePhoto}
-                    setIsCamera={setIsCamera}
-                  />
+                  <Camera setOnlinePhoto={setOnlinePhoto} setIsCamera={setIsCamera} />
                 )}
               </div>
             </div>
-            <div class='formsdiv'>
-              <Form class='formFilters'>
+            <div class="formsdiv">
+              <Form class="formFilters">
                 <Form.Label>Сезон:</Form.Label>
-                <Form.Group controlId='exampleForm.SelectCustom'>
+                <Form.Group controlId="exampleForm.SelectCustom">
                   <Form.Control
-                    as='select'
+                    as="select"
                     custom
                     onChange={(event) => setSeasonState(event.target.value)}
                   >
                     <option>Не выбрано</option>
-                    <option value='winter'>Зима</option>
-                    <option value='summer'>Лето</option>
-                    <option value='autumn'>Осень</option>
-                    <option value='spring'>Весна</option>
+                    <option value="winter">Зима</option>
+                    <option value="summer">Лето</option>
+                    <option value="autumn">Осень</option>
+                    <option value="spring">Весна</option>
                   </Form.Control>
                 </Form.Group>
               </Form>
               <Form>
                 <Form.Label>Категории:</Form.Label>
-                <Form.Group controlId='exampleForm.SelectCustom'>
+                <Form.Group controlId="exampleForm.SelectCustom">
                   <Form.Control
-                    as='select'
+                    as="select"
                     custom
                     onChange={(event) => setTypeState(event.target.value)}
                   >
@@ -191,14 +181,14 @@ export default function ModalImg({ property, categories }) {
               </Form>
               <Form>
                 <Form.Label>Состояние:</Form.Label>
-                <Form.Group controlId='exampleForm.SelectCustom'>
+                <Form.Group controlId="exampleForm.SelectCustom">
                   <Form.Control
-                    as='select'
+                    as="select"
                     custom
                     onChange={(event) => setStoyanieState(event.target.value)}
                   >
                     <option>В хорошем состоянии</option>
-                    <option value='false'>Требует ремонта</option>
+                    <option value="false">Требует ремонта</option>
                   </Form.Control>
                 </Form.Group>
               </Form>
@@ -207,13 +197,13 @@ export default function ModalImg({ property, categories }) {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            className='btn btn-outline-primary'
-            variant='outline-primary'
+            className="btn btn-outline-primary"
+            variant="outline-primary"
             onClick={() => {
               handleUpload();
               handleClose();
             }}
-            type='submit'
+            type="submit"
           >
             Сохранить
           </Button>
