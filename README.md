@@ -59,4 +59,4 @@ npm start
 
 ## Отображение луков
 Сохраненные сочетания одежды хранятся в разделе "Мои луки". В случае, если при сохранении лука не была добавлена фотография, изображение лука в данном разделе будет состоять из 4 выбранных элементов одежды.
-![Отображение лука](https://github.com/VladRyb/LookAtMe/blob/master/public/lookOnMe7.png)
+![Отображение лука](https://github.com/VladRyb/LookAtMe/blob/master/public/lookOnMe7(1).png)
