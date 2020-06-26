@@ -3,16 +3,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { watcherDeleteLook, watcherHandleToggle } from '../../../redux/actioncreators/actionsSaga';
 import { OKShareButton, VKShareButton, OKIcon, VKIcon } from 'react-share';
 
+
 function OldLooks2() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const allLooks = useSelector((state) => state.user.lookis);
 
   while (user.uid === undefined) {
-    return 'Loading...';
+    return "Loading...";
   }
   while (allLooks === undefined) {
-    return 'Loading...';
+    return "Loading...";
   }
 
   function deleteLook(collection, id) {
@@ -21,10 +22,10 @@ function OldLooks2() {
 
   function handleToggle(id, status) {
     if (status === true) {
-      console.log('was true');
+      console.log("was true");
       dispatch(watcherHandleToggle(id, false));
     } else {
-      console.log('was false');
+      console.log("was false");
       dispatch(watcherHandleToggle(id, true));
     }
   }
@@ -154,8 +155,64 @@ function OldLooks2() {
                         <label className="custom-control-label" for={`customSwitch${element.id}`}>
                           Приватный
                         </label>
+
                       </div>
-                    )}
+                    </div>
+
+                    <div id="rowChild52401" class="flexChild columnParent">
+                      <div id="columnChild44993" class="flexChild rowParent">
+                        <div id="rowChild69848" class="flexChild">
+                          {element.share ? (
+                            <div className="custom-control custom-switch shareEgorZ">
+                              <input
+                                onClick={() =>
+                                  handleToggle(element.id, element.share)
+                                }
+                                type="checkbox"
+                                className="custom-control-input"
+                                id={`customSwitch${element.id}`}
+                                checked
+                              />
+                              <label
+                                className="custom-control-label"
+                                for={`customSwitch${element.id}`}
+                              >
+                                Публичный
+                              </label>
+                              <div></div>
+                            </div>
+                          ) : (
+                            <div className="custom-control custom-switch shareEgorZ">
+                              <input
+                                onClick={() =>
+                                  handleToggle(element.id, element.share)
+                                }
+                                type="checkbox"
+                                className="custom-control-input"
+                                id={`customSwitch${element.id}`}
+                              />
+                              <label
+                                className="custom-control-label"
+                                for={`customSwitch${element.id}`}
+                              >
+                                Приватный
+                              </label>
+                            </div>
+                          )}
+                        </div>
+
+                        <div id="rowChild29469" class="flexChild">
+                          <span
+                            className="p-2 bd-highlight deleteLink"
+                            onClick={() => {
+                              deleteLook("lookis", element.id);
+                            }}
+                          >
+                            <i className="fa fa-trash-o"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 ) : null}
                 <div>
@@ -167,12 +224,13 @@ function OldLooks2() {
                   >
                     <i className="fa fa-trash-o"></i>
                   </span>
+
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   });
 }
