@@ -123,13 +123,7 @@ const mouseCoordinatesFromEvent = (e) => {
 
 let swipeAlreadyReleased = false;
 
-const TinderCard = ({
-  flickOnSwipe = true,
-  children,
-  onSwipe,
-  onCardLeftScreen,
-  className,
-}) => {
+const TinderCard = ({ flickOnSwipe = true, children, onSwipe, onCardLeftScreen, className }) => {
   const handleSwipeReleased = async (element, speed) => {
     if (swipeAlreadyReleased) {
       return;

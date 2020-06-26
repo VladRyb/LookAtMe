@@ -1,8 +1,14 @@
-import React from "react";
-import Webcam from "react-webcam";
-import "./camera.css";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import Webcam from 'react-webcam';
+import IconButton from '@material-ui/core/IconButton';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+
+import { dressForNewLook } from '../../redux/actioncreators/actionsSaga';
+import './camera.css';
 
 const Camera = ({ setOnlinePhoto, setIsCamera }) => {
+  const dispatch = useDispatch();
   const webcamRef = React.useRef(null);
   const [imgSrc, setImgSrc] = React.useState(null);
 
@@ -17,12 +23,7 @@ const Camera = ({ setOnlinePhoto, setIsCamera }) => {
       {imgSrc ? (
         imgSrc && <img src={imgSrc} />
       ) : (
-        <Webcam
-          className="webcam"
-          audio={false}
-          ref={webcamRef}
-          screenshotFormat="image/jpeg"
-        />
+        <Webcam className="webcam" audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
       )}
 
       <div className="cameraNav">
@@ -30,7 +31,7 @@ const Camera = ({ setOnlinePhoto, setIsCamera }) => {
           className="fa fa-times-circle-o red"
           onClick={() => {
             setIsCamera(false);
-            setOnlinePhoto("");
+            setOnlinePhoto('');
           }}
         ></i>
 

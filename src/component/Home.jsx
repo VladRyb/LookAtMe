@@ -6,11 +6,11 @@ import LookAtMy from './startingpage/LookAtMy';
 import CariuselSuper from './CaruselSuper/CariuselSuper';
 export default function Home(props) {
   return (
-    <div id='globalDiv'>
+    <div id="globalDiv">
       <LookAtMy />
       <AboutComponent />
       <Video />
-      <h1 id='caruselH1'>Самые облайканные луки</h1>
+      <h1 id="caruselH1">Самые облайканные луки</h1>
       <CariuselSuper />
     </div>
   );

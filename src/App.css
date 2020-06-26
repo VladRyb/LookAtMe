@@ -2,7 +2,7 @@
   /* background-image: url('https://abrikos-mebel24.ru/wp-content/uploads/2017/12/garderob-komnata.jpg'); */
   /* background-image: url('http://xn---21-5cdgjndb4dde6s.xn--p1ai/userfiles/content/0/0/0/94_original.jpg'); */
   /* background-image: url('http://my-muzh.ru/wp-content/uploads/2017/01/garderob.jpg'); */
-  background-image: url("https://sturmproject.com/wp-content/uploads/2015/12/blue_moon_interni_01.jpg");
+  background-image: url('https://sturmproject.com/wp-content/uploads/2015/12/blue_moon_interni_01.jpg');
   background-size: 100%;
   background-attachment: fixed;
 }
@@ -58,7 +58,7 @@ h3 {
   /* font-family: "Jost", sans-serif; */
   /* font-family: 'Caveat', cursive; */
 
-  font-family: "Paytone One";
+  font-family: 'Paytone One';
   color: #202020;
   text-transform: uppercase;
   letter-spacing: -2px;
@@ -73,11 +73,11 @@ h3 span {
   letter-spacing: -4px;
 }
 .lookatmy {
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
 }
 
 .aboutContainer {
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
   font-size: 30px;
   color: white;
   display: flex;
@@ -92,7 +92,7 @@ span.carouselWithHeader {
   margin-top: 20px;
 }
 .textCatSeason {
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
   font-size: 25px;
   text-align: center;
 }
@@ -135,12 +135,12 @@ span.carouselWithHeader {
   letter-spacing: -2px;
 }
 #caruselH1 {
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
   margin-left: 1em;
   font-size: 3em;
-  color:white
+  color: white;
 }
 @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
-p{
-  color:white
+p {
+  color: white;
 }

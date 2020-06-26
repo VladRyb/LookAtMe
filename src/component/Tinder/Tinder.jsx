@@ -21,20 +21,14 @@ function Tinder() {
   const outOfFrame = (name) => {};
 
   return (
-    <div id='tinderCart'>
+    <div id="tinderCart">
       <div>
-        <link
-          href='https://fonts.googleapis.com/css?family=Damion&display=swap'
-          rel='stylesheet'
-        />
-        <link
-          href='https://fonts.googleapis.com/css?family=Alatsi&display=swap'
-          rel='stylesheet'
-        />
-        <div className='cardContainer'>
+        <link href="https://fonts.googleapis.com/css?family=Damion&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet" />
+        <div className="cardContainer">
           {looksShre.map((character) => (
             <TinderCard
-              className='swipe'
+              className="swipe"
               key={character.id}
               onSwipe={(dir) => {
                 swiped(dir, character, character.id);
@@ -45,14 +39,14 @@ function Tinder() {
             >
               <div
                 style={{ backgroundImage: 'url(' + character.ImgUrl + ')' }}
-                className='card cardT'
+                className="card cardT"
               >
-                <h3 className='like'></h3>
+                <h3 className="like"></h3>
               </div>
             </TinderCard>
           ))}
         </div>
-        <div className='infoText' id='like'>
+        <div className="infoText" id="like">
           {' '}
           <span>&#128078;</span>
           <span>&#128077;</span>

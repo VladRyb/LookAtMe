@@ -1,9 +1,6 @@
-import React, { useState } from "react";
-import {
-  dressForNewLook,
-  deleteDresssSaga,
-} from "../../redux/actioncreators/actionsSaga";
-import { useDispatch } from "react-redux";
+import React, { useState } from 'react';
+import { dressForNewLook, deleteDresssSaga } from '../../redux/actioncreators/actionsSaga';
+import { useDispatch } from 'react-redux';
 
 export default function DressImage({ el, property, setSelectedImage }) {
   const [isHover, setIsHover] = useState(null);

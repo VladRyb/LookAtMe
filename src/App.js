@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { BrowserRouter, Route } from "react-router-dom";
-import Home from "./component/Home";
-import NavBar from "./component/NavBar";
-import MyLooks2 from "./component/MyLooks/MyLooks2";
-import Dresser from "./component/Dresser/Dresser";
-import "./App.css";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Home from './component/Home';
+import NavBar from './component/NavBar';
+import MyLooks2 from './component/MyLooks/MyLooks2';
+import Dresser from './component/Dresser/Dresser';
+import './App.css';
 
-import { loadingColWather } from "./redux/actioncreators/actionsSaga";
+import { loadingColWather } from './redux/actioncreators/actionsSaga';
 
 function App(props) {
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const userUid = localStorage.getItem("uid");
+  const userUid = localStorage.getItem('uid');
 
   useEffect(() => {
     dispatch(loadingColWather());
